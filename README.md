@@ -18,6 +18,7 @@ Classic Shell Wikipedia Page: https://en.wikipedia.org/wiki/Classic_Shell
 
 
 ---
+# Features
 
 - Toolbar for Windows Explorer
 - Classic copy UI (Windows 7 only)

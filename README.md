@@ -1,5 +1,7 @@
 # Classic-Shell
 
+Original code of Classic Shell (v4.3.1), original author Ivo Beltchev http://www.classicshell.net
+
 Original Author Ivo Beltchev stopped development on Dec 3rd, 2017 [[Classic Shell no longer in development. Source code released](http://www.classicshell.net/forum/viewtopic.php?f=4&t=8147)]
 
 Original Classic Shell Website: http://www.classicshell.net/

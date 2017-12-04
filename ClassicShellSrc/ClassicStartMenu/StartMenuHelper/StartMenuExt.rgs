@@ -1,0 +1,54 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {E595F05F-903F-4318-8B0A-7F633B520D2B} = s 'StartMenuExt'
+		{
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+		ForceRemove {D3214FBB-3CA1-406A-B3E8-3EB7C393A15E} = s 'StartMenuEmulation'
+		{
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}
+
+HKCR
+{
+	NoRemove exefile
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove StartMenuExt = s '{E595F05F-903F-4318-8B0A-7F633B520D2B}'
+			}
+		}
+	}
+	NoRemove lnkfile
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove StartMenuExt = s '{E595F05F-903F-4318-8B0A-7F633B520D2B}'
+			}
+		}
+	}
+	NoRemove Folder
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove StartMenuExt = s '{E595F05F-903F-4318-8B0A-7F633B520D2B}'
+			}
+		}
+	}
+}

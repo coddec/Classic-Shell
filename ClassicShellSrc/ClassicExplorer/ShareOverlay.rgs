@@ -1,0 +1,49 @@
+HKCR
+{
+	ClassicExplorer.ShareOverlay.1 = s 'ShareOverlay Class'
+	{
+		CLSID = s '{594D4122-1F87-41E2-96C7-825FB4796516}'
+	}
+	ClassicExplorer.ShareOverlay = s 'ShareOverlay Class'
+	{
+		CLSID = s '{594D4122-1F87-41E2-96C7-825FB4796516}'
+		CurVer = s 'ClassicExplorer.ShareOverlay.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {594D4122-1F87-41E2-96C7-825FB4796516} = s 'ShareOverlay Class'
+		{
+			ProgID = s 'ClassicExplorer.ShareOverlay.1'
+			VersionIndependentProgID = s 'ClassicExplorer.ShareOverlay'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{BF8D124A-A4E0-402F-8152-4EF377E62586}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove SOFTWARE
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove ShellIconOverlayIdentifiers
+						{
+							ForceRemove ShareOverlay = s '{594D4122-1F87-41E2-96C7-825FB4796516}'
+						}
+					}
+				}
+			}
+		}
+	}
+}

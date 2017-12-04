@@ -1,0 +1,58 @@
+HKCR
+{
+	ClassicExplorer.ClassicCopyExt.1 = s 'ClassicCopyExt Class'
+	{
+		CLSID = s '{8C83ACB1-75C3-45D2-882C-EFA32333491C}'
+	}
+	ClassicExplorer.ClassicCopyExt = s 'ClassicCopyExt Class'
+	{
+		CLSID = s '{8C83ACB1-75C3-45D2-882C-EFA32333491C}'
+		CurVer = s 'ClassicExplorer.ClassicCopyExt.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {8C83ACB1-75C3-45D2-882C-EFA32333491C} = s 'ClassicCopyExt Class'
+		{
+			ProgID = s 'ClassicExplorer.ClassicCopyExt.1'
+			VersionIndependentProgID = s 'ClassicExplorer.ClassicCopyExt'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{BF8D124A-A4E0-402F-8152-4EF377E62586}'
+		}
+	}
+
+	NoRemove Directory
+	{
+		NoRemove shellex
+		{
+			NoRemove DragDropHandlers
+			{
+				ForceRemove ClassicCopyExt = s '{8C83ACB1-75C3-45D2-882C-EFA32333491C}'
+			}
+		}
+	}
+	NoRemove Drive
+	{
+		NoRemove shellex
+		{
+			NoRemove DragDropHandlers
+			{
+				ForceRemove ClassicCopyExt = s '{8C83ACB1-75C3-45D2-882C-EFA32333491C}'
+			}
+		}
+	}
+
+	NoRemove Folder
+	{
+		NoRemove shellex
+		{
+			NoRemove DragDropHandlers
+			{
+				ForceRemove ClassicCopyExt = s '{8C83ACB1-75C3-45D2-882C-EFA32333491C}'
+			}
+		}
+	}
+}

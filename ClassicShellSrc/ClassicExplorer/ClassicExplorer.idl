@@ -1,0 +1,90 @@
+// ClassicExplorer.idl : IDL source for ClassicExplorer
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ClassicExplorer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(BC4C1B8F-0BDE-4E42-9583-E072B2A28E0D),
+	dual,
+	nonextensible,
+	helpstring("IExplorerBand Interface"),
+	pointer_default(unique)
+]
+interface IExplorerBand : IDispatch{
+};
+[
+	object,
+	uuid(6E00B97F-A4D4-4062-98E4-4F66FC96F32F),
+	dual,
+	nonextensible,
+	helpstring("IClassicCopyExt Interface"),
+	pointer_default(unique)
+]
+interface IClassicCopyExt : IDispatch{
+};
+[
+	object,
+	uuid(A1678625-A011-4B7C-A1FA-D691E4CDDB79),
+	dual,
+	nonextensible,
+	helpstring("IExplorerBHO Interface"),
+	pointer_default(unique)
+]
+interface IExplorerBHO : IDispatch{
+};
+[
+	object,
+	uuid(2576496C-B58A-4995-8878-8B68F9E8D1FC),
+	dual,
+	nonextensible,
+	helpstring("IShareOverlay Interface"),
+	pointer_default(unique)
+]
+interface IShareOverlay : IDispatch{
+};
+[
+	uuid(BF8D124A-A4E0-402F-8152-4EF377E62586),
+	version(1.0),
+	helpstring("ClassicExplorer 1.0 Type Library")
+]
+library ClassicExplorerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(553891B7-A0D5-4526-BE18-D3CE461D6310),
+		helpstring("ExplorerBand Class")
+	]
+	coclass ExplorerBand
+	{
+		[default] interface IExplorerBand;
+	};
+	[
+		uuid(8C83ACB1-75C3-45D2-882C-EFA32333491C),
+		helpstring("ClassicCopyExt Class")
+	]
+	coclass ClassicCopyExt
+	{
+		[default] interface IClassicCopyExt;
+	};
+	[
+		uuid(449D0D6E-2412-4E61-B68F-1CB625CD9E52),
+		helpstring("ExplorerBHO Class")
+	]
+	coclass ExplorerBHO
+	{
+		[default] interface IExplorerBHO;
+	};
+	[
+		uuid(594D4122-1F87-41E2-96C7-825FB4796516),
+		helpstring("ShareOverlay Class")
+	]
+	coclass ShareOverlay
+	{
+		[default] interface IShareOverlay;
+	};
+};

@@ -1,0 +1,36 @@
+// ClassicIEDLL.idl : IDL source for ClassicIEDLL
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ClassicIEDLL.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(C698A81E-5D02-42B1-9801-5381CA8BBC2F),
+	dual,
+	nonextensible,
+	helpstring("IClassicIEBHO Interface"),
+	pointer_default(unique)
+]
+interface IClassicIEBHO : IDispatch{
+};
+[
+	uuid(FDA50A1E-B8CE-49DE-8D17-B034A84AA280),
+	version(1.0),
+	helpstring("ClassicIE 1.0 Type Library")
+]
+library ClassicIEDLLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(EA801577-E6AD-4BD5-8F71-4BE0154331A4),
+		helpstring("ClassicIEBHO Class")
+	]
+	coclass ClassicIEBHO
+	{
+		[default] interface IClassicIEBHO;
+	};
+};

@@ -1,0 +1,59 @@
+HKCR
+{
+	ClassicExplorer.ExplorerBand.1 = s 'ExplorerBand Class'
+	{
+		CLSID = s '{553891B7-A0D5-4526-BE18-D3CE461D6310}'
+	}
+	ClassicExplorer.ExplorerBand = s 'ExplorerBand Class'
+	{
+		CLSID = s '{553891B7-A0D5-4526-BE18-D3CE461D6310}'
+		CurVer = s 'ClassicExplorer.ExplorerBand.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {553891B7-A0D5-4526-BE18-D3CE461D6310} = s 'Classic Explorer Bar'
+		{
+			ProgID = s 'ClassicExplorer.ExplorerBand.1'
+			VersionIndependentProgID = s 'ClassicExplorer.ExplorerBand'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{BF8D124A-A4E0-402F-8152-4EF377E62586}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove 'Internet Explorer'
+			{
+				NoRemove Toolbar
+				{
+					ForceRemove	val {553891B7-A0D5-4526-BE18-D3CE461D6310} = b ''
+				}
+			}
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Policies
+					{
+						NoRemove Ext
+						{
+							NoRemove CLSID
+							{
+								ForceRemove	val {553891B7-A0D5-4526-BE18-D3CE461D6310} = s '2'
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

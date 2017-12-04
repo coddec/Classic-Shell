@@ -1,5 +1,11 @@
 # Classic-Shell
 
+## This repository was created in hope of:
+- It can be continuously and actively developed or forked
+- As a tribute to the original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
+
+---
+
 Original code of Classic Shell (v4.3.1), original author Ivo Beltchev http://www.classicshell.net
 
 Original Author Ivo Beltchev stopped development on Dec 3rd, 2017 [[Classic Shell no longer in development. Source code released](http://www.classicshell.net/forum/viewtopic.php?f=4&t=8147)]

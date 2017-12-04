@@ -1,8 +1,8 @@
 # Classic-Shell
 
 ## This repository was created in hope of:
-- It can be continuously and actively developed or forked
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
+- It can be continuously and actively developed or forked
 
 ---
 

@@ -1,4 +1,4 @@
-# Classic-Shell
+# Classic Shell ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/Latest-Original-v4.3.1-Freezed-Branch/ClassicShellLoc/English/images/ClassicShell.png)
 
 ## This repository was created in hope of:
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)

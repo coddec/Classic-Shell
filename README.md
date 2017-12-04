@@ -2,7 +2,7 @@
 
 ## This repository was created in hope of:
 - It can be continuously and actively developed or forked
-- As a tribute to the original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
+- As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
 
 ---
 

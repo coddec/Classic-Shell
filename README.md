@@ -26,6 +26,7 @@ Classic Shell Wikipedia Page: https://en.wikipedia.org/wiki/Classic_Shell
 ---
 # Features
 
+- Classic style of Start menu for Windows
 - Toolbar for Windows Explorer
 - Classic copy UI (Windows 7 only)
 - Show file size in Explorer status bar

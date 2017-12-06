@@ -12,6 +12,8 @@ Original Author Ivo Beltchev stopped development on Dec 3rd, 2017 [[Classic Shel
 
 Original Classic Shell Website: http://www.classicshell.net/
 
+Original Classic Shell FAQ Page: http://www.classicshell.net/faq/
+
 Original Classic Shell Facebook Page: https://www.facebook.com/classicshell
 
 Original Classic Shell Sourceforge Page: https://sourceforge.net/projects/classicshell/

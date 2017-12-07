@@ -5,6 +5,9 @@
 - It can be continuously and actively developed or forked
 
 ---
+# Mirror of www.classicshell.net
+https://coddec.github.io/Classic-Shell/
+---
 
 Original code of Classic Shell (v4.3.1), original author Ivo Beltchev http://www.classicshell.net
 

@@ -4,10 +4,6 @@
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
 - It can be continuously and actively developed or forked
 
----
-# Mirror of www.classicshell.net
-https://coddec.github.io/Classic-Shell/
----
 
 Original code of Classic Shell (v4.3.1), original author Ivo Beltchev http://www.classicshell.net
 
@@ -26,6 +22,14 @@ Original Classic Shell MediaFire Page: https://www.mediafire.com/folder/v8cv2m87
 Internet Archive: Wayback Machine of www.classicshell.net [https://web.archive.org/web/*/http://www.classicshell.net/] [[Dec 2nd, 2017](https://web.archive.org/web/20171202081923/http://www.classicshell.net/)]
 
 Classic Shell Wikipedia Page: https://en.wikipedia.org/wiki/Classic_Shell
+
+---
+# Mirror of www.classicshell.net
+
+Home Page: https://coddec.github.io/Classic-Shell/
+
+FAQ Page: https://coddec.github.io/Classic-Shell/www.classicshell.net/faq/
+
 
 
 ---

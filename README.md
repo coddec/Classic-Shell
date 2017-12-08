@@ -31,6 +31,11 @@ Home Page: https://coddec.github.io/Classic-Shell/
 
 FAQ Page: https://coddec.github.io/Classic-Shell/www.classicshell.net/faq/
 
+How To Skin a Start Menu: https://coddec.github.io/Classic-Shell/www.classicshell.net/tutorials/skintutorial.html
+	
+Classic Shell - Custom Start Buttons: https://coddec.github.io/Classic-Shell/www.classicshell.net/tutorials/buttontutorial.html
+
+Report a bug/issue or submit a feature request: https://github.com/coddec/Classic-Shell/issues
 
 
 ---

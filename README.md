@@ -4,6 +4,7 @@
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
 - It can be continuously and actively developed or forked
 
+---
 
 Original code of Classic Shell (v4.3.1), original author Ivo Beltchev http://www.classicshell.net
 

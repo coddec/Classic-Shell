@@ -121,7 +121,7 @@ CStartButton::CStartButton( void )
 
 LRESULT CStartButton::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
-	int params=(int)(((CREATESTRUCT*)lParam)->lpCreateParams);
+	int params=(int)(intptr_t)(((CREATESTRUCT*)lParam)->lpCreateParams);
 	m_bRTL=(params&1)!=0;
 	m_TaskbarId=params>>1;
 	m_bSmallIcons=IsTaskbarSmallIcons();
@@ -405,7 +405,7 @@ void CStartButton::SetPressed( bool bPressed )
 		m_bPressed=bPressed;
 		m_HotBlend=m_bHot?BLEND_PRECISION:0;
 		KillTimer(TIMER_BLEND);
-		TOOLINFO tool={sizeof(tool),TTF_CENTERTIP|TTF_SUBCLASS|TTF_IDISHWND|TTF_TRANSPARENT|(m_bRTL?TTF_RTLREADING:0),m_hWnd};
+		TOOLINFO tool={sizeof(tool),TTF_CENTERTIP|TTF_SUBCLASS|TTF_IDISHWND|TTF_TRANSPARENT|(m_bRTL?TTF_RTLREADING:0U),m_hWnd};
 		tool.uId=(UINT_PTR)m_hWnd;
 		CString startStr=GetSettingString(L"StartButtonTip");
 		const wchar_t *startText=startStr;
@@ -608,7 +608,7 @@ HWND CreateStartButton( int taskbarId, HWND taskBar, HWND rebar, const RECT &rcT
 	bool bRTL=(GetWindowLong(rebar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)!=0;
 	DWORD styleTopmost=GetWindowLong(taskBar,GWL_EXSTYLE)&WS_EX_TOPMOST;
 	CStartButton &button=g_StartButtons[taskbarId];
-	button.Create(taskBar,NULL,NULL,WS_POPUP,styleTopmost|WS_EX_TOOLWINDOW|WS_EX_LAYERED,0U,(void*)(taskbarId*2+(bRTL?1:0)));
+	button.Create(taskBar,NULL,NULL,WS_POPUP,styleTopmost|WS_EX_TOOLWINDOW|WS_EX_LAYERED,0U,(void*)(intptr_t)(taskbarId*2+(bRTL?1:0)));
 	SIZE size=button.GetSize();
 	RECT rcButton;
 	MONITORINFO info;

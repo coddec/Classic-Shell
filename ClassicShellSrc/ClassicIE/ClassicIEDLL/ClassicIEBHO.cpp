@@ -102,7 +102,7 @@ HRESULT STDMETHODCALLTYPE CClassicIEBHO::SetSite( IUnknown *pUnkSite )
 				if (topWindow)
 				{
 					wchar_t param[100];
-					Sprintf(param,_countof(param),L"%u",(DWORD)topWindow);
+					Sprintf(param,_countof(param),L"%u",(DWORD)(uintptr_t)topWindow);
 					m_Settings=StartBroker(bLowIntegrity,param);
 
 					if (m_Settings&(IE_SETTING_PROGRESS|IE_SETTING_ZONE))
@@ -237,7 +237,7 @@ LRESULT CALLBACK CClassicIEBHO::SubclassStatusProc( HWND hWnd, UINT uMsg, WPARAM
 			if (pThis->m_pWebBrowser && SUCCEEDED(pThis->m_pWebBrowser->get_LocationURL(&url)))
 			{
 				wchar_t buf[1024];
-				Sprintf(buf,_countof(buf),L"zone %u %s",(unsigned)GetAncestor(hWnd,GA_ROOT),(const wchar_t*)url);
+				Sprintf(buf,_countof(buf),L"zone %u %s",(unsigned)(uintptr_t)GetAncestor(hWnd,GA_ROOT),(const wchar_t*)url);
 				StartBroker(false,buf);
 			}
 

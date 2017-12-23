@@ -294,7 +294,7 @@ static BOOL CALLBACK EnumTopWindows( HWND hwnd, LPARAM lParam )
 		HWND caption=FindWindowEx(hwnd,NULL,L"Client Caption",NULL);
 		if (caption)
 		{
-			LogToFile(CIE_LOG,L"InitClassicIE: caption=%X",(DWORD)caption);
+			LogToFile(CIE_LOG,L"InitClassicIE: caption=%p",caption);
 			if (!g_OldClassCaptionProc)
 				g_OldClassCaptionProc=(WNDPROC)SetClassLongPtr(caption,GCLP_WNDPROC,(LONG_PTR)ClassCaptionProc);
 			WNDPROC proc=(WNDPROC)SetWindowLongPtr(caption,GWLP_WNDPROC,(LONG_PTR)SubclassCaptionProc);

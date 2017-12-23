@@ -290,6 +290,7 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	}
 
 	// check Windows version
+	#pragma warning(suppress:4996)
 	WORD winVer=LOWORD(GetVersion());
 	winVer=MAKEWORD(HIBYTE(winVer),LOBYTE(winVer));
 	if (winVer<0x601)

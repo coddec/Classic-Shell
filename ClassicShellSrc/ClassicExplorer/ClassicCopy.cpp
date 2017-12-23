@@ -182,21 +182,21 @@ void CClassicCopyFile::AddAccChild( IAccessible *pAcc, const VARIANT &id, CStrin
 				m_YesButton.first=pAcc;
 				m_YesButton.second=id.intVal;
 				if (pLog)
-					LogPrint(pLog,L"YES button: %x, %d\r\n",(DWORD)pAcc,id.intVal);
+					LogPrint(pLog,L"YES button: %p, %d\r\n",pAcc,id.intVal);
 			}
 			else if (_wcsicmp(name,g_ButtonDontCopy)==0 || _wcsicmp(name,g_ButtonDontMove)==0)
 			{
 				m_NoButton.first=pAcc;
 				m_NoButton.second=id.intVal;
 				if (pLog)
-					LogPrint(pLog,L"NO button: %x, %d\r\n",(DWORD)pAcc,id.intVal);
+					LogPrint(pLog,L"NO button: %p, %d\r\n",pAcc,id.intVal);
 			}
 			else if (_wcsicmp(name,g_ButtonCancel)==0)
 			{
 				m_Cancel.first=pAcc;
 				m_Cancel.second=id.intVal;
 				if (pLog)
-					LogPrint(pLog,L"CANCEL button: %x, %d\r\n",(DWORD)pAcc,id.intVal);
+					LogPrint(pLog,L"CANCEL button: %p, %d\r\n",pAcc,id.intVal);
 			}
 		}
 	}
@@ -616,7 +616,7 @@ static LRESULT CALLBACK WindowProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
 						}
 					}
 					else if (g_bLogLevel)
-						LogPrint(&log,L"AccessibleObjectFromWindow: error=0x%X, hWnd=0x%X",h,(DWORD)hWnd);
+						LogPrint(&log,L"AccessibleObjectFromWindow: error=0x%X, hWnd=0x%p",h,hWnd);
 
 					if (g_bLogLevel)
 					{
@@ -632,6 +632,7 @@ static LRESULT CALLBACK WindowProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
 								fwprintf(f,L"\xFEFF");
 
 								OSVERSIONINFOEX ver={sizeof(ver)};
+								#pragma warning(suppress:4996)
 								GetVersionEx((OSVERSIONINFO*)&ver);
 								fwprintf(f,L"version = %d.%d.%d - %d.%d\r\n\r\n",ver.dwMajorVersion,ver.dwMinorVersion,ver.dwBuildNumber,ver.wServicePackMajor,ver.wServicePackMinor);
 
@@ -728,7 +729,7 @@ LRESULT CALLBACK ClassicCopyHook( int nCode, WPARAM wParam, LPARAM lParam )
 		HWND hWnd=(HWND)wParam;
 		CBT_CREATEWND *create=(CBT_CREATEWND*)lParam;
 		HINSTANCE hInst=(HINSTANCE)GetWindowLongPtr(hWnd,GWLP_HINSTANCE);
-		if (create->lpcs->lpszName && (int)create->lpcs->lpszClass==32770 && hInst==g_hShell32)
+		if (create->lpcs->lpszName && (intptr_t)create->lpcs->lpszClass==32770 && hInst==g_hShell32)
 		{
 			WaitDllInitThread();
 			static LONG id;

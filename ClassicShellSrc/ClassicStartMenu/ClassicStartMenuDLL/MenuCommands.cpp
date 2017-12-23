@@ -240,7 +240,7 @@ static DWORD WINAPI NewShortcutThread( void *param )
 
 static DWORD WINAPI SleepThread( void *param )
 {
-	SetSuspendState((BOOL)param,FALSE,FALSE);
+	SetSuspendState((BOOL)(intptr_t)param,FALSE,FALSE);
 	return 0;
 }
 

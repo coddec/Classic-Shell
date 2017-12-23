@@ -55,7 +55,7 @@ IatHookData *SetIatHook( IMAGE_DOS_HEADER *dosHeader, DWORD iatOffset, DWORD int
 	{
 		if (origThunk->u1.Ordinal&IMAGE_ORDINAL_FLAG)
 		{
-			if (IS_INTRESOURCE(targetProc) && IMAGE_ORDINAL(origThunk->u1.Ordinal)==(WORD)targetProc)
+			if (IS_INTRESOURCE(targetProc) && IMAGE_ORDINAL(origThunk->u1.Ordinal)==(uintptr_t)targetProc)
 				break;
 		}
 		else

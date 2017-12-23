@@ -512,7 +512,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 			Sleep(sleep);
 		HWND balloon=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|(IsLanguageRTL()?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_CLOSE|TTS_NOPREFIX,0,0,0,0,NULL,NULL,g_Instance,NULL);
 		SendMessage(balloon,TTM_SETMAXTIPWIDTH,0,500);
-		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRANSPARENT|TTF_TRACK|(IsLanguageRTL()?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRANSPARENT|TTF_TRACK|(IsLanguageRTL()?TTF_RTLREADING:0U)};
 		tool.uId=1;
 		CString message=LoadStringEx(g_UpdateDlg.HasNewLanguage()?IDS_LANG_NEWVERSION:IDS_NEWVERSION);
 		tool.lpszText=(wchar_t*)(const wchar_t*)message;

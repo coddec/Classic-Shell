@@ -275,7 +275,7 @@ extern "C" BOOL WINAPI DllMain( HINSTANCE hInstance, DWORD dwReason, LPVOID lpRe
 			LocalFree((HLOCAL)pData);
 		TlsSetValue(g_TlsIndex,NULL);
 		TlsFree(g_TlsIndex);
-		GlobalDeleteAtom((ATOM)g_LoadedSettingsAtom);
+		GlobalDeleteAtom((ATOM)(uintptr_t)g_LoadedSettingsAtom);
 	}
 
 	return _AtlModule.DllMain(dwReason, lpReserved);

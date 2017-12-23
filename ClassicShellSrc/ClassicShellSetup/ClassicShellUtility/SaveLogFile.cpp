@@ -137,7 +137,7 @@ static void WriteRegKey( FILE *f, CRegKey &key, int tabs, const wchar_t *annotat
 					CString val=(wchar_t*)&buf[0];
 					val.Replace(L"\r",L"\\r");
 					val.Replace(L"\n",L"\\n");
-					fwprintf(f,L"%s",val);
+					fwprintf(f,L"%s",(const wchar_t*)val);
 				}
 				break;
 			case REG_MULTI_SZ:
@@ -146,7 +146,7 @@ static void WriteRegKey( FILE *f, CRegKey &key, int tabs, const wchar_t *annotat
 					CString val=str;
 					val.Replace(L"\r",L"\\r");
 					val.Replace(L"\n",L"\\n");
-					fwprintf(f,L"%s\\0",val);
+					fwprintf(f,L"%s\\0",(const wchar_t*)val);
 				}
 				break;
 		}
@@ -210,7 +210,7 @@ static void WriteFolder( FILE *f, const wchar_t *path, int tabs, bool bRecursive
 						else if (FAILED(pTarget->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING,&target)))
 							fwprintf(f,L" target='no name'");
 						else
-							fwprintf(f,L" target='%s'",target);
+							fwprintf(f,L" target='%s'",(const wchar_t*)target);
 						wchar_t args[256];
 						if (FAILED(pLink->GetArguments(args,_countof(args))))
 							args[0]=0;
@@ -230,7 +230,7 @@ static void WriteFolder( FILE *f, const wchar_t *path, int tabs, bool bRecursive
 						if (args[0])
 							fwprintf(f,L" args='%s'",args);
 						if (!appid.IsEmpty())
-							fwprintf(f,L" appid='%s'",appid);
+							fwprintf(f,L" appid='%s'",(const wchar_t*)appid);
 					}
 				}
 			}
@@ -245,10 +245,10 @@ static void WriteFolder( FILE *f, const wchar_t *path, int tabs, bool bRecursive
 					CString policy;
 					ReadRegistryValue(HKEY_CURRENT_USER,L"Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers",fname,policy);
 					if (!policy.IsEmpty())
-						fwprintf(f,L" usercompat='%s'",policy);
+						fwprintf(f,L" usercompat='%s'",(const wchar_t*)policy);
 					ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers",fname,policy);
 					if (!policy.IsEmpty())
-						fwprintf(f,L" compat='%s'",policy);
+						fwprintf(f,L" compat='%s'",(const wchar_t*)policy);
 				}
 			}
 			fwprintf(f,L"\r\n");
@@ -315,7 +315,7 @@ static void WriteProcessInfo( FILE *f, HANDLE hProcess, int tabs )
 	for (std::set<CString,CompareStrings>::const_iterator it=names.begin();it!=names.end();++it)
 	{
 		DWORD ver=GetFileVersion(*it,NULL);
-		fwprintf(f,L"%s%s  (%d.%d.%d)\r\n",GetTabs(tabs),*it,ver>>24,(ver>>16)&255,ver&65535);
+		fwprintf(f,L"%s%s  (%d.%d.%d)\r\n",GetTabs(tabs),(const wchar_t*)(*it),ver>>24,(ver>>16)&255,ver&65535);
 	}
 }
 
@@ -377,7 +377,7 @@ static void WriteLogFile( FILE *f )
 	CString strVer1, strVer2;
 	ReadRegistryValue(HKEY_LOCAL_MACHINE,L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",L"ProductName",strVer1);
 	ReadRegistryValue(HKEY_LOCAL_MACHINE,L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",L"CurrentVersion",strVer2);
-	fwprintf(f,L"\tWindows version (registry): %s %s\r\n",strVer1,strVer2);
+	fwprintf(f,L"\tWindows version (registry): %s %s\r\n",(const wchar_t*)strVer1,(const wchar_t*)strVer2);
 
 	wchar_t user1[256]={0}, user2[256]={0};
 	ULONG size=_countof(user1);
@@ -558,7 +558,7 @@ static void WriteLogFile( FILE *f )
 		CComString pPath;
 		if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_Startup,0,NULL,&pPath)))
 		{
-			fwprintf(f,L"\r\n\t%s:\r\n",pPath);
+			fwprintf(f,L"\r\n\t%s:\r\n",(const wchar_t*)pPath);
 			WriteFolder(f,pPath,2,false);
 			fwprintf(f,L"\r\n");
 		}
@@ -568,7 +568,7 @@ static void WriteLogFile( FILE *f )
 		CComString pPath;
 		if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_CommonStartup,0,NULL,&pPath)))
 		{
-			fwprintf(f,L"\r\n\t%s:\r\n",pPath);
+			fwprintf(f,L"\r\n\t%s:\r\n",(const wchar_t*)pPath);
 			WriteFolder(f,pPath,2,false);
 			fwprintf(f,L"\r\n");
 		}
@@ -659,7 +659,7 @@ static void WriteLogFile( FILE *f )
 	}
 
 	for (std::set<CString,CompareStrings>::const_iterator it=programs.begin();it!=programs.end();++it)
-		fwprintf(f,L"\t\t%s\r\n",*it);
+		fwprintf(f,L"\t\t%s\r\n",(const wchar_t*)(*it));
 
 	fwprintf(f,L"\r\nClassic Shell\r\n");
 	wchar_t csPath[_MAX_PATH]=L"";
@@ -748,13 +748,13 @@ static void WriteLogFile( FILE *f )
 		fwprintf(f,L"Explorer addons:\r\n");
 		CString text;
 		if (ReadRegistryValue(HKEY_CURRENT_USER,L"Software\\Microsoft\\Internet Explorer\\Main",L"Enable Browser Extensions",text)==ERROR_SUCCESS)
-			fwprintf(f,L"\tEnable Browser Extensions (user): %s\r\n",text);
+			fwprintf(f,L"\tEnable Browser Extensions (user): %s\r\n",(const wchar_t*)text);
 		if (ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Internet Explorer\\Main",L"Enable Browser Extensions",text)==ERROR_SUCCESS)
-			fwprintf(f,L"\tEnable Browser Extensions: %s\r\n",text);
+			fwprintf(f,L"\tEnable Browser Extensions: %s\r\n",(const wchar_t*)text);
 		if (ReadRegistryValue(HKEY_CURRENT_USER,L"Software\\Microsoft\\Internet Explorer\\Main",L"Isolation",text)==ERROR_SUCCESS)
-			fwprintf(f,L"\tIsolation (user): %s\r\n",text);
+			fwprintf(f,L"\tIsolation (user): %s\r\n",(const wchar_t*)text);
 		if (ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Internet Explorer\\Main",L"Isolation",text)==ERROR_SUCCESS)
-			fwprintf(f,L"\tIsolation: %s\r\n",text);
+			fwprintf(f,L"\tIsolation: %s\r\n",(const wchar_t*)text);
 	}
 	if (bClassicExplorer)
 	{
@@ -763,11 +763,11 @@ static void WriteLogFile( FILE *f )
 			fwprintf(f,L"\tExplorerBand flags: 0x%08X\r\n",flags);
 		CString policy;
 		if (ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{553891B7-A0D5-4526-BE18-D3CE461D6310}",policy)==ERROR_SUCCESS)
-			fwprintf(f,L"\tExplorerBand policy: %s\r\n",policy);
+			fwprintf(f,L"\tExplorerBand policy: %s\r\n",(const wchar_t*)policy);
 		if (ReadRegistryValue(HKEY_CURRENT_USER,L"Software\\Microsoft\\Windows\\CurrentVersion\\Ext\\Settings\\{449D0D6E-2412-4E61-B68F-1CB625CD9E52}",L"Flags",flags)==ERROR_SUCCESS)
 			fwprintf(f,L"\tExplorerBHO flags: 0x%08X\r\n",flags);
 		if (ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{449D0D6E-2412-4E61-B68F-1CB625CD9E52}",policy)==ERROR_SUCCESS)
-			fwprintf(f,L"\tExplorerBHO policy: %s\r\n",policy);
+			fwprintf(f,L"\tExplorerBHO policy: %s\r\n",(const wchar_t*)policy);
 	}
 	if (bClassicIE)
 	{
@@ -776,7 +776,7 @@ static void WriteLogFile( FILE *f )
 		if (ReadRegistryValue(HKEY_CURRENT_USER,L"Software\\Microsoft\\Windows\\CurrentVersion\\Ext\\Settings\\{EA801577-E6AD-4BD5-8F71-4BE0154331A4}",L"Flags",flags)==ERROR_SUCCESS)
 			fwprintf(f,L"\tClassicIE flags: 0x%08X\r\n",flags);
 		if (ReadRegistryValue(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{EA801577-E6AD-4BD5-8F71-4BE0154331A4}",policy)==ERROR_SUCCESS)
-			fwprintf(f,L"\tClassicIE policy: %s\r\n",policy);
+			fwprintf(f,L"\tClassicIE policy: %s\r\n",(const wchar_t*)policy);
 	}
 	if (bClassicExplorer || bClassicIE)
 		fwprintf(f,L"\r\n");
@@ -793,7 +793,7 @@ static void WriteLogFile( FILE *f )
 			{
 				if (guid.IsEmpty())
 					guid=L"(empty)";
-				fwprintf(f,L"TreatAs: %s%s\r\n",guid,_wcsicmp(guid,L"{D3214FBB-3CA1-406a-B3E8-3EB7C393A15E}")==0?L" (correct)":L" (wrong)");
+				fwprintf(f,L"TreatAs: %s%s\r\n",(const wchar_t*)guid,_wcsicmp(guid,L"{D3214FBB-3CA1-406a-B3E8-3EB7C393A15E}")==0?L" (correct)":L" (wrong)");
 			}
 
 			CString emulation;
@@ -804,7 +804,7 @@ static void WriteLogFile( FILE *f )
 			{
 				if (emulation.IsEmpty())
 					emulation=L"(empty)";
-				fwprintf(f,L"Emulation: %s%s\r\n",emulation,_wcsicmp(emulation,L"StartMenuEmulation")==0?L" (correct)":L" (wrong)");
+				fwprintf(f,L"Emulation: %s%s\r\n",(const wchar_t*)emulation,_wcsicmp(emulation,L"StartMenuEmulation")==0?L" (correct)":L" (wrong)");
 			}
 
 			CString server;
@@ -820,7 +820,7 @@ static void WriteLogFile( FILE *f )
 					state=L" (missing file)";
 				else
 					state=L" (correct)";
-				fwprintf(f,L"Server: %s%s\r\n",server,state);
+				fwprintf(f,L"Server: %s%s\r\n",(const wchar_t*)server,state);
 			}
 		}
 	}
@@ -868,9 +868,9 @@ static void WriteLogFileAdmin( FILE *f )
 			CloseServiceHandle(hManager);
 			for (std::map<CString,GroupInfo,CompareStrings>::const_iterator it=services.begin();it!=services.end();++it)
 				if (it->second.group.IsEmpty())
-					fwprintf(f,L"\t%s (%s): %s\r\n",it->first,it->second.desc,it->second.status);
+					fwprintf(f,L"\t%s (%s): %s\r\n",(const wchar_t*)it->first,(const wchar_t*)it->second.desc,it->second.status);
 				else
-					fwprintf(f,L"\t%s (%s): %s (%s)\r\n",it->first,it->second.desc,it->second.status,it->second.group);
+					fwprintf(f,L"\t%s (%s): %s (%s)\r\n",(const wchar_t*)it->first,(const wchar_t*)it->second.desc,it->second.status,(const wchar_t*)it->second.group);
 		}
 	}
 
@@ -1007,7 +1007,7 @@ int SaveLogFile( const wchar_t *fname, bool bAdmin )
 		GetModuleFileName(NULL,exe,_countof(exe));
 		wchar_t cmdLine[1024];
 		Sprintf(cmdLine,_countof(cmdLine),L"saveloga \"%s\"",fname);
-		if ((int)ShellExecute(NULL,L"runas",exe,cmdLine,NULL,SW_SHOWNORMAL)<=32)
+		if ((intptr_t)ShellExecute(NULL,L"runas",exe,cmdLine,NULL,SW_SHOWNORMAL)<=32)
 		{
 			f=NULL;
 			if (_wfopen_s(&f,fname,L"ab")==0 && f)

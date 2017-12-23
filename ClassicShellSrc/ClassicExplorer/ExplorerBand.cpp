@@ -448,7 +448,7 @@ void CBandWindow::SendEmail( void )
 	CComPtr<IDataObject> pDataObj;
 	if (FAILED(pView->GetItemObject(SVGIO_SELECTION,IID_IDataObject,(void**)&pDataObj)))
 		return;
-	CComQIPtr<IAsyncOperation> pAsync=pDataObj;
+	CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 	if (pAsync)
 		pAsync->SetAsyncMode(FALSE);
 
@@ -506,7 +506,7 @@ void CBandWindow::SendToZip( void )
 	CComPtr<IDataObject> pDataObj;
 	if (FAILED(pView->GetItemObject(SVGIO_SELECTION,IID_IDataObject,(void**)&pDataObj)))
 		return;
-	CComQIPtr<IAsyncOperation> pAsync=pDataObj;
+	CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 	if (pAsync)
 		pAsync->SetAsyncMode(FALSE);
 

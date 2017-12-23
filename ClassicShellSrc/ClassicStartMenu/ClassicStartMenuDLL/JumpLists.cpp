@@ -250,7 +250,7 @@ static void AddJumpItem( CJumpGroup &group, IUnknown *pUnknown, std::vector<CCom
 		pName.Clear();
 		if (SUCCEEDED(pItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING,&pName)))
 		{
-			LOG_MENU(LOG_OPEN,L"Jumplist Item Path: %s",pName);
+			LOG_MENU(LOG_OPEN,L"Jumplist Item Path: %s",(const wchar_t*)pName);
 			pName.MakeUpper();
 			item.hash=CalcFNVHash(pName);
 		}
@@ -304,7 +304,7 @@ static void AddJumpItem( CJumpGroup &group, IUnknown *pUnknown, std::vector<CCom
 			pName.Clear();
 			if (SUCCEEDED(SHGetNameFromIDList(pidl,SIGDN_DESKTOPABSOLUTEPARSING,&pName)))
 			{
-				LOG_MENU(LOG_OPEN,L"Jumplist Link Path: %s",pName);
+				LOG_MENU(LOG_OPEN,L"Jumplist Link Path: %s",(const wchar_t*)pName);
 				pName.MakeUpper();
 				item.hash=CalcFNVHash(pName);
 			}

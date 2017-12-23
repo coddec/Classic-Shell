@@ -167,7 +167,7 @@ void DumpResourceLeaks( void )
 	{
 		if (cells[i].pKernel && cells[i].nProcess==pid)
 		{
-			HGDIOBJ handle=(HGDIOBJ)((cells[i].nUpper<<16)|i);
+			HGDIOBJ handle=(HGDIOBJ)(intptr_t)((cells[i].nUpper<<16)|i);
 			const TrackedResource *res=NULL;
 			TrackedResourceMap::const_iterator it=g_TrackedGdiResources.find(handle);
 			if (it!=g_TrackedGdiResources.end())

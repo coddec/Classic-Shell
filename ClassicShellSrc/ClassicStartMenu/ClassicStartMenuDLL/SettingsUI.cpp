@@ -690,7 +690,7 @@ LRESULT CSkinSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		m_EditBox.GetWindowText(str);
 		str.TrimLeft(); str.TrimRight();
 		wchar_t *end;
-		int val=wcstol(str,&end,16)&0xFFFFFF;
+		COLORREF val=wcstol(str,&end,16)&0xFFFFFF;
 		static COLORREF customColors[16];
 		CHOOSECOLOR choose={sizeof(choose),m_hWnd,NULL,val,customColors};
 		choose.Flags=CC_ANYCOLOR|CC_FULLOPEN|CC_RGBINIT;
@@ -3754,7 +3754,7 @@ LRESULT CMenuStyleDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	bool bRTL=IsLanguageRTL();
 	m_Tooltip=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|WS_EX_TRANSPARENT|(bRTL?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_NOPREFIX,0,0,0,0,m_hWnd,NULL,g_Instance,NULL);
 	m_Tooltip.SendMessage(TTM_SETMAXTIPWIDTH,0,500);
-	TOOLINFO tool={sizeof(tool),TTF_IDISHWND|TTF_SUBCLASS|(bRTL?TTF_RTLREADING:0)};
+	TOOLINFO tool={sizeof(tool),TTF_IDISHWND|TTF_SUBCLASS|(bRTL?TTF_RTLREADING:0U)};
 	tool.uId=(UINT_PTR)m_ImageClassic1.m_hWnd;
 	tool.lpszText=(wchar_t*)(const wchar_t*)tip1;
 	m_Tooltip.SendMessage(TTM_ADDTOOL,0,(LPARAM)&tool);

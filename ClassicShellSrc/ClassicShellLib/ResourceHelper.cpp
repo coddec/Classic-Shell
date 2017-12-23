@@ -611,7 +611,7 @@ HBITMAP LoadImageResource( HMODULE hModule, const wchar_t *name, bool bTopDown, 
 	{
 		for (UINT y=0;y<height;y++)
 		{
-			WICRect rc={0,y,width,1};
+			WICRect rc={0,(INT)y,(INT)width,1};
 			pConverter->CopyPixels(&rc,width*4,width*4,bits+(height-y-1)*width*4);
 		}
 	}
@@ -645,6 +645,7 @@ WORD GetWinVersion( void )
 	static WORD version;
 	if (!version)
 	{
+		#pragma warning(suppress:4996)
 		DWORD ver=GetVersion();
 		version=MAKEWORD(HIBYTE(ver),LOBYTE(ver));
 	}

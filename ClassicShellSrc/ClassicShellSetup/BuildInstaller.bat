@@ -59,7 +59,9 @@ start /wait ClassicShellUtility\Release\ClassicShellUtility.exe crcmsi Temp
 @if ERRORLEVEL 1 goto end
 
 REM ********* Build bootstrapper
-"%VS90COMNTOOLS%..\IDE\devenv.com" ClassicShellSetup.sln /rebuild "Release|Win32"
+for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do set MSBuildDir=%%i\MSBuild\15.0\Bin\
+
+"%MSBuildDir%MSBuild.exe" ClassicShellSetup.sln /t:Rebuild /p:Configuration="Release" /p:Platform="Win32"
 @if ERRORLEVEL 1 goto end
 
 md Final

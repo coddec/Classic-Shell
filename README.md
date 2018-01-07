@@ -47,6 +47,9 @@ Report a bug/issue or submit a feature request: https://github.com/coddec/Classi
 - Show file size in Explorer status bar
 - Title bar and status bar for Internet Explorer
 
+---
+# Release/Binary/exe files on Github
+https://github.com/coddec/Classic-Shell/releases
 
 
 ---

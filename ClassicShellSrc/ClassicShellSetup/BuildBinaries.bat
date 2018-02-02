@@ -117,8 +117,10 @@ cd ..\Localization\English
 @if ERRORLEVEL 1 goto end
 ..\..\ClassicIE\Setup\ClassicIE_32.exe -saveadmx en-US
 @if ERRORLEVEL 1 goto end
-"C:\Program Files\WinRAR\winrar" a -afzip -ep ..\..\ClassicShellSetup\Output\PolicyDefinitions.zip *.admx PolicyDefinitions.rtf
-"C:\Program Files\WinRAR\winrar" a -afzip -ep -apen-US ..\..\ClassicShellSetup\Output\PolicyDefinitions.zip *.adml
+md en-US
+copy /B *.adml en-US
+7z a ..\..\ClassicShellSetup\Output\PolicyDefinitions.zip *.admx en-US\*.adml PolicyDefinitions.rtf
+rd /Q /S en-US
 cd ..\..\ClassicShellSetup
 
 

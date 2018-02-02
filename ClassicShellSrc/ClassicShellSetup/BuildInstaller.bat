@@ -79,7 +79,6 @@ copy /B Final\%CS_INSTALLER_NAME%.exe Output\Releases\%CS_INSTALLER_NAME%.exe
 @goto EOF
 :end
 @SET CS_ERROR=1
-pause
 :EOF
 SET CS_LANG_FOLDER=
 SET CS_LANG_NAME=

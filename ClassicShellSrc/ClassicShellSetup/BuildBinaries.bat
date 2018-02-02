@@ -125,5 +125,4 @@ cd ..\..\ClassicShellSetup
 @goto EOF
 :end
 @SET CS_ERROR=1
-pause
 :EOF

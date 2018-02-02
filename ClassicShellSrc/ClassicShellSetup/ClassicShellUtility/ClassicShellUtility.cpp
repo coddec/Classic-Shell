@@ -612,7 +612,7 @@ int GenerateUpdateFile( wchar_t *const *params, int count )
 			CString str=it2->second;
 			str.Replace(L"\r\n",L"\\r\\n");
 			str.Replace(L"\"",L"\"\"");
-			fwprintf(f,L"%4d  \"%s\"\r\n",it2->first,str);
+			fwprintf(f,L"%4d  \"%s\"\r\n",it2->first,(const wchar_t*)str);
 		}
 		fwprintf(f,L"END\r\n\r\n");
 
@@ -650,7 +650,7 @@ int GenerateUpdateFile( wchar_t *const *params, int count )
 			for (std::map<int,LanguageData>::const_iterator it3=languages.begin();it3!=languages.end();++it3)
 			{
 				if (!it3->second.bitmap.IsEmpty())
-					fwprintf(f,L"%d BITMAP \"%s\"\r\n",it3->first,it3->second.bitmap);
+					fwprintf(f,L"%d BITMAP \"%s\"\r\n",it3->first,(const wchar_t*)it3->second.bitmap);
 			}
 			fwprintf(f,L"\r\n");
 		}

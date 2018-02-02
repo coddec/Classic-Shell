@@ -37,7 +37,7 @@ BOOL CALLBACK CStringSet::EnumResNameProc( HMODULE hModule, LPCTSTR lpszType, LP
 		{
 			for (int i=0;i<16;i++)
 			{
-				UINT id=(((int)lpszName)<<4)+i-16;
+				int id=(((int)(intptr_t)lpszName)<<4)+i-16;
 
 				CString str=CreateString(res);
 				if (!str.IsEmpty())

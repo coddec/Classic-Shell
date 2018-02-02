@@ -1191,7 +1191,7 @@ void CItemManager::WaitForShortcuts( const POINT &balloonPos )
 			return;
 		CWindow tooltip=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|(IsLanguageRTL()?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_BALLOON|TTS_NOPREFIX,0,0,0,0,NULL,NULL,g_Instance,NULL);
 		tooltip.SendMessage(TTM_SETMAXTIPWIDTH,0,500);
-		TOOLINFO tool={sizeof(tool),TTF_TRANSPARENT|TTF_TRACK|(IsLanguageRTL()?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_TRANSPARENT|TTF_TRACK|(IsLanguageRTL()?TTF_RTLREADING:0U)};
 		tool.uId=1;
 		CString message=LoadStringEx(IDS_MENU_BUSY);
 		tool.lpszText=(LPWSTR)(const wchar_t*)message;
@@ -1262,7 +1262,7 @@ void EncodeUserAssistPath( wchar_t *path )
 			CComString guid;
 			StringFromCLSID(g_KnownPrefixes[i],&guid);
 			wchar_t name[_MAX_PATH];
-			Sprintf(name,_countof(name),L"%s%s",guid,path+len);
+			Sprintf(name,_countof(name),L"%s%s",(const wchar_t*)guid,path+len);
 			Strcpy(path,_MAX_PATH,name);
 			return;
 		}
@@ -1291,7 +1291,7 @@ bool CItemManager::IsPathUsed( CRegKey &regKey, const wchar_t *path, const FILET
 				Strcpy(name,_countof(name),path);
 			else if (wcsncmp(path,knownPaths[i].path,knownPaths[i].pathLen)==0)
 			{
-				Sprintf(name,_countof(name),L"%s%s",knownPaths[i].guid,path+knownPaths[i].pathLen);
+				Sprintf(name,_countof(name),L"%s%s", (const wchar_t*)knownPaths[i].guid,path+knownPaths[i].pathLen);
 				break;
 			}
 		}
@@ -1351,7 +1351,7 @@ void CItemManager::UpdateNewPrograms( const POINT &balloonPos )
 				installTime=Int32x32To64(time,10000000)+116444736000000000;
 			}
 		}
-		FILETIME ft={(DWORD)installTime,installTime>>32};
+		FILETIME ft={(DWORD)installTime,(DWORD)(installTime>>32)};
 		SYSTEMTIME st;
 		GetSystemTime(&st);
 		LOG_MENU(LOG_NEW,L"Current time: %02d.%02d.%04d:%02d:%02d",st.wDay,st.wMonth,st.wYear,st.wHour,st.wMinute);
@@ -3342,7 +3342,7 @@ DWORD CALLBACK CItemManager::SaveCacheFileThread( void *param )
 	}
 
 	std::vector<const std::pair<const unsigned int,ItemInfo>*> itemInfos;
-	std::vector<const unsigned int> blackList;
+	std::vector<unsigned int> blackList;
 	{
 		RWLock lock(pThis,false,RWLOCK_ITEMS);
 		for (std::multimap<unsigned int,ItemInfo>::const_iterator it=pThis->m_ItemInfos.begin();it!=pThis->m_ItemInfos.end();++it)
@@ -3437,12 +3437,12 @@ DWORD CALLBACK CItemManager::SaveCacheFileThread( void *param )
 		WriteCacheFile(file,(*it)->second.appid);
 		WriteCacheFile(file,(*it)->second.metroName);
 		WriteCacheFile(file,(*it)->second.iconPath);
-		if (log) fwprintf(log,L"0x%08X - %s\r\n",(*it)->first,(*it)->second.PATH);
+		if (log) fwprintf(log,L"0x%08X - %s\r\n",(*it)->first,(const wchar_t*)(*it)->second.PATH);
 	}
 	{
 		WriteCacheFile(file,'BLAK');
 		WriteCacheFile(file,(DWORD)blackList.size());
-		for (std::vector<const unsigned int>::const_iterator it=blackList.begin();it!=blackList.end();++it)
+		for (std::vector<unsigned int>::const_iterator it=blackList.begin();it!=blackList.end();++it)
 			WriteCacheFile(file,*it);
 	}
 	if (log) fclose(log);

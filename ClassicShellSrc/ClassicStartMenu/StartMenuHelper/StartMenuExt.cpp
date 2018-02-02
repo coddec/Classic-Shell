@@ -107,7 +107,7 @@ STDMETHODIMP CStartMenuExt::Initialize( PCIDLIST_ABSOLUTE pidlFolder, IDataObjec
 		{
 			CComString pPath;
 			if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_StartMenu,0,NULL,&pPath)))
-				Sprintf(m_PinFolder1,_countof(m_PinFolder1),L"%s\\",pPath);
+				Sprintf(m_PinFolder1,_countof(m_PinFolder1),L"%s\\",(const wchar_t*)pPath);
 		}
 
 		str=GetSettingString(L"FolderCommonStartMenu");
@@ -120,7 +120,7 @@ STDMETHODIMP CStartMenuExt::Initialize( PCIDLIST_ABSOLUTE pidlFolder, IDataObjec
 		{
 			CComString pPath;
 			if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_CommonStartMenu,0,NULL,&pPath)))
-				Sprintf(m_PinFolder2,_countof(m_PinFolder2),L"%s\\",pPath);
+				Sprintf(m_PinFolder2,_countof(m_PinFolder2),L"%s\\",(const wchar_t*)pPath);
 		}
 	}
 

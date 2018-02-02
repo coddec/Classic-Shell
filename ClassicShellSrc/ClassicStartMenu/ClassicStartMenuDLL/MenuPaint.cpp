@@ -1169,7 +1169,7 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 			}
 			else
 			{
-				BLENDFUNCTION func={AC_SRC_OVER,0,bMask?255:alpha,bMask?AC_SRC_ALPHA:0};
+				BLENDFUNCTION func={AC_SRC_OVER,0U,bMask?255U:(BYTE)alpha,bMask?AC_SRC_ALPHA:0U};
 				AlphaBlend(hdc,pos.x,pos.y,s_Skin.User_image_size,s_Skin.User_image_size,hdcTemp,0,0,s_Skin.User_image_size,s_Skin.User_image_size,func);
 			}
 
@@ -2504,7 +2504,7 @@ LRESULT CMenuContainer::OnPaint( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 		}
 		else if (opacity==MenuSkin::OPACITY_REGION)
 		{
-			DWM_BLURBEHIND blur={DWM_BB_ENABLE|((uMsg==WM_PRINTCLIENT)?DWM_BB_BLURREGION:0),(uMsg==WM_PRINTCLIENT),m_Region,FALSE};
+			DWM_BLURBEHIND blur={DWM_BB_ENABLE|((uMsg==WM_PRINTCLIENT)?DWM_BB_BLURREGION:0U),(uMsg==WM_PRINTCLIENT),m_Region,FALSE};
 			DwmEnableBlurBehindWindow(m_hWnd,&blur);
 		}
 	}

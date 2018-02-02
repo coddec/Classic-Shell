@@ -69,7 +69,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 	{
 		wchar_t token[100];
 		const wchar_t *url=GetToken(lpCmdLine+5,token,_countof(token),L" ");
-		ZoneConfigure((HWND)_wtol(token),url);
+		ZoneConfigure((HWND)(uintptr_t)_wtol(token),url);
 		return 0;
 	}
 
@@ -115,7 +115,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 
 	DWORD settings=GetIESettings();
 
-	HWND topWindow=(HWND)_wtol(lpCmdLine);
+	HWND topWindow=(HWND)(uintptr_t)_wtol(lpCmdLine);
 	if (topWindow)
 	{
 		DWORD processId;
@@ -169,7 +169,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 			return settings;
 
 		HWND caption=FindWindowEx(topWindow,NULL,L"Client Caption",NULL);
-		DllLogToFile(CIE_LOG,L"exe: topWindow=%X, caption=%X",(DWORD)topWindow,(DWORD)caption);
+		DllLogToFile(CIE_LOG,L"exe: topWindow=%p, caption=%p",topWindow,caption);
 		UINT message=RegisterWindowMessage(L"ClassicIE.Injected");
 		if (caption)
 		{

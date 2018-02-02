@@ -2585,8 +2585,8 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 	fprintf_s(fAdmx,admxText1);
 	fprintf_s(fAdmx,g_AdmxText1b);
 
-	fprintf_s(fAdml,"%s",ReplaceStrings(CStringA(g_AdmlText1a),docMap));
-	fprintf_s(fAdml,"%s",ReplaceStrings(CStringA(admlText1),docMap));
+	fprintf_s(fAdml,"%s",(const char*)ReplaceStrings(CStringA(g_AdmlText1a),docMap));
+	fprintf_s(fAdml,"%s",(const char*)ReplaceStrings(CStringA(admlText1),docMap));
 
 	// policies and strings
 	int stringIdx=1;
@@ -2616,14 +2616,14 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 
 		// name string
 		int nameIdx=stringIdx++;
-		fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s</string>\r\n",prefix,nameIdx,EscapeXmlString(pDoc->nameOverride.IsEmpty()?LoadStringUTF8(pSetting->nameID):pDoc->nameOverride));
+		fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s</string>\r\n",prefix,nameIdx,(const char*)EscapeXmlString(pDoc->nameOverride.IsEmpty()?LoadStringUTF8(pSetting->nameID):pDoc->nameOverride));
 
 		// tip string
 		int tipIdx=stringIdx++;
 		CStringA tip=pDoc->tipOverride;
 		if (tip.IsEmpty()) tip=LoadStringUTF8(pSetting->tipID);
 		tip+=pDoc->tipAddition;
-		fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s\r\n\r\n%s</string>\r\n",prefix,tipIdx,EscapeXmlString(tip),ReplaceStrings(g_StateTip,docMap));
+		fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s\r\n\r\n%s</string>\r\n",prefix,tipIdx,(const char*)EscapeXmlString(tip),(const char*)ReplaceStrings(g_StateTip,docMap));
 
 		// policy
 		fprintf_s(fAdmx,"\t\t<policy name=\"%s%S\" class=\"Both\" displayName=\"$(string.%sstr_%d)\" explainText=\"$(string.%sstr_%d)\" presentation=\"$(presentation.%s%S)\" key=\"%s\">\r\n",
@@ -2671,16 +2671,16 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 		fprintf_s(fAdmx,"\t\t\t<elements>\r\n");
 
 		fprintf_s(fAdmx,"\t\t\t\t<enum id=\"State\" valueName=\"%S_State\">\r\n",pSetting->name);
-		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState1)\"><value><decimal value=\"0\" /></value></item>\r\n",pSetting->name);
-		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState2)\"><value><decimal value=\"1\" /></value></item>\r\n",pSetting->name);
-		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState3)\"><value><decimal value=\"2\" /></value></item>\r\n",pSetting->name);
+		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState1)\"><value><decimal value=\"0\" /></value></item>\r\n");
+		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState2)\"><value><decimal value=\"1\" /></value></item>\r\n");
+		fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.SettingState3)\"><value><decimal value=\"2\" /></value></item>\r\n");
 		fprintf_s(fAdmx,"\t\t\t\t</enum>\r\n");
 
 		if (pSetting->type==CSetting::TYPE_BOOL)
 		{
 			fprintf_s(fAdmx,"\t\t\t\t<boolean id=\"Value\" valueName=\"%S\">\r\n",pSetting->name);
-			fprintf_s(fAdmx,"\t\t\t\t\t<trueValue><decimal value=\"1\" /></trueValue>\r\n",pSetting->name);
-			fprintf_s(fAdmx,"\t\t\t\t\t<falseValue><decimal value=\"0\" /></falseValue>\r\n",pSetting->name);
+			fprintf_s(fAdmx,"\t\t\t\t\t<trueValue><decimal value=\"1\" /></trueValue>\r\n");
+			fprintf_s(fAdmx,"\t\t\t\t\t<falseValue><decimal value=\"0\" /></falseValue>\r\n");
 			fprintf_s(fAdmx,"\t\t\t\t</boolean>\r\n");
 		}
 		else if (pSetting->type==CSetting::TYPE_INT && pSetting[1].type==CSetting::TYPE_RADIO)
@@ -2699,7 +2699,7 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 				}
 
 				int radioIdx=stringIdx++;
-				fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s</string>\r\n",prefix,radioIdx,pRadioDoc->nameOverride.IsEmpty()?LoadStringUTF8(pSetting[i].nameID):pRadioDoc->nameOverride);
+				fprintf_s(fAdml,"\t\t\t<string id=\"%sstr_%d\">%s</string>\r\n",prefix,radioIdx,(const char*)(pRadioDoc->nameOverride.IsEmpty()?LoadStringUTF8(pSetting[i].nameID):pRadioDoc->nameOverride));
 				fprintf_s(fAdmx,"\t\t\t\t\t<item displayName=\"$(string.%sstr_%d)\"><value><string>%S</string></value></item>\r\n",prefix,radioIdx,pSetting[i].name);
 			}
 			fprintf_s(fAdmx,"\t\t\t\t</enum>\r\n");
@@ -2758,23 +2758,23 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 
 		if (pSetting->type==CSetting::TYPE_BOOL)
 		{
-			fprintf_s(fAdml,"\t\t\t\t<checkBox refId=\"Value\">%s</checkBox>\r\n",name);
+			fprintf_s(fAdml,"\t\t\t\t<checkBox refId=\"Value\">%s</checkBox>\r\n",(const char*)name);
 		}
 		else if (pSetting->type==CSetting::TYPE_INT && pSetting[1].type==CSetting::TYPE_RADIO)
 		{
-			fprintf_s(fAdml,"\t\t\t\t<dropdownList refId=\"Value\" defaultItem=\"0\" noSort=\"true\">%s</dropdownList>\r\n",name);
+			fprintf_s(fAdml,"\t\t\t\t<dropdownList refId=\"Value\" defaultItem=\"0\" noSort=\"true\">%s</dropdownList>\r\n",(const char*)name);
 		}
 		else if (pSetting->type==CSetting::TYPE_INT || pSetting->type==CSetting::TYPE_HOTKEY || pSetting->type==CSetting::TYPE_HOTKEY_ANY || pSetting->type==CSetting::TYPE_COLOR)
 		{
-			fprintf_s(fAdml,"\t\t\t\t<decimalTextBox refId=\"Value\" spin=\"false\">%s</decimalTextBox>\r\n",name);
+			fprintf_s(fAdml,"\t\t\t\t<decimalTextBox refId=\"Value\" spin=\"false\">%s</decimalTextBox>\r\n",(const char*)name);
 		}
 		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT)
 		{
-			fprintf_s(fAdml,"\t\t\t\t<textBox refId=\"Value\"><label>%s</label></textBox>\r\n",name);
+			fprintf_s(fAdml,"\t\t\t\t<textBox refId=\"Value\"><label>%s</label></textBox>\r\n",(const char*)name);
 		}
 		else if (pSetting->type==CSetting::TYPE_MULTISTRING)
 		{
-			fprintf_s(fAdml,"\t\t\t\t<multiTextBox refId=\"Value\">%s</multiTextBox>\r\n",name);
+			fprintf_s(fAdml,"\t\t\t\t<multiTextBox refId=\"Value\">%s</multiTextBox>\r\n",(const char*)name);
 		}
 		fprintf_s(fAdml,"\t\t\t</presentation>\r\n");
 	}

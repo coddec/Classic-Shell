@@ -535,8 +535,8 @@ public:
 	// IDropTarget
 	virtual HRESULT STDMETHODCALLTYPE DragEnter( IDataObject *pDataObj, DWORD grfKeyState, POINTL pt, DWORD *pdwEffect )
 	{
-		FORMATETC format1={RegisterClipboardFormat(CFSTR_SHELLIDLIST),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL};
-		FORMATETC format2={RegisterClipboardFormat(CFSTR_INETURL),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL};
+		FORMATETC format1={(CLIPFORMAT)RegisterClipboardFormat(CFSTR_SHELLIDLIST),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL};
+		FORMATETC format2={(CLIPFORMAT)RegisterClipboardFormat(CFSTR_INETURL),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL};
 		if (pDataObj->QueryGetData(&format1)==S_OK || pDataObj->QueryGetData(&format2)==S_OK)
 		{
 			PostMessage(g_TaskBar,g_StartMenuMsg,(grfKeyState&MK_SHIFT)?MSG_SHIFTDRAG:MSG_DRAG,m_TaskbarId);

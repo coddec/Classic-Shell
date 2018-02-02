@@ -1590,7 +1590,7 @@ HRESULT CProgramsTree::Drop( IDataObject *pDataObj, DWORD grfKeyState, POINTL pt
 		dwEffect=*pdwEffect;
 		pTarget->DragOver(MK_LBUTTON|grfKeyState,pt,pdwEffect);
 	}
-	CComQIPtr<IAsyncOperation> pAsync=pDataObj;
+	CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 	if (pAsync)
 		pAsync->SetAsyncMode(FALSE);
 	for (std::vector<CMenuContainer*>::iterator it=CMenuContainer::s_Menus.begin();it!=CMenuContainer::s_Menus.end();++it)

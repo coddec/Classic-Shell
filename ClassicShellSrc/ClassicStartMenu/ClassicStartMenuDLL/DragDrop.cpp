@@ -319,7 +319,7 @@ bool CMenuContainer::DragOut( int index, bool bApp )
 
 	// force synchronous operation
 	{
-		CComQIPtr<IAsyncOperation> pAsync=pDataObj;
+		CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 		if (pAsync)
 			pAsync->SetAsyncMode(FALSE);
 	}
@@ -850,7 +850,7 @@ HRESULT STDMETHODCALLTYPE CMenuContainer::Drop( IDataObject *pDataObj, DWORD grf
 				dwEffect=*pdwEffect;
 				pTarget->DragOver(MK_LBUTTON|grfKeyState,pt,pdwEffect);
 			}
-			CComQIPtr<IAsyncOperation> pAsync=pDataObj;
+			CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 			if (pAsync)
 				pAsync->SetAsyncMode(FALSE);
 			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)

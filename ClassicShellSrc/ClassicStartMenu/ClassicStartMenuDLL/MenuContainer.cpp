@@ -87,8 +87,6 @@ static StdMenuOption g_StdOptions[]=
 	{MENU_PCSETTINGS,MENU_ENABLED}, // enable on Win8+
 };
 
-static CLSID CLSID_FrameworkInputPane={0xD5120AA3,0x46BA,0x44C5,{0x82,0x2D,0xCA,0x80,0x92,0xC1,0xFC,0x72}};
-
 ///////////////////////////////////////////////////////////////////////////////
 
 void CUserWindow::Init( CMenuContainer *pOwner )
@@ -186,7 +184,7 @@ void CUserWindow::SetImage( HBITMAP bmp, bool bAnimate )
 
 void CUserWindow::Update( int alpha )
 {
-	BLENDFUNCTION func={AC_SRC_OVER,0,alpha,AC_SRC_ALPHA};
+	BLENDFUNCTION func={AC_SRC_OVER,0,(BYTE)alpha,AC_SRC_ALPHA};
 
 	HDC hSrc=CreateCompatibleDC(NULL);
 	HGDIOBJ bmp0=SelectObject(hSrc,m_Bitmap);
@@ -813,7 +811,7 @@ void CMenuContainer::AddFirstFolder( IShellItem *pFolder, std::vector<MenuItem> 
 		CComString pName;
 		if (SUCCEEDED(pChild->GetDisplayName(SIGDN_PARENTRELATIVEPARSING,&pName)))
 		{
-			LOG_MENU(LOG_OPEN,L"%s, 0x%08X, 0x%08X",pName,flags,hrFlags);
+			LOG_MENU(LOG_OPEN,L"%s, 0x%08X, 0x%08X",(const wchar_t*)pName,flags,hrFlags);
 			MenuItem item(MENU_NO);
 			if (ignore && ILIsEqual(childPidl,ignore))
 				continue;
@@ -923,7 +921,7 @@ void CMenuContainer::AddSecondFolder( IShellItem *pFolder, std::vector<MenuItem>
 		CComString pName;
 		if (SUCCEEDED(pChild->GetDisplayName(SIGDN_PARENTRELATIVEPARSING,&pName)))
 		{
-			LOG_MENU(LOG_OPEN,L"%s, 0x%08X, 0x%08X",pName,flags,hrFlags);
+			LOG_MENU(LOG_OPEN,L"%s, 0x%08X, 0x%08X",(const wchar_t*)pName,flags,hrFlags);
 			bool bLibrary=_wcsicmp(PathFindExtension(pName),L".library-ms")==0;
 			bool bStartScreen=(
 #ifndef STARTSCREEN_WIN7
@@ -1765,7 +1763,7 @@ void CMenuContainer::GetRecentPrograms( std::vector<MenuItem> &items, int maxCou
 						if (SUCCEEDED(SHGetKnownFolderPath(guid,KF_FLAG_DONT_VERIFY,NULL,&pPath)))
 						{
 							wchar_t path[_MAX_PATH];
-							Sprintf(path,_countof(path),L"%s%s",pPath,end+1);
+							Sprintf(path,_countof(path),L"%s%s",(const wchar_t*)pPath,end+1);
 							Strcpy(uaItem.name,_countof(uaItem.name),path);
 						}
 					}
@@ -3068,7 +3066,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 	{
 		s_Tooltip=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|WS_EX_TRANSPARENT|(s_bRTL?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_NOPREFIX|TTS_ALWAYSTIP,0,0,0,0,NULL,NULL,g_Instance,NULL);
 		s_Tooltip.SendMessage(TTM_SETMAXTIPWIDTH,0,500);
-		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRACK|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRACK|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0U)};
 		tool.uId=1;
 		s_Tooltip.SendMessage(TTM_ADDTOOL,0,(LPARAM)&tool);
 	}
@@ -4211,7 +4209,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 		RECT rcScroll=m_rContent;
 		rcScroll.bottom=rcScroll.top+m_SearchScrollHeight*s_Skin.ItemSettings[MenuSkin::LIST_ITEM].itemHeight;
 		rcScroll.left=rcScroll.right-scrollWidth;
-		SCROLLINFO info={sizeof(info),SIF_ALL,0,m_SearchScrollCount-1,m_SearchScrollHeight};
+		SCROLLINFO info={sizeof(info),SIF_ALL,0,m_SearchScrollCount-1,(UINT)m_SearchScrollHeight};
 		m_Scrollbar.SetScrollInfo(SB_CTL,&info,FALSE);
 		m_Scrollbar.SetWindowPos(NULL,&rcScroll,SWP_NOZORDER|SWP_SHOWWINDOW);
 	}
@@ -4229,7 +4227,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 
 	if (!m_bSubMenu)
 	{
-		TOOLINFO tool={sizeof(tool),TTF_SUBCLASS|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_SUBCLASS|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0U)};
 		tool.hwnd=m_hWnd;
 		tool.uId=2;
 		s_Tooltip.SendMessage(TTM_DELTOOL,0,(LPARAM)&tool);
@@ -5239,7 +5237,7 @@ LRESULT CMenuContainer::OnTimer( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 		if (!m_bSubMenu && s_MenuMode==MODE_SEARCH && s_SearchResults.bSearching)
 			return 0;
 
-		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRACK|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRACK|TTF_TRANSPARENT|(s_bRTL?TTF_RTLREADING:0U)};
 		tool.uId=1;
 
 		wchar_t text[1024];
@@ -6707,7 +6705,7 @@ bool CMenuContainer::GetDescription( int index, wchar_t *text, int size )
 			return bLabel;
 
 		if (bLabel)
-			Sprintf(text,size,L"\r\n%s",pTip);
+			Sprintf(text,size,L"\r\n%s",(const wchar_t*)pTip);
 		else
 			Strcpy(text,size,pTip);
 		return true;
@@ -7984,7 +7982,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 		}
 		CComString pPath;
 		ShGetKnownFolderPath(FOLDERID_StartMenu,&pPath);
-		Sprintf(path,_countof(path),L"%s\\" STARTSCREEN_COMMAND,pPath);
+		Sprintf(path,_countof(path),L"%s\\" STARTSCREEN_COMMAND,(const wchar_t*)pPath);
 		if (GetFileAttributes(path)==INVALID_FILE_ATTRIBUTES)
 		{
 			if (!bPinned && bShortcut)
@@ -8509,7 +8507,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 		Strcat(MenuSkin::s_SkinError,_countof(MenuSkin::s_SkinError),LoadStringEx(IDS_SKIN_ERR_DISABLE));
 		s_TooltipBalloon=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|(s_bRTL?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_BALLOON|TTS_CLOSE|TTS_NOPREFIX,0,0,0,0,pStartMenu->m_hWnd,NULL,g_Instance,NULL);
 		s_TooltipBalloon.SendMessage(TTM_SETMAXTIPWIDTH,0,500);
-		TOOLINFO tool={sizeof(tool),TTF_TRANSPARENT|TTF_TRACK|(s_bRTL?TTF_RTLREADING:0)};
+		TOOLINFO tool={sizeof(tool),TTF_TRANSPARENT|TTF_TRACK|(s_bRTL?TTF_RTLREADING:0U)};
 		tool.uId=1;
 		tool.lpszText=MenuSkin::s_SkinError;
 		s_TooltipBalloon.SendMessage(TTM_ADDTOOL,0,(LPARAM)&tool);

@@ -177,7 +177,7 @@ CString CTreeItem::GetDisplayName( bool bTitle ) const
 					if (SUCCEEDED(pItem->GetDisplayName(SIGDN_NORMALDISPLAY,&pName)))
 					{
 						CString name;
-						name.Format(L"%s (%s)",LoadStringEx(pStdCommand->displayNameId),pName);
+						name.Format(L"%s (%s)",(const wchar_t*)LoadStringEx(pStdCommand->displayNameId),(const wchar_t*)pName);
 						return name;
 					}
 				}
@@ -970,7 +970,7 @@ void CEditCustomItemDlg::InitDialog( CWindow commandCombo, const CStdCommand *pS
 				if (SUCCEEDED(SHGetNameFromIDList(path,SIGDN_DESKTOPABSOLUTEPARSING,&pPath)))
 				{
 					wchar_t text[_MAX_PATH*2];
-					int len=Sprintf(text,_countof(text),L"%s | ",pName);
+					int len=Sprintf(text,_countof(text),L"%s | ",(const wchar_t*)pName);
 					if (!PathUnExpandEnvStrings(pPath,text+len,_countof(text)-len))
 						Strcpy(text+len,_countof(text)-len,pPath);
 					linkCombo.SendMessage(CB_ADDSTRING,0,(LPARAM)text);
@@ -2644,7 +2644,7 @@ LRESULT CTreeSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		m_EditBox.GetWindowText(str);
 		str.TrimLeft(); str.TrimRight();
 		wchar_t *end;
-		int val=wcstol(str,&end,16)&0xFFFFFF;
+		COLORREF val=wcstol(str,&end,16)&0xFFFFFF;
 		static COLORREF customColors[16];
 		CHOOSECOLOR choose={sizeof(choose),m_hWnd,NULL,val,customColors};
 		choose.Flags=CC_ANYCOLOR|CC_FULLOPEN|CC_RGBINIT;

@@ -18,7 +18,6 @@ PROPERTYKEY PKEY_MetroPackageName={{0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE
 PROPERTYKEY PKEY_MetroPackagePath={{0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 15};
 PROPERTYKEY PKEY_AppUserModel_ParentID={{0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 19}; // non-empty for content tiles
 PROPERTYKEY PKEY_AppUserModel_InstalledBy={{0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 18};
-PROPERTYKEY PKEY_AppUserModel_IsDualMode={{0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 11};
 PROPERTYKEY PKEY_Launcher_AppState={{0x0ded77b3, 0xc614, 0x456c, {0xae, 0x5b, 0x28, 0x5b, 0x38, 0xd7, 0xb0, 0x1b}}, 7};
 
 // FOLDERID_AppsFolder is defined in the 8.0 SDK, but we don't want to require it
@@ -45,7 +44,7 @@ void GetMetroLinks( std::vector<MetroLink> &links, bool bLog, std::vector<CStrin
 		{
 			CComString pName;
 			pChild->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING,&pName);
-			LOG_MENU(LOG_APPS,L"App: %s",pName);
+			LOG_MENU(LOG_APPS,L"App: %s",(const wchar_t*)pName);
 		}
 		CComPtr<IPropertyStore> pStore;
 		if (FAILED(pChild->BindToHandler(NULL,BHID_PropertyStore,IID_IPropertyStore,(void**)&pStore)))
@@ -110,7 +109,7 @@ void GetMetroLinks( std::vector<MetroLink> &links, bool bLog, std::vector<CStrin
 		{
 			CComString pName;
 			link.pItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING,&pName);
-			LOG_MENU(LOG_APPS,L"    Link: %s",pName);
+			LOG_MENU(LOG_APPS,L"    Link: %s",(const wchar_t*)pName);
 		}
 	}
 	LOG_MENU(LOG_APPS,L"Collect Metro Links (end)");
@@ -128,7 +127,7 @@ void ExecuteMetroLink( const CItemManager::ItemInfo *pInfo )
 	execute.nShow=SW_SHOWNORMAL;
 	execute.lpClass=MetroAppClassId;
 	BOOL res=ShellExecuteEx(&execute);
-	LOG_MENU(LOG_EXECUTE,L"ExecuteMetroLink: 0x%08X 0x%08X",res?0:GetLastError(),(int)execute.hInstApp);
+	LOG_MENU(LOG_EXECUTE,L"ExecuteMetroLink: 0x%08X 0x%p",res?0:GetLastError(),execute.hInstApp);
 
 	// create UserAssist entry
 	{

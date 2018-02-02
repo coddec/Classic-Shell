@@ -6,13 +6,15 @@ md Output\x64
 md Output\PDB32
 md Output\PDB64
 
+for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do set MSBuildDir=%%i\MSBuild\15.0\Bin\
+
 REM ********* Build 64-bit solution
-"%VS90COMNTOOLS%..\IDE\devenv.com" ..\ClassicShell.sln /rebuild "Setup|x64"
+"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /t:Rebuild /p:Configuration="Setup" /p:Platform="x64"
 @if ERRORLEVEL 1 goto end
 
 
 REM ********* Build 32-bit solution (must be after 64-bit)
-"%VS90COMNTOOLS%..\IDE\devenv.com" ..\ClassicShell.sln /rebuild "Setup|Win32"
+"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /t:Rebuild /p:Configuration="Setup" /p:Platform="Win32"
 @if ERRORLEVEL 1 goto end
 
 

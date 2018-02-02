@@ -869,7 +869,7 @@ void CSearchManager::SearchThread( void )
 												if (*str=='\\')
 													*str='/';
 											CString path;
-											path.Format(L"FILE:%s/",pPath);
+											path.Format(L"FILE:%s/",(const wchar_t*)pPath);
 											path.Replace(L"'",L"''");
 											scope.roots.push_back(path);
 											LOG_MENU(LOG_SEARCH,L"    Scope: %s",path);
@@ -1117,12 +1117,12 @@ void CSearchManager::SearchThread( void )
 							{
 								CComString pPath;
 								if (SUCCEEDED(ShGetKnownFolderPath(FOLDERID_StartMenu,&pPath)))
-									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",pPath);
+									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",(const wchar_t*)pPath);
 							}
 							{
 								CComString pPath;
 								if (SUCCEEDED(ShGetKnownFolderPath(FOLDERID_Programs,&pPath)))
-									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",pPath);
+									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",(const wchar_t*)pPath);
 							}
 						}
 						if (searchRequest.bSearchPrograms || searchRequest.bNoCommonFolders)
@@ -1131,12 +1131,12 @@ void CSearchManager::SearchThread( void )
 							{
 								CComString pPath;
 								if (SUCCEEDED(ShGetKnownFolderPath(FOLDERID_CommonStartMenu,&pPath)))
-									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",pPath);
+									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",(const wchar_t*)pPath);
 							}
 							{
 								CComString pPath;
 								if (SUCCEEDED(ShGetKnownFolderPath(FOLDERID_CommonPrograms,&pPath)))
-									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",pPath);
+									len+=Sprintf(query+len,_countof(query)-len,L" AND NOT SCOPE='%s'",(const wchar_t*)pPath);
 							}
 						}
 					}

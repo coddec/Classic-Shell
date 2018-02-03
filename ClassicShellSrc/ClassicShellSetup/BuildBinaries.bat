@@ -1,5 +1,3 @@
-@SET CS_ERROR=0
-
 md Output
 del /Q /S Output\*.*
 md Output\x64
@@ -9,19 +7,18 @@ md Output\PDB64
 for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do set MSBuildDir=%%i\MSBuild\15.0\Bin\
 
 REM ********* Build 64-bit solution
-"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /m /t:Rebuild /p:Configuration="Setup" /p:Platform="x64"
-@if ERRORLEVEL 1 goto end
-
+"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /m /t:Rebuild /p:Configuration="Setup" /p:Platform="x64" /verbosity:minimal
+@if ERRORLEVEL 1 exit /b 1
 
 REM ********* Build 32-bit solution (must be after 64-bit)
-"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /m /t:Rebuild /p:Configuration="Setup" /p:Platform="Win32"
-@if ERRORLEVEL 1 goto end
+"%MSBuildDir%MSBuild.exe" ..\ClassicShell.sln /m /t:Rebuild /p:Configuration="Setup" /p:Platform="Win32" /verbosity:minimal
+@if ERRORLEVEL 1 exit /b 1
 
 
 REM ********* Make en-US.dll
 cd ..
 start /wait ClassicShellSetup\ClassicShellUtility\Release\ClassicShellUtility.exe makeEN ClassicExplorer\Setup\ClassicExplorer32.dll ClassicStartMenu\Setup\ClassicStartMenuDLL.dll ClassicIE\Setup\ClassicIEDLL_32.dll ClassicShellUpdate\Release\ClassicShellUpdate.exe
-@if ERRORLEVEL 1 goto end
+@if ERRORLEVEL 1 exit /b 1
 
 start /wait ClassicShellSetup\ClassicShellUtility\Release\ClassicShellUtility.exe extract en-US.dll en-US.csv
 copy en-US.dll Localization\English
@@ -112,19 +109,15 @@ REM ********* Build ADMX
 del Output\PolicyDefinitions.zip
 cd ..\Localization\English
 ..\..\ClassicStartMenu\Setup\ClassicStartMenu.exe -saveadmx en-US
-@if ERRORLEVEL 1 goto end
+@if ERRORLEVEL 1 exit /b 1
 ..\..\ClassicExplorer\Setup\ClassicExplorerSettings.exe -saveadmx en-US
-@if ERRORLEVEL 1 goto end
+@if ERRORLEVEL 1 exit /b 1
 ..\..\ClassicIE\Setup\ClassicIE_32.exe -saveadmx en-US
-@if ERRORLEVEL 1 goto end
+@if ERRORLEVEL 1 exit /b 1
 md en-US
 copy /B *.adml en-US
 7z a ..\..\ClassicShellSetup\Output\PolicyDefinitions.zip *.admx en-US\*.adml PolicyDefinitions.rtf
 rd /Q /S en-US
 cd ..\..\ClassicShellSetup
 
-
-@goto EOF
-:end
-@SET CS_ERROR=1
-:EOF
+exit /b 0

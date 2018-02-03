@@ -70,6 +70,10 @@ md Final
 del Final\%CS_INSTALLER_NAME%.exe
 copy /B Release\ClassicShellSetup.exe Final\%CS_INSTALLER_NAME%.exe
 
+if defined APPVEYOR (
+	appveyor PushArtifact Release\ClassicShellSetup.exe -FileName %CS_INSTALLER_NAME%.exe
+)
+
 md Output\Releases
 copy /B Final\%CS_INSTALLER_NAME%.exe Output\Releases\%CS_INSTALLER_NAME%.exe
 

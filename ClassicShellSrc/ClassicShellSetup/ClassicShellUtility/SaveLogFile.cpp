@@ -687,7 +687,7 @@ static void WriteLogFile( FILE *f )
 
 			DWORD val;
 			if (regKey.QueryDWORDValue(L"Version",val)==ERROR_SUCCESS)
-				fwprintf(f,L"\tClassic Shell version: %d.%d.%d\r\n",val/10000,(val/100)%100,val%100);
+				fwprintf(f,L"\tClassic Shell version: %d.%d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
 
 			if (regKey.QueryDWORDValue(L"WinVersion",val)==ERROR_SUCCESS)
 				fwprintf(f,L"\tWin version during installation: %d.%02d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);

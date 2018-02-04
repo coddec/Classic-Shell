@@ -1,0 +1,13 @@
+version: 4.4.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+image: Visual Studio 2017
+shallow_clone: true
+install:
+- cmd: set PATH=C:\Program Files (x86)\WiX Toolset v3.11\bin;C:\Program Files (x86)\HTML Help Workshop;%PATH%
+build_script:
+- cmd: ClassicShellSrc\ClassicShellSetup\__MakeFinal.bat
+test: off

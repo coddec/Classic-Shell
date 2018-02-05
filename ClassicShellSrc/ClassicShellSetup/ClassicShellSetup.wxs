@@ -7,20 +7,18 @@
     lightArgs: "<projectname>.wixobj" -out "<projectname>.msi" -ext WixUIExtension -ext WixUtilExtension -loc ClassicShellText-en-US.wxl
 -->
 <?if $(var.x64)=1 ?>
-<?define CS_GUID = "$(env.CS_GUID64)"?>
 <?define CS_UPGRADE = "779A74EF-23DE-4C71-AC12-2EE5A542ED34"?>
 <?define CS_PLATFORM  = "x64"?>
 <?define CS_PROGRAM_FILES  = "ProgramFiles64Folder"?>
 <?define CS_WIN64  = "yes"?>
 <?else ?>
-<?define CS_GUID = "$(env.CS_GUID32)"?>
 <?define CS_UPGRADE = "EB7DA1D9-44EA-43BF-8A08-0B103007D4F2"?>
 <?define CS_PLATFORM  = "x86"?>
 <?define CS_PROGRAM_FILES  = "ProgramFilesFolder"?>
 <?define CS_WIN64  = "no"?>
 <?endif ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="$(var.CS_GUID)" Name="Classic Shell" Language="1033" Version="$(env.CS_VERSION)" Manufacturer="IvoSoft" UpgradeCode="$(var.CS_UPGRADE)">
+    <Product Id="*" Name="Classic Shell" Language="1033" Version="$(env.CS_VERSION)" Manufacturer="IvoSoft" UpgradeCode="$(var.CS_UPGRADE)">
         <Package Description="Classic Shell" Comments="Classic Shell" InstallerVersion="500" Compressed="yes" Platform="$(var.CS_PLATFORM)" />
         <Media Id="1" Cabinet="cshell.cab" EmbedCab="yes" CompressionLevel="high"/>
         <Media Id="2" Cabinet="simple.cab" EmbedCab="yes" CompressionLevel="high"/>

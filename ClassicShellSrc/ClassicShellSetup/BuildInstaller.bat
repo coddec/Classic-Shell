@@ -1,10 +1,3 @@
-@REM !!!!! CHANGE THE GUIDS WHEN CHANGING THE VERSION !!!!!
-SET CS_VERSION=4.3.1
-SET CS_VERSION_STR=4_3_1
-SET CS_VERSION_NUM=40301
-SET CS_GUID32=8A99142D-5D6E-40b6-AF88-8BD46F0C5CB4
-SET CS_GUID64=CABCE573-0A86-42fa-A52A-C7EA61D5BE08
-
 REM ********* Build Help
 @setlocal EnableDelayedExpansion
 @if %CS_HAS_HELP%==1 (
@@ -34,6 +27,12 @@ md Temp
 del /Q Temp\*.*
 
 @if not exist ..\Localization\%CS_LANG_FOLDER%\ClassicShellText-%CS_LANG_NAME%.wxl exit /b 1
+
+@REM Convvert CS_VERSION (X.Y.Z) into number (XXYYZZZZ)
+@set CS_VERSION_NUM=0
+@for /f "tokens=1,2,3 delims=." %%A in ("%CS_VERSION%") do (
+	@set /a "CS_VERSION_NUM=%%A<<24|%%B<<16|%%C"
+)
 
 REM ********* Build 32-bit MSI
 candle ClassicShellSetup.wxs -out Temp\ClassicShellSetup32.wixobj -ext WixUIExtension -ext WixUtilExtension -dx64=0 -dCS_LANG_FOLDER=%CS_LANG_FOLDER% -dCS_LANG_NAME=%CS_LANG_NAME%

@@ -7905,7 +7905,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 				}
 				break;
 			case MENU_SLEEP:
-				g_StdOptions[i].options=(!s_bNoClose && (powerCaps.SystemS1 || powerCaps.SystemS2 || powerCaps.SystemS3))?MENU_ENABLED|MENU_EXPANDED:0;
+				g_StdOptions[i].options=(!s_bNoClose && (powerCaps.SystemS1 || powerCaps.SystemS2 || powerCaps.SystemS3 || powerCaps.AoAc))?MENU_ENABLED|MENU_EXPANDED:0;
 				break;
 			case MENU_HIBERNATE:
 				g_StdOptions[i].options=(!s_bNoClose && bHibernate)?MENU_ENABLED|MENU_EXPANDED:0;

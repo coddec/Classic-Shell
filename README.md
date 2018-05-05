@@ -1,5 +1,16 @@
 # Classic Shell ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
 
+<br>
+
+---
+# [ Future development will be made at:
+# https://github.com/passionate-coder
+# https://github.com/passionate-coder/Classic-Start ]
+## Please submit any [issues](https://github.com/passionate-coder/Classic-Start/issues), [pull requests](https://github.com/passionate-coder/Classic-Start/pulls) to above repositories
+---
+
+<br>
+
 ## This repository was created in hope of:
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
 - It can be continuously and actively developed or forked

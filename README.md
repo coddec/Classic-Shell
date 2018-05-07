@@ -29,7 +29,7 @@ Classic Shell Wikipedia Page: https://en.wikipedia.org/wiki/Classic_Shell
 ---
 # Mirror of www.classicshell.net
 
-Home Page: https://coddec.github.io/Classic-Shell/
+Home Page: https://passionate-coder.github.io/Classic-Start/
 
 FAQ Page: https://coddec.github.io/Classic-Shell/www.classicshell.net/faq/
 

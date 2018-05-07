@@ -1,4 +1,6 @@
-# Classic Shell ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
+# Classic Start ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
+
+# ---Changes required to make this file up to date---
 
 ## This repository was created in hope of:
 - As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
@@ -49,8 +51,8 @@ Report a bug/issue or submit a feature request: https://github.com/coddec/Classi
 
 ---
 # Release/Binary/exe files on Github
-https://github.com/coddec/Classic-Shell/releases
+https://github.com/passionate-coder/Classic-Start/releases
 
 
 ---
-[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/coddec/classic-shell/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/classic-start/branch/master)

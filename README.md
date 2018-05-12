@@ -1,10 +1,10 @@
 # Classic Start ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
 
+Home Page: https://passionate-coder.github.io/Classic-Start/
+
 # ---Changes required to make this file up to date---
 
-## This repository was created in hope of:
-- As a tribute to the founder/original developer [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)
-- It can be continuously and actively developed or forked
+- Fork of original code by [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/) can be found at: https://github.com/coddec/Classic-Shell
 
 ---
 
@@ -28,8 +28,6 @@ Classic Shell Wikipedia Page: https://en.wikipedia.org/wiki/Classic_Shell
 
 ---
 # Mirror of www.classicshell.net
-
-Home Page: https://passionate-coder.github.io/Classic-Start/
 
 FAQ Page: https://coddec.github.io/Classic-Shell/www.classicshell.net/faq/
 

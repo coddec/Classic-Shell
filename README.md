@@ -2,6 +2,8 @@
 
 Home Page: https://passionate-coder.github.io/Classic-Start/
 
+Discussion forum for community: https://gitter.im/passionate-coder
+
 # ---Changes required to make this file up to date---
 
 - Fork of original code by [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/) can be found at: https://github.com/coddec/Classic-Shell

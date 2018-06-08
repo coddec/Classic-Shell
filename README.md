@@ -2,6 +2,8 @@
 
 # Home Page: https://passionate-coder.github.io/Classic-Start/
 
+# Discussion forum: https://gitq.com/passionate-coder/Classic-Start
+
 # Discussion forum: https://gitter.im/passionate-coder
 
 # ---Changes required to make this file up to date---
@@ -55,4 +57,4 @@ https://github.com/passionate-coder/Classic-Start/releases
 
 
 ---
-[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/classic-start/branch/master) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)
+[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/classic-start/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)

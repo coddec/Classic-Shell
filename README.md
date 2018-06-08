@@ -6,7 +6,9 @@
 # [ Future development will be made at:
 # https://github.com/passionate-coder
 # https://github.com/passionate-coder/Classic-Start ]
+# Discussion forum: https://gitq.com/passionate-coder/Classic-Start
 # Discussion forum: https://gitter.im/passionate-coder
+
 ## Please submit any [issues](https://github.com/passionate-coder/Classic-Start/issues), [pull requests](https://github.com/passionate-coder/Classic-Start/pulls) to above repositories
 ---
 
@@ -65,4 +67,4 @@ https://github.com/coddec/Classic-Shell/releases
 
 
 ---
-[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/coddec/classic-shell/branch/master) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)
+[![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/coddec/classic-shell/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)

@@ -1,8 +1,8 @@
 # Classic Start ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
 
-Home Page: https://passionate-coder.github.io/Classic-Start/
+# Home Page: https://passionate-coder.github.io/Classic-Start/
 
-Discussion forum for community: https://gitter.im/passionate-coder
+# Discussion forum: https://gitter.im/passionate-coder
 
 # ---Changes required to make this file up to date---
 

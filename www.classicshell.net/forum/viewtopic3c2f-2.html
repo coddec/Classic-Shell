@@ -1,0 +1,3103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=7769&view=next by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 06:04:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Experiment   Plex Replay7 (Windows 7 style)</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Start Menu Skins" href="feed48ab.php?f=17" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Experiment   Plex Replay7 (Windows 7 style)" href="feedf3dd.php?f=17&amp;t=7769" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '1');
+	var per_page = '';
+	var base_url = '';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 7:43 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic4c4c-2.html?f=17&amp;t=4545">Experiment   Plex Replay7 (Windows 7 style)</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting8f9f.html?mode=reply&amp;f=17&amp;t=4545"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 33 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopic8a5e.html?f=17&amp;t=4545&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopic792b-2.html?f=17&amp;t=4545&amp;view=previous">Previous topic</a> | <a href="viewtopicd238.html?f=17&amp;t=4545&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p19011"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19011">Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic1baf.html?p=19011#p19011"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 21, 2015 3:06 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Experiment Plex Replay7<br /><br />Tried with CSM 4.2.1 on Win7/8.1 <br />Not compatible with older versions of CSM.<br />After downloading file, paste in skins folder, usually C:\Program Files\Classic Shell\Skins <br />Exit CSM, restart CSM, and go to &quot;Start Menu Style&quot; tab. Pick &quot;Windows 7 style&quot;.<br />Choose &quot;Plex Replay7&quot; in Skin tab. <br /><br />This is similar to Plex Replay skin. See elsewhere for more info.<br /><br />Thanks to Ivo, for making skinnable scrollbars.<br /><br /><img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file711c.php?id=2118">Plex Replay7.skin7</a> [1.5 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 1328 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file59ae.png?id=2117" alt="Plex Replay7.png" /><br />
+			<span class="gensmall">Plex Replay7.png [ 46.52 KiB | Viewed 15032 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2c3e.html?mode=quote&amp;f=17&amp;p=19011"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p19012"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19012">Re: Experiment   Plex Replay7</a></div><div style="float: right;"><a href="viewtopic7ed4.html?p=19012#p19012"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 21, 2015 3:16 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">ZOMG THAT IS BEAUTIFUL<br /><br />ONCE I FINISH PORTING THE PLEX VISUAL STYLE TO WIN7 AND 8.1, MAY I RECOMMEND THIS AS A WIN7-ISH ALTERNATIVE TO MY PLEX SKIN?</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingfa89.html?mode=quote&amp;f=17&amp;p=19012"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p19013"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19013">Re: Experiment   Plex Replay7</a></div><div style="float: right;"><a href="viewtopic8de6.html?p=19013#p19013"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 21, 2015 3:18 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Splitwirez wrote:</div><div class="quotecontent">ZOMG THAT IS BEAUTIFUL<br /></div><br /><br />What he said <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingfece.html?mode=quote&amp;f=17&amp;p=19013"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p19023"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19023">Re: Experiment   Plex Replay7</a></div><div style="float: right;"><a href="viewtopic39a6.html?p=19023#p19023"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 21, 2015 7:45 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">The subtle gradient across the menu in the &quot;Light&quot; variation looks so superb!  <img src="images/smilies/icon_e_surprised.gif" alt=":o" title="Surprised" /> <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> It's authentic Plex! Wow. Can there be an even lighter shade of blue for those who have the 'Black text' option on?</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd41d.html?mode=quote&amp;f=17&amp;p=19023"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p19028"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19028">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicf1fe.html?p=19028#p19028"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Apr 22, 2015 2:57 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Just wondering, why did you spend so much time repairing screenshots for this? Seems like ripping the visual style resources from within a Virtual Machine would be faster and easier...that's what I did for my skin...</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingcc1d.html?mode=quote&amp;f=17&amp;p=19028"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p19036"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19036">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicaf88.html?p=19036#p19036"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Apr 22, 2015 12:29 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi GauravK. <br /><br />About the lighter shade for black text.<br /><br /><br />I did just play a bit. <br />LCD monitors don't take to kindly to showing color and brightness levels at higher brightness, <br />worse if any kind of gradient.<br />It's like on a knife edge with the phasing. Get it just right at sweet viewing angle, move off right angle just a bit,<br />now the left column is green, and right is purple. I want my Dell 22 inch cathode ray tube monitor back!<br />Can't computer guys come together to have a higher color bit standard, <br />or at least a half decent 8 bit to 16 bit upload converter built into operating system?<br />Does not look very plexy anymore.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Might be better all solid colors.<br /><br />May have to pass on this pastel mod. No time. <br /><br />Someone else take a crack at it.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingffcd.html?mode=quote&amp;f=17&amp;p=19036"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p19037"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19037">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopiccc2d-2.html?p=19037#p19037"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Apr 22, 2015 12:31 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello Splitwirez .<br /><br />Use, change anything you want. Just give all royalties to Ivo and MS.  <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting48d8-2.html?mode=quote&amp;f=17&amp;p=19037"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p19038"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19038">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic8741.html?p=19038#p19038"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Apr 22, 2015 12:35 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello Splitwirez.<br /><br />About the wondering,<br />here is medium version answer. I won't give long version. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />Yes, indeed. Good question, with a question.<br />Why even use a virtual machine, when the resources are right in the disk,<br />that can be readily accessed?<br />Skill and knowledge of what to look for and retrieving that data, into usable form, is what I don't have.<br />Powerful Google search finds pictures fast. May not be the greatest quality.<br />It is relatively easy to clone out text, as long as something close by is same texture.<br /><br />Not that I did not attempt different ways.<br />*Virtual machine failed to install, as it saw 0 V hard drive space. Possibly bios date wrong. Did not know about at the time.<br />*Used resource hacker and found some stuff in, <br />I think 386 file on disk. Still no knowledge of where to look for everything. <br />*Attempted three different versions of longhorn install on real computer. Problem is difficult with newer computer with USB3,<br />and only 1 old IBM mouse/keyboard input. Without a splitter, can only have one at a time. Out of three, got one to boot eventually, just had even worse looking buttons on the desktop and in Plex theme msstyles. As I don't know the way the system is telling the compressed button to draw itself, guess what? Searching screenshots for the different milestones, is still the best.<br /><br />Here is short answer: They never finished perfecting Ui, before moving to next one, and next one, etc.<br />                      So it's only to get an idea starting point. <br /><br /><br />I don't want to copy exactly. Had to be different, with the risk of turning ugly. The top bar instead of light to dark, is dark to light, taken from explorer page. Forget which version picture. The left pane color is exactly original (light variation),<br />but looks different from optical illusion, being close to different right pane. <br /><br />I'm really late now, bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc9e8.html?mode=quote&amp;f=17&amp;p=19038"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p19114"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19114">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicb4fc.html?p=19114#p19114"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Apr 25, 2015 11:27 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Added baby fresh option. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> <br /><br />My last attempt.<br />Want to move on to other things.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file5f85.php?id=2132">Plex Replay7 revB.skin7</a> [1.83 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 425 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc76c.html?mode=quote&amp;f=17&amp;p=19114"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p19118"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p19118">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicc10d.html?p=19118#p19118"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Apr 25, 2015 9:16 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I still like &quot;Light&quot; variation more because the light to dark gradient in it is so awesome.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting516a.html?mode=quote&amp;f=17&amp;p=19118"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26945"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26945">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicef2a.html?p=26945#p26945"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue May 31, 2016 11:39 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Feature request for juniper7: Left column background white in main menu and search results background also white for Plex Replay7.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd9ab.html?mode=quote&amp;f=17&amp;p=26945"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26958"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26958">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic6fb7.html?p=26958#p26958"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jun 01, 2016 11:15 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello Gaurav.<br /><br />I require more specifics.<br />In mock-up picture (without the top), outside border has one, two, and three pixel thickness.<br />Which would you prefer?<br />Gather you want inside program background white also?<br /><br />If I remember correctly, if the text is made black for search results background, <br />it forces the jumplist area to be black text as well.<br />As long as you are comfortable with that. It should be readable, <br />just not on the dark variation. I did not try it out. Just in my mind.<br />If it's too hard to read on dark jump, I cold lighten that side a bit.<br /><br />As usual, will work on it on weekend time.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file538c.png?id=3521" alt="whitemock.png" /><br />
+			<span class="gensmall">whitemock.png [ 71.38 KiB | Viewed 10874 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting14e0.html?mode=quote&amp;f=17&amp;p=26958"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26961"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26961">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopiccc64-2.html?p=26961#p26961"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jun 01, 2016 11:59 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi juniper7, thanks for following up with my request. 3 pixel thickness looks good. I use the cascading All Programs menu so whether inside program background is white or not is not important to me. But you have an option for that already <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />Yes you're right, the search results and jumplist text will have to be made black if the background is white.<br /><br />Actually, if you are too busy, I can attempt editing it but since you created this skin, I thought you would be faster at it. Don't feel any obligation, and take your time. I understand you do this in your spare time and am grateful for the lovely skins you come up with for free!</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingbc9f.html?mode=quote&amp;f=17&amp;p=26961"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26963"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26963">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic94be.html?p=26963#p26963"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jun 01, 2016 12:41 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">White inner programs option already. Shoot.<br />What a laugh <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br />Good one. Well, white it is ,,,, already.<br /><br />I will dedicate time on it.<br />Saw your screenshot in other post.<br />I will make the shutdown button bigger for Hi-DPI.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingcc21.html?mode=quote&amp;f=17&amp;p=26963"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26978"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26978">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic89a8.html?p=26978#p26978"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jun 02, 2016 7:08 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK. Now it's... Plex Replay7 revC.skin7<br /><br />I put the white split option in.<br /><br />Let me know if any errors. I had to simplify some stuff, as the text logic was getting more, and more complicated.<br />Took longer to gel the text, than make the new bitmaps. <br /><br />I turned off the fuzzy blue new programs button. It did not look well on white menu. <br />Brightened the top of right column on dark variation a bit.<br /><br />Time for a skinning break.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filec572.php?id=3522">Plex Replay7 revC.zip</a> [229.23 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 196 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge30d.html?mode=quote&amp;f=17&amp;p=26978"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27008"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27008">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopica843.html?p=27008#p27008"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jun 05, 2016 8:54 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Oh my! It's so lovely now!! I am totally happy with it.<br /><br />Btw, all skins support a [Touch_Enabled] section in Classic Shell if touchscreen is detected and touch features are enabled.<br /><br />For that, I add these to every skin:<br /><br />[TOUCH_ENABLED AND NOT SMALL_ICONS]<br />Shutdown_text_padding=20,8,24,8,100%<br />Shutdown_arrow_padding=16,19,100%<br />Main_split_arrow_padding=25,25,100%<br />Main2_split_arrow_padding=25,25,100%<br /><br />It makes split buttons usable using a finger.<br /><br />Ivo, this skin from juniper7 is such polished work that I think you could include it as part of Classic Shell. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> Many people will love it. And it's available for both styles!</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filefd47.png?id=3530" alt="Plex7 (Custom).png" /><br />
+			<span class="gensmall">Plex7 (Custom).png [ 603.59 KiB | Viewed 10562 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5857.html?mode=quote&amp;f=17&amp;p=27008"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p27032"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27032">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic4857.html?p=27032#p27032"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jun 06, 2016 6:25 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">To include in the built in? <br />From past unpublished responses, not everybody likes that type of skin.<br />Maybe if the best parts are kept, the rest chopped?<br /><br />About the touchscreen option.<br />I don't have a tablet, to know what the menu would look like. <br />Things may not line up on the oddball skins that I've made. <br />I will include on the next skin I make.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting92d3.html?mode=quote&amp;f=17&amp;p=27032"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27038"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27038">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopice40f-2.html?p=27038#p27038"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jun 07, 2016 1:20 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">@ not having a tablet to check what it would look like<br />I mean you could take those same lines and throw them under another option just to see what it looks like.. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf53d-2.html?mode=quote&amp;f=17&amp;p=27038"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p27039"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27039">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicf127.html?p=27039#p27039"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jun 07, 2016 1:40 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Yep you can just include it in the current section temporarily and save changes to see what it looks like and then put it under the [Touch_Enabled] section. The [Touch_Enabled] section skin options are activated when &quot;Enable touch features&quot; setting of CSM is on (it is only available on Windows 8 and up and if a touchscreen is detected).<br /><br />Although it feels like I must be the only Windows user in the would who has a touchscreen and uses Classic Shell <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /></div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting17c7.html?mode=quote&amp;f=17&amp;p=27039"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27040"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27040">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic077a.html?p=27040#p27040"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jun 07, 2016 2:18 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Ive got a 2 in 1 (though I hardly use it in general) I'm almost always on my desktop instead which has had one in the past, but currently doesn't But yes, touch features are a big deal nowadays with the number of windows 10 tablets and 2in1's</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting456c.html?mode=quote&amp;f=17&amp;p=27040"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p27044"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27044">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicdff4.html?p=27044#p27044"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jun 07, 2016 6:22 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Does the Touch Enabled text, trigger other internal functions, like font/arrow size, zoom?<br /><br />I always used to do something similar, to see what a new programs button looked like.<br />I deleted the &quot;new&quot; part, but it never looked the same, coz the function changed to show different text color.<br />Don't need to do that anymore with Win 10. Almost always showing new update program buttons.<br /><br />With split buttons, does function work differently on touch screens?<br />On regular monitor, just hovering over, will open up anyway.<br />Only time I have to click on it to open, is when exiting an unsuccessful search.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf12a.html?mode=quote&amp;f=17&amp;p=27044"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27051"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27051">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicfc4d.html?p=27051#p27051"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jun 07, 2016 8:12 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Fonts and arrows are defined in a skin so if you put it under [Touch_Enabled], they will change. &quot;Enable touch features&quot; is a Start Menu setting that turns on whatever changes you define in a skin under that section. The Start Menu setting also does other things:<br />- The scroll with the mouse by hovering over the pager buttons is disabled if touchscreen is detected so you can scroll with your finger. You can click or tap on the pager buttons to scroll.<br /><br />The changes I suggested to the skin when touch is enabled are only so it becomes easier to target the areas with the finger by making them larger. The split button's right portion is too small normally so if the user tries to tap on it to show the jumplist or submenu, he can accidentally tap on the left portion of the button. By increasing the padding, the target area becomes larger. It does not affect how they work because there is no reason to change their behavior.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filea711.png?id=3539" alt="Touch features (Small).png" /><br />
+			<span class="gensmall">Touch features (Small).png [ 104.89 KiB | Viewed 10460 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc701.html?mode=quote&amp;f=17&amp;p=27051"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33402"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33402">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic52b1.html?p=33402#p33402"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 4:14 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi Juniper7, would you or Jcee if you are reading this, update this lovely skin with a bigger user pic/user pic frame? Preferably, User pic size options in the Skin (64, 96, 128, 256). <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /></div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7f5a.html?mode=quote&amp;f=17&amp;p=33402"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33411"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33411">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic0c6a.html?p=33411#p33411"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 8:50 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Sorry, not at this time. Doing other things. <br />If I remember it was not a simple skin. Had a bunch of different user picture options, <br />that might be hard to duplicate at super large sizes. User picture logos, different frames, <br />inside/outside. I deleted all sources. Would have to find again on net or make thicker frames, and such.<br />The 64 pixel icon behind user picture will stay same size, <br />regardless of increasing DPI size. There would be a giant size miss<br />match with user picture.<br /><br />Does Ivo have some workaround option for legacy 96DPI skins, <br />where the menu as a whole be can be switched on 2x times the size?<br />Not as a stretch but a whole magnification of everything, <br />similar to Windows Magnifier tool that does for entire screen, <br />but in this case only the start menu is drawn bigger. <br /><br />Technology marches on. I have old school system. For people buying the latest and greatest, <br />there must be an awful lot of old programs not made for super Hidpi density. How do they work with smaller graphic elements.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingfb2e.html?mode=quote&amp;f=17&amp;p=33411"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33412"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33412">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic484c.html?p=33412#p33412"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 9:43 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Oh ok no worries. I didn't know you deleted the sources. And I had forgotten about the user pic limit. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> I only asked thinking that it might be a minor update.<br /><br />How Windows magnifies smaller graphic elements to work with high DPIs is using DPI virtualization. I wrote an article at Winaero about it: <!-- m --><a class="postlink" href="http://winaero.com/blog/how-to-fix-apps-that-look-small-on-high-dpi-and-high-resolution-displays/">http://winaero.com/blog/how-to-fix-apps ... -displays/</a><!-- m --><br /><br />But that trick will only work for apps which are not high DPI-ready but which falsely claim to be high DPI-ready. Classic Shell is actually high DPI ready for the most part.<br /><br />Oh well, I will update it some day to size 64 which is the max.allowed size.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5b50.html?mode=quote&amp;f=17&amp;p=33412"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33413"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33413">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic8fb3.html?p=33413#p33413"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 11:13 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Don't know if there is a user picture size limit anymore. <br />I've made 7 style skins with User_image_size=72 before for 144DPI. 48 reg x 1.5 = 72 pixels<br />It would be difficult to test properly bigger sizes on my computer, <br />without cutting most of entries in start menu, so menu does not get cut off at top.<br /><br />All I know is the frame bitmap has to be 64 pixels or bigger, <br />so when the other icons show, they don't get cut off. <br />The frame can be smaller with invisible bigger part outside, as long as 64 pixels minimum. <br />Does not seem to matter if a User image is used instead of User bitmap frame. <br />Making a larger square or circle relatively easy, with a &quot;User_image&quot;,<br />or CSM might still be able to make larger user picture and auto frame if everything else is deleted, <br />just the image size text kept? <br />It's making the frames and all the adjustment text to work properly, is what takes the time. <br /><br />Maybe tutorial needs updating?<br />Ivo said the second column icons that show behind user picture stay at 64 pixels. <br />I might be wrong, but Startisback icons scale bigger.<br /><br /><br />Does kind of take the fun out of skinning. <img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" /> <br />One makes a skin, yay finished. Then Oh! <br />That's only good for 96DPI, make extra set of buttons, arrows, <br />larger menu corners, user picture frames for 144DPI, <br />then someone wants 120%, and on and on.<br /><br />Is there such a thing as a vector start menu? <br />Where everything scales perfectly, or is that just a dream? <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2368.html?mode=quote&amp;f=17&amp;p=33413"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33416"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33416">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic77c7-2.html?p=33416#p33416"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 9:43 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Is there such a thing as a vector start menu? <br />Where everything scales perfectly, or is that just a dream? <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>For that, the Start Menu will have to be rewritten in WPF or UWP, not Win32 and we all know how much powerful and versatile Win32 APIs are compared to UWP except for its limited resolution scaling abilities.<br /><br />Read: <!-- m --><a class="postlink" href="https://blogs.technet.microsoft.com/askcore/2015/12/08/display-scaling-in-windows-10/">https://blogs.technet.microsoft.com/ask ... indows-10/</a><!-- m --> if you're interested.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting9c1b.html?mode=quote&amp;f=17&amp;p=33416"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33420"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33420">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic94f3.html?p=33420#p33420"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jul 21, 2017 6:24 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi Gaurav. <br />At some point I will help you out, just not right now. Other priorities. <br /><br />Looking briefly at your link,<br />if Win 10 Start menu uses that UWP way, from what I see, there is no texture on the menu anyway.<br />And you'd think they could at least get the power icon/glyph to look perfect on their showpiece menu, <br />as it's so visible right by start button.<br />Nope. The circle is cut off on three sides.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingb8eb.html?mode=quote&amp;f=17&amp;p=33420"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33422"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33422">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopicffd8.html?p=33422#p33422"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jul 21, 2017 9:27 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello Gaurav. <br />Maybe next week I can look into bigger user pictures option.<br />I looked at skin tutorial, and here is what it said: <br /><br />&quot;All original skins use 48x48 pixels, but you can choose any size up to 128x128&quot;<br /><br />I don't know if Windows or CSM sets that size limit.<br />It can match for approx. <br /><br />48x48 reg 96DPI<br />60x60 reg 120DPI<br />72x72 reg 144DPI<br />96x96 reg 192DPI<br />128x128 reg 256DPI<br /><br />I think all the frames for those sizes are in Vista/Win7 dll or exe files.<br />There might be problem getting the darkness out of them.<br /><br />Looking on net,<br />I think Blender program can undo/redo premultiplied alpha images.  <br />That's all I can do for a number of days.<br />Bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd3ef.html?mode=quote&amp;f=17&amp;p=33422"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33445"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33445">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic591c.html?p=33445#p33445"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 24, 2017 9:56 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Really bizarre looking with 128 size picture, at default menu size. <br />Bender's arms not in skin, but I guess could be, using emblems. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />Futurama wallpaper at: <br /><!-- m --><a class="postlink" href="http://wallpapersafari.com/w/Bw8rec/">http://wallpapersafari.com/w/Bw8rec/</a><!-- m --><br /><br /><br /><br /><br />I did try the largest frame from Windows file at 160 x 160 inside picture size.<br />Tutorial note is correct. Can only show 128 size max. Tried internal CSM picture - same limit. <br /><br />So many picture frames.<br />3 different blue shades + 1 Windows default = 4 x 5 sizes = Total qty 20 frames. <br /><br />I managed to find the clear Windows glass flag picture on net.<br />That will ramp up size as well. <br /><br />Whatever you do, don't look under the hood. <br />I don't have enough time to simplify and beautify the script. <br />In fact I found a number of mistakes.<br />One being opacity was set to fullglass, <br />which means text did not have the extra coloured pixels to make sharper (clear Type).<br />I changed to alpha opacity.<br /><br /><br />EDIT:OK, I made the scroll buttons bigger for HiDPI.<br />Minor revision. Now rev D1<br /><br />Reminds me of a fun place I worked, <br />where engineers would hand out immediate revision orders like candy on the same day.<br />Would drive production nuts. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Now I'm doing the same. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filed51a.php?id=4824">Plex Replay7 revD1.zip</a> [270.75 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 76 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file9249.png?id=4813" alt="Small icons view. .png" /><br />
+			<span class="gensmall">Small icons view. .png [ 215.54 KiB | Viewed 6562 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Mon Jul 24, 2017 2:39 pm, edited 1 time in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingead0.html?mode=quote&amp;f=17&amp;p=33445"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33447"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33447">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic48d9.html?p=33447#p33447"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 24, 2017 10:17 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Best revision ever!!! <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <img src="images/smilies/icon_mrgreen.gif" alt=":mrgreen:" title="Mr. Green" /> Thanks. I switched to Small icons+larger padding in 2nd column (since my small icon size is quite big). And edited the skin to increase the split arrow padding and Shutdown text+arrow paddings as I always do since you know the split button must actually be large enough to open with a finger without accidentally causing the left portion of the button to get triggered. Now it's perfect and future-ready. The skin matches my XP Embedded taskbar texture as if they were made for each other.<br /><br />The only limitation is that the icon at the top of the 2nd column - when it changes from the user picture to some other icon as we hover over 2nd column items - it is still small. Hopefully, Ivo will address that in the future revision of Classic Shell. Seeing large beautiful icons in the Start menu will be such a delight.<br /><br />I make scrollbars quite thick too because that's how big they were in Windows 95/original Classic Windows. That was before the obsession to make super slim, hiding, floating, invisible, impossible-to-click scrollbars began.<br /><br />My DPI is 150%. Tip: Always use the pre-set DPI scaling intervals that MS provides: 100%, 125%, 150%, 200% because if you use a custom value, the desktop icons are scaled poorly and look hideously ugly.<br /><br />juniper7, if I meet you in real life, I'm gonna buy you a beer. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file9c0a.png?id=4817" alt="High DPI.png" /><br />
+			<span class="gensmall">High DPI.png [ 188.63 KiB | Viewed 6555 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/fileb5a4.png?id=4816" alt="All Programs.png" /><br />
+			<span class="gensmall">All Programs.png [ 194.39 KiB | Viewed 6555 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting95b8.html?mode=quote&amp;f=17&amp;p=33447"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33448"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33448">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic0a8f-2.html?p=33448#p33448"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 24, 2017 11:07 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hmm.<br />I never see the blue scroll bar since Creators update. <br />Looks like I'll have to make a bigger arrows scroll bitmap to come on at HiDPI sometime in next few days.<br />I always thought scroll bar was skinnier. So if DPI adjusted in CSM = scrollbar skinny.<br />If DPI/size adjusted in Windows = scrollbar wide.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf5e2.html?mode=quote&amp;f=17&amp;p=33448"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33449"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33449">Re: Experiment   Plex Replay7 (Windows 7 style)</a></div><div style="float: right;"><a href="viewtopic5728.html?p=33449#p33449"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 24, 2017 11:22 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Check out Winaero Tweaker - that app will let you easily adjust things like scrollbar sizes. Or if you want to manually do it, these are the Reg entries (my values are quite large due to high DPI):<br /><br />Windows Registry Editor Version 5.00<br /><br />[HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics]<br />&quot;ScrollHeight&quot;=&quot;-380&quot;<br />&quot;ScrollWidth&quot;=&quot;-420&quot;<br /><br />But they require logging out and logging it again for the changes to take effect.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting1a65.html?mode=quote&amp;f=17&amp;p=33449"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=17&amp;t=4545"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting8f9f.html?mode=reply&amp;f=17&amp;t=4545"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 33 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 3 guests</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="4545" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17" selected="selected">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=7769&view=next by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 06:04:45 GMT -->
+</html>

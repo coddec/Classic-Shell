@@ -1,0 +1,1247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=5954&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 05:12:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Classic Shell Start Menu causes explorer lock up</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Classic Shell Start Menu causes explorer lock up</span><br /><span class="gensmall"><a href="viewtopic81c9.html?f=12&amp;t=5954">http://www.classicshell.net/forum/viewtopic.php?f=12&amp;t=5954</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>2</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>sws</b> [ Mon Apr 25, 2016 6:59 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi there Classic Shell Forum,<br /><br />my company migrated to Windows 10 over the last months and we decided to give our users the convienience of Classic Shell.<br />After a much too long and nerve-racking search for the cause of our ominous explorer lock up which all of our 250+ Users expirience frequently, i found out that classic shell is causing the problem.<br /><br />The problem looks like this:<br />After a logon on any Windows 10 client in our domain everything runs fine until the user either browses with the explorer to a folder with many different file types (different icons) or the user opens the &quot;Choose default apps by file type&quot; menu in the system settings. While analyzing the explorer with process explorer i found that doing one of the two described ways will stack up an noticeable amount of threads in the explorer.exe. The count of threads will stack up to around 800 to 820 Threads until the explorer becomes unresponsive.<br />As soon as the explorer filebrowser becomes unresponsive the taskbar, classic shell and desktop will also freeze.<br />There is no app crash or app hang notfication, the explorer will just not respond to any user interaction anymore.<br />The only way to get the explorer working again is killing it and restarting it by starting the taskmanager with CTRL+ALT+DEL.<br /><br />Closing the Classic Shell Start Menu will instantly stop the threads in the explorer process from stacking further, but starting it again brings back the problem immediately.<br /><br />The problem is similar to this thread: <!-- l --><a class="postlink-local" href="viewtopicd0a4.html?f=12&amp;t=5587">viewtopic.php?f=12&amp;t=5587</a><!-- l --><br />But OneDrive is already completely disabled on our clients.<br /><br />Im kind of clueless from this point on, the only thing i found is that changing any folder option and applying it (which option really doesnt matter) will fix the problem temporally. <br />But i guess thats more of a coincidence than a good lead to the solution.<br /><br />I would really appreciate seeing someone taking a look at the dump i attached. <br />The dump should have a thread count around 800 with ca. 750 identic stacked threads. I would love to know what these threads actually try to do and why they are stuck.<br />If you need any information i forgot mentioning, i will provide it gladly.
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="gensmall"><b>File comment:</b> Explorer Dump</span><br />
+		
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filebf48.php?id=3403">explorer.exe_160425_114209.zip</a> [1.73 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 153 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Apr 25, 2016 8:01 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The start menu uses about 10 threads itself, most are inactive until they are needed. The threads are most likely created as a result of viewing some folder.<br />What were you doing at the time the dump was taken?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>sws</b> [ Mon Apr 25, 2016 10:53 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The dump was taken while taskmanager, the settings window &quot;Choose default apps by file type&quot; and an explorer window viewing a network share was open.<br />The freeze is reproducable just by browsing folders with the explorer, theres no difference between viewing local files and a network share.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Apr 25, 2016 11:10 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The dump shows that the start menu is trying to show a sub-menu for the Control Panel. Possibly a Control Panel applet is misbehaving, possibly one of the 32-bit ones.<br />Look at the Control Panel in Explorer. See if you have any entries ending in (32-bit).
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>sws</b> [ Wed Apr 27, 2016 2:02 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The only two 32-bit entries we have are E-mail and Flash Player.<br />The Email entry is from Outlook 2016. I uninstalled the whole Office 2016 package and it definitely had impact on the issue, but the explorer freeze is still reproducable. <br />Uninstalling Office 2016 solved the problem with the &quot;Choose default apps&quot; Window. Without Office 2016 the explorer wont freeze when one of the &quot;Choose default apps&quot; settings are opened.<br /><br />Still, by navigating through folders it is still possible to get the explorer in an unresponsive state. It just takes a little bit longer till the threadcount goes over 800.<br /><br />I attached 2 new dumps with and without Office 2016 installed. The explorer freeze was initiated on both only by navigating through folders.
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filea042.php?id=3404">explorer dmp Office 2016.zip</a> [3.51 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 134 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Fri Oct 07, 2016 10:02 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi Folks,<br /><br />I've been trying to nut out a problem I'm seeing on -all- my clients since I moved a bunch of them to Win10 earlier this year. Its the common enough 'explorer' freeze. This manifests in any number of ways, as most would be aware, but the above post has come closest, I think, to hitting on the real symptom. <br /><br />Since reading this thread I started checking the number of threads associated with the explorer.exe process and yes, sure enough, when the thread count reaches 800 the dreaded freeze happens... absolutely reproducible. Opening taskmgr and restarting explorer allows the system to continue until, eventually, the thread count again rises to 800 and another freeze ensues.<br /><br />Though I can't understand why, it is related to classic menu/classic explorer. I don't know which. But, if one uninstalls classic shell, the problem doesn't manifest. With Classic shell installed sometimes the classic menu will freeze, sometimes not, but 99% of the time a right click on the desktop area won't produce any response. From here the taskbar will then stop responding and shortly after the start menu as well (usually).<br /><br />This post is related, though talks to a different symptom and one that I also often see: <!-- l --><a class="postlink-local" href="viewtopicafc1.html?f=12&amp;t=5587&amp;p=24540&amp;hilit=explorer+threads+800#p24540">viewtopic.php?f=12&amp;t=5587&amp;p=24540&amp;hilit=explorer+threads+800#p24540</a><!-- l --><br /><br />Now, running Win10 -without- classic shell is a non starter for me. My clients will simply and emphatically demand a return to Win7 or Win8 (with classic shell) before they accept the unintelligible standard start menu on Win10. I've got to find an answer to this problem.<br /><br />Some things about my systems:<br /><br />- All have onedrive uninstalled<br />- They all have their default user profile modified and implemented using 'defprof.exe' from ForensiT (<!-- m --><a class="postlink" href="https://www.forensit.com/support-downloads.html">https://www.forensit.com/support-downloads.html</a><!-- m -->). Creating default profiles in this way exacerbates the problem though it is not the root cause as the issue arises eventually anyway.<br /><br />Following another course of enquiry for a different problem (eventviewer showing massive numbers of errors on microsoft.skypeapp and microsoft.windowsphone) led me down the path of removing select modern apps. This was quite an interesting exercise. In so doing, via a powershell script (which I can supply if its interesting), I noticed that the powershell script would pause, indefinitely, during the uninstall of provisioned modern apps. When checking taskmgr at these pauses in each and every case the explorer.exe process had more than 800 threads. Restart explorer.exe and the powershell app uninstall script would continue, but would again raise the thread count to 800 within a few minutes, pausing again, and awaiting me to restart explorer.exe.<br /><br />After doing the above, I recreated the default user profile (using defprof.exe again) and logged in as a new administrative user. Opened the taskmgr/resource monitor. Explorer.exe was using about 150 threads or so. Now click on classic menu, thread count rises quickly and significantly, 200-400-600 then 800+ and at that point classic menu stops populating icons in the menu - instead leaving generic small white program icons where normally an applications coloured icons would be. At this point, the system won't recover until explorer.exe is restarted. Upon doing that the remaining icons will populate properly.<br /><br />Until the icon cache is fully and properly created, this remains a problem. Once done, the symptoms reduce significantly.<br /><br />This goes along with anecdotal evidence from my systems too. A new user on a fresh system will have their profile created and will immediately have multiple problems with desktop freezes. Over the course of several reboots/relogins/days the problems reduce to workable levels but never truly go away.<br /><br /><br />Procdump included, Windows 10 pro, build 10586.589 (x86 in this instance)<br /><br />(Edit: Classic shell V4.3.0)
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Oct 07, 2016 10:14 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />@moopere, capture a crash or slowdown dump as per these instructions: <!-- l --><a class="postlink-local" href="viewtopiccc99.html?f=12&amp;t=6">viewtopic.php?f=12&amp;t=6</a><!-- l -->
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Fri Oct 07, 2016 10:17 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, I've captured the dumps, I just can't seem to upload them here. I'll see if I can make the files smaller
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileb38d.php?id=3998">explorer_161008_124654 -1.zip</a> [3.38 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 126 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Fri Oct 07, 2016 10:35 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Nope - cant get more than 1 dump up on here - site keeps timing out. Let me know if you need more than 1 and I'll find another way.<br /><br />Edit: Another observation; the large number of explorer.exe threads never reduces once bumped up.  Right now, on this test system, its sitting on 631 threads and the PC is otherwise idle.    Everything is working as its not hit the magic 800 yet, but it appears that the extra threads are zombies
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Sat Oct 08, 2016 5:18 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Heres a bit more anecdotal observation:<br /><br />1) Classic Shell installed<br /><br />- Log in as new user.  Profile for the user is created<br />- Once the desktop appears, quickly open taskmgr, then resource monitor.<br />- Explorer.exe shows at this time about 85 threads or so.  I'm not touching anything at this point, just watching resource monitor.  Thread count slowly climbs to just over 100, then, after maybe 30 seconds to a minute, the thread count starts to climb rapidly, 100's in a few seconds.  At 800, or 803-810 the thread increments stop.  If you try at this point to right click on the desktop you won't get a response.  Clicking on the classic menu won't work either 80% of the time.  Similarly hovering over or clicking anything on the taskbar doesn't work 80% of the time.<br />- Restart explorer.exe from taskmgr and the explorer.exe thread count eventually settles at around 80-90.  Clicking about and generally looking at things and doing work related tasks see's this number slowly climb.<br /><br /><br />2) Classic Shell uninstalled<br />- Log in as new user.  Profile for the user is created<br />- Once the desktop appears, quickly open taskmgr, then resource monitor.<br /><br />- Explorer.exe shows about 60-65 threads.  This bounces up and down a little bit, but never above 70, after the login has settled down and the machine returns to idle the count drops back to 60-65<br />- Right clicking the desktop or generally clicking about and viewing things in explorer don't have any lasting effect on the thread count.  Count goes up, close an explorer window and count goes down again<br /><br />3) Classic Shell installed ... with a twist<br />- Log in as new user.  Profile for the user is created<br />- Once the desktop appears, quickly open taskmgr, then resource monitor.<br /><br />- Explorer.exe shows at this time about 85 threads or so as with 1) and as you'd expect.  Wait until the thread count starts to move upwards.  Quick as I can, right click the start menu and exit classic menu.  Immediately the explorer.exe thread count halts.  I managed to just squeeze in below the problem threshold at 720 threads.<br />- Click about on the desktop and the normal windows menu, all seems fine.  The 720 threads, but otherwise the system is responding normally.<br />- Type this post while I wait for the system to truly go to idle.<br />- Manually start ClassicMenu.exe.  Threads jump from 720 to 750, then after a few moments drop to 743.  5 minutes later the number has dropped back to a respectable 80.<br />- Click about ... all good.  System operating normally.<br /><br />It seems to me then that something is causing the creation of hundreds of threads at login.  This process is exacerbated during the creation of a new user profile.  These additional threads may or may not be performing a useful function, but, there seems to be some issue whereby they are not closed.  Additionally, is there a windows/Classic Shell imposed limit of some type that is giving us this magical 800(ish) thread count limit before trouble begins?<br /><br />I am focusing in these posts on new user profiles and login - however this is mainly because I can absolutely reproduce the problem in this way.  However, the symptoms occur in other areas of use as well, as others have posted on these forums.  It seems that some combinations of load/request can cause a sort of race condition, multiplying the thread count, hitting the magic number and then its all over folks.<br /><br />Happy to assist further in any way I can.  I am rather lucky to have resurrected an old P4 Prescott Celeron, which runs Win10pro x86 perfectly fine, but is also unbelievably slow.  The &quot;good&quot; thing about this lack of speed is that I can intercept many things as they are happening and can visually watch movement in the resource monitor which would be a lot harder with a modern machine.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>jemde</b> [ Sun Oct 09, 2016 1:09 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hello,<br />I am responsible for two networks. They a very simular. In one network all PCs are runnig with Windows 10 and ClassicShell without any poblem. In the other network I can see exactly what is described here in this thread: The number of threads of the explorer increases untill round about 820 an than the explorer stops to react. If I kill the explorer and restart him later, everything works again fine until the next time. <br />The only big difference between the two networks is, that the one with the crashing explorer processes uses roaming profiles and the other not. Perhaps this information helps to find the problem. For testing purposes I installed a fresh virtual PC with only standard software. But also here the problem occurs.<br /><br />PS: I love ClassicShell and I don't know, how I could Windows 10 use anymore without it - many thanks!
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="gensmall"><b>File comment:</b> Software which is installed on my virtual Test-PC</span><br />
+		
+			<img src="download/file014f.jpg?id=4002" alt="SoftwareOnTestSystem.jpg" /><br />
+			<span class="gensmall">SoftwareOnTestSystem.jpg [ 61.84 KiB | Viewed 18228 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>mesrouilles</b> [ Tue Oct 11, 2016 6:52 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi guys,<br /><br />I'm also interested by this post.<br />I'm IT in a french institute of technology, last year some teachers insisted to upgrade to Windows 10 in our department and my former colleague decided to use ClassicShell as a workaround for the W10 roaming profiles issue.<br />It seemed to run perfectly fine during our tests but now, even with the latest version, a lot of users are facing the same freezing issue.<br /><br />Some of you talk about OneDrive, it's disabled here.<br />I'll try to collect some dumps if it may help.<br /><br />I hope it will be solved, ClassicShell is more than helpful for us (thanks for this software <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> )
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Sat Oct 15, 2016 2:32 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />More data points:<br /><br />1) Uninstall Classic Shell, delete test user profile, login as test user - no issues.  Threads on explorer.exe never exceed 80 or so.<br /><br />2) Install Classic Shell again, but deselect Classic Explorer, delete test user profile, log in as test user - same problem of 800 threads freeze.<br /><br />3) Install Classic shell again, but deselect Classic IE (include Explorer again), delete test user profile, log in as test user - same problem 800 threads freeze.<br /><br />4) Install Classic Shell, with all options selected, but disable at startup, delete test user profile, log in as test user - no change, 800 thread freeze.<br /><br />5) As above 4) but rename classicstartmenudll.dll, delete test user profile, log in as test user - no problem.  Threads reaches a maximum of 102<br /><br />6) Whilst still logged in as the test user from test point 5) above, rename classicstartmenudll.dll back to its original name. Run ClassicStartMenu.exe from the Classic Shell directory.  Threads jump to 115, then back to 109.  Click about, nothing strange happening....<br /><br />7) Reboot and login as test user again, but with previous profile intact (not deleted as I normally did in the tests above).   Wait for machine to go to idle.  Thread count about 210-220.  Higher than normal, but, no freeze and not reaching 800.<br /><br />8) Log out, delete test user, log back in as test user.  Bizarrely, the thread count was climbing through 700+ and the explorer process reset itself.  The desktop closed (went blank), then it restarted.  Threads started at 1 and climbed quickly up through 360+<br /><br />9) Rebooted.  deleted test user profile.  Log in as test user.  Same behaviour as originally posted.  Threads quickly climb up to 800+ and the desktop freezes (and as expected).<br /><br /><br />What I found particularly interested was data point 5) and 6).  <br /><br />What does this result imply?  Something is happening when profiles are relatively fresh which benefits from classic menu not actually running at that time?  Several minutes later, when those things are done (whatever they are), one can start classic menu and no ill effects?  Pretty strange.  Its an odd and interesting data point though, probably not an indicator of the answer - the threads = 800 thing can still manifest hours later under seemingly random circumstances involving users doing normal user stuff.  Clicking about, exploring network folders, etc, etc.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Fri Nov 18, 2016 6:17 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I'm working around this issue currently by unticking the 'start automatically for this user' and pushing that out, along with other user settings via the default user profile.  At least the users still get the explorer functionality and I hold some hope that a future Windows patch or Classic Shell update will get over the 800 thread issue ... whatever it is.  <br /><br />Believe it or not, some users dislike the Win10 start menu -so- much that they are prepared to deal with the crashing and still use CS.  MS, theres a heads-up in there for you <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>CosmicThing2</b> [ Tue Jan 31, 2017 4:44 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Getting the exact same issue here. Our set up is in a Secondary School and our explorer keeps freezing at 800 threads. Did you solve the issue or are you just not using Classic Start Menu for now?<br /><br /><!-- l --><a class="postlink-local" href="viewtopicf066.html?f=12&amp;t=7297&amp;p=31435">viewtopic.php?f=12&amp;t=7297&amp;p=31435</a><!-- l -->
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>N7OKN</b> [ Tue Jan 31, 2017 8:13 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Mine's a little different. After I use the clean-up utility to completely remove CS, then re-install from scratch, I find Explorer constantly restarts, leaving me about a second or two on each cycle to start the clean-up before the next cycle. I don't think Classic Shell is going back on my computer until the rapid restarts can be addressed.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Jan 31, 2017 9:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Follow the instructions here: <!-- l --><a class="postlink-local" href="viewtopiccc99.html?f=12&amp;t=6">viewtopic.php?f=12&amp;t=6</a><!-- l -->  to capture crash dumps from Explorer.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>moopere</b> [ Wed Feb 01, 2017 6:35 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">CosmicThing2 wrote:</div><div class="quotecontent">Getting the exact same issue here. Our set up is in a Secondary School and our explorer keeps freezing at 800 threads. Did you solve the issue or are you just not using Classic Start Menu for now?<br /><br /><!-- l --><a class="postlink-local" href="viewtopicf066.html?f=12&amp;t=7297&amp;p=31435">viewtopic.php?f=12&amp;t=7297&amp;p=31435</a><!-- l --></div><br /><br /><br />I responded in the other thread - but no, I couldn't find a resolution - am deselecting 'start CS automatically upon login' and the systems are working again, just no classic menu, classic explorer still works so that gives its own benefit which is worth having.<br /><br />It seems to be an interaction with Win10 - Win8/8.1/7 appear to be fine and I've had no negative feedback from the field at all about the earlier systems.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Thu Feb 16, 2017 3:13 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Has anyone made any progress with this?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Thu Feb 16, 2017 8:12 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hello all,<br /><br />I discovered today in my troubleshooting that the issue only appears for me when Classic Shell is run as an unprivilaged user (which is how i need it to be run) when run under an admin user the threads sit between 70 - 100 and i don't see any issues. I do see that by default the .exe is set to run as admin for all users.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Feb 16, 2017 9:34 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />That's strange, because the actual work happens in the Explorer.exe process, not in the ClassicStartMenu.exe process.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Feb 17, 2017 12:41 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Btw this happens only on Windows 10 right? Does this happen with the latest Creators Update builds too?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Fri Feb 17, 2017 2:47 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Gaurav wrote:</div><div class="quotecontent">Btw this happens only on Windows 10 right? Does this happen with the latest Creators Update builds too?</div><br /><br /><br />How do i get my hands on one of these builds so i can test?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Feb 17, 2017 8:34 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">BigDog wrote:</div><div class="quotecontent">How do i get my hands on one of these builds so i can test?</div><br /><br />Download Windows 10 Build 15031 ESD images: <!-- m --><a class="postlink" href="https://cloud.mail.ru/public/rPhp/7TJeJKhEG">https://cloud.mail.ru/public/rPhp/7TJeJKhEG</a><!-- m --><br /><br />How to convert ESDs to ISOs: <!-- m --><a class="postlink" href="http://winaero.com/blog/windows-10-build-15031-iso-images/">http://winaero.com/blog/windows-10-buil ... so-images/</a><!-- m --><br /><br />Of course, since these are unofficial sources, you are entirely doing so at your own risk. While the disk images will mostly be untampered, do not blame anyone for them.<br /><br />Keep an eye on Winaero.com for latest build images of Windows 10.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Sun Feb 19, 2017 2:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ahh gotcha, I have spent a few hours on this now and have to retract my previous statement of it only affecting non-admin users. I am at a point where I have a set of security GPO applied the freezing issues occurs, when I remove the GPO the issue doesn't occur. Some of the settings are the specific Classic Shell GPO so i am going to recreate the entire policy 1 by 1 and see if i can pinpoint which one(s) cause the issue. <br /><br />Will report back should i have any luck!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Sun Feb 19, 2017 8:31 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Seems to be when I apply a GP setting that affects the Start Menu, Taskbar or explorer. I have removed all policies that attempt to lock down start &amp; taskbar and only have policies in User &gt; Policies &gt; Admin Templates &gt; System &amp; User &gt; Policies &gt; Admin Templates &gt; Windows Components set and the explorer.exe threads go up, if I remove the machine from that policy they sit stable at between 70 and 110.<br /><br />I have replicated this on 2 different machines now.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Sun Feb 19, 2017 9:08 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Can you narrow it down to a particular policy?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Sun Feb 19, 2017 9:50 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />At the moment i can't sorry, it's starting to do my head in =D have been playing with it for 4 straight days now trying to get to the bottom of it, just when i think i have it nailed it proves me wrong <img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Mon Feb 20, 2017 2:48 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hopefully this is helpful for you, using procexp I have viewed the threads and the thread that is open most is &quot;ntdll.dll!RtlReleaseSRWLockExclusive+0x1370&quot;
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>CosmicThing2</b> [ Thu Feb 23, 2017 4:07 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />We were having exactly the same issues BigDog, everytime you think you're actually getting somewhere... it freezes again. Thanks for looking into it, really interested to see if you find anything...
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Sun Feb 26, 2017 3:33 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />All I can say as a certainty at the moment is that a user with no policies to lock down the desktop, start menu or taskbar work fine and users with policies applied (not just classic shell policies) experience the issue. I have had to take a break from it for now, at the moment it takes 2-4min of constant clicking in and out of folders to get up to the 820 threads and have it crash, our users don't do that so they are reasonably happy for the time being, however it would be good to get a fix for it.<br /><br />I would be willing to give remote access to an affected machine to a developer if that would help the troubleshooting process?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Tue Feb 28, 2017 9:54 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Any chance this will be looked at in the near future? As mentioned i am happy to provide a remote session.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Feb 28, 2017 11:13 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Nope, sorry. I am super busy with other projects.<br />What would be helpful if you can narrow it down to a particular policy that makes a difference. The lockup is not in Classic Shell code, but somewhere in Windows. Some setting affects how Windows works, which is probably not compatible with how Classic Shell works.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Wed Mar 01, 2017 1:57 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Understood thanks, i will see if i can narrow it down for you.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Thu Mar 02, 2017 12:52 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Is there anyway to disable the start menu all together?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Mar 02, 2017 1:42 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Go to the Controls tab in the settings and set all of them to open &quot;Nothing&quot;
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Mar 02, 2017 1:43 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Well, if you want to disable the start menu to even run (not just be inaccessible), then use the setting &quot;Start automatically for this user&quot; in the General Behavior tab
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>BigDog</b> [ Wed Mar 08, 2017 6:06 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I ended up having a program called StartKiller load for the restricted users which removed the start button, group policy to disable the windows key on the keyboard and using GP to put a shortcut to This PC (which only shows 1 network drive) &amp; Printers on the desktop which is all the need access to and i have disabled classic start menu for the time being, if in the future the explorer issue is figured out and resolved I will switch back to it.<br /><br />Sorry I couldn't be more help in getting to the bottom of it but I had to roll out to production and needed a solution.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>JoeMale</b> [ Mon Mar 27, 2017 3:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hello everyone,<br /><br />has anybody tried the Windows Explorer setting &quot;Launch folder windows in a separate process&quot; <br /><br />reg.exe add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced&quot; /v SeparateProcess /t reg_dword /d 0x1<br /><br />as a solution for the freezing session problem?<br /><br />Greetings<br />Jörg
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ephelyon</b> [ Mon Mar 27, 2017 3:07 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, we have that deployed through GPP here - no difference.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>JoeMale</b> [ Tue Apr 04, 2017 8:34 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Found a workaround: <br /><br />1. Create a PowerShell script like this: <br /><br />$Procs=Get-Process explorer <br />foreach ($Proc in $Procs) { <br />if ($Proc.Threads.Count -gt 800) { <br /> Stop-Process -Id $Proc.id -Force -Verbose <br /> } <br />} <br />2. Run the script every minute as SYSTEM account per Task Scheduler.  <br />  <br />The PowerShell script restarts the Explorer process in the security context of the user, when the thread count of the Explorer process of the user exceeds 800 threads.<br /><br />Greetings
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ephelyon</b> [ Tue Apr 04, 2017 9:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />That looks novel, but doesn't it mean people might suddenly find the taskbar or any open folder windows disappearing mid-session?<br /><br />(We're a school - hundreds of users hot-desking around the site every sixty minutes...)
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>JoeMale</b> [ Tue Apr 04, 2017 10:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Exactly. Better for us, than a frozen desktop.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>CosmicThing2</b> [ Fri May 05, 2017 4:21 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">JoeMale wrote:</div><div class="quotecontent">Exactly. Better for us, than a frozen desktop.</div><br /><br />Eh, I work in a school too and this isn't really a practical solution.<br /><br />I love classic shell but force restarting explorer every 10 minutes is going to drive teachers mad...
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>JoelDKraft</b> [ Fri Aug 04, 2017 2:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Was there ever any type of additional information, workarounds, or resolution on this issue? We are seeing the same thing with <em>some, but not all</em>, of our users. This is odd because we are running in a managed environment and the people with Win 10 are configured pretty much the same. We are using Windows 10 Enterprise with Creators Update and Classic Start Menu 4.3 (only). We have two mapped drives per person, with desktops and other special directories redirected to one of those. The start menu folders are local, but part of a roaming profile. The affected users are all unprivileged.<br /><br />I haven't seen this on my own machine, but am willing to try to provide more information if I can. It looks like there have been quite a few dumps so far...<br /><br />Joel
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Aug 04, 2017 8:50 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I think the smarter thing would be to avoid Windows 10 than to avoid Classic Shell! Just my two cents. Although if you find out what's causing the issue with the Start Menu and Explorer.exe on Windows 10, do let us know.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>nilknarf69</b> [ Fri Sep 15, 2017 7:18 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Howdy, just to add to this thread, as another network admin with explorer lockups for some but not all users.<br /><br />I support half a dozen schools, all of them have at least a few people that have experienced explorer lockups because of Classic Shell being installed.<br /><br />A couple of the schools are primary / first schools, so a usable start menu is a must; hence using Classic Shell instead of the default Windows 10 start menu (I remember with the original testing of Windows 10 here, the built in start menu often didn't display random shortcuts!). The usability improvement of classic shell over the default start menu is enough for staff to want to put up with occasional hangs instead of loosing the familiar start menu they're used to (which is a credit to the excellent work that has gone into Classic Shell).<br /><br />BigDog however seems to have been on the right track here. Across all my schools the same default GPO is used for base policies to keep admin simple, so when I read that BigDog had some success removing parts of his GPOs, I dropped a test workstation into an OU that has no GPO's allocated, restarted, and the thread count for explorer.exe is no longer in the hundreds. It's currently sitting there with 74 threads, classic shell open and running happily, and a couple of explorer windows open!<br /><br />So somewhere in one of my GPOs that date back to the Windows 7 era, much like BigDog, I must have something that classic shell really doesn't like, which finally gives me hope for getting to the bottom of this.<br /><br />I'm now going to begin the arduous process of duplicating and then chopping up / allocating parts of my default GPOs to see at what point the thread count suddenly jumps back up. This will likely take a week or so (as I say, I have 8 schools to look after, so I'm usually busy!), but I'm very hopeful that if I can find and share the setting(s) that are causing this issue, that others may be able to finally see the end of this intermittent and frustrating issue. Wish me luck! <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>coolgrool</b> [ Mon Sep 18, 2017 6:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Please let us know your findings!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>JoelDKraft</b> [ Tue Sep 19, 2017 7:19 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">nilknarf69 wrote:</div><div class="quotecontent">BigDog however seems to have been on the right track here. Across all my schools the same default GPO is used for base policies to keep admin simple, so when I read that BigDog had some success removing parts of his GPOs, I dropped a test workstation into an OU that has no GPO's allocated, restarted, and the thread count for explorer.exe is no longer in the hundreds. It's currently sitting there with 74 threads, classic shell open and running happily, and a couple of explorer windows open!<br /><br />So somewhere in one of my GPOs that date back to the Windows 7 era, much like BigDog, I must have something that classic shell really doesn't like, which finally gives me hope for getting to the bottom of this.<br /><br />I'm now going to begin the arduous process of duplicating and then chopping up / allocating parts of my default GPOs to see at what point the thread count suddenly jumps back up. This will likely take a week or so (as I say, I have 8 schools to look after, so I'm usually busy!), but I'm very hopeful that if I can find and share the setting(s) that are causing this issue, that others may be able to finally see the end of this intermittent and frustrating issue. Wish me luck! <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /></div><br /><br /><br />AH! We know we have literally thousands of installations of Classic Shell on campus, and have not had any issues with it.  But in my area we are having the freezing/crashing issues... the difference is that I am working with managed desktops, and the rest are just a free-for-all. The group policy angle definitely fits.<br /><br />We have a lot of policies, and most of them apply to everyone, though administrative workstations have a slightly relaxed version. We have not noticed the issue on the admin workstations, so that might help narrow things down a bit.  These settings all look pretty innocuous, though!<br /><br />Start Menu and Taskbar<br />Remove and prevent access to the Shut Down, Restart, Sleep, and Hibernate commands Enabled  <br />Remove Clock from the system notification area Disabled  <br />Remove Default Programs link from the Start menu. Enabled  <br />Remove Documents icon from Start Menu Disabled  <br />Remove Downloads link from Start Menu Enabled  <br />Remove Favorites menu from Start Menu Enabled  <br />Remove links and access to Windows Update Enabled  <br />Remove Music icon from Start Menu Enabled  <br />Remove Network icon from Start Menu Enabled  <br />Remove Pictures icon from Start Menu Disabled  <br />Remove Recent Items menu from Start Menu Enabled  <br />Remove Recorded TV link from Start Menu Enabled <br /><br /><br />Windows Components/File Explorer<br />Hides the Manage item on the File Explorer context menu Enabled  <br />No Entire Network in Network Locations Enabled  <br />Prevent users from adding files to the root of their Users Files folder. Enabled  <br />Remove &quot;Map Network Drive&quot; and &quot;Disconnect Network Drive&quot; Enabled  <br />Remove CD Burning features Enabled  <br />Remove DFS tab Enabled  <br />Remove Hardware tab Enabled  <br />Remove Security tab Enabled
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>nilknarf69</b> [ Wed Sep 20, 2017 5:36 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Start Menu causes explorer lock up</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The biggest issue I'm finding with this is reproducibility when testing; if I could see the thread count sky-rocket instantly when applying a GPO then it would be easier, but *sometimes* even with the original default GPO applied it'll sit there in the 70's for a little while, and other times it'll go up to just over 100 even with no settings applied!<br /><br />I'm starting to suspect that if there is a setting in a GPO interacting with Classic Shell, that it may not be the complete cause, just something that's exacerbating this problem under certain circumstances (if only we knew what those circumstances were it would be so much quicker to test!).<br /><br />As it stands I'm removing settings bit by bit, clicking around as much as I can while monitoring the explorer thread count, then occasionally re-applying the original GPOs to see if things get worse again (I'm assuming about that anything over 200 or so is a sign that bad things are afoot). Tedious to say the least.<br /><br />I've got a standalone machine with Windows 10 v1511, our GPOs have never touched it, yet its explorer thread count is currently just under 200 (which seems a tad high), so I'd love to know what the common thread is (no pun intended!). This machine often stays on several weeks at a time, and is only used by domain admins, so any number of registry tweaks / explorer settings may have happened to it. All the other standalone machines I've checked look fine though. I may flatten it with a fresh copy of 10, install classic shell and check what it does afterwards as a test. If it randomly has a high thread count still, then that might completely invalidate the GPO route of testing!<br /><br />I now hate the phrase 'intermittent issue' more than ever! <img src="images/smilies/icon_e_surprised.gif" alt=":o" title="Surprised" />)
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>2</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=5954&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 05:12:25 GMT -->
+</html>

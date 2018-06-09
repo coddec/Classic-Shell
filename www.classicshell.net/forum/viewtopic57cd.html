@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=8215&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 05:12:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Classic Shell Conflict with &quot;AutoCorrect&quot; AutoHotkey Macro</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Classic Shell Conflict with &quot;AutoCorrect&quot; AutoHotkey Macro</span><br /><span class="gensmall"><a href="viewtopice8d3.html?f=12&amp;t=8215">http://www.classicshell.net/forum/viewtopic.php?f=12&amp;t=8215</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Neelix</b> [ Thu Jan 04, 2018 8:55 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Classic Shell Conflict with &quot;AutoCorrect&quot; AutoHotkey Macro</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I am using the AutoCorrect script for AutoHotkey. <br /><!-- m --><a class="postlink" href="https://gist.github.com/endolith/876629">https://gist.github.com/endolith/876629</a><!-- m --><br /><br />the hotkey to launch is Win + H. I have noticed my mouse will randomly jump off the screen, windows will maximize/minimize, and I will loose the G key or it will behave as if the Windows Key is stuck down and every time the ClassicShell start menu will pop up. The solution is to hit the windows key several times which will let you exit back to the AutoHotkey inputbox to finish adding the spelling correction however it will still minimize or maximize windows randomly. I traced the problem to ClassicShell and tried disabling Windows key hotkeys under the &quot;Controls&quot; menu but it did not help. If I close ClassicShell the problem goes away so I'm pretty sure the issue is with ClassicShell but I'm not sure how to fix it.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Jcee</b> [ Thu Jan 04, 2018 9:35 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Classic Shell Conflict with &quot;AutoCorrect&quot; AutoHotkey Mac</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It might be related to the shortcut conflicting<br />I had a similar issue with one of my configuartions. (except my hotkey was win+mousewheel for volume)<br />Since your already using auto-hotkey this should be fairly easy <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />1 right click start button, go to settings<br />2. check 'show all settings' <br />3 on the controls tab, change 'windows key opens' to nothing<br />4 also change 'additional classic menu hotkey (for me I used ctrl+shift+r)<br /><br />This auto-hotkey script checks if the windows key was pressed (Less than .25 seconds) or held (over .25 seconds) and only sends the (ctrl+shift+r)hotkey if it was 'pressed' otherwise just passes the regular windows hotkey through<br /><br /><br /><div class="codetitle"><b>Code:</b></div><div class="codecontent">#NoTrayIcon<br />&lt;&lt;$LWin::<br />&nbsp; &nbsp; KeyWait, LWin, T0.00&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp; If ErrorLevel&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <br />&nbsp; &nbsp;&nbsp; &nbsp;{<br />&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; KeyWait, LWin, T.3&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ; Wait .25 to see if key is held<br /><br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; If !ErrorLevel&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;; No timeout, so key was released<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; {&nbsp; <br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Send +^r<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Return<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; }&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<br /><br />&nbsp; &nbsp;&nbsp; &nbsp; Send {RWin down}<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; KeyWait, LWin&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ; Wait for button to be released<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Send {RWin up}&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Return<br />&nbsp; &nbsp;&nbsp; &nbsp;}<br />&nbsp; &nbsp;&nbsp; &nbsp;<br />&nbsp; &nbsp;&nbsp; &nbsp;<br />Return</div>
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=8215&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 05:12:19 GMT -->
+</html>

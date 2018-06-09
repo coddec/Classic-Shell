@@ -1,0 +1,2059 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?t=5920 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:50:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Notification &amp; app window position - vertical Taskbar</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Bug Reports" href="feed01c9.php?f=12" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Notification &amp; app window position - vertical Taskbar" href="feed2059.php?f=12&amp;t=5920" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '1');
+	var per_page = '';
+	var base_url = '';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 11:36 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforum8a83.html?f=11">Development</a> &#187; <a href="viewforum01c9.html?f=12">Bug Reports</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+	<div class="forumrules">
+		
+			<h3>Forum rules</h3><br />
+			Before posting a bug report or a feature request, search the forum for an older post on the same topic. If you are reporting a crash, try capturing a crash dump. You can find instructions here: <a href="viewtopiccc99.html?f=12&amp;t=6" class="postlink">How to capture crash dumps</a>
+		
+	</div>
+
+	<br clear="all" />
+
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic2059.html?f=12&amp;t=5920">Notification &amp; app window position - vertical Taskbar</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting881d.html?mode=post&amp;f=12"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting96e9.html?mode=reply&amp;f=12&amp;t=5920"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 21 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopic4dbb-3.html?f=12&amp;t=5920&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopicf949-2.html?f=12&amp;t=5920&amp;view=previous">Previous topic</a> | <a href="viewtopic3581-3.html?f=12&amp;t=5920&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26199"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26199">Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicd501-3.html?p=26199#p26199"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Apr 17, 2016 11:05 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Notification Area icon &amp; application window position problem - vertical Taskbar.<br /><br />Version 4.2.1 &lt;-- my first version of Classic Start Menu. ... LOVE AT FIRST SIGHT<br />Win7 Home Premium 64-bit.<br /><br />I assume these problems exist because my Task Bar is vertical, at the left, instead of horizontal, at the bottom. Such a configuration may not have been fully tested. I'd appreciate step-by-step guidance debugging it instead of my helter skelter, ad hoc fumbling.<br /><br />Symptoms:<br /><br />Notification Area icons: Icons in the Notification Area sometimes disappear. Sometimes rolling the mouse over the icon's former location pops up the icon's tooltip (as though the icon is there, but not showing), but usually the tooltip is missing if the icon is missing. Unsetting &quot;Lock the taskbar&quot; &amp; fiddling with the taskbar, or clicking &quot;Customize...&quot; and then changing a notification's &quot;Behavior&quot; and then changing it back will temporarily fix the icon's problem (until next boot). Sometimes Win7 can boot fine -- makes me think it's a boot sequence problem. (I've noticed that the standard Win7 Start Menu appears for a short time until Classic Start Menu takes over.)<br /><br />Application window position: When double-clicking a filename (for example, a '.png') to launch an application (for example, Microsoft Photo Editor), the application window may open off-screen when the window is not maximized. Opening 'a.png' (and discovering the Microsoft Photo Editor window opens off-screen), then striking Alt-(space) and dragging the window back on-screen and closing, fixes the problem when I double-click 'a.png'. But if I double-click 'b.png', the problem reappears and I must fix the position problem again. Closing 'b.png' and reopening 'a.png', I have the problem again. Fixing the position for one file doesn't work for other file openings even though they open with the same application. Really weird.<br /><br />I could temporarily change the Taskbar to the usual configuration, but someone may want to try something first, so I'm being cautious here.<br /><br />Thank You,<br />Mark.<br /><br />UPDATE<br /><br />I upgraded to version 4.2.5. Sorry for any confusion. I was led to believe that 4.2.1 was the current version.<br /><br />A vertical Taskbar is not being handled correctly.<br /><br />If I negate an application window's maximize state (I believe that's called &quot;restore&quot;(?)) and manually resize it so that it abuts the (left vertical) Taskbar, then close the window, then relaunch the application, the resulting window ignores the Taskbar's width and is opened under the Taskbar.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga9b4-2.html?mode=quote&amp;f=12&amp;p=26199"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26201"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26201">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic54f8-2.html?p=26201#p26201"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:52 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Classic Shell has no effect on the window positions. That's entirely up to the individual application.<br /><br />I have seen other reports about disappearing icons caused by Classic Shell. I have not seen the problem first-hand and I don't know what is causing it. In the last few versions I added some changes in the hopes that they improve things, but I don't know if they improve anything.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge237.html?mode=quote&amp;f=12&amp;p=26201"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26202"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26202">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopiccc86.html?p=26202#p26202"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 4:44 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Classic Shell has no effect on the window positions. That's entirely up to the individual application.<br /><br />I have seen other reports about disappearing icons caused by Classic Shell. I have not seen the problem first-hand and I don't know what is causing it. In the last few versions I added some changes in the hopes that they improve things, but I don't know if they improve anything.</div><br />Hi,<br /><br />I've not uploaded to this forum before, so if no screen shot appears, well, I'll try again I guess...<br /><br />The screen shot is a composite.<br />10 o'clock: My desktop with Microsoft Photo Editor open and abutted to the vertical Taskbar.<br />8 o'clock: Closeup of the screen shown at 10 o'clock.<br />3 o'clock: After I close Microsoft Photo Editor and reopen it, this shows where it is positioned.<br />5 o'clock: This is a copy of the Microsoft Photo Editor Titlebar, which demonstrates that it reopened behind the vertical Taskbar -- this is a problem.<br /><br />Related:<br />* Icons in the Notification Area are missing -- sometimes rolling the mouse over the spot where they should be pops up their tool tips, and sometimes not.<br />* Appication windows sometime open totally off screen. That's the devil to fix. Sometimes I have to give up and I can't run that application again.<br /><br />These problems all began when I installed Custom Start Menu.<br /><br />Regards,<br />Mark.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file718b.png?id=3388" alt="ClassicStartMenu.png" /><br />
+			<span class="gensmall">ClassicStartMenu.png [ 301.46 KiB | Viewed 4254 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc90f.html?mode=quote&amp;f=12&amp;p=26202"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26203"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26203">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic7446.html?p=26203#p26203"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 5:30 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Temporarily uninstall Classic Shell and see if the problem goes away.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting9064.html?mode=quote&amp;f=12&amp;p=26203"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26204"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26204">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicde5e.html?p=26204#p26204"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 5:37 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi,<br /><br />I will give it a try. I just wanted to pop in here to tell you that I found a way to get a rebellious application window back on-screen.<br /><br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor]<br />&quot;Show&quot;=&quot;1&quot;<br />&quot;InitialPosition&quot;=&quot; 0,  282,  736,  691, &quot;<br /><br />Note that &quot;0&quot; in the upper left corner is behind the vertical Taskbar, so the width of the Taskbar is NOT being taken into account.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2a9b.html?mode=quote&amp;f=12&amp;p=26204"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26206"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26206">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic94d3.html?p=26206#p26206"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:01 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I de-installed Classic Start Menu. The problem did not go away. Something has damaged my Win7 system.<br /><br />Each time the Microsoft Photo Edit application is closed and it's position is saved in the registry, it moves left by the width of the Taskbar.<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: 100,  202,  300,  611, <br />launch application<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: 100,  202,  300,  611, <br />close application<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: 42,  202,  242,  611, <br />launch application<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: 42,  202,  242,  611, <br />close application<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: -16,  202,  184,  611, <br />launch application (no part of the app window is visible)<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: -16,  202,  184,  611, <br />close application<br />[HKEY_CURRENT_USER\Software\Microsoft\Photo Editor\3.0\Microsoft Photo Editor] InitialPosition: 32709,  202,  32909,  611, <br />At this point, the application is so far off-screen that it can't be corrected in the usual way -- the registry value above has to be nuked.<br /><br />Obviously, the x-coordinate value is overflowing. This is really bad news for me.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7767.html?mode=quote&amp;f=12&amp;p=26206"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26207"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26207">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic4597-3.html?p=26207#p26207"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:15 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">UPDATE.<br /><br />Microsoft Photo Editor seems to be the only application affected by this. I tried compatibility settings for XP-SP2 &amp; XP-SP3 to no effect. I did not expect compatibility settings to make a difference.<br /><br />This of course does not explain why icons in the Notification Area disappear (presumably off-screen to the left).</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga404.html?mode=quote&amp;f=12&amp;p=26207"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26208"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26208">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic6101-2.html?p=26208#p26208"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:18 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">This is a common bug in software. It reads the position relative to the work area (the desktop minus the taskbar), but restores it relative to the screen.<br />BTW, the Wikipedia entry for the software mentions specifically a bug with the initial position: <!-- m --><a class="postlink" href="https://en.wikipedia.org/wiki/Microsoft_Photo_Editor">https://en.wikipedia.org/wiki/Microsoft_Photo_Editor</a><!-- m --></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc843.html?mode=quote&amp;f=12&amp;p=26208"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26209"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26209">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicd80c-3.html?p=26209#p26209"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:35 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Thank you for your note. Of course I've been using this application for many, many years (...at least 2 of those years running Win7) and you'd think I would have run into this long before now.<br /><br />Is there a chance that Classic Start Menu could have exacerbated it?<br /><br />Do you have any idea what's happening to the icons in the Notification Area? Even if I had been lucky with MS Photo Editor all this time, this Notification Area problem really IS new.<br /><br />Ciao - Mark.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingcb81.html?mode=quote&amp;f=12&amp;p=26209"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26211"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26211">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopica7c1.html?p=26211#p26211"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 7:55 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">...I have seen other reports about disappearing icons caused by Classic Shell. I have not seen the problem first-hand and I don't know what is causing it. In the last few versions I added some changes in the hopes that they improve things, but I don't know if they improve anything.</div>I think this may be a Windows Startup timing issue. Have you tried jiggering the Classic Start Menu load time-delay? Also, something may show up only if the Taskbar is vertical.<br /><br />Best of Luck. And thanks for your help.<br /><br />Mark.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingbb05.html?mode=quote&amp;f=12&amp;p=26211"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26212"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26212">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicf7e7-2.html?p=26212#p26212"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 8:01 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Have the notification area problem been fixed after you uninstalled Classic Shell? A restart may be required.<br /><br />BTW, there is a hidden setting &quot;AutoStartDelay&quot;, which you can add to HKCU\Software\IvoSoft\ClassicStartMenu\Settings. It is a DWORD that causes a delay in milliseconds.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting70bb.html?mode=quote&amp;f=12&amp;p=26212"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26213"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26213">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic98b2.html?p=26213#p26213"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Apr 18, 2016 8:21 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Have the notification area problem been fixed after you uninstalled Classic Shell? A restart may be required.</div>Hahahahahahaha.... I reinstalled Classic Shell already -- I don't want to live a moment without it.<br /><br />8^)<br /><br />I'll pull it out and see if I can get the Notification Area working right again without it. BTW, I'm awaiting some bonus-coupon money in my (new) PayPal account (created expressly to receive that money). When it arrives, I'm definitely going to be sending you some <em>beer money</em>. Woo Hoo!<br /><br /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">BTW, there is a hidden setting &quot;AutoStartDelay&quot;, which you can add to HKCU\Software\IvoSoft\ClassicStartMenu\Settings. It is a DWORD that causes a delay in milliseconds.</div>Oh, that's great. I'll play with it and see what I can do. I suspect that some of the Notification icons are being drawn prior to the creation of the vertical Taskbar -- I've always had that feeling without any way to tie it down. Your delay will probably not help that, but I will conduct some tests.<br /><br />Best Regards,<br />Mark.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingce1d.html?mode=quote&amp;f=12&amp;p=26213"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26223"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26223">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic27ef-2.html?p=26223#p26223"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 6:21 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Howdy, Test results:<br /><br />De-installed Classic Shell.<br /><br />Booted 10 times. Notification Area fidelity: 100%.<br /><br />Installed Classic Shell. Immediately, 2 of 4 Notification icons disappeared, but all 4 tooltips work (i.e., clicking a location where a missing icon should be causes a click event on that Notification).<br /><br />Boot #1: 2 of 4 Notification icons are missing. Missing icons have no tooltips. Clicking a location where a missing icon should be produces no response.<br />(During shutdown, it appears that the missing icons suddenly appeared ... fleeting -- can't be sure.)<br />Boot #2: Success.<br />Boot #3: Success.<br />Boot #4: Success.<br />Boot #5:<br />Lenovo EE Boot Optimizer decided to run during this bootstrap.<br />After boot, 2 of 4 Notification icons are missing, missing tooltips, no click response.<br />(During shutdown, 1 of the 2 missing Notification icons suddenly appeared.)<br />Boot #6:<br />(All 4 icons appeared momentarily ... hard to see because a touchpad notification that always happens -- I'm using a mouse, so touchpad turns off -- obscures the Notification Area.)<br />After boot, 2 of 4 Notification icons are missing, missing tooltips, no click response.<br />(Once again, during shutdown, 1 of the 2 missing Notification icons suddenly appeared.)<br />Boot #7: Success.<br />Boot #8: Success.<br />Boot #9: Success.<br />Boot #10: Success.<br /><br />From the above, it's tempting to blame Lenovo EE Boot Optimizer, however, doing so would be counter to my long-term experience.<br /><br />I see Classic Shell is in the Startup list, but it doesn't appear as a Service. Have you considered making it a service?<br /><br />I'm ready and willing to conduct more tests if you like. For example, I could turn Lenovo EE Boot Optimizer off, and/or I could twiddle the Classic Shell startup delay you mentioned in a previous reply.<br /><br />Regards,<br />Mark.<br /><br />PS: More things I should divulge: I run VirtualBox, but not automatically. Win7 is Host. Linux Mint is Guest. I do not restore anything on startup. In other words, boot leaves me looking at a bare Win7 desktop every time.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc7b4-2.html?mode=quote&amp;f=12&amp;p=26223"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26225"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26225">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicaca5.html?p=26225#p26225"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 7:38 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Are the icons missing, but still take a spot in the notification area? It was not clear from your screenshot.<br />Also, do the missing icons belong to the same programs every time, or are they random?<br />Can you try with the taskbar at the bottom, so we can exclude the taskbar position from the variables?<br /><br />BTW, Classic Shell did use a service at some point (at least on Windows 8), but there were other problems and I removed it. I don't know if it would make a difference. The problem looks related to the timing, and service will start at around the same time as the current method.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting6418-2.html?mode=quote&amp;f=12&amp;p=26225"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26227"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26227">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic0b14-2.html?p=26227#p26227"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 9:43 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I'll do your suggested testing in a few minutes.<div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Are the icons missing, but still take a spot in the notification area? It was not clear from your screenshot.</div>Since the icons were sporadically disappearing from the static Notification Area, in order to make them usable at all, I had to force them into the dynamic Notification flyout by setting them to &quot;Only show notifications&quot;. As a result, in my screen shots there are NO icons out in the static Notification Area.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd93f-2.html?mode=quote&amp;f=12&amp;p=26227"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26228"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26228">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic5a4e-2.html?p=26228#p26228"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 10:34 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">We're making progress!<br /><br />The attachment is a triptych from the Notification Church.<br /><br />For this test, I turned touchpad notifications back on.<br /><br />See what happens !!!<br /><br />The missing icons on the right (after touchpad notification) are really missing. There are no tooltips on mouseover for the missing icons (sometimes there is, even though the icons are missing).<br /><br />This does not happen when Classic Shell is not installed. And it does not happen when Classic Shell is installed but touchpad notification is off. It only happens when Classic Shell is installed and touchpad notifications are not &quot;hidden&quot;.<br /><br />BTW, I repeated the successful test from 2 messages ago 10 more times and got success all 10 times. Then I turned touchpad notifications back on and got what you see in the attachment on the very next boot.<br /><br />I'm pretty sure this is a timing issue. What say you?<br /><br />Given that this apparently is not an issue of vertical-vs-horizontal Taskbar, what would you like me to try next?</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filed37a.png?id=3389" alt="ClassicStartMenu Notifiy Area.png" /><br />
+			<span class="gensmall">ClassicStartMenu Notifiy Area.png [ 63.61 KiB | Viewed 4147 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting4ffe.html?mode=quote&amp;f=12&amp;p=26228"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26229"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26229">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic1bfa.html?p=26229#p26229"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 10:46 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Wait, did you try it with a taskbar at the bottom as well?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting806a-2.html?mode=quote&amp;f=12&amp;p=26229"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26230"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26230">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicd2e5.html?p=26230#p26230"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 11:00 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Wait, did you try it with a taskbar at the bottom as well?</div>No, I did not.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8c5b.html?mode=quote&amp;f=12&amp;p=26230"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26231"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26231">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic4c60-2.html?p=26231#p26231"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 11:14 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I will try the Taskbar horizontal at the bottom -- I don't think the problem will be evident, but I'll try it. In the mean time, I want to show you the full sequence during Windows initialization. Note how the touchpad notification starts above, then jumps down as the Notification Area becomes populated.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5b9d.png?id=3390" alt="ClassicStartMenu Notifiy Area #2.png" /><br />
+			<span class="gensmall">ClassicStartMenu Notifiy Area #2.png [ 87.39 KiB | Viewed 4142 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8593-2.html?mode=quote&amp;f=12&amp;p=26231"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p26232"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26232">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopicd60c.html?p=26232#p26232"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 11:53 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hahahahahahahahahaha.... The Taskbar is still on the left. ...I can't get it to screw up at all, now. Not much point going on if the symptoms will not harden enough to be repeatable. Nonetheless, I will now move the Taskbar to the bottom and try several boots.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingfac0.html?mode=quote&amp;f=12&amp;p=26232"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p26233"></a>
+				<b class="postauthor">markfilipak</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p26233">Re: Notification &amp; app window position - vertical Taskbar</a></div><div style="float: right;"><a href="viewtopic3409-2.html?p=26233#p26233"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Apr 19, 2016 12:25 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Apr 17, 2016 10:48 am<br /><b>Posts:</b> 16
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">See the attachment...<br /><br />When the Taskbar is at the bottom, the touchpad notification moves as the Notification Area becomes populated, however, at no time does the notification obscure the Notification Area. Does that make a difference? ...I think so, but considering how in the dark I am, I think the phase of the moon probably also makes a difference. 8^)<br /><br />I don't have development tools and I can't get the symptoms to go hard and be repeatable. I'm out of ideas.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/fileee2d.png?id=3391" alt="ClassicStartMenu Notifiy Area #3.png" /><br />
+			<span class="gensmall">ClassicStartMenu Notifiy Area #3.png [ 171.07 KiB | Viewed 4121 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist0e47.html?mode=viewprofile&amp;u=13211"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7293.html?mode=quote&amp;f=12&amp;p=26233"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=12&amp;t=5920"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting881d.html?mode=post&amp;f=12"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting96e9.html?mode=reply&amp;f=12&amp;t=5920"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 21 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforum8a83.html?f=11">Development</a> &#187; <a href="viewforum01c9.html?f=12">Bug Reports</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 3 guests</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="5920" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12" selected="selected">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?t=5920 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:50:26 GMT -->
+</html>

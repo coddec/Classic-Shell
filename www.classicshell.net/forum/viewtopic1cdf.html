@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=6909&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:44:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Post Windows 10 AU Upgrade</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Post Windows 10 AU Upgrade</span><br /><span class="gensmall"><a href="viewtopic2672.html?f=7&amp;t=6909">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=6909</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Thu Sep 29, 2016 2:42 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I am running CS 4.3.0.  This was installed as an admin but the users on the PCs are not.<br /><br />After Windows 10 AU (1607) installs, I receive a message about CS needing to configure itself for the new OS.  If the user is a admin this happens with a prompt from the UAC, which they approve and life goes on.  However, on the PCs that have standard users, this prompt happens every time they restart the PC because they obviously don't have the proper permissions to make the changes.<br /><br />Is there a way to detect when CS is in this state so that I can do something about it? ie. Registry setting, etc?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Fri Sep 30, 2016 5:35 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I want to automate the process.  I need to know what CS is checking/looking for when it throws the message that it needs to configure itself for the new OS.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Sep 30, 2016 5:49 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />You need to do two things:<br />1) In the registry, open HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run, and find the value &quot;Classic Start Menu&quot;. Replace the &quot;-autorun&quot; parameter with &quot;-startup&quot;. This will stop the upgrading.<br />2) After the upgrade of Windows, run regsvr32 %windir%\System32\StartMenuHelper64.dll (or StartMenuHelper32.dll for 32-bit Windows)
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Fri Sep 30, 2016 6:05 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Okay this is a good start.   But... let me ask this a different way.<br /><br />Computer has Win 10 (1511) (not AU) and CS 4.30 installed.  Everything is working fine.  Microsoft randomly picks this PC to upgrade to 1607 AU. <br />(1) Next reboot into the GUI, CS throws the message that it needs to configure itself for the new OS.  Admin user agrees (by allowing UAC prompt), changes are made.  <br />(2) All reboots afterwards (until MS breaks it again) CS and Windows go along there merry way. No message from CS about configuration.<br /><br />I assume CS is checking something (registry setting?, file versions?)  in both (1) and (2) to decide whether to throw the message and attempt to do the &quot;configure&quot;.   Can you share what those checks are?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Sep 30, 2016 6:54 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The Windows version has to match the value stored in HKEY_LOCAL_MACHINE\SOFTWARE\IvoSoft\ClassicShell: DWORD WinVersion.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Fri Sep 30, 2016 7:17 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Why not just upgrade all computers to version 4.3.0? It will not be removed by the AU.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Fri Sep 30, 2016 8:18 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Awesome.  Thanks.  <br /><br />Ivo, 4.30 is installed.   The problem is, CS needs permissions a standard user doesn't have.  They will see this message every time they reboot the PC.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Fri Sep 30, 2016 8:35 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ah, right. I was a bit confused.<br />The problem is that the AU upgrade will destroy some registry settings that require admin access to restore. You need to register the StartMenuHelper dll and update the Windows version in the registry, which will stop the update checks.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Fri Sep 30, 2016 8:43 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I'm looking in HKLM\Software\Microsoft\Windows NT\CurrentVersion, but nothing seems to compare to your WinVersion value.   Any ideas?<br /><br />By the way thanks for the help on this.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Sat Oct 01, 2016 11:25 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Maybe I'm missing it, but is the WinVersion calculated or is it based on a value from Windows?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Sat Oct 01, 2016 11:46 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />You need to set the value WinVersion in HKEY_LOCAL_MACHINE\SOFTWARE\IvoSoft\ClassicShell to 167786553. It corresponds to the AU version.<br />If this number doesn't match the current Windows version, the auto-upgrade behavior will kick in and you will get the popup after you log in.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Sat Oct 01, 2016 1:02 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Thank you. I guess what I'm struggling with is, where that AU value is, so that I can update the WinVersion in the future so that it matches.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>__trj</b> [ Thu Oct 26, 2017 5:05 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">powellap wrote:</div><div class="quotecontent">Thank you. I guess what I'm struggling with is, where that AU value is, so that I can update the WinVersion in the future so that it matches.</div><br /><br /><br />The formula is <strong>appears</strong> to be 2^24 * (Windows 10 major version number) + (Windows 10 build number).<br /><br />So the Fall Creators Update (1709) is 2^24 * 10 + 16299 = 167788459<br /><br />Just posting here because I have to deal with this every time there's a Windows 10 upgrade and I kept coming across this post and no answer, so I decided to figure out how the number is calculated.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>powellap</b> [ Thu Oct 26, 2017 9:51 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I have no idea how you figured that out, but thanks for the work!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>iorx</b> [ Mon Oct 30, 2017 5:37 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Post Windows 10 AU Upgrade</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Maybe resurrecting something very old here. But I've got this working for me with upgraded Windows 10 machines.<br /><br />Note: I only use the Start Menu component from Classic shell, nothing else.<br /><br />Running the below as a startup script on computers through a GPO.<br /><br /><div class="codetitle"><b>Code:</b></div><div class="codecontent">@echo off<br />rem * --------------------------------------------------------------------------<br />SETLOCAL ENABLEDELAYEDEXPANSION<br /><br />if Not Exist &quot;%systemRoot%\System32\StartMenuHelper64.dll&quot; (<br />echo * No Classic Shell found<br />goto :eof<br />)<br /><br />set valCurrentBuild=<br />set valCalcCurrentBuild=<br />set valClassicWinVersion=<br /><br />rem 10240 1507 Threshold 1<br />rem 10586 1511 November Update<br />rem 14393 1607 Anniversary Update<br />rem 15063 1703 Creators Update<br />rem 16299 1709 Fall Creators Update<br />rem xxxxx 1803 Redstone 4<br /><br />rem * Windows build<br />for /f &quot;tokens=1,2,3&quot; %%i in ('reg query &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot; ^| find &quot;CurrentBuild&quot;') do set valCurrentBuild=%%k<br />echo * Windows Build %valCurrentBuild%<br />set /a valCalcCurrentBuild=16777216*10+%valCurrentBuild%<br /><br />rem * Classic Shell check<br />for /f &quot;tokens=1,2,3&quot; %%i in ('reg query &quot;HKEY_LOCAL_MACHINE\SOFTWARE\IvoSoft\ClassicShell&quot; ^| find &quot;WinVersion&quot;') do set /a valClassicWinVersion=%%k<br />if Not Defined valClassicWinVersion (<br />echo * No Classic shell WinVersion number found<br />goto :eof<br />)<br />echo * Caclulated vaule for ClassicShell %valCalcCurrentBuild%<br />echo * Registry value for ClassicShell %valClassicWinVersion%<br /><br />rem * Fix Classic Shell registry value<br />if %valCalcCurrentBuild% GTR %valClassicWinVersion% (<br />echo * New value to HKEY_LOCAL_MACHINE\SOFTWARE\IvoSoft\ClassicShell\WinVersion = %valCalcCurrentBuild%<br />reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\IvoSoft\ClassicShell&quot; /v &quot;WinVersion&quot; /t REG_DWORD /d %valCalcCurrentBuild% /f<br />regsvr32 /s %SystemRoot%\System32\StartMenuHelper64.dll<br />) else (<br />echo * Classic Shell WinVersion is OK.<br />)<br />rem * --------------------------------------------------------------------------<br /><br /></div>
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=6909&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:44:03 GMT -->
+</html>

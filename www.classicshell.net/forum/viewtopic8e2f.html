@@ -1,0 +1,1134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=9&t=1398&p=7226 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:15:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Help, please! Evil Win8 forces are blocking Classic Shell 4</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Classic IE" href="feedfdc5.php?f=9" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Help, please! Evil Win8 forces are blocking Classic Shell 4" href="feed2dfa.php?f=9&amp;t=1398" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '1');
+	var per_page = '';
+	var base_url = '';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 6:41 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumcf19.html?f=6">Discussion</a> &#187; <a href="viewforumfdc5.html?f=9">Classic IE</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+	<div class="forumrules">
+		
+			<h3>Forum rules</h3><br />
+			Please, keep discussions on topic and in the right forum. The start menu topics go into the Classic Start Menu forum, etc. This makes it easier for people to locate topics they are looking for.<br />If you get a satisfactory response to your question, please mark the topic as &quot;solved&quot;. Click the green √ button in the bottom-right of the post.
+		
+	</div>
+
+	<br clear="all" />
+
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic2dfa.html?f=9&amp;t=1398">Help, please! Evil Win8 forces are blocking Classic Shell 4</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting25e1.html?mode=post&amp;f=9"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting0be0.html?mode=reply&amp;f=9&amp;t=1398"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 8 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopicfe98-2.html?f=9&amp;t=1398&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopiceaec.html?f=9&amp;t=1398&amp;view=previous">Previous topic</a> | <a href="viewtopicaea4.html?f=9&amp;t=1398&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p7196"></a>
+				<b class="postauthor">cheebie</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7196">Help, please! Evil Win8 forces are blocking Classic Shell 4</a></div><div style="float: right;"><a href="viewtopice882.html?p=7196#p7196"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 12:20 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Aug 11, 2013 10:38 pm<br /><b>Posts:</b> 13
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><span style="font-family:Times New Roman;"></span><span style="font-size: 100%; line-height: 116%;"><span style="color:black;"><span style="font-family:Arial;">I believe I have done due diligence before asking a question here, including uninstalling CS and reinstalling to the 4.0 version. I hate asking dumb questions, but I hate it MORE to not be able to have Classic Shell &#40;I am hooked!&#41; So here goes:</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">&#40;Windows 8 &#40;as mentioned above&#41;, and IE9; <span style="text-decoration: underline">had</span> been using CS 3.98.&#41;</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">A few days ago, CS stopped its usual display in IE9, and threw me back to the Metro -- I mean, Modern -- look &#40;which I find to be completely unusable.&#41; The standard Tech Support question is, &quot;did you install any software or make any changes to your system?&quot; I <span style="text-decoration: underline">had</span> recently installed some software &#40;stuff to attempt to manage my Dell monitor&#41;, but that was a couple days previously. It&#39;s <span style="text-decoration: underline">possible</span> that one of the Dell programs might have done an update just before I noticed this problem; but I can&#39;t fully remember.</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">&#40;1&#41; The first thing I did was to try a System Restore back to a couple day before installing the Dell software. I&#39;m not sure whether that was a good idea; but it didn&#39;t fix the problem. I didn&#39;t check any of the settings in IE before doing this; and I probably &quot;shoulda&quot; done that, too.</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">&#40;2&#41; I then came to the ClassicShell site, to look for other fixes. I was hoping to find a way to just &quot;refresh&quot; the CS installation. However, I noticed that version 4.0 had been released. I figured that installing that would probably take care of any &quot;refreshing&quot; that needed to be done. It didn&#39;t.</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">&#40;3&#41; I then <span style="text-decoration: underline">completely</span> uninstalled CS, and rebooted. I then ran the CS 4.0 install again. No help.</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">&#40;4&#41; I went through the steps in the ReadMe &#40;yes, people DO read those things!&#41;:</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Verdana;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">&#40;a&#41;</span><span style="font-family:Times New Roman;">&quot;</span><span style="font-family:Calibri;">The toolbar for Windows Explorer may not show up automatically after installation. You have to do a few things before you can use it.</span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Calibri;"></span></span><span style="color:black;"><span style="font-family:Verdana;"></span></span><br /><span style="font-family:Times New Roman;"></span><strong><span style="color:#0070c0;"><span style="font-family:Calibri;">Windows 8:</span></span></strong><span style="color:black;"><span style="font-family:Calibri;">Press Alt+V to open the View ribbon. Click on the down arrow in the “Options” section. Select “Classic Explorer Bar” &quot;</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;">For me, pressing Alt+V did not open the View ribbon. Instead, it opened the drop-down menu attached below.</span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"><span style="font-family:Times New Roman;"><img src="file_/C_/Users/GBE63C_1/AppData/Local/Temp/msohtml1/01/clip_image002.html" alt="" /></span></span></span><br /><span style="font-family:Times New Roman;"></span><span style="color:black;"><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">I selected &quot;Toolbars&quot;, since that seemed to be the closest thing. The entry for the &quot;Classic Shell Bar&quot; did appear, but was unchecked. I clicked it to &quot;tick&quot; it; but nothing changed on the screen. I opened the menu again, and CS was <span style="text-decoration: underline">still</span> unchecked! Tried this several times; but something would not let me &quot;tick&quot; the Bar. I figured this was probably a problem!</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">&#40;b&#41; &quot;</span><span style="font-family:Times New Roman;"></span><span style="font-family:Calibri;">If these steps don’t work, it may be possible that the Explorer extensions have been disabled. Check the following, then try to show the toolbar again:</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Calibri;">1&#41;</span><span style="font-family:Calibri;">Open Internet Explorer and go to Tools -&gt; Manage add-ons. Locate the add-ons “Classic Explorer Bar” and “ExplorerBHO Class” and make sure they are enabled.&quot;</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">They both were. In addition, &quot;ClassicIEBHO Class&quot; and &quot;Classic IE Settings&quot; appeared, and were enabled.</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">&#40;c&#41; &quot;</span><span style="font-family:Times New Roman;"></span><span style="font-family:Calibri;">2&#41; Maybe the browser extensions are disabled on your system. This is usually the default for Windows Server. Open the &quot;Internet Options&quot;, go to the &quot;Advanced&quot; tab, and check the option &quot;Enable third-party browser extensions&quot;.</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">This was already checked.</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">&#40;d&#41; {Editorial comment}</span><span style="font-family:Calibri;">&quot;On Windows 8 the Classic Explorer status bar is different from the one in Explorer. You can show/hide the first one from the Classic Explorer settings dialog and show/hide the second one from Explorer’s folder options dialog.&quot;</span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">This sentence made absolutely no sense to me; yet I think it&#39;s talking about something important. Please take a shot at rewording and/or expanding this. I don&#39;t know if you can get away with just saying &quot;Explorer&quot;; there are both &quot;Internet Explorer&quot; and &quot;File Explorer&quot; &#40;thankfully renamed from &quot;Windows Explorer&quot;!&#41; It seems that what you are talking about here <span style="text-decoration: underline">could</span> be related to either one. Also, I think a little more expansion on which menus are involved &#40;and how to get to them&#41; would be helpful. You did a great job on this in the other two sections I quoted above.</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">================================================</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">So I&#39;m stuck. I&#39;m sure there is a problem with the menu I mentioned above, and the fact that it would not allow CS to remain ticked. But I don&#39;t know what to do next.</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">I will comment here that part of the blame may lie with Windows 8. Amongst the many other ways I despise it, I am really unhappy about all the new restrictions it places on who can write what to where. The restrictions are not logical; and I believe they have messed with other things I have tried to install. These restrictions won&#39;t let <span style="text-decoration: underline">me</span> see &#40;or edit&#41; many sections of the Registry; and I have a real issue with that! I believe that all this &quot;locking&quot; behavior may be interfering with CS&#39;s ability to go in and make changes &#40;although I <span style="text-decoration: underline">did</span> have CS installed since sometime in August, and it had been working great!&#41;</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">Thanks,</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;">Cheebie</span><br /><span style="font-family:Times New Roman;"></span><span style="font-family:Arial;"></span></span><br /><span style="font-family:Times New Roman;"></span></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filed122.png?id=641" alt="10-10-2013 Menu re Classic Shell.PNG" /><br />
+			<span class="gensmall">10-10-2013 Menu re Classic Shell.PNG [ 11.46 KiB | Viewed 8839 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista637.html?mode=viewprofile&amp;u=1327"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingda7f.html?mode=quote&amp;f=9&amp;p=7196"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p7197"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7197">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopic634a.html?p=7197#p7197"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 12:38 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Ok, which part(s) of classic shell are misbehaving?<br /><br />Classic IE?<br /><br />Classic explorer toolbar?<br />- If so are other components like the 'Disable Breadcrumbs' working *If you dont have this option checked you can go to your install directory, which is likely C:\Program Files\Classic Shell and then open &quot;ClassicExplorersettings.exe&quot;<br /><br />Classic start button?<br /> If so, navigate to your install directory and try clicking &quot;ClassicStartMenu.exe&quot; tell me if that makes it show</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8c38.html?mode=quote&amp;f=9&amp;p=7197"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p7198"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7198">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopicdecb-2.html?p=7198#p7198"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 12:47 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">If all addons are enabled in the Manage Addons dialog, and yet you are unable to enable the File Explorer toolbar, then it may be a case of File Explorer getting confused with the toolbars it has installed. To fix that, first close all File Explorer windows. Then open Registry Editor (C:\Windows\system32\regedit.exe) and go to HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Toolbar\ShellBrowser key and delete the value called ITBar7Layout. Then re-open File Explorer and try ticking CS again.<br /><br /><br />About the status bar wording, what it means is that on Windows 8, an independent status bar is added by Classic Shell, unlike on Windows 7 where it merely modifies the File Explorer status bar. Enable it from the Status Bar tab in Classic Explorer settings (Start Menu -&gt; All programs -&gt; Classic Shell -&gt; Classic Explorer settings). But Windows 8 File Explorer also has its own dysfunctional status bar that does not show all the relevant information. Having two status bars is redundant. So you may want to disable the built-in Windows 8 File Explorer status bar. To do that, go to File Explorer's Folder Options. Folder Options is in the Control Panel or you can also access it from the View tab of the File Explorer Ribbon.<br /><br /> <br /> Your screenshot shows that you are opening the View menu of Internet Explorer. In Internet Explorer, Classic Shell does not add a toolbar. It restores the page title to the title bar of IE and puts back the page loading progress indicator, and other information to IE's status bar. To turn on IE's status bar, press Alt+Space in IE's main window, and check the &quot;Status bar&quot;.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0ea1.html?mode=quote&amp;f=9&amp;p=7198"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p7206"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7206">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopic050e.html?p=7206#p7206"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 7:50 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I don't quite understand what the problem is. Are you saying that when you try to open IE you get the Metro version instead of the desktop version?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3fcd.html?mode=quote&amp;f=9&amp;p=7206"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p7212"></a>
+				<b class="postauthor">cheebie</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7212">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopicf353.html?p=7212#p7212"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 2:53 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Aug 11, 2013 10:38 pm<br /><b>Posts:</b> 13
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><span style="font-size: 100%; line-height: 116%;">Thanks for all the help, guys! I should've checked the site earlier!<br /><br />I'm really not a TOTAL dummie at this stuff; but Win8 has made me <span style="text-decoration: underline">feel</span> like one (maybe I should buy the book....)<br /><br />Let me clarify something: the problems I am experiencing are with INTERNET Explorer (not FILE Explorer, as far as I know. I have attached a screen shot of what the File Explorer window looks like.) I also just realized that the problem I'm experiencing may have to do with a THEME that I installed around the same time as CS; I'm just not sure who's doing what. (Aside to Gaurav: belated thanks for the Theme you posted for me. I later found <span style="text-decoration: underline">this</span> one: </span><a href="http://xxinightxx.deviantart.com/art/Windows-Classic-Vs-372853688" class="postlink"><span style="font-size: 100%; line-height: 116%;">http://xxinightxx.deviantart.com/art/Windows-Classic-Vs-372853688</span></a><span style="font-size: 100%; line-height: 116%;"> which <span style="text-decoration: underline">really</span> did a great job of completing the restoration back to a Windows Classic look (line widths, colors, etc.)<br /><br />I have also attached a screen shot of what IE looks like when I open it (and please let me know if you would prefer a different graphics format, etc.) Problems:<br />(1) There is no &quot;tab bar&quot; or other toolbars at the top. Previously, these bars ALWAYS appeared, and were in a format similar to what I used to see in Win XP (using the &quot;Classic&quot; Theme for XP, not the &quot;XP&quot; Theme, if you know what I mean.) If I push my mouse cursor up to the top of the screen, a toolbar of sorts appears; but it seems to come and go of its own accord. And when it <span style="text-decoration: underline">is</span> there, it covers up part of the web page (often, the important navigating features are at the very top!) This toolbar does NOT look like the one I had before. With regard to the &quot;covering up&quot;, I think there may be some issues here with <span style="text-decoration: underline">parts</span> of Classic Shell still loading and working.<br /><br />(2) The Task Bar at the bottom goes away when I go into IE. Previously, this would stay in place when I opened an IE window. In response to Jcee, I <span style="text-decoration: underline">do</span> have the Classic Shell Start button, <span style="text-decoration: underline">when</span> I have the Taskbar!! But no Taskbar in IE, etc.<br /><br />For these reasons, I believe (in response to Ivo) that I <span style="text-decoration: underline">have</span> been kicked back to a Metro look.<br /><br />Some specific replies:<br /><strong><span style="text-decoration: underline">Jcee</span></strong>: <br />I have not yet tried going directly to &quot;ClassicExplorerSettings.exe&quot;, because I wanted to get these clarifications posted first. Again, there is some confusion for me with regard to &quot;Explorer&quot; settings as opposed to &quot;Internet Explorer&quot; settings.<br /><br /><strong><span style="text-decoration: underline">Gaurav</span></strong>: <br />- With regard to your comments about File Explorer and RegEdit: see above with respect to FE vs. IE. Therefore, I did not try the RegEdit change you suggested. I am perfectly willing to attempt any RegEdit changes you suggest; but recall that my access to modifying the Registry seems to be very limited (even though I am set up as an Administrator.) [Off-topic: if anyone knows of a way to loosen Win8's grip on all these read/write privileges, and restore them to something more like XP had, I would <span style="text-decoration: underline">greatly</span> appreciate a referral! The current Win8 setup feels more like airport security after 9-11!!]<br /><br />- Thank you for expanding on the wording about the Status Bar. Again, it appears that this is related to FILE Explorer, not INTERNET Explorer. <br /><br />- You said: <strong>&quot;In Internet Explorer, Classic Shell does not add a toolbar. It restores the page title to the title bar of IE and puts back the page loading progress indicator, and other information to IE's status bar.&quot;</strong> Considering the information I have provided above, does that mean that Classic Shell was <span style="text-decoration: underline">not</span> the entity which was providing the look that I liked? Do I need to be working with the Theme instead?<br /><br />- You said: <strong>&quot;To turn on IE's status bar, press Alt+Space in IE's main window, and check the &quot;Status bar&quot;.&quot;</strong> I did try that, and got a menu of &quot;toolbars&quot; that seemed appropriate (again, I apologize if I am not quite calling things by their correct names.) The Status Bar <span style="text-decoration: underline">is</span> checked. However, an entry for &quot;Classic Explorer Bar&quot; <span style="text-decoration: underline">also</span> appears, and it is <span style="text-decoration: underline">not</span> checked. When I click on that entry, it does not get &quot;ticked&quot;, and it seems like that might be part of my problem. Then again, given what you said above about &quot;Classic Shell does not add a toolbar...&quot; - I don't know what to think.<br /><br /><strong><span style="text-decoration: underline">Ivo</span></strong>: <br />Thank you for checking in! As you can see from the above, _I_ may not understand what the problem is <span style="text-decoration: underline">either</span>!! <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <br /><br /><br />Thanks to all; I hope this additional info clarifies things a bit.<br />Cheebie</span></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file9b2c.png?id=643">10-11-2013 Classic Shell - INTERNET Explorer.png</a> [181.89 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 4045 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file677f.png?id=642" alt="10-11-2013 Classic Shell - FILE Explorer.png" /><br />
+			<span class="gensmall">10-11-2013 Classic Shell - FILE Explorer.png [ 92.95 KiB | Viewed 8753 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista637.html?mode=viewprofile&amp;u=1327"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3220.html?mode=quote&amp;f=9&amp;p=7212"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p7217"></a>
+				<b class="postauthor" style="color: #AA0000">Ivo</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7217">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopicb8d8-2.html?p=7217#p7217"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 6:29 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td class="postdetails">Site Admin</td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/filec2ee.png?avatar=2_1372638535.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Wed Jan 02, 2013 11:38 pm<br /><b>Posts:</b> 5331
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Looks like your Internet Explorer was closed while in fullscreen mode. This is not the same as Metro mode.<br />Try pressing F11 to go back to normal.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistb2a4.html?mode=viewprofile&amp;u=2"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2f95-2.html?mode=quote&amp;f=9&amp;p=7217"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p7220"></a>
+				<b class="postauthor">cheebie</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7220">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopic69a1.html?p=7220#p7220"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 7:28 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Aug 11, 2013 10:38 pm<br /><b>Posts:</b> 13
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><span style="font-size: 100%; line-height: 116%;">Gack! GACK, I say!!! <img src="images/smilies/icon_redface.gif" alt=":oops:" title="Embarrassed" /> <img src="images/smilies/icon_redface.gif" alt=":oops:" title="Embarrassed" /> <br /><br />I just KNEW it was a stupid problem/question!!! I have NEVER used &quot;full-screen mode&quot; in ANY version of Windows, so I wouldn't know it if I <span style="text-decoration: underline">saw</span> it (and obviously, I <span style="text-decoration: underline">didn't</span>!)<br /><br />You gotta admit, though: it DID kinda look like a Metro app, didn't it? No toolbars, no Taskbar, annoying behaviors ...<br /><br />Thank you VERY much, Ivo! You are the BEST, not only for developing Classic Shell, but for helping fools like me! I am not a wealthy man (in fact, I'm kinda in a money crunch at the moment), but I'll see if I can arrange a few bucks for a donation (if not now, then in a month or so when things get a little better.)<br /><br />Thanks to everyone else who helped, as well.<br /><br />Everything is back to looking like it should in IE. I still have one question, though: I still have the problem where I can't &quot;tick&quot; the Classic Explorer Bar in IE. Maybe it's not necessary. However, its behavior has changed a little bit: when I open that menu (Alt+Space) and try to &quot;tick&quot; that toolbar, Windows asks me if I want to &quot;disable this add-on?&quot;, and then lists &quot;ExplorerBHO Class&quot; and &quot;ClassicIEBHO Class&quot;. It did this once or twice to me before (out of many attempts); but now it asks about the disabling <span style="text-decoration: underline">every</span> time.<br /><br />Is this an issue? Am I losing anything by not having that Toolbar available? Any ideas on how to fix the situation?<br /><br />Thanks,<br />Cheebie</span></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista637.html?mode=viewprofile&amp;u=1327"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting18c3.html?mode=quote&amp;f=9&amp;p=7220"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p7226"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p7226">Re: Help, please! Evil Win8 forces are blocking Classic Shel</a></div><div style="float: right;"><a href="viewtopic7abb.html?p=7226#p7226"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Oct 11, 2013 10:32 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">No that toolbar is for File Explorer but the reason it shows up in IE is because they both share the toolbar addon model.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2534.html?mode=quote&amp;f=9&amp;p=7226"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=9&amp;t=1398"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting25e1.html?mode=post&amp;f=9"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting0be0.html?mode=reply&amp;f=9&amp;t=1398"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 8 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumcf19.html?f=6">Discussion</a> &#187; <a href="viewforumfdc5.html?f=9">Classic IE</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 1 guest</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="1398" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9" selected="selected">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=9&t=1398&p=7226 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:15:52 GMT -->
+</html>

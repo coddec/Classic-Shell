@@ -1,0 +1,3039 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=24905 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:01:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Dark Injection 9.r Start Menu</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Start Menu Skins" href="feed48ab.php?f=17" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Dark Injection 9.r Start Menu" href="feed9754.php?f=17&amp;t=5293" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '2');
+	var per_page = '50';
+	var base_url = 'viewtopic9754-2.html?f=17&amp;t=5293';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 10:45 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic0936.html?f=17&amp;t=5293&amp;start=50">Dark Injection 9.r Start Menu</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting6640.html?mode=reply&amp;f=17&amp;t=5293"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 83 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopic8ceb-2.html?f=17&amp;t=5293&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic9754-2.html?f=17&amp;t=5293">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopic46fc.html?f=17&amp;t=5293&amp;start=50&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopic0e89.html?f=17&amp;t=5293&amp;view=previous">Previous topic</a> | <a href="viewtopicc614-2.html?f=17&amp;t=5293&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p23712"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23712">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic0553.html?p=23712#p23712"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Nov 25, 2015 10:11 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">well since you won, i see no reason why I cant extend it indefinitely for your re-submission.. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />, since its you who risk loosing the keys</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf426.html?mode=quote&amp;f=17&amp;p=23712"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p23713"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23713">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic0538.html?p=23713#p23713"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Nov 25, 2015 11:25 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Jcee wrote:</div><div class="quotecontent">well since you won, i see no reason why I cant extend it indefinitely for your re-submission.. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />, since its you who risk loosing the keys</div><br /><br />...ugh...and here's where stuff gets awkward: My current situation doesn't really permit me to start playing more games, since I'm too invested in a series of modding projects .-.<br /><br />I'm kinda tempted to forfeit, simply because almost anyone would get more enjoyment out of those keys than I would .__.</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3d14.html?mode=quote&amp;f=17&amp;p=23713"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p23716"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23716">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicbd76.html?p=23716#p23716"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Nov 25, 2015 4:25 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">ah <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> well you did already 'win' though your welcome to do as you please with the keys. I'm not so sure juniper7 wants them either, as I offered a second contagion key for his submission, and had no response.<br /><br />You can give them to a friend, or whatever.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting193f.html?mode=quote&amp;f=17&amp;p=23716"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p23718"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23718">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicd4e2-2.html?p=23718#p23718"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Nov 26, 2015 10:30 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I promise to get back to making a second skin, or finishing the dogs breakfast one.<br /><br />Using my free time on a different project.<br />I'm busy converting a families old reel to reel, cassete tapes to mp3 for a close relative.<br />The tapes are falling apart and are needing lots of editing. A long process.<br /><br />Let Splitwirez bask in the glory of winning the duel, and the next one, as he will probably win again.<br /><br /><br />&quot;Zombie. Sure I'll take anything free.&quot;<br /><br />By the way, I'm still interested in playing that zombie shooter. Saw utubevids. Very scary.<br />I had checked the inbox for the key once, way back, but nothing there.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8d74.html?mode=quote&amp;f=17&amp;p=23718"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p23719"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23719">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicf214-2.html?p=23719#p23719"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Nov 26, 2015 7:55 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Ok so splitwirez. It does look like he wants a key, i have several (4 actually) just laying around) If  you want to give him the key I sent you, just let me know. Otherwise ill send him a key of my own in a couple days</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5438.html?mode=quote&amp;f=17&amp;p=23719"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p23812"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23812">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic6fda.html?p=23812#p23812"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Dec 01, 2015 4:19 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Thank you Jcee, for the game key.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge7e7.html?mode=quote&amp;f=17&amp;p=23812"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p23813"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p23813">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic9a76-2.html?p=23813#p23813"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Dec 01, 2015 4:23 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">DarkSpore Pie2 (Classic Style 1 &amp; 2 ) (a.k.a Dog's breakfast)<br /><br />More or less finished the skin. It ends up with a rough dirty look.<br />I made the skin from two bitmaps, <br />of the Pie folder, from Splitwirez.<br /><br />The blue menu can become very wide, due to its many borders, especially in single mode. I count 7 big borders. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />Had it thinner at one time in the process, just didn't have the same character, so left as big, and powerful looking.<br /><br />Another aspect that stays big, is the height of all menus. <br />It's because of the way the stretch points, had to be, to keep most of the old fashion tv type look.<br />I had also reduced the height size, while processing, <br />then switched back to a compromise to keep enough of those aliasing lines as possible.<br />The problem with this is evident mostly on single menus, with &quot;small icons&quot;. <br />If there are not enough entries in the menu, there will be an empty space at bottom of menu.<br />Even moving &quot;Column Padding&quot; in &quot;Customize Start Menu&quot; does not work. <br />One thing that does work is to drag a couple &quot;custom&quot;s and drop just above the separator.<br />For me, I just let it do it's thing, as menu fills up with entries, looks normal again. <br /><br />Why not all docked in the corner? <br />The main menu, has tiny running lights, and edges that at times, glow a bit, with a dark background. <br />One can't see them all, when docked. <br /><br /><br /><br /><br /><br /><br />Feels like a marriage.<br />Do you column in black, take this column, dressed in blue,<br />to live happily ever after, along with your submenu little one? <br />Apparently not. <br />I see them as singles, in the one column section! <br />I like the single black menu best. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br /><br />Make sure to turn off menu shadow in Classic Shell Settings.<br />Had to zip skin, as it got so big with all the variations.<br />I have no idea if the lines create interference on other screen resolutions. Mine is 1920 x1080<br /><br />Edit: Fixed wrong bitmap reference</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filebdbb.php?id=2970">DarkSpore Pie2 revB.zip</a> [1.28 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 222 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file2fb3.jpg?id=2879" alt="Pie2.jpg" /><br />
+			<span class="gensmall">Pie2.jpg [ 136.99 KiB | Viewed 10080 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting12b7-2.html?mode=quote&amp;f=17&amp;p=23813"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24454"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24454">Re: Dark Injection 9.r S M  DarkSpore Pie3  (Classic 1 &amp; 2)</a></div><div style="float: right;"><a href="viewtopicbfcc.html?p=24454#p24454"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 09, 2016 11:32 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">DarkSpore Pie3 <br /><br /><br /><br /><br />A New Year, and a new piece of pie skin.<br /><br />After many failed attempts, got the alpha transparency some what acceptable. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />Lots of intentional overlaps, and the most 45 degree angles, <br />for any skin that's gone past me.<br />Those split selector buttons, can be quite a puzzle, to work out the odd shapes. <br />After more tries, than buying lottery tickets, I nailed it.<br /><br />I put some preset color menus in skin. This was the fun part, making them so saturated with color, &amp; tint shifts.<br />Pushed the saturation pink drive the most, just short of exploding. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />They all have more dynamic range, than what glass color can provide.<br /><br />As the skin has smokey blue tinge, and using Win10 limited color table,<br />the added glass option is best for just blue varitions. Other glass window colors don't blend nicely. <img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" /><br />It can be overidden though, with Ivo's excellent &quot;Overide glass color&quot; in &quot;Menu Look&quot; tab. <br />I kept the glass intensity low, to keep glass from washing out the details.<br /><br />Turn off menu shadow, to get rid of right vertical line. I put a shadow/glow on edge to make up for loss. <br /><br />For the new apps/programs button, I borrowed some rainbowness from Pipalou50. Thanx. <br /><br /><br /><br /><br />OK, Splitwirez.<br />Your turn <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />EDIT: I added a dark pure grey option, with that bitmap, <br />used in combination with the mild glass option.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file48c2.jpg?id=3021" alt="Pie3.jpg" /><br />
+			<span class="gensmall">Pie3.jpg [ 154.69 KiB | Viewed 9798 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filebfa0.php?id=3020">DarkSpore Pie3 revB.zip</a> [675.51 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 203 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Sun Jan 10, 2016 2:40 pm, edited 1 time in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting55e4-2.html?mode=quote&amp;f=17&amp;p=24454"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24463"></a>
+				<b class="postauthor">mykou</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24463">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicfb0d.html?p=24463#p24463"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jan 10, 2016 4:03 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Sep 27, 2015 7:52 am<br /><b>Posts:</b> 43
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">hi and gratz for this beautiful ones !</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistaff3.html?mode=viewprofile&amp;u=11606"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0e24.html?mode=quote&amp;f=17&amp;p=24463"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24821"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24821">Re: Dark Injection 9.r Start Menu  DarkSpore Pie4</a></div><div style="float: right;"><a href="viewtopicd2ea.html?p=24821#p24821"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jan 27, 2016 5:11 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">DarkSpore Pie4 (Classic 1 &amp; 2 style)<br /><br />The soft edge gives it a bit of a soapstone carved look. <br /><br />Unzip it.<br />Turn off menu shadow in CSM settings.<br />Only has mild alpha transparency, no blur.<br /><br /><br /><br /><br /><br />Time for a skinning break.<br /><br />EDIT: I decided to add the giant user picture frame as option.<br />So options are bare, logotext, bare with name, bare with picture, bare with name and picture.<br />And of course, 2 column, 1 column, 1 column with caption.<br />That about covers it. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filef633.jpg?id=3082" alt="DarkSpore Pie4 revB.jpg" /><br />
+			<span class="gensmall">DarkSpore Pie4 revB.jpg [ 185.31 KiB | Viewed 9622 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filec644.php?id=3081">DarkSpore Pie4 revB.zip</a> [212.34 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 196 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingbe0d-2.html?mode=quote&amp;f=17&amp;p=24821"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24866"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24866">Re: Dark Injection 9.r Start Menu  DarkSpore Pie4</a></div><div style="float: right;"><a href="viewtopic7988.html?p=24866#p24866"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 29, 2016 11:37 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">DarkSpore Pie4 (Classic 1 &amp; 2 style)<br /><br />The soft edge gives it a bit of a soapstone carved look. <br /><br />Unzip it.<br />Turn off menu shadow in CSM settings.<br />Only has mild alpha transparency, no blur.<br /><br /><br /><br /><br /><br />Time for a skinning break.<br /><br />EDIT: I decided to add the giant user picture frame as option.<br />So options are bare, logotext, bare with name, bare with picture, bare with name and picture.<br />And of course, 2 column, 1 column, 1 column with caption.<br />That about covers it. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div><br /><br />WAT<br /><br />WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT<br /><br /><span style="font-size: 85%; line-height: 116%;">O:</span><br /><br /><br />MY GOD, I CAN'T BELIEVE THAT'S EVEN...DARKSPORE... :Q<br /><br />Also, random question, is there a way to enlarge the shutdown button on a Windows 7-style skin (and move it up and to the right a bit to compensate for the size, ofc)?</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting205f.html?mode=quote&amp;f=17&amp;p=24866"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24868"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24868">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic53d1-2.html?p=24868#p24868"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 29, 2016 12:47 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Ello Splitwirez. <br /><br />The original 2 images were way too transparent for regular use, unless with a totally black background.<br />So I &quot;copy merged&quot;, and pasted back on itself, like 5 times, to make less transparent. <br />It built up the alpha layer, while still keeping dynamics. <br /><br />On Win7 shutdown button, I thought you did it way back? <img src="images/smilies/icon_e_surprised.gif" alt=":o" title="Surprised" /> <br />I'll get back to you later today/night, about it.<br />I guess it can't be too big, <br />cause a Windows update places an update icon in button, which makes it wider.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting64ad.html?mode=quote&amp;f=17&amp;p=24868"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24874"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24874">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic54c8.html?p=24874#p24874"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 29, 2016 4:57 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Is this what you want? <br /><br />It's Friday, where I am. I'm joking around today. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />Any of the below paddings can alter the size/position of the shutdown button.<br />Each skin has different parameters.<br /><br />Only you know exactly what you want from a particular skin. <br />I gather my sample is a fail? <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br /><br />Main_search_padding=14,24,6,<span style="background-color:#ffff00;">20</span><br />Main_jump_padding=14,24,6,<span style="background-color:#ffff00;">20</span><br />Main2_padding=4,20,3,<span style="background-color:#ffff00;">20</span><br />Shutdown_text_padding=<span style="background-color:#ffff00;">10,15,12,15</span><br />Shutdown_padding=<span style="background-color:#ffff00;">10,9,10,25</span><br />Shutdown_icon_padding=<span style="background-color:#ffff00;">5,3,-5,3</span><br />Shutdown_font=&quot;Segoe UI&quot;,bold,-<span style="background-color:#ffff00;">22</span><br /><br />Main_background=#FF0000<br />Shutdown_selection_mask=#00FF00</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5262.jpg?id=3085" alt="Screenshot (59).jpg" /><br />
+			<span class="gensmall">Screenshot (59).jpg [ 53.69 KiB | Viewed 9581 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3758.html?mode=quote&amp;f=17&amp;p=24874"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24879"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24879">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopice2c4.html?p=24879#p24879"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 29, 2016 10:52 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello Splitwirez .<br />Which skin do you have in mind, to alter the position of P button?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting9504.html?mode=quote&amp;f=17&amp;p=24879"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24883"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24883">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic07d9.html?p=24883#p24883"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 30, 2016 5:25 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Hello Splitwirez .<br />Which skin do you have in mind, to alter the position of P button?</div><br /><br /><img src="../../i.imgur.com/M65o2rU.png" alt="" /><br /><br />EDIT: FIXED:<br /><img src="../../i.imgur.com/UPZzieH.png" alt="" /><br />:OD</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting9941.html?mode=quote&amp;f=17&amp;p=24883"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24895"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24895">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopiccbed.html?p=24895#p24895"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 30, 2016 1:25 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">It's amazing how much leeway, Ivo has put into the resizing of the power button.<br />Notice how small it can get. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br /><br />This could take many hours to tweak. I'll hand it back to you, to continue forward.<br />I switched to using Aero default skin7.<br />Played with some numbers. Explorer did crash once. May have pushed it past the limit.<br />Did find that changing font size really helps. How much it changes with different languages, no idea?<br /><br />Main_padding=10,10,3,8<br />Main2_padding=3,10,4,<span style="background-color:#ffff00;">4</span><br />Main_search_padding=10,10,10,<span style="background-color:#ffff00;">4</span><br />Main_jump_padding=3,10,10,<span style="background-color:#ffff00;">4</span><br /><br />Shutdown_text_padding=<span style="background-color:#ffff00;">40,12,62,12</span><br />Shutdown_padding=0,9,0,4<br />Shutdown_icon_padding=5,3,-5,3<br />Shutdown_font=&quot;Segoe UI&quot;,bold<span style="background-color:#ffff00;">,-1</span><br /><span style="background-color:#ffff00;"><br /></span><br /><span style="background-color:#ffff00;"><br /></span><br /><span style="background-color:#ffffff;">Aw shucks. I don't believe it. Just when I'm about to post this, the two small dashes for the &quot;shut Down&quot; text show up, themself.</span><br /><span style="background-color:#ffffff;">See other picture.</span><br /><span style="background-color:#ffffff;">Maybe the text padding can be altered to hide it in front of something white?</span><br /><span style="background-color:#ffff00;"><br /></span><br /><span style="background-color:#ffffff;">Main_padding=10,10,3,8<br />Main2_padding=3,10,4,4<br />Main_search_padding=10,10,10,4<br />Main_jump_padding=3,10,10,4</span><br /><span style="background-color:#ffffff;"><br /></span><br /><span style="background-color:#ffffff;">Shutdown_text_padding=<span style="background-color:#ffff00;">72</span>,12,<span style="background-color:#ffff00;">30</span>,12<br />Shutdown_padding=0,9,0,4<br />Shutdown_icon_padding=5,3,-5,3<br />Shutdown_font=&quot;Segoe UI&quot;,normal,-1</span><br /><span style="background-color:#ffff00;"><br /></span></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filec270.png?id=3092" alt="Screenshot (63).png" /><br />
+			<span class="gensmall">Screenshot (63).png [ 11.9 KiB | Viewed 9534 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/filef6af.png?id=3091" alt="Screenshot (61).png" /><br />
+			<span class="gensmall">Screenshot (61).png [ 34.49 KiB | Viewed 9534 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingeea7.html?mode=quote&amp;f=17&amp;p=24895"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24896"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24896">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic0133.html?p=24896#p24896"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 30, 2016 2:01 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Looking at your Vista picture,<br />another place to hide the text is make it black text for shutdown button.<br />And have it exactly on top of the black border of button. <br />That way no matter if language changes length, will still be hidden?<br /><br />Main_padding=10,10,3,8<br />Main2_padding=3,10,4,4<br />Main_search_padding=10,10,10,4<br />Main_jump_padding=3,10,10,4<br /><br />Shutdown_text_padding=72,<span style="background-color:#ffff00;">23</span>,30,<span style="background-color:#ffff00;">1</span><br />Shutdown_padding=0,9,0,4<br />Shutdown_icon_padding=5,3,-5,3<br />Shutdown_font=&quot;Segoe UI&quot;,normal,-1<br />Shutdown_text_color<span style="background-color:#ffff00;">=#000000,#000000</span></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting630e.html?mode=quote&amp;f=17&amp;p=24896"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p24905"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24905">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic7781-2.html?p=24905#p24905"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 30, 2016 5:24 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Well thanks Splitwirez, for making me play with the font size, as a joke.<br />If it wasn't for you asking, I would never have played around with large, and small sizes. <br /><br />Think it could actually work. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf0fa-2.html?mode=quote&amp;f=17&amp;p=24905"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p24907"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p24907">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic4868-2.html?p=24907#p24907"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jan 30, 2016 5:54 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Well thanks Splitwirez, for making me play with the font size, as a joke.<br />If it wasn't for you asking, I would never have played around with large, and small sizes. <br /><br />Think it could actually work. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div><br /><br />...yay...? .___________.</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf7bc.html?mode=quote&amp;f=17&amp;p=24907"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25586"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25586">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicb99f.html?p=25586#p25586"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Mar 03, 2016 12:00 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Sorry, but I figured I may as well announce that Darkspore itself was shut down a few days ago (March 1st). This is why online only needs to go die in a hole T__T</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga1cd-2.html?mode=quote&amp;f=17&amp;p=25586"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25589"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25589">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicece2.html?p=25589#p25589"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Mar 03, 2016 2:21 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Yikes, that really sucks.. especially since the game cost $$, I would call customer support and demand a refund personally <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />, also sounds like a class action to me...</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingdc28.html?mode=quote&amp;f=17&amp;p=25589"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25590"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25590">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicbc60-4.html?p=25590#p25590"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Mar 03, 2016 11:25 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Huh.<br />Was bleach used?<br /><br />What about regular Spore?<br />I'm in the process of making a Spore animated button, the game, <img src="images/smilies/icon_mad.gif" alt=":x" title="Mad" /> <br />not the doorbell spOre.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge80f.html?mode=quote&amp;f=17&amp;p=25590"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25592"></a>
+				<b class="postauthor">Jcee</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25592">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic9f6b-2.html?p=25592#p25592"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Mar 04, 2016 2:09 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file18da.jpg?avatar=62_1366838364.jpg" width="73" height="89" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jan 06, 2013 1:44 pm<br /><b>Posts:</b> 1939
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">From what I read, (did a bit of research after the post); The main game is alive and well..</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist6caa.html?mode=viewprofile&amp;u=62"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting73ef-2.html?mode=quote&amp;f=17&amp;p=25592"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25599"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25599">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicbe21.html?p=25599#p25599"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Mar 04, 2016 10:16 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">This reminds me of original free trial Halo demo online. I used to play it a lot, with all the mods people made.<br />Someone has to pay for the servers.<br />Nobody was paying for a number of years, until got turned off abruptly.<br />The old bought Halo game online still works. Multiple other people host it, keeping it still alive.<br /><br />EA, I guess is trying to save money, or like killing off old games to introduce new ones?<br /><br />Maybe someone else will host and pay server fees, like Halo? <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br /><br /><br />I put the finished Spore rotate button in the button section.<br />I made it for you, <strong>Splitwirez</strong><br /><br /><!-- l --><a class="postlink-local" href="viewtopicc895-2.html?f=18&amp;t=5779">viewtopic.php?f=18&amp;t=5779</a><!-- l --></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5eba-3.html?mode=quote&amp;f=17&amp;p=25599"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25600"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25600">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic0aa0.html?p=25600#p25600"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Mar 04, 2016 1:27 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">Jcee wrote:</div><div class="quotecontent">From what I read, (did a bit of research after the post); The main game is alive and well..</div><br /><br />I can confirm that :V<br /><br />Indeed, Spore's modding community is so alive and well, I've been able to preserve a lot of Darkspore in Spore: <a href="http://www.youtube.com/watch?v=Rz5ZB3lAtto" class="postlink">Dark Injection 9.r teaser thingy for some reason</a> <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /></div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga7af.html?mode=quote&amp;f=17&amp;p=25600"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27408"></a>
+				<b class="postauthor">Nimbi</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27408">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic47b4.html?p=27408#p27408"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jul 03, 2016 2:23 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file0f35.png?avatar=4140_1468776702.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jul 13, 2014 12:04 pm<br /><b>Posts:</b> 177<br /><b>Location:</b> Coolidge, AZ USA
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Wow, Splitwirez.<br />I just opened that pie_menu folder.<br />You hit the motherlode.<br />There is potential to make all kinds of menu skins.<br /><br />Edit: Removed off color picture. Sorry about that.<br /><br />Here is a better picture, the submenu.</div><br /><br />i gotta admit, this looks badass.  <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+					
+						<div class="postbody"><br />_________________<br />&quot;A book is a mirror. If an ass peers into it, it doesn't expect an apostle to peer out.&quot; - E.M. Forster</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistbacc.html?mode=viewprofile&amp;u=4140"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting764b.html?mode=quote&amp;f=17&amp;p=27408"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p27417"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27417">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic7278-2.html?p=27417#p27417"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jul 03, 2016 1:15 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">There are more images in that folder that can be menus.<br /><br />Even that cool submenu with the tiny lights, could be a main menu too.<br />Just put a vertical separator in middle, <br />or have column one staggered/stepped on top of column two.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting331c.html?mode=quote&amp;f=17&amp;p=27417"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p27419"></a>
+				<b class="postauthor">Nimbi</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p27419">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic2e9b.html?p=27419#p27419"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jul 03, 2016 7:07 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file0f35.png?avatar=4140_1468776702.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Jul 13, 2014 12:04 pm<br /><b>Posts:</b> 177<br /><b>Location:</b> Coolidge, AZ USA
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">These are ll awesome. I'd even like to see some matching taskbar images for use with the current classic shell beta =D</div>
+
+					
+						<div class="postbody"><br />_________________<br />&quot;A book is a mirror. If an ass peers into it, it doesn't expect an apostle to peer out.&quot; - E.M. Forster</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistbacc.html?mode=viewprofile&amp;u=4140"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge6a7.html?mode=quote&amp;f=17&amp;p=27419"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p32942"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32942">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicd5ce.html?p=32942#p32942"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 09, 2017 8:24 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Remind me to bump this thread again once Start9 is publicly released  <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /><br /><br />(...or in Open Beta, or whatever...)</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7361.html?mode=quote&amp;f=17&amp;p=32942"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p32946"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32946">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopicdc7a-3.html?p=32946#p32946"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 09, 2017 11:14 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Dog gone it!<br /><br />Remember when we were trying to make that Vista look shutdown button?<br />We couldn't get rid of the small -1 text, and you joked about using invisible font?<br />There really is an invisible font: <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" />  I just couldn't see it. <img src="images/smilies/icon_eek.gif" alt=":shock:" title="Shocked" /> <br /><br /><!-- m --><a class="postlink" href="http://www.angelfire.com/pr/pgpf/if.html">http://www.angelfire.com/pr/pgpf/if.html</a><!-- m --></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd92e.html?mode=quote&amp;f=17&amp;p=32946"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p32947"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32947">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic8de9.html?p=32947#p32947"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 09, 2017 1:14 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Heh, good times...I later went for Adobe Blank, actually, but I guess that one would probably work too... .___.</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting29b1.html?mode=quote&amp;f=17&amp;p=32947"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p32954"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32954">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic6057.html?p=32954#p32954"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 09, 2017 9:34 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">You know how Windows has invisible icons.<br />Is there an invisble font in stock default Windows 7,8,10?<br />It is better to have text in skin linked to an invisible system font, instead of having a user install a font.<br /><br /> I would like to go back and fix our VistaLike skin. Certain languages show the tiny text pixels.<br />The invisibilty is still going to wreak some havoc with text padding with different languages though.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd682-2.html?mode=quote&amp;f=17&amp;p=32954"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p32956"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32956">Re: Dark Injection 9.r Start Menu</a></div><div style="float: right;"><a href="viewtopic2486.html?p=32956#p32956"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 10, 2017 4:30 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">AFAIK no, there isn't.</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting313d.html?mode=quote&amp;f=17&amp;p=32956"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=17&amp;t=5293&amp;start=50"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting6640.html?mode=reply&amp;f=17&amp;t=5293"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 83 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopic8ceb-2.html?f=17&amp;t=5293&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic9754-2.html?f=17&amp;t=5293">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: <span style="color: #9E8DA7;" class="username-coloured">Google [Bot]</span> and 1 guest</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="5293" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17" selected="selected">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=24905 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:01:06 GMT -->
+</html>

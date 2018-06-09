@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=8082&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:28:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Windows 10 Updates - Classic shell needs to configure itself</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Windows 10 Updates - Classic shell needs to configure itself</span><br /><span class="gensmall"><a href="viewtopic4991.html?f=7&amp;t=8082">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=8082</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>RAY93051</b> [ Fri Nov 10, 2017 3:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Windows 10 Updates - Classic shell needs to configure itself</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hey folks,<br /><br />I have quite a few Win 10 machines under administration where the users that are using it do not have Admin rights. When Win 10 1607 updated to 1703 my users got the “Classic shell needs to configure itself for the new OS” dialog but they could not execute it because they didn’t have admin rights. In a test env I found that this will happen again when 1709 lands on these machines.<br /><br />I found this thread in the forums: <a href="viewtopic1555-2.html?f=7&amp;t=5735" class="postlink">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=5735</a><br /><br />That suggest:<br />1) In the registry, open HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run, and find the value &quot;Classic Start Menu&quot;. Replace the &quot;-autorun&quot; parameter with &quot;-startup&quot;. This will stop the upgrading.<br />2) After the upgrade of Windows, run regsvr32 %windir%\System32\StartMenuHelper64.dll (or StartMenuHelper32.dll for 32-bit Windows)<br /><br />This works but I am questioning do I need to re-register the StartMenuHelper64.dll still? (This will be tricky to pull off in my environment) <br /><br />I used the Nirsoft dll registration viewer and noticed that StartMenuHelper64.dll is already registered even after the update to 1703 (which makes sense since if every update causes the system to lose their 3<sup>rd</sup> party dll registrations that would be a nightmare!)<br /><br />So the question is can I get away with simply setting option 1 only from above on my systems? Or is the dll re-registration an absolute requirement? Cause it would be a lot simpler for roll outs where I install Classic Shell and the change the reg key right after and not worry about this.<br /><br />Thanks in advance!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Fri Nov 24, 2017 12:34 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Windows 10 Updates - Classic shell needs to configure it</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The helper DLL does more than just update it's COM registration.<br />It hooks into Explorer in a special way to make it possible for the start menu to launch as soon as you log in, not after 10 seconds (like other auto-start programs).<br />That registration is lost between Windows updates.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=8082&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:28:04 GMT -->
+</html>

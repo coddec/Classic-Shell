@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=8&t=7632&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 08:06:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - How to create &quot;Play all&quot; icon/command</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">How to create &quot;Play all&quot; icon/command</span><br /><span class="gensmall"><a href="viewtopic7ebb.html?f=8&amp;t=7632">http://www.classicshell.net/forum/viewtopic.php?f=8&amp;t=7632</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Rosco</b> [ Mon May 22, 2017 8:07 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>How to create &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I've recently switched over from Windows 7 to Win10. In both OS's there's an option to &quot;play all&quot; with the default media player if the folder contains music. I used to use this in Win7 but it's part of the ribbon now in Win10 and I've hidden the ribbon now that I'm using Classic Explorer. I only have about 10 icon shortcuts now but would like to know how to add a &quot;Play all&quot; icon for my music (if possible). One of the icons I now have is &quot;Select all&quot;, so while it would be an extra step to select all and then play all I could deal with that. Currently I need to select all and then right click on the files and play all with my media player.<br />Thanks in advance! <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Tue May 23, 2017 1:18 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to creat &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The way &quot;Play All&quot; is implemented by Microsoft in Explorer is a disaster. It sends a ShellExecute command to every file. If your folder contains hundreds of files, your PC will freeze as it tries to open them all at once to queue them in the media player's playlist.<br /><br />If your media player supports command line switches (e.g. I use Media Player Classic Home Cinema), you can create a custom Explorer toolbar button as follows. In the Command field of the Custom button, specify:<br /><br />mpchc.exe &quot;%1&quot; <br /><br />I am using MPC-HC as an example. %1 is the path of the current folder.<br /><br />Usually, if your media player accepts a directory as a path to play all files inside it, it should work. It works for VLC too. For VLC, the button command should be:<br /><br />&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; &quot;%1&quot;.<br /><br />Which media player are you using?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Rosco</b> [ Tue May 23, 2017 10:08 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to create &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Currently I'm using AIMP, I may go back to my old trusty Winamp soon though. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Thanks for you're help, I'll try your solution in the next day or 2 and get back to you.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed May 24, 2017 5:07 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to create &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Well I tried just now with both AIMP and Winamp. For Winamp it works only for local paths but fails for network paths even if you have mapped a drive letter.<br /><br />For AIMP 4, it works the same as VLC or MPC-HC.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Rosco</b> [ Wed May 24, 2017 7:33 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to create &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Awesome Gaurav! It looks like it's working like I want it to in AIMP. Thank you!!  <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed May 24, 2017 9:57 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to create &quot;Play all&quot; icon/command</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />If you have tested and it works for more media players including those who can play video, do let us know. Unfortunately, Windows Media Player doesn't work. It uses DelegateExecute to enqueue files.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=8&t=7632&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 08:06:59 GMT -->
+</html>

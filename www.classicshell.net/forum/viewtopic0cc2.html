@@ -1,0 +1,908 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=19&t=763&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:05:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - CSM appears to hang Windows 8 when computer is started.</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">CSM appears to hang Windows 8 when computer is started.</span><br /><span class="gensmall"><a href="viewtopic568b.html?f=19&amp;t=763">http://www.classicshell.net/forum/viewtopic.php?f=19&amp;t=763</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 7:28 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I restarted my machine and I started in the W8 Start screen. I could not click on anything. I have dual monitors. My second monitor showed the task bar. Hovering over this taskbar I got the busy pointer. Clicking on it I got the message that Windows is not responding so I ended it. I was then thrown to the desktop after a few seconds.<br /><br />Don't know if it's a dual monitor problem or not at this point.<br /><br /><br />**** this is pretty bad.  Doesn't appear to be related to dual monitors.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Mon Jun 17, 2013 7:43 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Does it happen for every reboot or it happened only once? Open Classic Start Menu settings. On the General Behavior tab, uncheck 'Start automatically for this user'. This will not start the menu when you log in. See if the hanging goes away after doing this. That will confirm if the hanging is being cause by Classic Shell or something else. Then you can turn it on again and prepare a dump.<br /><br />Also, note that is why this is a beta so please bear with bugs. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 7:49 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It would be great if I can get a crash dump. Get the &quot;procdump&quot; software as shown here: <!-- l --><a class="postlink-local" href="viewtopiccc99.html?f=12&amp;t=6">viewtopic.php?f=12&amp;t=6</a><!-- l --><br /><br />Reboot so it freezes again. Press Ctrl+Alt+Del and run Task Manager. From there go to File, Run. Enter &quot;cmd&quot;. When the command prompt shows up navigate to the procdump location and enter the command &quot;procdump explorer.exe&quot;. This should produce a DMP file in the same directory. Do this a couple of times, zip the crash dumps and attach them here.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 7:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It appears so far that this problem only happens on a restart of Windows. A complete shutdown of my rig and then a power up works as expected so far.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 8:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It would still be great if you can capture a dump. I have to find out where exactly it is hanging.<br />Do you have any other start menu software that might interfere?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 8:13 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">It would still be great if you can capture a dump. I have to find out where exactly it is hanging.<br />Do you have any other start menu software that might interfere?</div><br /><br />I have ModernMix.<br /><br />***** I disabled MM and still had the problem with CSM. I can't get Procdump to run. I guess things are too frozen. All I can do is click on my second monitors taskbar which will give me the message to kill Windows. Once I do that CSM comes to life.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 8:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Does pressing Ctrl+Alt+Del do anything?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 9:02 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />it will bring up the menu to run Task Manager.  Interestingly I have to had run TM on my second monitor before I do this otherwise the menu doesn't appear.  When I run CMD I don't get a DOS box even though I see CMD in TM.  Procdump is also in TM but doesn't produce any dump file.<br /><br />I had to run Procdump from TM's Run option.<br /><br />Bottom line is no dump.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 9:16 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I thought the problem might be related to using Faststart.  So I deleted my Hibernate file which in affect disables FastStart.  Now A power off/power on doesn't work either.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 9:40 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />FWIW, I ran 3.9 on a W8 VM x64 Pro using Vbox and I had no problems.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 9:46 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It may be possible that the CMD window is behind the Metro screen. See if using Win+arrows will bring it to the other monitor. You can also try blindly typing the command, but you have to be in the right directory with procdump first...<br /><br />As a last resort you can right-click on Explorer and save a crash dump from there. However those are pretty big. You will have to use some file sharing service to upload it.<br /><br />To get you unstuck, we can try few things in this order:<br />1) See if you can run regedit from the Task Manager. If so, go to HKEY_CURRENT_USER\Software\IvoSoft\ClassicStartMenu\Settings and create a new DWORD called &quot;AutoStart&quot;. Set it to 0. This should hopefully prevent the auto-start of the menu and let you log in. You can then manually run the start menu by running ClassicStartMenu.exe<br /><br />2) Run regedit and go to HKCR\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}. Rename the sub-key &quot;TreatAs&quot; to something else, like &quot;TreatAs1&quot;. Reboot and see of that helps.<br /><br />3) See if you can launch the installer from the Task Manager. Locate the installer and run it. Select Remove. Hopefully this will uninstall Classic Shell and bring your system back into usable state.<br /><br />There must be something unique on your system, also judging by your other problem with highlighting. We need to figure out what this is.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 11:19 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />From msconfig I set the option to do a Diagnostic Startup and restarted my machine.  The problem in this post went away as did the Apps entry always being highlighted.  It was highlighted until I ran one of the Apps.<br /><br />At first I disabled all my non-MS start ups and services.  That did not work.  The Diagnostic Startup disables MS services and drivers so the problem might be with something MS.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 12:08 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Is this reversible? If you turn on back &quot;Normal Startup&quot; does the problem come back?<br />It will be greatly useful to identify the real cause, in case other people experience the same problem.<br /><br />If you can reproduce it again I will make another build with more logging to pinpoint the part that's failing. However the most useful thing will still be if you can manage to get a dump when Explorer is frozen. I thought of another possible way to run procdump. Put procdump.exe in some easy to find location (like C:\). Create a batch file in the same place that runs &quot;procdump explorer.exe&quot;. Run the batch file to make sure it creates a .dmp file correctly. Then you will be able to easily run the batch file from Task Manager if Explorer freezes.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 12:25 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It appears that the problem is caused by Oracle VirtualBox.  Specifically the driver \SystemRoot\system32\DRIVERS\VBoxNetFlt.sys.<br /><br />Disabling this driver of the 4 Vbox drivers fixes the problem.  Unfortunately with this driver disabled I have no Internet connection on my machine.  I uninstalled VBox and no more problem.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 12:29 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Great catch! Just to make sure I understand - this is a driver installed on the host machine, not in the VM, right?<br />Is the host 32-bit or 64-bit? What version of VBox are you using? I will try to repro.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Mon Jun 17, 2013 12:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Great catch! Just to make sure I understand - this is a driver installed on the host machine, not in the VM, right?<br />Is the host 32-bit or 64-bit? What version of VBox are you using? I will try to repro.</div><br /><br />Yes, the driver is on the host machine. Host is W8 Pro 64-bit.<br /><br />Vbox version is the latest:<br /><strong>April 12th, 2013<br />VirtualBox 4.2.12<br /><br />I think when you install VBox it might have an option regarding the network that will install this driver.  It's a bridge between host and VM i BELIEVE.<br /></strong>
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>lostprophet</b> [ Mon Jun 17, 2013 2:51 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Well happened to me too. Win8 x64 Professional. I had StartIsBack before Classic Shell, but I completely uninstalled that before installing CS 4.0.<br />1. I installed Classic Shell 4.0 beta.<br />2. I've shutdown my laptop.<br />3. I turned on my laptop.<br />4. The loading of Windows hang and I could only see the coloured background (the one I chose when installing Windows 8). Ctrl+Alt+Delete and Alt+Tab worked, sort of, but I couldn't see the Task manager's window.<br />5. I forced shutdown and turned it on again.<br />6. Now it works.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Mon Jun 17, 2013 8:03 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />@lostprophet, you didn't say if you also have VirtualBox installed. You have it installed, right?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Mon Jun 17, 2013 10:46 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">streetwolf wrote:</div><div class="quotecontent">Yes, the driver is on the host machine. Host is W8 Pro 64-bit.<br /><br />Vbox version is the latest:<br /><strong>April 12th, 2013<br />VirtualBox 4.2.12<br /><br />I think when you install VBox it might have an option regarding the network that will install this driver.  It's a bridge between host and VM i BELIEVE.<br /></strong></div><br />I installed VirtualBox 4.2.12 on Windows 8 Pro 64-bit, but was unable to reproduce the problem. My Windows restarts and shuts down just fine.<br /><br />Do you mind installing Vbox again to see if the problem reoccurs? If it does, use the Task Manager's Browse button to get to the Classic Shell folder and rename ClassicStartMenu.exe to something else (like ClassicStartMenu2.exe). Reboot and see if Explorer will start this time. Basically launching the start menu has two stages and I'm trying to figure out which one is the problem. Renaming the exe will disable the second stage.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Tue Jun 18, 2013 5:02 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I reinstalled Vbox with all features and have the problem again. I renamed the file to ClassicStartMenu2.exe and rebooted. Everything worked OK except for the fact that there is no CSM start menu.<br /><br />btw... where the heck do you autostart CSM from?  I can't find it in the usual places.  Did you use some trickery? <img src="images/smilies/icon_e_smile.gif" alt=":-)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Jun 18, 2013 7:01 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, it uses trickery. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /><br />However looks like that's not the problem, because the first stage seems to be working for you.<br /><br />Maybe the problem is the new way I am skipping the metro screen. Other people are having problems with it too: <!-- l --><a class="postlink-local" href="viewtopicea4b.html?f=19&amp;t=772">viewtopic.php?f=19&amp;t=772</a><!-- l --><br />Try disabling that option and see if rebooting works (rename the exe back of course)<br /><br />If it still doesn't work, uncheck &quot;Start automatically for this user&quot; and for now launch the start menu manually (just run ClassicStartMenu.exe).<br /><br />At the moment you are the only one that can reliably reproduce this problem. I would appreciate it if you keep the current state of that machine until we find a solution. I will make a new build in the next 2 days that has more logging and some changes to hopefully fix this.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Tue Jun 18, 2013 7:17 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Skipping the Metro screen didn't work. As a pseudo workaround I placed a shortcut to CSM in my startup folder. Now when I start my machine I get the Metro start screen. Clicking on my Desktop tile I get thrown into the desktop and CSM starts up. <br /><br />I'll keep Vbox on my system until we fix this. I just discovered Hyper-V and might use that instead of Vbox if it suits my needs.<br /><br />**** Found a better temporary solution.  In addition to adding CSM to my startup folder I ran SkipMetroSuiteUI to bypass the Metro screen.  This works fine although CSM takes a little longer to startup compared to how you do it.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Jun 18, 2013 7:38 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Actually at the moment I'm just shooting in the dark. I have no clue what might be happening.<br /><br />What would really help narrow down the problem is a crash dump. Can you please try to get procdump to work one more time? Like create a batch file that runs &quot;procdump explorer.exe&quot; and that you can launch from the Task Manager while Explorer is frozen.<br /><br />As a last resort you can create a dump directly from TaskManager. Right-click on the explorer.exe process and select &quot;Create dump file&quot;. These files are big but usually compress about 2:1. If you don't have a place where you can upload it (like dropbox) I will figure something out later. At the moment it is important to create the dump file while the problem is still happening.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Tue Jun 18, 2013 7:53 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Got a dump for you!
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file8c00.php?id=343">explorer_130618_104816.zip</a> [279.55 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 212 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Jun 18, 2013 8:45 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />This was very helpful, thanks!<br />Looks like a standard &quot;loader lock&quot; issue. Basically I'm doing stuff I shouldn't be doing while my DLL is being loaded.<br />I will have to redesign my code a bit. I should have a fix in a few days, end of the week the latest.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Tue Jun 18, 2013 8:49 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">This was very helpful, thanks!<br />Looks like a standard &quot;loader lock&quot; issue. Basically I'm doing stuff I shouldn't be doing while my DLL is being loaded.<br />I will have to redesign my code a bit. I should have a fix in a few days, end of the week the latest.</div><br /><br />My Pleasure Ivo.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>lostprophet</b> [ Tue Jun 18, 2013 9:36 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">GauravK wrote:</div><div class="quotecontent">@lostprophet, you didn't say if you also have VirtualBox installed. You have it installed, right?</div><br />No, I don't have Virtualbox installed, but UAC is turned off.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Wed Jun 19, 2013 10:41 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />@streetwolf: <br />Please try the attached file. It contains a replacement for ClassicStartMenu.exe and ClassicStartMenuDLL.dll. You need to exit the start menu and copy these files into the Classic Shell directory (replacing the original files). <br />Set the start menu to run automatically, and disable the SkipMetroSuite. <br /><br />This version is an attempt to fix: <br />the incompatibility with Vbox <br />the permanent highlight issue <br />the UAC issue (the popup when UAC is disabled) <br /><br />Let me know how it works for you.   <br />  <br />(Note that this DLL fix is only for 3.9.0 and 64-bit only. Later versions include the fix)
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileb9ce.php?id=344">ClassicStartMenu64.zip</a> [833.15 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 205 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Thu Jun 20, 2013 4:19 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">@streetwolf:<br />Please try the attached file. It contains a replacement for ClassicStartMenu.exe and ClassicStartMenuDLL.dll. You need to exit the start menu and copy these files into the Classic Shell directory (replacing the original files).<br />Set the start menu to run automatically, and disable the SkipMetroSuite.<br /><br />This version is an attempt to fix:<br />the incompatibility with Vbox<br />the permanent highlight issue<br />the UAC issue (the popup when UAC is disabled)<br /><br />Let me know how it works for you.</div><br /><br />1.  The Vbox problem appears to have been fixed.  The only difference I see now is the Metro start menu appears for a couple of seconds before I get to my desktop.  The previous version without Vbox installed went to the desktop immediately without seeing the Metro start screen.<br /><br />2. Permanent highlighting seems fixed.  I'll monitor this.<br /><br />3. I have UAC at the lowest setting via the slider.  In reality this does not turn UAC off completely in W8.  I believe changing a Registry entry is the only way to accomplish a complete disable of UAC.  However, this is not recommended by MS.  I've never had popups the way I have UAC off.  Could it be those that did have popups had UAC completely off via the Registry?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Jun 20, 2013 5:35 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, I can confirm, the highlighting issue is fixed. The UAC one I can test after a 32-bit DLL is available.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>streetwolf</b> [ Thu Jun 20, 2013 7:10 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Actually I see the Metro start screen for no more then a second.  I'm pretty sure it didn't even show before.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Jun 20, 2013 7:14 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I had to switch back to the old method of skipping Metro because the new one (launching the Desktop app) doesn't work when UAC is completely disabled through the registry. Apps don't work without UAC. I've also heard reports that the new method sometimes fails to switch.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Jcee</b> [ Thu Jun 20, 2013 8:25 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />why not have both?, maybe nest the option right under the other; and call it &quot;Skip metro Alternate (only check it the above doesn't work)&quot; or something similar <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /><br />broad spectrum and all, at least until you can find a total solution
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Jun 20, 2013 8:32 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />By old method, Ivo means sending Win+D keystroke/show desktop command. It still uses COM to skip the Start screen right? It no longer depends on the service like 3.6.x did. Giving two options means supporting both and unnecessary complexity. Plus Windows 8.1 is coming with a native option to boot to desktop in a few months.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Jun 20, 2013 8:53 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Both methods exist in the full beta build and can be selected through a registry key. It was intended as a safety measure if the new method doesn't work. As there are enough reports by now to suggest it doesn't work in many cases, I'd rather remove it. Adding an option with somewhat technical description will be confusing for most users.<br /><br />And yeah, I want to see what 8.1 has to offer. The //build/ build is supposedly coming up next week.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Jcee</b> [ Thu Jun 20, 2013 4:18 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: CSM appears to hang Windows 8 when computer is started.</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />ah havnt been keeping up with 8.1 <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />, also you should maybe have an 'super advanced' settings .txt file stored within classic shells folder, for all the settings to technical, specific, or menial to make it into the program otherwise <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />. Having it there would ensure only advanced users get there hands on it <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=19&t=763&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:05:29 GMT -->
+</html>

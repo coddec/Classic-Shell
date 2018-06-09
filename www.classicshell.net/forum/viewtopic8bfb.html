@@ -1,0 +1,2575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=5655&p=35315 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 08:03:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Windows Vista Start Menu Skin</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Start Menu Skins" href="feed48ab.php?f=17" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Windows Vista Start Menu Skin" href="feed88c0.php?f=17&amp;t=5655" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '2');
+	var per_page = '50';
+	var base_url = 'viewtopic88c0.html?f=17&amp;t=5655';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 8:54 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic8eab.html?f=17&amp;t=5655&amp;start=50">Windows Vista Start Menu Skin</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="postingce87.html?mode=reply&amp;f=17&amp;t=5655"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 75 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopicb8d5.html?f=17&amp;t=5655&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic88c0.html?f=17&amp;t=5655">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopic0b30.html?f=17&amp;t=5655&amp;start=50&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopicdaec.html?f=17&amp;t=5655&amp;view=previous">Previous topic</a> | <a href="viewtopic0839.php?f=17&amp;t=5655&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25340"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25340">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopica42c.html?p=25340#p25340"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Feb 15, 2016 8:41 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I made bigger shutdown icons using Pixelformer, as it has a grid, and alpha layer. <br />That part is done. Back to the dreaded big button resizing. Have to do alpha layer.<br /><br /><br />Splitwirez, I know what you can do.<br />The same thing I did with the latest XP HDPI skin. To make an .xml backup file, <br />with icons referenced back to a folder in C drive.<br />I can't find link now. Well anyway, to reset the CSM to default settings, go into &quot;Customize Start Menu&quot;.<br />And change each icon reference for all Vista icons in second column, linked to the drive C folder. <br />You would have to gather those icons up from Vista, probably a shell.dll. <br />Then upload that folder and saved backup xml file in a zip, for all to share. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br /><br />Take a look at the menu gap. I put the menu height to full desktop height!<br />It looked ok at normal view.<br />Looks like I'll be working on it next weeking, to set goldilocks padding, and slices, to look best. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file13fe.png?id=3200" alt="Gap.PNG" /><br />
+			<span class="gensmall">Gap.PNG [ 9.25 KiB | Viewed 13135 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingf8c5.html?mode=quote&amp;f=17&amp;p=25340"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25410"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25410">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic22c0.html?p=25410#p25410"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Feb 18, 2016 4:14 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">VISTALIKE <br /><br /><br /><br />I don't know if you are still around OneSerendipity?<br />I have uploaded our team skin. I tweaked to max thru the midnight hours. =_=<br /><br />Come hither to the dither noise.<br />I finished the version of the Vista look-a-like skin. Anyone can use parts of it for their own purposes.<br />It has modified parts from you both, and of what I had given already, and some new ones too.<br />I got bugged out looking at all the horizontal banding stripes on the menu. <br />(low bit image makes transition lines, because there are only 256 steps of brightness)<br />So I spent time adding dithering to the main menu. It really did a nice job. Thanks old Adobe elements 5. <br />Bitmap had to be made wider to get full benefit. The 2nd column looks a lot smoother. Unfortunately, the lightness changed.<br />It still looks half ok resembling Vista, with the black at bottom. The glaring original bright menu top is more subtle.<br /><br />I put the skin in the &quot;Vista Icon&quot; zip folder. Just take it out of there, and put in CSM skins folder.<br />If you want to have the Vista icons show on this menu, or your own, put that Vista icon folder in drive C.<br />Load the Vistalike.xml file into CSM to set it to use those icons. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />This folder did not compress well (2.36 MB). If you just want the smaller skin zip (419 KB), uploaded as well.<br /><br /><br /><br />I was using your nice light powder buttons for awhile, until I used the real Vista. <br />I figured I better try and use as much original, to please Splitwirez. <br />Difficult to find buttons in the system, or when I found them, the brightness/alpha does not look the same, <br />so I made some from screen shots, and others made by hand, from scratch.<br /><br />The skin can also be used for 150% size. This and the search box padding took the longest to get right.<br />The last search padding hurdle, was because the top background search padding number was too low. <br />I kept increasing it until it joins/overlaps with the main menu .<br />I settled on 99 value, no reason. That overlap is just barely visible on the little white border line. <br />Unless you really look for it, it hides. <br /><br />As the power button has to use exact dimensions, I only put the regular size, and 150% size in skin. <br />For any other dot per inch settings in between 100% &amp; 150%,<br />I set it so they don't try and grow bigger, and screw up the fake icon look. Now I know why Ivo says that sizing % can be set for different parameters in script.<br />Could not figure why menu goes out of alignment. Had to set some values to 0%, and others to 100%. Could not figure out how to freeze the size of power button, when it has text on it. The fake icon goes wonky, if anything other than 100%/150% size. <img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" /><br /><br /><br />Ooh, I think I know what was going on with the downloaded user picture frame turning grey at top half. If the square part for picture is totally black alpha, the user picture will be same original brightness. If there is some alpha layer value in that square, that will make what ever rgb value visible.<br />With Vista, MS made it have some fuzzy glare. So it shows some white haze on top of user picture. From the modded bitmap, someone darkened the rgb value, which made grey show.<br />If you want to reduce the glare more, have to darken the alpha layer, and keep the original white rgb layer.<br />I modded that downloaded bitmap of yours, or some bodies. I darkened the alpha layer a bit . <br /><br />Hope you learn from using parts of this, or just use the skin on it's own. <br /><br /><br /><br /><br />Never figured out Ivo's &quot;font none&quot; thing. Text still showed.<br /><br />If you use this skin in Windows 10, set the glass opacity to 0 in the &quot;Menu Look&quot; tab of CSM.<br /><br /><br />Bye <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />PS <br />If I'm rattling on a bit too much, I consumed a little yeast ethanol, to get the creative juices flowing. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file0f30.php?id=3210">Skin only Vistalike.zip</a> [419.71 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 432 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file0d79.php?id=3209">VISTA ICONS.zip</a> [2.37 MiB]
+			</span><br />
+			<span class="gensmall">Downloaded 332 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filec0ef.jpg?id=3208" alt="Vistalike.jpg" /><br />
+			<span class="gensmall">Vistalike.jpg [ 78.95 KiB | Viewed 13098 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting84c8.html?mode=quote&amp;f=17&amp;p=25410"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25413"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25413">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic51c5-3.html?p=25413#p25413"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 19, 2016 2:56 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Ah, frizelnits.<br /><br />I forgot to put in the latest glass buttons for 2nd pane.<br />I'm not sure if it makes that much difference in the menu.<br />It looks totally different as a Windows .bmp thumbnail,<br />as only the rgb channels show, not the alpha/rgb blend like a .png file.<br />Just swap them out, no text change required.<br />In picture are the other two shutdown button styles available in the skin already. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file1c03.php?id=3213">Bitmap 10 and 16.zip</a> [8.77 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 202 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/fileb126.jpg?id=3211" alt="Screenshot (117).jpg" /><br />
+			<span class="gensmall">Screenshot (117).jpg [ 64.28 KiB | Viewed 13066 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3ae3.html?mode=quote&amp;f=17&amp;p=25413"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25453"></a>
+				<b class="postauthor">OneSerendipity</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25453">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic1e42.html?p=25453#p25453"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Feb 22, 2016 12:07 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sat Jan 30, 2016 4:36 am<br /><b>Posts:</b> 15
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello once again, I don't know if I'm able to continue on the skin, as I uninstalled Windows 8 (I corrupted it accidentally, and it never seems to like recovering easily after being corrupt, hence why I won't get to install it again any time soon). I'm back on Windows 7 again for now, so I won't be really missing much from the menu (although I do miss Vista's power buttons). So, if you wouldn't mind, could you upload the skin file itself? <br /><br />Sorry for my pretty long absence, I was just a bit too busy.</div>
+
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberlist5b74.html?mode=viewprofile&amp;u=12601">OneSerendipity</a> on Sun May 14, 2017 3:04 am, edited 1 time in total.</span>
+						<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b74.html?mode=viewprofile&amp;u=12601"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingb162.html?mode=quote&amp;f=17&amp;p=25453"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25455"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25455">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicb769.html?p=25455#p25455"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Feb 22, 2016 1:15 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Congratulations on the upcoming ceremony.<br /><br />I've already uploaded the skin file as a separate, <br />and included a fuller version, with Vista second column icons with it's configuration file. It's up above a few posts. <br />I put you, Splitwirez, and myself in the &quot;About this Skin&quot; box, as we all contributed something towards it.<br /><br />I was kind of running out of things to help you with on the skin. <br />About the only other thing it could use is the glass button to be made smoother. <br />That's made by making the button bitmap bigger, so the gradients in it become smoother.<br />Will leave that alone.<br /><br />Yeah, Win 7 is a lot like Vista menu. Except Win7 has more color, and a split gradient, no search box gap, or lock button. <br />Well, can always put CSM on Win7 and still have your Vista skin, and have/eat wedding cake too.<br /><br />Come back after the marriage to work on a different menu.<br />Bye. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge8a9.html?mode=quote&amp;f=17&amp;p=25455"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25460"></a>
+				<b class="postauthor">Splitwirez</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25460">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic13ac-2.html?p=25460#p25460"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Feb 22, 2016 7:51 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file7bf9.png?avatar=9454_1515258130.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sun Feb 22, 2015 3:09 pm<br /><b>Posts:</b> 677
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Yes, congratulations OneSerendipity.<br /><br />And I sincerely apologize for this, but as I was reading up on what I'd missed while AWOL, only 1/6 of my brain was actually interpreting the words. I basically got &quot;buttons....wedding...start...skin...menu...&quot; and the first thing that came to mind was more or less this:<br /><img src="../../i.imgur.com/BHanVST.png" alt="" /><br /><img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br /><br />I don't mean to insult you. Fortunately, my common sense kicked in before I posted, and after re-reading the post about 7 times, I think I was able to get the nutshell of it all.<br /><br />Congratulations :3</div>
+
+					
+						<div class="postbody"><br />_________________<br />TILES WOOOOOO</div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3690.html?mode=viewprofile&amp;u=9454"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc1c2-3.html?mode=quote&amp;f=17&amp;p=25460"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25465"></a>
+				<b class="postauthor">OneSerendipity</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25465">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopica6d9.html?p=25465#p25465"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Feb 22, 2016 10:58 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sat Jan 30, 2016 4:36 am<br /><b>Posts:</b> 15
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Thanks you two, lol. It'll be a nice time to get the family together again.<br /><br />As for the skin, I'll test on Win7 a bit later. I already use a Vista skin pack, which has made 7 look like Vista a lot, although still not perfect. It doesn't really matter anyway, as 7's UI is the most alike to Vista's than any other version.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b74.html?mode=viewprofile&amp;u=12601"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3a4d-2.html?mode=quote&amp;f=17&amp;p=25465"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25503"></a>
+				<b class="postauthor">Zoek Slayer</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25503">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic00ca-2.html?p=25503#p25503"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 1:21 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file48fe.png?avatar=12817_1456518781.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Feb 26, 2016 1:07 pm<br /><b>Posts:</b> 5
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">juniper7.<br />Where should I put the vista icon folder?<br />First. I put the vistalike.skin7 in &quot; C:\Program Files\Classic Shell\Skins &quot;<br />Second. I put icon folder in &quot; C: &quot;<br />Third. I put the xml in &quot; C:\Program Files\Classic Shell &quot; and load it.<br />The skin works, but the icons is not working. Help me please.<br />I'm newbie. Thank you, I like that skin.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista6ac.html?mode=viewprofile&amp;u=12817"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting1aa8-2.html?mode=quote&amp;f=17&amp;p=25503"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25505"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25505">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicbde5-2.html?p=25505#p25505"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 2:47 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Dump the &quot;Vista Icon&quot; folder in &quot;C&quot; drive.<br />Don't hide it in a folder.<br />The reason is, <br />the information in the xml file tells CSM to skip getting the icons from Windows regular way, <br />and says to load them from the &quot;Vista Icon&quot; folder. If it is not in plain old &quot;C&quot; drive, icons won't work.<br />Just one more thing about the icons. This does not screw up Windows in any way. It is very safe. <br /><br />OK, so if you put the skin in the &quot; C:\Program Files\Classic Shell\Skins &quot; good.<br /><br />Next just leave the xml file where it is in that &quot;Vista Icon&quot; folder in drive C.<br /><br />Go into CSM settings, pick Windows7 style.<br />At the bottom is a button that says &quot;Backup&quot;<br />Click on it, and pick &quot;Load from xml file&quot;<br />Go into C:\VISTA ICONS and there will be the Vistalike.xml file.<br />Click on it.<br />The way Ivo has set it up, the &quot;Vistalike&quot; skin should automatically show, with the Vista icons.<br /><br />Hopefully everything works ok.<br /><br />Note. If you want to use a different skin, without the Vista icons, <br />you need to reset all settings in the backup button. <br /><br />I'm using now on Windows 10.<br />Just wish 10 could have the smaller radius blur that Vista has.<br /><br /><br />EDIT: Fixing my bad spelling. Dang auto spell never works half the time.<br /><br />I'm as bad as politicians <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8a15.html?mode=quote&amp;f=17&amp;p=25505"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25507"></a>
+				<b class="postauthor">Zoek Slayer</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25507">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicfb3b.html?p=25507#p25507"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 3:36 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file48fe.png?avatar=12817_1456518781.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Feb 26, 2016 1:07 pm<br /><b>Posts:</b> 5
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> Done! Thank you, juniper7 !<br />You are the best. <br />I'm using windows 8, but I miss windows vista styles.<br />I test windows 10, but I don't liked it and I was return to 8.<br /><br /><br />so<br /><br />this is a screenshot of<br /><br /><br />my<br /><br />start menu. Thank's.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="gensmall"><b>File comment:</b> You are good, and I do not know how to speak good in English too :P</span><br />
+		
+			<img src="download/file50fa.png?id=3230" alt="Vistalike.skin7.png" /><br />
+			<span class="gensmall">Vistalike.skin7.png [ 84.99 KiB | Viewed 12908 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista6ac.html?mode=viewprofile&amp;u=12817"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting6be6-2.html?mode=quote&amp;f=17&amp;p=25507"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25509"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25509">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic53a2.html?p=25509#p25509"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 3:53 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Good, that it's working, Zoek <br />I'm just not happy that the divider in the power button looks different, in your screenshot.<br />I never tried it in other languages, where the names are longer.<br />Well, we all tried to get it right. It isn't perfect.<br /><br />You can always use OneSerendipity original skin at the beginning of post.<br />That skin uses a different method to set the size of the power button.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting08e0.html?mode=quote&amp;f=17&amp;p=25509"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25510"></a>
+				<b class="postauthor">Zoek Slayer</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25510">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicca56-2.html?p=25510#p25510"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 4:14 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file48fe.png?avatar=12817_1456518781.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Feb 26, 2016 1:07 pm<br /><b>Posts:</b> 5
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">It's okay. don't worry.<br />I just want one more thing...<br />I've seen OneSerendipity post a userframe.<br />and I wish it had a tone more dark blue lines on the borders...<br />I'm not a good editor, but if you tell me, how can I do it. I'll try the best.<br />Thanks' one more time, and all have a good weekend.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5c31.php?id=3232" alt="Userframe.bmp" /><br />
+			<span class="gensmall">Userframe.bmp [ 16.05 KiB | Viewed 12903 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista6ac.html?mode=viewprofile&amp;u=12817"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting76dd-2.html?mode=quote&amp;f=17&amp;p=25510"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25511"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25511">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicac57.html?p=25511#p25511"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 4:24 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I can't duplicate what you have in screen shot.<br />I made second column the widest and still looks ok.<br /><br /><br />OK. Now I'm laughing to myself.<br />I think it is just the way your screenshot was captured and magnified.<br />I don't think there is a problem.<br /><br />Never mind what I was saying.<br /><br />Bye.<br /><br />Oh. A new post from you about user picture frame.<br />Maybe you want the one like in Windows 7?<br />I'll get back to you later, or perhaps someone else can supply that one.<br />It is in Ivo's Aero skin.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file15a7.jpg?id=3231" alt="Screenshot (114589).jpg" /><br />
+			<span class="gensmall">Screenshot (114589).jpg [ 44.89 KiB | Viewed 12903 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting16f1.html?mode=quote&amp;f=17&amp;p=25511"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25519"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25519">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic1d92.html?p=25519#p25519"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Feb 26, 2016 8:21 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Zoek Slayer<br /><br />About that user picture frame.<br />I can bet you; the Windows graphic artists spent at least a day on making that frame.<br />It is very complex. There are all levels of transparency, for the look to change with different backgrounds.<br /><br /> Which means it is not easy for an amateur like me, to make it have more dark blue lines on the border.<br />Worse for me to tell you how to do it. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />All I can do is change a little, save, and put in a zip, so you can have a few varieties.<br />Bitmap 12 would need to be replaced with a different one and saved as different name.skin7<br />Use resource Hacker to do that.<br /><br />To me, the original color is turquoise. I changed the tint a little bluer.<br />I doubled up the lines to make fuller looking.<br />If this is not what you want, you can play around with them in an image editor.<br />Editor has to be able to save in 32 bit bitmap.<br />You would have to adjust the rgb channels, and the alpha channel.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file91e8.php?id=3234">Different user picture frames.zip</a> [857.84 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 215 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge411.html?mode=quote&amp;f=17&amp;p=25519"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25533"></a>
+				<b class="postauthor">Zoek Slayer</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25533">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic73f9.html?p=25533#p25533"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Feb 27, 2016 5:28 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file48fe.png?avatar=12817_1456518781.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Feb 26, 2016 1:07 pm<br /><b>Posts:</b> 5
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">juniper7<br />Wow! Thank you, again!<br />I'll make my own user picture frames, and when it's done I'll post here <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />so How can i fix the size of the power button? like your screenshot.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista6ac.html?mode=viewprofile&amp;u=12817"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting26bf.html?mode=quote&amp;f=17&amp;p=25533"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25536"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25536">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic0c97.html?p=25536#p25536"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Feb 27, 2016 11:06 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">You mean it really does have that bigger black gap in between the shutdown section and the fake lock section?<br />Shucks, I can't duplicate it. <br />I think the only reason it would stretch like that, is if the text padding is a different total amount, <br />due to the language that is used, or unknown stuff.<br />Yeah, my fault for not saying. My variation of OneSerendipity skin was made for English. <br />Maybe when other language is used, the padding changes and gives that defect.<br /><br />I have made a change to the padding in 100% regular and 150% menu size.<br />I changed the way the button is sliced up too.<br />Because I'm doing this blindly, It could make it look better, worse, or just the same.<br />I would have to give up, if it makes no difference, coz I don't know what else to do.<br />I put it in a zip. The skin name is different.<br /><br /><br /><br />EDIT:<br /><br />I went back and put the super small text on top of padlock, instead of on the black line.<br />Made it red temporary, to set position. It is white in skin to match padlock color. <br />As you can see in picture, got it to work ok for three languages, <br />then failed for German, as there are too many letters in text.<br /><br />EDIT: Well that didn't work any better. There is not much I can do.<br />I put the super small shut down text back on the black line to hide it with a different slice method.<br />It's a little better, just some languages move the padlock to the left, or right a little bit.<br />The only button that works properly on 125% (120DPI) is &quot;Standard with text only&quot; .<br />All the other ones are for 100% 96 DPI, or 150% 144 DPI<br /><br />EDIT: The saga of the Vista shutdown button. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />Will never be able to have lock function work.<br />Taking an idea from splitwirez, I put an optional option in skin,<br />that will virtually eliminate the dark pixels that show up sometimes if the Windows key is used to open start menu, and when using a different language. The catch is, an invisible font needs to be installed in you Windows system. <br />The strange thing is, the underline pixel(shows up if Windows key is pushed to open menu) is not invisible. I had to hide it on top of black line. <br /><br />I'm stopping at this revision, unless I made a booboo, or if a specific language is required.<br />Then I can enable a hidden option to adjust padlock padding just for one particular language.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file781d.png?id=4738" alt="Diff  Language.png" /><br />
+			<span class="gensmall">Diff  Language.png [ 36.38 KiB | Viewed 10168 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileae8b.php?id=4728">VISTALIKE PowerButton Fix RevC.zip</a> [510.05 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 161 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Sat Jun 17, 2017 10:14 pm, edited 5 times in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting4bdb.html?mode=quote&amp;f=17&amp;p=25536"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25537"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25537">Re: Full Glass Vistalike  7 style skin</a></div><div style="float: right;"><a href="viewtopicbd32.html?p=25537#p25537"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Feb 27, 2016 11:55 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Daht, Daht, Daht, Dahhh. This is as good as I can make it, with the tools I have.<br /><br /><br />What was only the second column glass, is now everywhere, including submenu.<br /><br />I took the VistaLike skin that we made, and converted to Full Glass VistaLike. For CSM 4.3.0<br />It kind of looks like a 7 style version of the Classic &quot;Smoked Glass&quot; skin, when set on weak color. <br />Only this skin is darker at the bottom part.<br />Adding mild color basically starts to look like a lot of other full glass skins.<br />I like it best when set on black color &amp; weak setting, with or without transparency blur.<br />That's where the skin shines,,, no,,smokes. <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <br /><br /><br /><br />Due to the special shutdown button, it's only proper size at 96 reg/144 HiDPI.<br />If you want shutdown with proper size at 120 DPI, switch to the &quot;Standard text only&quot; <br /><br /><br />Note about Vista look shutdown button, and language. <br />Was made for English language. Other languages will move the fake padlock icon off center.<br /><br /><br /><br />Looks different on Win7 OS(a lot less color)<br />There are still some horizontal ripple lines in the menu.<br />I would need better image editor, capable of better dither.<br /><br /><br />EDIT: Added option to use invisible font, just for the shutdown button, to better cover up the dark pixels that show up sometimes.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file287f.php?id=4729">Full Glass Vistalike RevB.zip</a> [491.63 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 177 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/filee9f2.png?id=4707" alt="glass color set to black Win 10.png" /><br />
+			<span class="gensmall">glass color set to black Win 10.png [ 248.73 KiB | Viewed 10278 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Fri Jun 16, 2017 7:22 am, edited 5 times in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting9c74.html?mode=quote&amp;f=17&amp;p=25537"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p25540"></a>
+				<b class="postauthor">Zoek Slayer</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25540">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic172a.html?p=25540#p25540"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Feb 28, 2016 2:52 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file48fe.png?avatar=12817_1456518781.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Feb 26, 2016 1:07 pm<br /><b>Posts:</b> 5
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I was return to English language, and I've finally fix it.<br />Right now, I'm searching for a Image Editor has to be able to save in 32 bit bitmap, like the Photoshop.<br />Because, I want to edit, the user frames.<br />Thank you juniper7, for your support.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlista6ac.html?mode=viewprofile&amp;u=12817"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0b64.html?mode=quote&amp;f=17&amp;p=25540"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p25541"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p25541">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic52c6.html?p=25541#p25541"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Feb 28, 2016 3:19 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I use a weird setup.<br />Sometimes I use PixelFormer.<br />Other times use Paint.net with additional 32 bit plugin.<br />Sometimes use my old Adobe Photoshop Elements 5.<br />Elements 5 works ok with alpha, only if png file. Could never find a 32 bit  bitmap export plugin.<br />So I convert back and forth png to bmp, <br />or just copy and paste back and forth between programs using Windows clipboard.<br />PixelFormer is my alpha layer workhorse. I can copy just the alpha layer, put in any photo program, play with it, then copy that and put back in just the alpha layer of PixelFormer.<br />Don't laugh too much. It works for me.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />I'm cheap to buy the best software.<br /><br />I read people use Gimp, Paint shop pro, Windows Paint.<br />I don't know which is best. <img src="images/smilies/icon_e_confused.gif" alt=":?" title="Confused" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2864.html?mode=quote&amp;f=17&amp;p=25541"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p32301"></a>
+				<b class="postauthor">tanninjaboy</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p32301">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopicb611.html?p=32301#p32301"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Apr 22, 2017 11:43 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Sat Apr 22, 2017 11:29 am<br /><b>Posts:</b> 1
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I use windows 10 but the vista shutdown icon is too small and is not right I don't know how to fix it <img src="images/smilies/icon_cry.gif" alt=":cry:" title="Crying or Very Sad" /> pls help me <br /><br />[edit] I used vistalike and it worked <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist3b01.html?mode=viewprofile&amp;u=19372"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingcc3b.html?mode=quote&amp;f=17&amp;p=32301"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p34066"></a>
+				<b class="postauthor">RECONBunny</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p34066">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic345e-2.html?p=34066#p34066"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Sep 11, 2017 9:03 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Mon Mar 06, 2017 9:41 pm<br /><b>Posts:</b> 1
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I have a few questions about this:<br /><br />1) Is it still being worked on?<br />2) Do the shutdown buttons all work properly? IE Shutdown/Lock/&gt;<br /><br />3) Is Classic Shell easy to get rid of now? I recall a long time ago I couldn't get this off my PC.<br /><br />This is what my Windows 10 looks like now and all I need is a better Vista looking Start Menu:<br /><br /><img src="../../i.imgur.com/zAai1IK.jpg" alt="" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlistbab9.html?mode=viewprofile&amp;u=18115"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0370.html?mode=quote&amp;f=17&amp;p=34066"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p34078"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p34078">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic5ce7.html?p=34078#p34078"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Sep 13, 2017 3:03 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello RECONBunny.<br /><br />[1) Is it still being worked on?] <br /><br />I don't think anybody is working on it for some time.<br /><br /><br />[2) Do the shutdown buttons all work properly? IE Shutdown/Lock/&gt;]<br /><br />Nope. All the skinners could do, was make it look like the buttons. Lock can not work.<br /><br />[3) Is Classic Shell easy to get rid of now? I recall a long time ago I couldn't get this off my PC.]<br /><br />I don't recall ever having any problem uninstalling. If it was deleted or uninstalled with a different uninstaller, there is a separate Classic Shell Utility that can remove all traces.<br /><br />Be aware that if you want to try the first skin at beginning of post, make sure to make a copy of original <br />StartMenuL10N.ini file. You will need to put it back later to replace the hacked language file that is included with that skin to make the button look better. <br />It might be better to try later versions in the post that don't require the modified language file changed.<br /><br />Looks like you have a good theme going there in your screenshot. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />Whoever provided the theme, might have a Vista menu to go with it?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingbadf.html?mode=quote&amp;f=17&amp;p=34078"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p35311"></a>
+				<b class="postauthor">EnchDS</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p35311">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic2eb6-2.html?p=35311#p35311"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jan 22, 2018 4:19 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Mon Jan 22, 2018 3:49 pm<br /><b>Posts:</b> 1
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I tried your Vista skin on Windows 7 SP1 from 2009, but it doesn't work.<br /><br /><br />C:\Program Files\Classic Shell\ExplorerL10N.ini:<br /><img src="../../www.dropbox.com/s/engr15sdtvtv19g/VirtualBox_Windows%207_22_01_2018_17_53_427874.html?dl=1" alt="" /><br /><br />C:\Program Files\Classic Shell\Skins:<br /><img src="../../www.dropbox.com/s/im7qvqyo26b5b8r/VirtualBox_Windows%207_22_01_2018_17_54_457874.html?dl=1" alt="" /><br /><br />The skin is, in fact selected:<br /><img src="../../www.dropbox.com/s/2muwsuk2ywny6u0/VirtualBox_Windows%207_22_01_2018_17_55_087874.html?dl=1" alt="" /><br /><br />Here are the <em>VM's</em> specs:<br /><img src="../../www.dropbox.com/s/4q4z4albxvbp1gj/VirtualBox_Windows%207_22_01_2018_17_56_007874.html?dl=1" alt="" /><br /><br />And the Windows Experience Index Rating:<br /><img src="../../www.dropbox.com/s/pzj68movzn5p6m1/VirtualBox_Windows%207_22_01_2018_18_15_007874.html?dl=1" alt="" /><br /><br />And finally, the Start Menu:<br /><img src="../../www.dropbox.com/s/zgi55qolmfa6izs/VirtualBox_Windows%207_22_01_2018_18_16_507874.html?dl=1" alt="" /><br /><br />So, what's wrong?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4747.html?mode=viewprofile&amp;u=29966"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga9fd.html?mode=quote&amp;f=17&amp;p=35311"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p35315"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p35315">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic0e9a.html?p=35315#p35315"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jan 22, 2018 11:21 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I downloaded original poster's skins:<br /><br />Windows Vista Start Menu Skin<br />Windows Vista Aero_WIP-HalpMeh <br /><br />as well as a few that I made that are later in the post:<br /><br />Vistalike<br />VISTALIKE PowerButton Fix RevC<br />Full Glass Vistalike RevB<br /><br /><br /><br />All skins have slight imperfections, like if the modified language file is used from initial poster, <br />it screws up the shutdown text, when using any other skin. <br />Or artifacts show up at the shutdown button, when using &quot;Vistalike&quot; skin. <br />&quot;VISTALIKE PowerButton Fix RevC&quot; skin is better, but not perfect. <br />All mine don't use modified language file, to get proper padding on shutdown button.<br /><br />I installed all skins on Windows 7 Service Pack 1<br />All work with CSM version 4.3.1<br />I do not have a Vista theme to try it with.<br /><br /><br />There could be a conflict with your Vista theme. <br />Either it is blocking Classic shell skin, using original Win7 start menu that is now black, <br />or the Vista theme pack comes with it's own start menu.<br /><br />Sorry, can't help. No idea what is going on.<br /><br />Oh, do <strong>any</strong> Classic shell skins show up?<br /><br /><br />EDIT UPDATE: <br />Looking at your screenshot, I see Vista VS folder.<br /><br />I downloaded probably same theme from <!-- m --><a class="postlink" href="https://fediafedia.deviantart.com/art/Vista-VS-for-Windows-7-FINAL-133369018">https://fediafedia.deviantart.com/art/V ... -133369018</a><!-- m --><br />I used an updated UX theme patcher <!-- m --><a class="postlink" href="https://winaero.com/blog/third-party-themes-windows-10-fall-creators-update/">https://winaero.com/blog/third-party-th ... rs-update/</a><!-- m --> <br />Had to disable antivirus to install.<br /><br />Works ok, and I can pick either the classic shell Vista skins,<br />or exit CSM (right click on Start button), and have the theme start menu.<br />I don't see any problem, except the user picture frame in my skin sucks.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3b44.html?mode=quote&amp;f=17&amp;p=35315"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p35412"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p35412">Re: Windows Vista Start Menu Skin</a></div><div style="float: right;"><a href="viewtopic2de6.html?p=35412#p35412"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Feb 11, 2018 3:04 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">My first attempt at the Vista user picture frame was not good.<br />Now,<br />I found the correct one (with more transparency), in the Vista Windows files, but it was kind of jagged.<br />I also found a smoothed out one by thoriumknight at Devient:<br /><br /><!-- m --><a class="postlink" href="https://thoriumknight.deviantart.com/art/Vista-User-Icon-Frames-150733456">https://thoriumknight.deviantart.com/ar ... -150733456</a><!-- m --><br /><br />I combined them to make one for HiDPI.<br />I also put an option to show no glare clear picture inside. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filead1e.png?id=5187" alt="Better Vista icon frame.png" /><br />
+			<span class="gensmall">Better Vista icon frame.png [ 132.14 KiB | Viewed 6048 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filefc9f.php?id=5186">VISTALIKE PowerButton Fix RevD.zip</a> [516.98 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 98 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file0e6f.php?id=5185">Full Glass Vistalike RevC.zip</a> [496.27 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 95 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge742-3.html?mode=quote&amp;f=17&amp;p=35412"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=17&amp;t=5655&amp;start=50"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="postingce87.html?mode=reply&amp;f=17&amp;t=5655"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 75 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopicb8d5.html?f=17&amp;t=5655&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic88c0.html?f=17&amp;t=5655">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 5 guests</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="5655" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17" selected="selected">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=5655&p=35315 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 08:03:33 GMT -->
+</html>

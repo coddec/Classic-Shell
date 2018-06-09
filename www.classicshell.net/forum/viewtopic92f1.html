@@ -1,0 +1,2312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=31280 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:03:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Windows 98/ Windows 10 Combination Start Menu w Captions</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Start Menu Skins" href="feed48ab.php?f=17" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Windows 98/ Windows 10 Combination Start Menu w Captions" href="feed269a.php?f=17&amp;t=7214" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '1');
+	var per_page = '';
+	var base_url = '';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 10:47 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic269a.html?f=17&amp;t=7214">Windows 98/ Windows 10 Combination Start Menu w Captions</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="postinge294.html?mode=reply&amp;f=17&amp;t=7214"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 22 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopicb6c4.html?f=17&amp;t=7214&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopicfe00.html?f=17&amp;t=7214&amp;view=previous">Previous topic</a> | <a href="viewtopic89af-3.html?f=17&amp;t=7214&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p30962"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p30962">Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic671c-2.html?p=30962#p30962"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Dec 28, 2016 9:00 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello all,<br /><br />I made a start menu that combines the Windows 98 start menu, and the Windows 10 start menu.<br />I attached a xml file to load for the menu to work, and a classic icons.zip for the classic icons from Windows 98.<br /><br />Here's an image:<br /><br /><img src="../../s28.postimg.org/96z0h0xgt/classic10classicshell.png" alt="" /><br /><br />Credits go to:<br />R.O.B. - For the base skin<br />Ivo - For this awesome program<br />Juniper7 - For his help on this .skin<br /><br />Update: Bugs are fixed, white no skin menu showing after loading XML file is fixed.<br />Bugs in this .skin start menu:<br /><br />@color_custom@ isn't working. I followed the skinning tutorial, and put it into the .skin, but it doesn't work.<br />No icons in second column is supposed to be unchecked when you first load this skin, but it is checked when you first load the .skin file.<br />User picture also does this too.<br /><br />Happy Holidays &amp; a Happy New Year everyone! =)</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="gensmall"><b>File comment:</b> Load this for the start menu to work correctly.</span><br />
+		
+			<span class="genmed">
+				<img src="images/upload_icons/txt.gif" alt="" /> 
+				<a href="download/file9b74.php?id=4384">Classic 10 Menu Settings.xml</a> [15.88 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 329 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filed338.php?id=4383">Classic-Skin-10.skin</a> [360.85 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 1532 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="gensmall"><b>File comment:</b> Unzip these icons into a folder named classicicons on your desktop.</span><br />
+		
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file74d3.php?id=4292">classicicons.zip</a> [28.75 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 371 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899">redblade8</a> on Tue Jan 10, 2017 10:22 pm, edited 4 times in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting975d-2.html?mode=quote&amp;f=17&amp;p=30962"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p30969"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p30969">Re: Classic 10 Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopiccac3.html?p=30969#p30969"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Dec 29, 2016 12:19 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I don't understand the user image/ no icons bugs. <img src="images/smilies/icon_rolleyes.gif" alt=":roll:" title="Rolling Eyes" /> <br />Some leftover text is tricking it on?<br />I think I know about custom color problem. Best to steal some text from a .skin.<br />if not in the Classic 1/2 options, it won't showup.<br /><br /><br />OPTION_COLOR COLOR_CUSTOM=<span style="background-color:#ffff00;">&quot;</span>Custom color<span style="background-color:#ffff00;">&quot;</span>,0,TRUE,#727272<br /><br />Classic1_options=variations, USER_IMAGE, USER_NAME, CENTER_NAME, SMALL_ICONS, THICK_BORDER, <span style="background-color:#ffff00;">COLOR_CUSTOM</span><br />Classic2_options=variations, NO_ICONS, USER_IMAGE, USER_NAME, CENTER_NAME, SMALL_ICONS, THICK_BORDER, <span style="background-color:#ffff00;">COLOR_CUSTOM</span><br />AllPrograms_options=THICK_BORDER<br /><br />[COLOR_CUSTOM]<br />Main_background=@COLOR_CUSTOM@<br /><span style="background-color:#ffff00;">Submenu_background=@COLOR_CUSTOM@</span><br /><br /><br />User image is really strange.<br />So to start out fresh, I just replaced USER_IMAGE to HUMPTYDUMPTY in a number of places. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br />Reset skin, and picture does not show, unless I check it. <br /><br />You could replace NO_ICONS with DIRTYDONKEY. It should work, by overriding whatever is causing the problem. <img src="images/smilies/icon_twisted.gif" alt=":twisted:" title="Twisted Evil" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7f81-3.html?mode=quote&amp;f=17&amp;p=30969"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p30995"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p30995">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicf219.html?p=30995#p30995"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Dec 30, 2016 3:50 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">The system matching magnifier by the search box is neat idea. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />I think I will try doing same thing, with an XP one for an XP skin, I'm fixing up.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting1d9f.html?mode=quote&amp;f=17&amp;p=30995"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31030"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31030">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicb376.html?p=31030#p31030"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jan 02, 2017 5:45 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, custom color is now working, thanks. I replaced user_picture with random1, and no_icons with random2. The options are now unchecked when you reset the skin, however, they don't work now. <br /><br />Is it possible to add transparency on this skin without adding bitmaps? To still have color_custom but with a transparency level option?<br /><br />The system matching magnifier was actually R.O.B.'s idea. I also like this idea. I read that there were troubles with the magnifying search icon on high dpi for the xp skin. That xp skin is pretty nice though.<br /><br />Thanks for your help. I've uploaded a new .skin file to this post.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filedb0a.php?id=4326">Classic-Skin-10rev2.skin</a> [451.85 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 164 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting1ba4.html?mode=quote&amp;f=17&amp;p=31030"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31032"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31032">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicde8b.html?p=31032#p31032"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 03, 2017 2:00 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I believe there needs to be a bitmap to have transparency. You could add extra real bitmap pixels on the right side of caption bitmap.<br /><br />Looking at what the wizard R.O.B has done. The bitmap is 21 pixels wide, with slicing X=21,1,1,0,1,0<br />That means if you make a bigger bitmap 24 pixels wide, those extra three pixels can be made around 190/255 alpha and black rgb.<br />You would also need to make a mask to have the color on the 3pixel sliver running along side of caption picture.<br /><br />It does start to get complicated. Opacity text needs to be added. Selectors have to be real 32 bit bitmaps, <br />or they will show right through menu to desktop behind. It would be a good idea to look at other skins to see what they did, <br />and copy over the bitmaps and text.<br /><br />I didn't notice there were xp magnifiers in the skin. Hmm..Ok, I went for the lighter bigger ones, R.O.B went for the darker edge ones.<br /><br />All this talk has got me interested again in Win 10 fake menus. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />I'm going to try out myself. I know can't have live, can't move them, can't this, can't that, but hey'<br />we each come up with different looks and ways. I have to try icon frames as buttons, making them bigger.<br />Forgot about the text, shoot. Ok, I'll try icons frames with emblem text. Oh boy, this is going to be complicated.<br />Give one or two weeks to explore all possibilities</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc463-2.html?mode=quote&amp;f=17&amp;p=31032"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31045"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31045">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicbca1-2.html?p=31045#p31045"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 03, 2017 7:19 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK, I see where I misled you. Sorry about that.<br /><br />Should look like this partial sample:<br /><br /><br />[<span style="background-color:#99CC00;">RANDOM1</span>]<br />; User_image_size - the size of the user image to use. Default is 0, which means the user image is not displayed<br />; The size must be compatible with the size of the frame bitmap User_bitmap. The value is usually 48<br />User_image_size=48<br /><br />; User_frame_position - horizontal and vertical position of the user image frame in the main menu.<br />; Positive numbers mean offset from the left and the top. Negative numbers mean offset from the bottom and the right<br />; The horizontal position can also be &quot;center&quot;, &quot;center1&quot; and &quot;center2&quot; to center the image relative to the whole menu or to the first or second column<br />User_frame_position=-10,6<br /><br />[<span style="background-color:#99cc00;">RANDOM1</span> AND SMALL_ICONS]<br />User_image_size=32<br /><br /><br /><br /><br /><br /><span style="background-color:#ff0000;">Not this</span>:-------------- <br /><br /><br />[<span style="background-color:#99cc00;">RANDOM1</span>]<br />;<span style="background-color:#ffffff;"> RANDOM1</span>_size - the size of the user image to use. Default is 0, which means the user image is not displayed<br />; The size must be compatible with the size of the frame bitmap User_bitmap. The value is usually 48<br /><span style="background-color:#ff0000;">RANDOM1</span>_size=48<br /><br />; User_frame_position - horizontal and vertical position of the user image frame in the main menu.<br />; Positive numbers mean offset from the left and the top. Negative numbers mean offset from the bottom and the right<br />; The horizontal position can also be &quot;center&quot;, &quot;center1&quot; and &quot;center2&quot; to center the image relative to the whole menu or to the first or second column<br />User_frame_position=-10,6<br /><br />[<span style="background-color:#99cc00;">RANDOM1</span> AND SMALL_ICONS]<br /><span style="background-color:#ff0000;">RANDOM1</span>_size=32<br /><br /><br /><br />The options group section looks ok. Do have to have it there for sure. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />Looking further on down.<br />Don't change everything, just the header title part, I think it's called that, within those special brackets [ ].<br />There are lots to change.<br /><br />Probably have to make updated xml file that has those new option names, <br />so program doesn't try to execute with wrong head on it's shoulders.<br /><br /><br />I did see some leftover text &quot;00%&quot; in some of the variations. Maybe that or other text is screwing things up?<br /><br />Also that &quot; [ &quot; is missing at start of the below line. It will not interpret correctly. Happens a lot with my wandering mouse.<br /><br /><span style="background-color:#ff0000;"> </span>RANDOM1 AND NOT FLAT_BORDER AND NOT TWO_COLUMNS]<br />User_frame_position=10,6<br /><br /><span style="background-color:#99CC00;"><span style="background-color:#99CC00;">Good luck <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></span></span></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc45a.html?mode=quote&amp;f=17&amp;p=31045"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31191"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31191">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicb7f5-3.html?p=31191#p31191"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jan 09, 2017 10:20 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, I've now changed only the headers like you said. It seems that the options are checked on when you reset the skin still. However, the options don't work now. User picture adds a space for the user picture, but no actual user picture. I think rev2 the options are not checked, but dont work. I've attached the .skin.<br /><br />I tried adding the missing [ bracket only to the start menu .skin, but options remain checked on.<br /><br />This bug of having options checked on is present in R.O.B.'s original classic captions .skin. <br /><br /><br />I think that there was windows xp magnifiers for the search in this .skin, but I meant your high DPI xp skin that you made. It's pretty nice too.<br /><br /><br />I do like fake windows 10 start menus. I hope you good luck making one, if you do. <br /><br />Thanks for your help so far, its much appreciated =)</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file162a.php?id=4381">Classic-Skin-10rev3.skin</a> [451.85 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 127 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting922a.html?mode=quote&amp;f=17&amp;p=31191"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31192"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31192">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic2435.html?p=31192#p31192"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 10, 2017 4:03 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Please test the modded skin.<br /><br />I changed USER_IMAGE to USER_PICTURE and NO_ICONS to NOICONS in hopefully all the right places.<br /><br /><br />Seems to work for me. I think some settings for the emblem require adjusting if picture and name shown.<br />Tiles get in the way.<br /><br />If I try the xml file, CSM switches to no white skin. I Think you need to set it all up again and save a new xml.<br /><br />I cleaned up the noisy tiles. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /> <br /><br />About my 10 skin. One step forward, two steps back. Slowly getting there. <br />My skin is going to still take one or two weeks more to figure out everything.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filee936.php?id=4382">Classic-SkinMOD10rev3.skin</a> [360.85 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 130 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting22a5.html?mode=quote&amp;f=17&amp;p=31192"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31204"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31204">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopica577-2.html?p=31204#p31204"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 10, 2017 10:18 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, I loaded the new .skin, and it works pretty good. Everything seems ok. The tiles look a lot better now too, thanks.<br /><br />I've attached a new .XML file to this post for the mod skin, and I renamed your mod skin &amp; put a new XML file to my first post. <br /><br />It turns out that the XML file wasn't working anyways &amp; loading the white no skin menu because of one line in the XML file. I had &lt;SkinC2 value=&quot;Classic-Skin-10rev7&quot;/&gt; instead of just 'classic-skin-10'.<br /><br />Here's a picture of the start menu with the user picture, and username set up. It seems to display correctly. Only the 'no-icons' in the second column the user picture &amp; username is overlayed  on top of the emblems, which isn't good.<br /><br /><img src="../../i63.tinypic.com/wlt2xh.png" alt="" /><br /><br />Slow but steady for the windows 10 menu you're working on then. <br />Cheers! =)</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="images/upload_icons/txt.gif" alt="" /> 
+				<a href="download/fileeddb.php?id=4386">Classic 10 Menu Settings MOD.xml</a> [15.89 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 141 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8dae-2.html?mode=quote&amp;f=17&amp;p=31204"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31205"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31205">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic256f.html?p=31205#p31205"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 10, 2017 11:34 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Looks good.<br /><br />Well, you just mentioned the options that affect it.<br />Just make a new option header like below with emblem different numbers, that you set for proper height.<br /><br />[(USER_PICTURE OR USER_NAME) AND NOICONS AND TWO_COLUMNS]<br />Main_emblem1=53<br />Main_emblem1_padding=12,10,7,220<br />Main_emblem1_alignH=right<br />Main_emblem1_alignV=bottom<br />Main_emblem2=54<br />Main_emblem2_padding=12,10,7,116<br />Main_emblem2_alignH=right<br />Main_emblem2_alignV=bottom<br />Main_emblem3=55<br />Main_emblem3_padding=12,10,7,12<br />Main_emblem3_alignH=right<br />Main_emblem3_alignV=bottom<br /><br /><br /><br />On mine, the menu images start to add up.<br />To get transparent, opaque, trans with user picture, opaque with user picture, <br />and HiDPI versions of same types, equals 8 bitmaps (really png to reduce size). <br />I'm going to modify two of my failed attempts, and use those as well.<br />Going to be 80% tile size, 40% tile size, and no tiles.<br />Lets see that's going to be minimum 17 menu images to make! <br />The other to do part is all math measurements to align all the fake text, <br />and selector tile links to look and work seamlessly. <br /><br />Yep, taking it a bit at a time. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd556.html?mode=quote&amp;f=17&amp;p=31205"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31206"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31206">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic7990-2.html?p=31206#p31206"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jan 11, 2017 2:39 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Thanks. I was starting to wonder if I could do [noicons and not main_emblem1]<br />I'll try out those new settings for noicons, and see how it goes.<br /><br />That sounds like a lot of work to do. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /><br />You can have up to 10 emblems, so some of them will be bitmap png's?<br />The using old start menu skins sounds like a good idea also the options for the tiles is a good idea too.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5f79-2.html?mode=quote&amp;f=17&amp;p=31206"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31207"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31207">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic55ca.html?p=31207#p31207"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jan 11, 2017 3:48 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I don't think there can be a color mask for emblems, where the emblem changes color.<br />Emblems are made to not stretch.<br /><br />The tiles are integrated into the main menu bitmap, using Ivo's tint feature.<br />Then the Metro colors will change the tile color as well. My menu is only going to work on Win 10.<br />I will have to explore if it works at all, on Win 8 later. Metro colors are not the same on 8.<br />The second column entries are set to buttons in Customize tab.<br />Selectors and text are made to fit exactly in the right places.<br />I'm using the fake text as an emblem.<br /><br />Not too sure what the last sentence means. If it's the no tiles option, it will still be button view,<br />showing only the icons, and fake text.<br />If it's about incorporating linked tiles into your Win98 skin for next revision, go for it. <br />Just not sure if double width tiles can work though.<br /><br /><br />Here is a picture of a couple parts. <br />It looks like someone opened the window, with text floating in the night air.<br />Hurry up, and close the window, the text are getting in. <br />One more.<br />I don't do windows, I only do tiles. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />They are burnt in, or embedded into bitmap. <br /><br /><br /><br /><br />That's a thought. A simpler glass color version could be made to work on Win 7. <br />Will leave for others, maybe you. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/fileb968.png?id=4387" alt="Junies version parts.png" /><br />
+			<span class="gensmall">Junies version parts.png [ 20.61 KiB | Viewed 10921 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting96b8-2.html?mode=quote&amp;f=17&amp;p=31207"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31208"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31208">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopicc64d.html?p=31208#p31208"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jan 11, 2017 5:42 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">So emblems are pictures that can't have a mask, or stretch. <br />The tint feature, the tiles changing color and having them integrated into the start menu sounds cool. <br />I'm not sure why Microsoft decided to have different metro colors for windows 8, and windows 10. If your skin can work on windows 7 too that'd be awesome. <br /><br />I meant the options for the tiles, like 80%, 40% , and no tiles. I didn't mean links, but I'm also not sure how to do them.<br /><br />Sounds good so far, the picture helps see what you want to do with it.<br /><br />Update, I made the start menu work with small icons, and with no icons. Though I'm not sure why the emblems don't move for two columns [small icons and noicons]<br />I have the new start menu attached with a XML file too.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="images/upload_icons/txt.gif" alt="" /> 
+				<a href="download/file832b.php?id=4389">Classic 10 Menu Settings - MOD2.xml</a> [15.89 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 142 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file875d.php?id=4388">Classic-SkinMOD10rev4.skin</a> [363.44 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 137 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingab8e-2.html?mode=quote&amp;f=17&amp;p=31208"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31227"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31227">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic079a.html?p=31227#p31227"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jan 12, 2017 1:12 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I'm not too swift with logic.<br />All I know is some headers can work without the TWO_COLUMNS added, and some don't.<br />If a header is put somewhere higher, it might get overridden with a similar header further below.<br />I even encountered a non functioning header, because I combined two options, that did not have the separate option header above. <br /><br />Ivo made a feature where there can be no icons in first column, and icons in second column, or vice versa.<br />Maybe that could screw it up? <br /><br />But normally, NOICONS (NO_ICONS in other skins) is really only for second column, so as long as you made a header that has everything<br />included like [(USER_NAME OR USER_PICTURE) AND NOICONS AND SMALL_ICONS AND TWO_COLUMNS]<br />it should work. Oh, and have it at the very bottom too. <br />If it does not work, I can look at skin tomorrow and try different ways.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5602.html?mode=quote&amp;f=17&amp;p=31227"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31236"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31236">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic4c2c.html?p=31236#p31236"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 13, 2017 5:19 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I tried what I said.<br />It worked at first, but if I added 25 recent programs, it got in way again.<img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" /><br />What I did was, change the text &quot;bottom&quot; to &quot;top&quot;. <br />So when there are lots of entries in first column, the emblems stay rigid at top, with space below instead.<br />You could keep adding more emblems, to fill the blank space, so it looks like real Win 10.<br />Or you could add something else like um, oh never mind. Don't want to hear more commandments. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br />I see there are two emblems in skin not used. <br /><br /><br />[(USER_NAME OR USER_PICTURE) AND NOICONS AND SMALL_ICONS AND TWO_COLUMNS]<br />Main_emblem1=53<br />Main_emblem1_padding=12,41,7,12<br />Main_emblem1_alignH=right<br />Main_emblem1_alignV=top<br />Main_emblem2=55<br />Main_emblem2_padding=12,160,7,0<br />Main_emblem2_alignH=right<br />Main_emblem2_alignV=top<br />Main_emblem3=54<br />Main_emblem3_padding=12,264,7,0<br />Main_emblem3_alignH=right<br />Main_emblem3_alignV=top</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filebeda.png?id=4393" alt="Emblem  fix.png" /><br />
+			<span class="gensmall">Emblem  fix.png [ 79.38 KiB | Viewed 10824 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7639.html?mode=quote&amp;f=17&amp;p=31236"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31237"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31237">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopiccda5-2.html?p=31237#p31237"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jan 13, 2017 8:04 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, I tried doing [NOICONS AND SMALL_ICONS AND (USER_PICTURE OR USER_NAME)]<br />User_frame_position=10,6<br />User_name_position=10,10,-54,40 <br />And then the text for the emblems. I don't have to specify the user_frame and user_name then?<br /><br />The adding more emblems to new space with lots of recent programs sounds good. I'm not sure how to make classic shell add more emblems if there is more space. Like 10 recent programs = 4 emblems, 20 recent programs = 5 emblems.<br /><br />I did have the emblems aligned by the top, but I didn't want them to move when more recent programs got added, so I made it aligned to the bottom.<br /><br />How do I make the space that has 'programs, documents, settings, find, help, and run' to stay at the bottom? It looks like it is pushed up to the top with many recent programs, leaving a big space between 'run' and 'logoff'. <br /><br />Lol at the commandments. I had forgotten about that. xD</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file6434.php?id=4396">Classic-SkinMOD10rev5.skin</a> [363.94 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 143 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingefbc.html?mode=quote&amp;f=17&amp;p=31237"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31257"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31257">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopice24b-3.html?p=31257#p31257"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jan 15, 2017 10:21 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I was away for a few days, I have to make it up with lots of text, with bad spelling, and grammer included.<br /><br />Hi redblade8.<br />I don't think the user picture info needs to be added again, unless it is different.<br />Hmm. Guess there is something different. <br />The User_frame_position is missing the &quot;-&quot;, so it puts the picture on left side.<br />Yes that could work too. <br />Would have to increase top padding on left column of Classic 2 style, and bring the name over too. <br />Unless it was a mistake?<br /><br />I made a big booboo on my skin. A couple days ago, I started to play around with your skin.<br />I was tired, day dreaming, on autopilot mode. When I saved mod of your skin, I wasn't looking where it saved it.<br />It overwrote my skin, coz program remembered the path from before. I was so lucky. I had made a backup an hour before.<br />It's very dangerous switching back and forth between different modded skins. <br /><br />Back to your skin. If you still want the user picture on right, with extended emblems,<br />anything larger than menu will be cut off like Win 10 real menu.<br />You could always add an emblem mask for the emblems so emblems get cut a small distance before taskbar, like a border.<br />This emblem mask can control where the emblems show, or not show. <br />I'm not talking about an emblem mask on top of the emblem to control color on the emblem, because there is no such thing.<br /><br />Speaking of emblems, if you go that way with emblems as tall as monitor height, and don't mind the look of them cut off,<br />why not just use one giant emblem?<br /><br />Moving the &quot; COLUMN PADDING &quot; in the Customize tab, can push the space around the entries.<br /><br />Everyone uses different amounts of jumplists, and recent programs. For me 5 or less is good enough.<br />Could always preset amounts for xml file.<br /><br />As for my skin, I kind of lost interest. Got bogged down by the enormousity of it.<br />I don't think that's a word, but for sure, my skin is becoming enormously complex.<br />When I went on Win8.1, it's crazy. My skin has metro colors. On Win8.1 the desktop uses aero glass colors, not metro. <br />Metro colors work from the start screen, and there are no accent metro colors, because Win 10 invented after.<br />So to get a metro color, have to switch to start screen, adjust color, switch back to desktop. <br />As far as I know, auto color desktop picture, does not work on the metro colors, <br />so I think I will have to make a simple glass color option just for Win 8.1.<br />Too much, that's why I'm taking it easy, doing other activities.<br /><br />If I ever finish mine, maybe you could help me towards the end?<br />A number of the links I have as buttons, were made from shortcuts that I made and stored in my computer.<br />If I upload skin for other people, the links are not going to work.<br /><br />I'm not computer savvy, but I think you might be, because you were on the forum from years ago.<br />Commands and executable strings mean nothing to me, Ivo has put lots of commands, and links in the Customze section.<br />I can't find all the ones I want to directly work, that apply the icon as well. <br />I checked Winaero, Rainmeter site, other forums, for direct commands/links, can't seem to figure it out.<br /><br />Would you happen to know direct links for all these? <img src="images/smilies/icon_neutral.gif" alt=":|" title="Neutral" /> : <br /><br /><strike>Internet Explorer</strike><br /><br /><strike>Default programs</strike><br /><br /><strike>Devices and Printers</strike><br /><br /><strike>Programs and Features</strike> found it <br /><br /><strike>Disk Cleanup</strike> Thanks <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br /><br /><strike>Defender</strike></div>
+
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Tue Jan 17, 2017 1:02 am, edited 1 time in total.</span>
+						<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5910.html?mode=quote&amp;f=17&amp;p=31257"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31261"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31261">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopice8b2.html?p=31261#p31261"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jan 15, 2017 6:16 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I'm not sure what happened to my post. It seems like it was cut off. Maybe hacked, not sure.<br /><br />So I have to add more padding to main2? Ok, I'll try that. <br /><br />Yes, its lucky to have a backup. I did that before I think too. I also had made a backup. <br /><br />What do you mean by it will be cutoff like the real windows 10 menu? I'm not sure what you mean. <br /><br />An emblem mask? I'm not sure how to use it. x3 <br /><br />One giant emblem could work, but I guess I'm lazy lol , and the current emblems seem to work.<br /><br />Yes, I could preset the amount of recent programs. <br /><br />Idk, I think that's a word x3. It sounds like a lot of work. <br />Ah, so that's why metro colors are different between windows 8 &amp; windows 10. Doing other things in the meantime sounds good. I made a start menu in the meantime of a html project I had. <br /><br />I could help, but I'm not as good as you are with .skin making. x3<br /><br />Thanks for complementing me saying I'm computer savvy. ^-^ <br />I'm so so I'd say. <br /><br />I could try to find the direct links for those, yes. I'll take a look a bit later for you.<br /><br />Here is disk tidy: c:\windows\system32\cleanmgr.exe<br /><br />I looked in c:/windows/system32, but I didn't find any others. <br />I searched for ie.exe in c:/windows, and found ieexplore.exe in c:\windows\winsxs\wow64(very long file name here)<br /><br />Internet explorer is also in c:\program files\internet explorer\iexplore.exe<br /><br />Will look again tomorrow for more.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd510.html?mode=quote&amp;f=17&amp;p=31261"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31271"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31271">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic49d2-2.html?p=31271#p31271"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 17, 2017 12:59 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi redblade8 <br /><br />Don't bother looking for anymore links. Thank you.<br />I will use those as well as what I found on internet.<br />I found someone asking similar link questions on old Classic Shell forum.<br /><br />The answer is to go to Microsoft and get control panel items, canonical names:<br /><br /><!-- m --><a class="postlink" href="https://msdn.microsoft.com/en-us/library/windows/desktop/ee330741(v=vs.85">https://msdn.microsoft.com/en-us/librar ... 41(v=vs.85</a><!-- m -->).aspx<br /><br />like this:<br /><br />Devices and Printers shell:::{A8A91A66-3A7D-4424-8D24-04E180695C7A}<br /><br />I found out there is a special folder in the registry, that also has those types of links.<br /><br /><br /><br />I'm not on Win 10 right now to make a screen shot of how the tiles disappear at bottom of real menu, when its scrollbar is moved. <br /><br />Only you know what you want on the skin, regarding the amount of padding.<br /><br /><br />I just finished making a glass color option if skin used on Win 8. <br />It looks so different switching back and forth between start screen colors and glass colors.<br />The glass colors all look more grey looking. The menu looks so dull and boring. <br />I think it's due to the default saturation level in Windows personalization control.<br />One background picture with auto color turned on, makes the tiles on my menu practically white. <br />Can't even read the fake text on it. Dang it. If I boost the color slider the white goes away.<br />I made a mistake in not making tiles original size. Looks so dinky. Too late now,<br />I'm not going back to rework them. I think I'm going to try and finish mine by the weekend, or trash it,<br />and work on house renovating instead. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingfd2e-3.html?mode=quote&amp;f=17&amp;p=31271"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31279"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31279">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic71fb-2.html?p=31279#p31279"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 17, 2017 8:44 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">No problem.I do remember an administrative folder that if you named a new folder with a certain name, you would get the administrative folder. <br /><br />Oh. I think I got you now. The tiles disappear when you scroll. <br /><br />Only a bit of padding on the top. I'll have to try and see. <br /><br />I didn't know that the glass colors seem more grey. Hmm. I didn't even know that there was so much of a difference between the colors. <br /><br />House renovating is lots of work.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7acc-2.html?mode=quote&amp;f=17&amp;p=31279"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p31280"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31280">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic92f1.html?p=31280#p31280"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jan 17, 2017 9:35 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">The location I was mentioning using regedit is one of the many parent folders in<br />HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions. <br /><br />I see that the link to Ms expired or did not take capture properly in forum.<br /><br />The way I see about glass color is, white is included, Win10/8 don't use white in startscreen/startmenu color tables.<br />One of the pictures explains one of the types of padding, I was talking about earlier.<br /><br />The other picture I made, then noticed your reply. Uploaded anyway.<br />You know when all the flashing, rotating live colored tiles are removed,<br />it looks as boring as the menu I'm making. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br />I'll have to spice it up with sriracha.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filecc7d.png?id=4401" alt="Customize padding.png" /><br />
+			<span class="gensmall">Customize padding.png [ 4.17 KiB | Viewed 10654 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/filed6e5.png?id=4400" alt="tiles hide behind taskbar.png" /><br />
+			<span class="gensmall">tiles hide behind taskbar.png [ 33.15 KiB | Viewed 10654 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingdb65.html?mode=quote&amp;f=17&amp;p=31280"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p31385"></a>
+				<b class="postauthor">redblade8</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p31385">Re: Windows 98/ Windows 10 Combination Start Menu w Captions</a></div><div style="float: right;"><a href="viewtopic58dd.html?p=31385#p31385"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jan 26, 2017 3:30 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Fri Oct 18, 2013 9:03 pm<br /><b>Posts:</b> 110
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I saw a picture of someone using a white background start screen for windows 8. I'm not sure where I can find it now though. Yes, I'd agree with the tiles removed it would seem more boring. xD</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist5b6d.html?mode=viewprofile&amp;u=1899"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting5f8b-3.html?mode=quote&amp;f=17&amp;p=31385"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=17&amp;t=7214"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="postinge294.html?mode=reply&amp;f=17&amp;t=7214"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 22 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 2 guests</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="7214" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17" selected="selected">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=31280 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:03:23 GMT -->
+</html>

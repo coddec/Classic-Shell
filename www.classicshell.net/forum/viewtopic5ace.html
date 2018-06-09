@@ -1,0 +1,880 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=1744 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - Creating 32-bit Start Menu Orbs [UPDATED FOR ANIMATED ORBS!]</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Tutorials" href="feede774.php?f=5" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - Creating 32-bit Start Menu Orbs [UPDATED FOR ANIMATED ORBS!]" href="feed8c43.php?f=5&amp;t=339" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '1');
+	var per_page = '';
+	var base_url = '';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 6:19 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforum4d6b.html?f=3">Classic Shell</a> &#187; <a href="viewforume774.html?f=5">Tutorials</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic8c43.html?f=5&amp;t=339">Creating 32-bit Start Menu Orbs [UPDATED FOR ANIMATED ORBS!]</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting0ddd.html?mode=post&amp;f=5"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting3047.html?mode=reply&amp;f=5&amp;t=339"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 5 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopic99a7.html?f=5&amp;t=339&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopicc062.html?f=5&amp;t=339&amp;view=previous">Previous topic</a> | <a href="viewtopicd84d.html?f=5&amp;t=339&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p1669"></a>
+				<b class="postauthor">Tenzen</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p1669">Creating 32-bit Start Menu Orbs [UPDATED FOR ANIMATED ORBS!]</a></div><div style="float: right;"><a href="viewtopic3d80.html?p=1669#p1669"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Mar 04, 2013 2:38 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file2d1d.jpg?avatar=359_1378268119.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Feb 21, 2013 11:04 pm<br /><b>Posts:</b> 463
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><img src="../../i771.photobucket.com/albums/xx354/chinarabbit/Capture30_zps114d861c.jpg" alt="" /><br /><br /><span style="text-decoration: underline"><strong>**[UPDATED!] 255-frame Animations described in the 4th Post of this thread**</strong><br /></span><div align="right">.</div>The format &quot;32-bit PNG&quot; seems to confuse many people, so i'll explain it here, and how to make a custom Start Menu Orb<br /><div align="right">.</div>The above orb set was created by Wesley, available here: <!-- l --><a class="postlink-local" href="http://classicshell.net/forum/viewtopic.php?f=18&amp;t=194&amp;p=1667#p1667">viewtopic.php?f=18&amp;t=194&amp;p=1667#p1667</a><!-- l --><br /><div align="center">_____________________<br /><div align="left"><strong>*Step 1 - Create Start Menu Orb:</strong></div></div><ul><li>Make a new image thats 200wx200h with a transparent background</li><li>Create the image as you want your Start Menu Orb to look in its normal state<ul><li>Its a good Idea to test your image as small as 30x30 and as big as 200x200 to be sure it still looks good</li></ul></li><li>Resize the Canvas to 200w600xh</li><li>Duplicate your original image two times, so you have 3 layers, and center the other two in the 200-400 &amp; the 400-600 square</li><li>Edit the middle image to be your hot state, as you want it to look when the cursor is moved over the start button</li><li>Edit the bottom on the bottom as you want it to look when the start button its pressed</li><li>Be sure you are working in 8-bit mode using Transparency (Transparent Background)</li><li>Click Save, in most programs transparency will be saved automatically, adding a 4th 8-bit channel (Alpha) to the Three 8-bit color channels: 8-bit Red, 8-bit Green &amp; 8-bit Blue (RGB 24-bit).. meaning most PNG's will automatically be saved as 32-bit images (RGBa)</li><li>If it gives you an option to save it as 24-bit, select that, and also select &quot;Transparency&quot; checkbox, 24+8=32</li><li>Save the image</li></ul><div align="right">.</div>*You can create any size square image you like, such as 150x150, just be sure its centered, and your graphic occupies the space, then just triple the pixel height when you resize the canvas (150x3=450, so resize a 150x150 image to 150w x 450h, etc.. and it doesnt have to be square, so long as the widths are all the same, depending on how you want it to look, or sit..etc ).. <br /><div align="right">.</div>**Its important NOT to work in 16-bit or 32-bit mode when creating your PNG, only 8-bit.. as that setting is per channel, so 32-bit CMYK would would be 128-bit.. PNG doesnt support CMYK, and 32-bit doesnt support Alpha transparency, so 32-bit mode would create 96-bit 3-channel (RGB) .PNG image, but you must have only a 32-bit image for most any custom PNG graphic having to do with Windows <br /><div align="center">_____________________</div><strong>*Step 2 - Set it as your Start Menu Orb</strong><br /><ul><li>Save your PNG image to a permanent location with a path name will not be moved or changed</li><li>Right-click your Classic Shell Orb &amp; go to Settings:</li><li>Click the &quot;Start Button&quot; tab</li><li>Under &quot;Button Look&quot; select &quot;Custom Button&quot;</li><li>Click &quot;Button Image&quot; and click the &quot;...&quot;</li><li>Browse to your new custom image</li><li>Under &quot;Button Size&quot; select any size you want your button to be<ul><li>Between 30 &amp; 50 for single row task bar, or up to 70 or more if you want it bigger</li><li>Between 70 &amp; 100 if you use a double-row taskbar, or as high as 200 if you like a real big one</li><li>The example above is size 170</li></ul></li><li>Click OK</li></ul><img src="../../i.imgur.com/1w6YcgE.png" alt="" /></div>
+
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberlist794e.html?mode=viewprofile&amp;u=359">Tenzen</a> on Tue Jul 01, 2014 12:02 am, edited 8 times in total.</span>
+						<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist794e.html?mode=viewprofile&amp;u=359"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting1c80.html?mode=quote&amp;f=5&amp;p=1669"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p1727"></a>
+				<b class="postauthor">Tenzen</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p1727">Re: Creating 32-bit PNG's - for Windows Start Menu Orbs</a></div><div style="float: right;"><a href="viewtopicbda9.html?p=1727#p1727"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Mar 05, 2013 7:54 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file2d1d.jpg?avatar=359_1378268119.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Feb 21, 2013 11:04 pm<br /><b>Posts:</b> 463
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">its also a good idea to set up a Color Square Checking System, as such:<br /><div align="center">___________________</div><ul><li>If your image is 300x300, for example, create a new layer, select it, and fill it with Red</li><li>Resize your image Canvas to 300wx900h</li><li>Duplicate the Red Color layer 2 times</li><li>Use the Fill Bucket to fill one Square with Blue and one square with Green</li><li>Set the three color boxes exactly on the document so they are not overlapping, and there is no space between them, and they are centered exactly in the middle.. so one nudge of any block in any direction will leave a blank space.</li><li>Set the 3 color block layers behind all other layers</li><li>Normal State:<ul><li>Set you first Image of the Normal State on the top, centered on the top colored block</li><li>Click the layer for the color block thats on top</li><li>Ctrl+Click the Layer to select the block, or Use a Magic Wand select it</li><li>Right-Click and select &quot;Invert&quot; to select the space of the bottom two squares</li><li>Click your top graphic image layer, and hit Delete on your keyboard</li></ul></li><li>Hot State:<ul><li>Set you first Image of the Hot State in the Middle section, centered on the middle colored block</li><li>Click the layer for the color block thats in the middle</li><li>Ctrl+Click the Layer to select the block, or Use a Magic Wand select it</li><li>Right-Click and select &quot;Invert&quot; to select the space of the squares above &amp; below it</li><li>Click your middle graphic image layer, and hit Delete on your keyboard</li></ul></li><li>Click State:<ul><li>Set you first Image of the Click State on the bottom, centered on the bottom colored block</li><li>Click the layer for the color block thats on bottom</li><li>Ctrl+Click the Layer to select the block, or Use a Magic Wand select it</li><li>Right-Click and select &quot;Invert&quot; to select the space of the two squares above it</li><li>Click your top graphic image layer, and hit Delete on your keyboard</li></ul></li><li>Hide the 3 color Block Layers</li><li>You should now have a very clean graphic with no overlapping or strange alignment</li><li>Save as PNG with Transparency </li><li>Done</li></ul><div align="center">_____________________</div>Below is an Example, the Original Can be found <a href="http://classicshell.net/forum/viewtopic.php?f=18&amp;t=341&amp;p=1714#p1714" class="postlink">Here:</a></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file4238.jpg?id=142" alt="Capture34.JPG" /><br />
+			<span class="gensmall">Capture34.JPG [ 41.46 KiB | Viewed 18775 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist794e.html?mode=viewprofile&amp;u=359"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting22be.html?mode=quote&amp;f=5&amp;p=1727"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p1744"></a>
+				<b class="postauthor">Tenzen</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p1744">Re: Creating 32-bit PNG's - for Windows Start Menu Orbs</a></div><div style="float: right;"><a href="viewtopic5ace.html?p=1744#p1744"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Mar 05, 2013 4:46 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file2d1d.jpg?avatar=359_1378268119.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Feb 21, 2013 11:04 pm<br /><b>Posts:</b> 463
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Another, more fail-safe way to work, might be to:<br /><ul><li>Create your 300x300 icon</li><li>Duplicate it two times, by either:<ul><li>Hitting Ctrl+A to select all, New Document from Clipboard, Repeat</li><li>or Saving it, then Find it in the folder &amp; duplicate it two times</li></ul></li><li>Create a New Document sized 300w x 900h</li><li>Create the Colored boxes as described in the second step above</li><li>In each of the three 300x300 images:<ul><li>Ctrl+A to Select All</li><li>Crop Image to remove any off-stage elements</li><li>Group all visible Elements into a New Group</li><li>Ctrl+Drag to the 300x900 doc, then Hold Ctrl+Shift to release to paste in place, Use Shift +Up/Down (just Up /Down for smaller movements) to move it Vertically up or down to its location, centered on its colored block</li><li>**you can also use the Distribute &amp; Align functions to help get them distributed equally</li></ul></li><li>Trim the Edges with the Colored Square Boxes as detailed in 2nd post above</li><li>Save as PNG</li><li>The main difference between this method &amp; the one above, is that you are creating a new document, rather than resizing, then importing 3 separate graphic in fresh, so there's less likelihood of a few pixels going astray</li></ul>**also, if you are using a Gradient Transparency be sure it only fills the bottom half of the Image background, or else the faint edges will show around the icon.. you can do that by either filing a marquee selection of the desired height, or by filling the layer, then transforming it and dragging the top downward<br /><div align="center">________________________________<br /><div align="right">.</div>Be sure post any Orbs you create in the Start Button Section so others can enjoy them, here: <!-- l --><a class="postlink-local" href="viewforuma213.html?f=18">viewforum.php?f=18</a><!-- l --></div></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist794e.html?mode=viewprofile&amp;u=359"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd9ae.html?mode=quote&amp;f=5&amp;p=1744"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p13638"></a>
+				<b class="postauthor">Tenzen</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p13638">Re: Creating (&amp; Installing) 32-bit .png Windows Start Menu O</a></div><div style="float: right;"><a href="viewtopicc398.html?p=13638#p13638"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sun Jun 29, 2014 11:01 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file2d1d.jpg?avatar=359_1378268119.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Feb 21, 2013 11:04 pm<br /><b>Posts:</b> 463
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><strong><span style="font-size: 200%; line-height: 116%;"><span style="font-family:Verdana,sans-serif;">[UPDATE] ANIMATED ORBS! &#40;up to 255 Frames of Animation!&#41;:</span></span></strong><span style="font-family:Times New Roman,serif;"></span><br /><ol style="list-style-type: decimal"><li><span style="font-family:Verdana,sans-serif;">Create your states the same as above, only you can create as many as 255.. all the same width, just as before, using the control boxes so they are all exactly spaced, for as many as you have.. be sure to make your document height exactly the size needed.. for example if your box is 256 w x 230 h, and you want 50 frames, then multiply 230 x 50, and make your canvas size 256w x 11500h.</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Select the Top Box and Paste your Animated Frame directly in the box, auto-fitted to the dimensions:</span><span style="font-family:Times New Roman,serif;"></span><ul><li><span style="font-family:Verdana,sans-serif;">Select a colored box with the Marching Ants, then paste your single graphic animation frame on a new layer within those marching ants, then repeat with the rest of the animated frames, putting every frame over a selected different color &#40;with the marching ants&#41;, so that they&#39;ll all be centered nicely</span><span style="font-family:Times New Roman,serif;"></span></li></ul></li><li><span style="font-family:Verdana,sans-serif;">Arrange all your colored boxes down so there is no spaces in between</span><span style="font-family:Times New Roman,serif;"></span><ul><li><span style="font-family:Verdana,sans-serif;">If you have access to Photoshop:</span><span style="font-family:Times New Roman,serif;"></span><ul><li><span style="font-family:Verdana,sans-serif;">Create one colored box, Hit Ctrl+Alt+T to make a Transform-Duplicate</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Use your keyboard arrow keys to move the new box directly down below the current box, zoom in at a pixel level to be sure there is no overlapping pixels</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Hit Enter to complete the transition</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Zoom all the way out to view the full document</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Hit Ctrl+Alt+Shift+T over and over to repeat the last transition until you get to the bottom if the document</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Go back and Ctrl-Click on each box and hit Ctrl+U to adjust its color a bit, repeat down to the bottom</span><span style="font-family:Times New Roman,serif;"></span></li></ul></li></ul></li></ol> <ul><li><span style="font-family:Verdana,sans-serif;">When you&#39;re finished with your orb, resize your Canvas to 1 pixel more in height.</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Select all your layers and move them all down one pixel, if your extra pixel row was added to the bottom, then begin coloring the top 1-pixel row with the following colors, pixel by pixel, as follows:</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <strong><span style="font-family:Verdana,sans-serif;">Pixels 0 &amp; 1 - Standard Animation Data Pixels &#40;doesn&#39;t change&#41;:</span></strong><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Double-click your color picker and change RGB to 65R 78G 77B, switch to your 1-pixel sized pencil and click on the first pixel in the far left of the row to color it that color - This is called Pixel &quot;0&quot;</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Change RGB to 66R 84G 78B and color in the pixel to the right of the last one, the second pixel from the left, Pixel &quot;1&quot;</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;"><strong>Pixel 2 - Graphic Animation Frame Data:</strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Change RGB to 1R 0G, then change B to the number of animated frames you have, like 50B, and color the 3rd pixel in your new row, which is Pixel &quot;2&quot;... &#40;the &quot;1R&quot; just states we&#39;re only using one row here, which is all we&#39;ll ever need, so this doesn&#39;t change</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;"><strong>Pixels 3, 4, &amp; 5 - Defining Frames for Button States</strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><strong><span style="font-family:Verdana,sans-serif;">Normal State:</span></strong><span style="font-family:Verdana,sans-serif;">Change RGB to 0R, 0G, and then change R to the frame you want in your normal state, first frame=0, so 0B for the first frame as Cold state&#41;, then color the next pixel, the 4th from the left, or Pixel &quot;3&quot;</span><span style="font-family:Times New Roman,serif;"></span></li><li><strong><span style="font-family:Verdana,sans-serif;">Hot State:</span></strong><span style="font-family:Verdana,sans-serif;">Change RGB to 0R 0G and change B to the frame you want on your Hot state, say, frame 48, so 48B.. then use that to color in the 5th pixel, or Pixel &quot;4&quot;</span><span style="font-family:Times New Roman,serif;"></span></li><li><strong><span style="font-family:Verdana,sans-serif;">Pressed State:</span></strong><span style="font-family:Verdana,sans-serif;">Change RGB to 0R, 0G, then change B to the frame you want when clicked.. say frame 49, so 49B, then use that to color in the 6th pixel, or Pixel &quot;5&quot;</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;"><strong>Pixels 6 &amp; 7 - Defining Normal to Hot Animation, Timing, &amp; Frames</strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Change RGB to R1 G1 and change B the time length you want &#40;18= 0.3 seconds, make the number higher for slower animations&#41;, such as 50B.. Color the 7th pixel in the row &#40;called Pixel &quot;6&quot;&#41; with this color</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Change RGB to R= End frame, G=0, B= Start Frame, as you want it to play from normal to hot.. such as 48R 0G 0B, to go from beginning to end &#40;0 is frame 1, 49 is frame 50&#41;, then color the 8th pixel &#40;called Pixel &quot;7&quot;&#41; with this color.. &#40;Note: raising this number doesnt seem to affect the play.. all frames should be played if the range is higher than what is present&#41;</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;"><strong>Pixels 8 &amp; 9 - Defining Hot to Normal Animation, Timing, &amp; Frames</strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Change RGB to R1 G1 and change B to the time length you want &#40;it says 18= 0.3 seconds, so make the number higher for slower animations&#41;, such as 50B.. Color the 7th pixel in the row &#40;called Pixel &quot;8&quot;&#41; with this color &#40;this color will probably be the same as Pixel &quot;6&quot; above..&#41;</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Change RGB to R= End Frame, G=0, B = Start frame, as you want it to play from Hot back to normal.. so if you wanted it to play backwards you&#39;d enter 0R 0G 48B.. &#40;0 is frame 1, 49 is frame 50&#41;, or if you just wanted it to repeat the same animation you&#39;d use the same as above… then color the 9th pixel with this color</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;"><strong>Pixels 10, 11, 12, &amp; 13 - Not available for Orb animation in Classic Shell</strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Color them 0R, 0G, 0B, &#40;100% Black in RGB&#41;</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <span style="font-family:Verdana,sans-serif;">------------------</span><span style="font-family:Times New Roman,serif;"></span><br /><ol style="list-style-type: decimal"><li><span style="font-family:Verdana,sans-serif;">Save it, export it as PNG, and load it into classic shell</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">You can cancel the animation by simply clicking... so dont worry about making long animations</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Making a short Normal to Hot animation, then a very long Hot to Normal animation will allow your animation to continue playing as you move on to other things &#40;as long as you dont click anything&#41;</span><span style="font-family:Times New Roman,serif;"></span></li></ol> <span style="font-family:Verdana,sans-serif;"><strong>You can also put Completely different animations for you Orb.. such as: </strong></span><span style="font-family:Times New Roman,serif;"></span><br /><ul><li><span style="font-family:Verdana,sans-serif;">Frame 49 = Normal State</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Frame 2-25 &#40;Completely Different&#41; are used for the Normal to Hot transition...</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Then frames 30-45 &#40;Completely different again&#41; are for the Hot back to Normal transition</span><span style="font-family:Times New Roman,serif;"></span></li><li><span style="font-family:Verdana,sans-serif;">Then Frame 1 &#40;a completely unrelated image, again&#41; is used for the Pressed state</span><span style="font-family:Times New Roman,serif;"></span></li></ul> <br /><span style="font-family:Verdana,sans-serif;">Interested to see or hear how other people are using this new implementation of Animated Frames.. share your ideas, requests, or work in the Start Button Forum Section!</span></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist794e.html?mode=viewprofile&amp;u=359"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting78ad.html?mode=quote&amp;f=5&amp;p=13638"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p13743"></a>
+				<b class="postauthor">Tenzen</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p13743">Re: Creating 32-bit Start Menu Orbs [UPDATED FOR ANIMATED OR</a></div><div style="float: right;"><a href="viewtopic7309.html?p=13743#p13743"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 03, 2014 12:36 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file2d1d.jpg?avatar=359_1378268119.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Feb 21, 2013 11:04 pm<br /><b>Posts:</b> 463
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">its very hard to resize animated orbs, and the more frames you have the bigger it will become, making it difficult to share..<br /><br />I recommend under 20 frames.. 12-15 is probably best<br /><br />Resizing will negate the first pixel line of data you entered, so you will have to enter that again... but resizing will also often ruin the entire animation as the height and width wont match up.. <br /><br />one possible solution would be to delete the first row from the image, then resize, then add another row to the top of your smaller image and add the animation data to the new row.. I'll test this later<br /><br />it may also be necessary that the new height be equally divisible by the number of frames, without decimals.. (perhaps this is required for all animations, i dont know if it supports decimal places during its division)</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist794e.html?mode=viewprofile&amp;u=359"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting7c7c.html?mode=quote&amp;f=5&amp;p=13743"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=5&amp;t=339"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting0ddd.html?mode=post&amp;f=5"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting3047.html?mode=reply&amp;f=5&amp;t=339"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>1</strong> of <strong>1</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 5 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforum4d6b.html?f=3">Classic Shell</a> &#187; <a href="viewforume774.html?f=5">Tutorials</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 1 guest</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="339" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5" selected="selected">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?p=1744 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:26 GMT -->
+</html>

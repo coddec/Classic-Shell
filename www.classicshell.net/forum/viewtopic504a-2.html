@@ -1,0 +1,549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=4817&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:12:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Change Color Of Metro Menu to match Taskbar color</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Change Color Of Metro Menu to match Taskbar color</span><br /><span class="gensmall"><a href="viewtopicc583.html?f=7&amp;t=4817">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=4817</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Wed Jul 29, 2015 7:54 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Change Color Of Metro Menu to match Taskbar color&nbsp;&nbsp;<img src="styles/subsilver2/imageset/icon_topic_solved_post.png" width="12" height="12" alt="Topic is solved" title="Topic is solved" /></b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi Guys. I've done a search for this but couldn't find any answers, so I'm hoping someone here can help me. I'm after upgrading to Windows 10 from Windows 7 and since I didn't like the Windows 10 start menu very much I decided to try Classic Start Menu. I went through most of the default skins and I really fell in love with the Windows 7 style Metro skin, it's just really clean and easy to manage. Here's how it looks for me right now:<br /><br /><img src="../../i.imgur.com/Eyu4Gtq.jpg" alt="" /><br /><br />My only issue is that I'd love to get the background of the menu to be the same darker blue color of the taskbar, but unfortunately the Menu Glass Color option in settings doesn't change the color on this skin for me. I've looked around inside the skin file using Resource Hacker but I can't seem to find any particular line that I can edit to change the color. Anyone have any ideas?<br /><br />Thanks!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Wed Jul 29, 2015 8:13 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The background is set by lines like this:<br />Main_bitmap=$StartBackground<br /><br />That means the main menu background will use the start background color. The taskbar uses the $SystemAccentDark2 or $SystemAccentDark3 color depending if it is transparent or not. You can try changing the menu to<br />Main_bitmap=$SystemAccentDark2<br /><br />However, the selection also uses SystemAccentDark2, so you'll have to change that color as well. For example<br />Main_selection=$StartSelectionBackground<br /><br />BTW, those are just examples. You will have to change multiple lines in the skin because the same colors are used in multiple places.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Wed Jul 29, 2015 8:34 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Wow, thanks for the quick reply, I made a donation so you can get yourself a pint on me <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> My desktop is looking great now!<br /><br /><img src="../../i.imgur.com/t8AvN06.png" alt="" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Wed Jul 29, 2015 8:41 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Great job <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Do you mind sharing the skin here?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed Jul 29, 2015 8:47 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />@vairish, just out of curiosity, have you disabled taskbar transparency in your screenshot using Classic Shell settings? Is your taskbar set to be opaque, translucent or glass?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Wed Jul 29, 2015 8:52 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">Ivo wrote:</div><div class="quotecontent">Great job <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Do you mind sharing the skin here?</div><br />Of course not. For anyone who wants to use it, you will need to set the Programs Pane Width to 38 in the main menu tab if you want your start menu to be in line with the Cortana/Ask Me Anything bar.
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileeb26.php?id=2316">MetroWin10.skin7</a> [115.5 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 1345 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Wed Jul 29, 2015 8:55 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">GauravK wrote:</div><div class="quotecontent">@vairish, just out of curiosity, have you disabled taskbar transparency in your screenshot using Classic Shell settings? Is your taskbar set to be opaque, translucent or glass?</div><br /><br /><br />I didn't change any taskbar settings with Classic Shell. It's set to the default Win 10 transparency settings.<br /><br /><img src="../../i.imgur.com/u81LVY3.png" alt="" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed Jul 29, 2015 9:25 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />This can be an option for the Metro skin in the next version since a lot of users would want their taskbar and Start Menu colors to match even if the Windows 10 Start Menu is a different shade than the taskbar. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Wed Jul 29, 2015 9:39 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The taskbar can be many different colors depending on the settings. Skins have no capability to dynamically change colors like that.<br />BTW, the easiest way to match the start menu and the taskbar is to change the taskbar color <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Wed Jul 29, 2015 4:28 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Changed the Sub Menu background to the original colour so they stand out a bit more from the Start Menu:<br /><br /><img src="../../i.imgur.com/tttRBdQ.png" alt="" />
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileed75.php?id=2318">Metrowin10b.rar</a> [20.42 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 621 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed Jul 29, 2015 7:55 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ah awesome job. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vairish</b> [ Thu Jul 30, 2015 9:20 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Thanks man <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> I was bored in work today so I started remaking my start menu in the classic two column style so I could have transparency. Few things left to fix but pretty happy with it so far.<br /><br /><img src="../../i.imgur.com/1mb57br.png" alt="" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>PimpUigi</b> [ Tue Sep 08, 2015 2:55 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu to match Taskbar color</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Sweet, I'm looking forward to there being transparency stuff for Classic Shell's metro skin.<br />Not glass though, P.U.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>vortex-5</b> [ Mon Sep 14, 2015 6:20 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu to match Taskbar color</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Wow you got the native translucency effect to work? <br /><br />I would really like that version of the skin with the translucency are you planning on releasing it?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Tue Nov 17, 2015 4:24 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu to match Taskbar color</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Starting with Classic Shell 4.2.5, the Metro and Midnight skins support transparency in both columns in Windows 7 style.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Nimbi</b> [ Wed Jun 15, 2016 9:55 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu to match Taskbar color</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Can someone please make a recolored version of the 7style metro skin to match my taskbar? Here is a screenshot for reference. Also, I would like the highlight to show up in the same shade of purple that the skin itself currently shows up as.
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<img src="download/filee728.png?id=3566" alt="2016-06-15 (1).png" /><br />
+			<span class="gensmall">2016-06-15 (1).png [ 669.38 KiB | Viewed 12385 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>juniper7</b> [ Thu Jun 16, 2016 8:43 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu to match Taskbar color</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />How did you solve it? Different skin, adjust color in settings, or have you taken the plunge into skinning? <br /><br />let everyone know <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />Was it Highlight selector color, new program highlight selector, or did you mean the hover highlight text color?<br />I just experimented with custom text color. See this post in skinning section: <br /><br /><!-- l --><a class="postlink-local" href="viewtopic5cfa.html?f=17&amp;t=6220">viewtopic.php?f=17&amp;t=6220</a><!-- l -->
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Spearoid</b> [ Sun Oct 08, 2017 11:29 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Change Color Of Metro Menu</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">vairish wrote:</div><div class="quotecontent">Wow, thanks for the quick reply, I made a donation so you can get yourself a pint on me <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> My desktop is looking great now!<br /><br /></div><br /><br /><br />Can you share what code changes you had to make to make the start menu match your taskbar? I see the main_bitmap section but I don't know what color variable to use to make it match the taskbar<br /><br />also, can you share where you had to change code to alter the color of the sub-menu flyout?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=4817&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:12:36 GMT -->
+</html>

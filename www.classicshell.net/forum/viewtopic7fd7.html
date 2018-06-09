@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=6&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:57:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - How to capture crash dumps or slowdown dumps</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">How to capture crash dumps or slowdown dumps</span><br /><span class="gensmall"><a href="viewtopiccc99.html?f=12&amp;t=6">http://www.classicshell.net/forum/viewtopic.php?f=12&amp;t=6</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Sat Jan 05, 2013 8:38 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>How to capture crash dumps or slowdown dumps&nbsp;&nbsp;<img src="styles/subsilver2/imageset/icon_topic_solved_post.png" width="12" height="12" alt="Topic is solved" title="Topic is solved" /></b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><span style="font-family:Tahoma;">If you seek help with a <strong>crash</strong> or a severe <strong>slowdown</strong> with Classic Shell, it would be most helpful if you capture a dump from Explorer. If your taskbar disappears and restarts and all Explorer folder windows close themselves after Classic Shell is installed, it means your Explorer.exe process is crashing for some reason. By capturing a crash dump, the issue can be identified.<br /><br />Here&#39;s how you do it: <br />1&#41; Download the ProcDump tool from here: <a href="http://technet.microsoft.com/en-us/sysinternals/dd996900" class="postlink">http://technet.microsoft.com/en-us/sysinternals/dd996900</a> <br /><br />2&#41; Unzip it in some folder that doesn&#39;t need admin permissions &#40;not in Windows or Program Files&#41;. Unzipping it to the Desktop folder, for example or the Documents folder will do just fine. <br /><br />If you don&#39;t know how to unzip compressed zip files, here&#39;s how you can do that: you can right click them -&gt; Open with -&gt; Windows Explorer. Then click the Extract all command. <br /><br />3&#41; Open a command prompt in that folder. To do this, open the folder where you unzipped Procdump, then press Shift and while you are holding down Shift, right click in an empty/white area of the folder. In the context menu, you will see the option &quot;Open command window here&quot;. Click it. <br /><br /><img src="../../i.imgur.com/T5CcHG6.png" alt="" /> <br /><br />OR, another way to open the command prompt is to simply open the folder where you extracted procdump.exe in File Explorer. Then press Alt+D to focus on the address bar, press Backspace to erase the existing address bar text, and type: &#39;cmd&#39; &#40;without quotes&#41; in the Address bar and press Enter. This method will open command prompt at the folder where you have procdump.exe. <br /><br />4&#41; Determine what you are experiencing. A <strong>crash </strong></span><span style="font-family:Tahoma;">usually causes Explorer.exe to show some error message or Explorer directly restarts &#40;the taskbar disappears and appears again&#41;. A <strong>slowdown  </strong></span><span style="font-family:Tahoma;">causes Explorer/taskbar/Start menu to stop responding/freeze and sometimes it completely hangs and Windows restarts it after some time.</span><span style="font-family:Tahoma;">Depending on what you are facing, at the command prompt, <br /><br />4a&#41; For <strong>crashes</strong>, type <strong>procdump -e explorer.exe</strong> - this one will capture a crash dump when the explorer process crashes. Now try to make it crash, keep procdump running and wait for it to crash or see if you can reliably make it crash</span><br /><span style="font-family:Tahoma;"></span><br /><span style="font-family:Tahoma;">OR</span><br /><span style="font-family:Tahoma;">4b&#41; For <strong>slowdowns</strong>, type <span style="font-size: 100%; line-height: 116%;"><strong>procdump -n 10 -s 1 explorer.exe</strong></span> - this one will capture 10 dumps, one second apart. As soon as you enter the command, perform the slow operation</span> <br /><span style="font-family:Tahoma;"></span><br /><span style="font-family:Tahoma;">Note: After giving one of the above commands, you might get this error message &quot;Multiple processes match the specified name.</span><span style="font-family:Tahoma;">&quot; In that case,</span><span style="font-family:Tahoma;">open Control Panel -&gt; Folder Options / File Explorer Options and switch to the View tab. Scroll down and make sure that the option &quot;Launch folder windows in a separate process&quot; is unchecked. If it is checked, then turn it off, click OK, close File Explorer and log off your user account and login again, to close any extraneous Explorer.exe instances.</span><br /><span style="font-family:Tahoma;"></span><br /><span style="font-family:Tahoma;">If you cannot capture a crash dump, then try a slowdown dump, and vice versa. What you perceived as a crash might be a slowdown which is eventually causing Windows to restart an unresponsive Explorer.exe.</span><br /><span style="font-family:Tahoma;">Then run the appropriate <strong>procdump</strong> c</span><span style="font-family:Tahoma;">ommand mentioned in step 4 again &#40;it should no longer give you the above mentioned error with only one Explorer.exe process running&#41;.</span> <br /><span style="font-family:Tahoma;"></span><br /><span style="font-family:Tahoma;">5&#41; After you capture a few dumps, compress them into ZIP. This will make the size of the dumps significantly smaller and easier to upload. <br /><br />To put any *.dmp files inside a ZIP file, select all the dumps &#40;.dmp files&#41; and right click on any of the selected files -&gt; Send To -&gt; Compressed &#40;zipped&#41; folder. This will create a ZIP file in the same folder as the .dmp files.</span><span style="font-family:Tahoma;"><span style="font-family:Tahoma;"> <br /><br />Now attach the ZIP to your bug report in this forum &#40;the forum has Upload/Attach files feature when you click &quot;<strong>Full Editor</strong>&quot;&#41;. If the file is too big to attach here, try to upload it somewhere like OneDrive, Google Drive or Dropbox, and post the link here.</span></span> <br /><span style="font-family:Tahoma;"><span style="font-family:Tahoma;"></span></span><br /><span style="font-family:Tahoma;"><span style="font-family:Tahoma;">You can also upload it to MediaFire drop folder:</span><a href="http://www.mediafire.com/filedrop/filedrop_hosted.php?drop=4980d8cea2079e5b90ae68b5d5b14a60ceb6f95ea06cd44ea5f267ca5151aa1d" class="postlink">http://www.mediafire.com/filedrop/filedrop_hosted.php?drop=4980d8cea2079e5b90ae68b5d5b14a60ceb6f95ea06cd44ea5f267ca5151aa1d</a></span> <br /><span style="font-family:Tahoma;"></span><br /><span style="font-family:Tahoma;"><strong>Important</strong>: Please enter a description for the file - who is it from and what is it for. Or post a message in the forums so it is clear what the dump is for.</span>
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Sat Dec 28, 2013 8:47 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to capture crash dumps</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><span style="font-family:Tahoma;">Here&#39;s an alternative way for capturing <strong>crash</strong> dumps:</span><ol style="list-style-type: decimal"><li><span style="font-family:Tahoma;">Create a folder on your computer &#40;for example C:\CrashDumps&#41;</span></li><li><span style="font-family:Tahoma;">Run regedit.exe &#40;located in C:\Windows&#41; and go to <strong>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting</strong></span></li><li><span style="font-family:Tahoma;">Look for a sub-key named <strong>LocalDumps</strong>. If it doesn&#39;t exist, create it</span></li><li><span style="font-family:Tahoma;">Inside the LocalDumps key create 3 values:<br /><strong>DumpFolder</strong> &#40;string&#41;, set it to the path created at step 1<br /><strong>DumpCount</strong> &#40;dword&#41;, set it to 10<br /><strong>DumpType</strong> &#40;dword&#41;, set it to 1</span></li></ol><span style="font-family:Tahoma;">After you do this, any time some program crashes, a dump will be saved in that folder. Next time Explorer crashes go to that folder and look for the newest file named &quot;explorer.exe.something.dmp&quot;.<br /><br />The advantage over using procdump is that you need to set this up only once and don&#39;t have to remember to run procdump every time. It is also useful if explorer crashes very early after login before you can run procdump.<br /><br />It is possible to set up crash dumps for specific applications, like &quot;explorer.exe&quot;. Read more about it here: <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb787181(v=vs.85).aspx" class="postlink">http://msdn.microsoft.com/en-us/library/windows/desktop/bb787181&#40;v=vs.85&#41;.aspx</a></span>
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Aug 18, 2017 5:32 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to capture crash dumps or slowdown dumps</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Here are ready-to-use registry files you can use if you are not comfortable or familiar with Registry editing. Just download this ZIP file and extract and run the <strong>Set up Explorer dump creation.reg</strong> file inside it to merge it into the Registry.<br /><br />After that, every time Explorer.exe crashes, 9 dumps will be created on your Desktop. You can compress them inside a ZIP file, then delete them from your computer and upload them in an appropriate post in the forum for further analysis.<br /><br />To stop the creation of dumps whenever Explorer crashes, run the other file <strong>Stop Explorer dump creation.reg</strong>.<br /><br />If you are an advanced user or a developer, you can analyze the dump yourself using WinDbg from the Windows SDK: <!-- m --><a class="postlink" href="https://superuser.com/questions/1231764/windows-explorer-is-crashing-when-i-access-usb-drive/1233294#1233294">https://superuser.com/questions/1231764 ... 94#1233294</a><!-- m --> You will also need to download debug symbols and configure WinDbg to use the symbols: <!-- m --><a class="postlink" href="https://stackoverflow.com/questions/30019889/how-to-set-up-symbols-in-windbg/30019890#30019890">https://stackoverflow.com/questions/300 ... 0#30019890</a><!-- m -->
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/filea2e9.php?id=4889">Explorer Dumps.zip</a> [832 Bytes]
+			</span><br />
+			<span class="gensmall">Downloaded 84 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=6&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 04:57:27 GMT -->
+</html>

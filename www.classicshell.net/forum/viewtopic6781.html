@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=1847&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:54:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Skip Settings screen after installation</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Skip Settings screen after installation</span><br /><span class="gensmall"><a href="viewtopic973b.html?f=7&amp;t=1847">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=1847</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>KrX</b> [ Sat Dec 07, 2013 4:43 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Skip Settings screen after installation</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi,<br /><br />im installing Classic Start Menu with this options:<br /><br />ClassicShellSetup64_4_0_2.msi /qn ADDLOCAL=ClassicStartMenu START_MENU_FOLDER=0<br /><br />after installation im using a registry file to customize this tool. but after clicking the first time on the windows button the  settings screen appears but i want to skip that.<br /><br />Is there a way to achieve that?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Sat Dec 07, 2013 6:08 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Skip Settings screen after installation</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes it's possible. Depending on whether you want to skip settings screen for a single user or all users, the method is different.<br /><br />For a single user account which is currently logged in, create a DWORD value called &quot;ShowedStyle2&quot; in HKCU\Software\IvoSoft\ClassicStartMenu and set it to 1.<br /><br />For the HKLM branch (which affects all users), to suppress the initial opening of the settings, create a new string value MenuStyle_Default in HKLM\Software\IvoSoft\ClassicStartMenu and set it to &quot;Classic1&quot;, &quot;Classic2&quot; or &quot;Win7&quot; depending on which style you want to be the default.<br /><br />If you merge the regs before installing, you won't have to restart Classic Start Menu. The first time it starts after installation, it will directly load your settings.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>KrX</b> [ Sat Dec 07, 2013 6:13 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Skip Settings screen after installation&nbsp;&nbsp;<img src="styles/subsilver2/imageset/icon_topic_solved_post.png" width="12" height="12" alt="Topic is solved" title="Topic is solved" /></b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ok got it.<br /><br />Thank you very much.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=1847&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 07:54:59 GMT -->
+</html>

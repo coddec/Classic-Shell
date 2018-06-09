@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-gb">
+<link rel="self" type="application/atom+xml" href="http://www.classicshell.net/forum/feed.php?f=13&amp;t=336" />
+
+<title>Classic Shell</title>
+<subtitle>Classic Shell support forum</subtitle>
+<link href="http://www.classicshell.net/forum/index.php" />
+<updated>2013-03-05T16:01:46-07:00</updated>
+
+<author><name><![CDATA[Classic Shell]]></name></author>
+<id>http://www.classicshell.net/forum/feed.php?f=13&amp;t=336</id>
+<entry>
+<author><name><![CDATA[Tenzen]]></name></author>
+<updated>2013-03-05T16:01:46-07:00</updated>
+<published>2013-03-05T16:01:46-07:00</published>
+<id>http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1741#p1741</id>
+<link href="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1741#p1741"/>
+<title type="html"><![CDATA[Re: Add left/right scroll to cascading start menu]]></title>
+
+<content type="html" xml:base="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1741#p1741"><![CDATA[
+soon we will have quad HD, and that doesnt mean that we wont be able to see anything.. and it doesnt mean that the only function of higher resolution displays is to make everything the exact same size, only more glassy<br /><br />what that means, actually, is that rather than having a 50&quot; display at 1920x1080 Full HD resolution, that makes our word documents 12 feet tall, we will finally have higher resolutions of 3840×2160, which is the equivalent of taking two 1920x1080 displays set to extended desktop, cutting one of them apart and attaching some of it to the top &amp; some of it to the bottom <br /><br />its twice the Real Estate.. and i want my start menu exactly where it is, thanks<br /><br />and no, that doesnt mean we can all do exactly what we are doing now, and instead of utilizing that real-estate for productive purposes, simply waste it all making everything look glossier..<br /><br />there seems to be two schools of thought on this. 1.) higher resolution makes my icons look way sexier, I hope I get to feel their glory when I swipe them with my fingers, and 2.) FINALLY, we can start editing our videos &amp; images with more space AND still be able to see it as clearly as we do now, only having twice as much space to work on.. FINALLY we can put 4 office documents side by side, at full page, and be able to see them all with a reasonably large font.. FINALLY i can stop cramming everything into this tiny little crawlspace of a desktop<br /><br />and its even better news for people with Dual displays... have an extended desktop on a second monitor? how about doubling that to the space of 4 Full HD monitors, with only 2 screens needed<br /><br />and what this also means is that Televisions will FINALLY be viable replacements for monitors, since a 6 foot office document is literally useless, but 6 1-foot office documents is immeasurably valuable <br /><br />the First school of thought says &quot;woo-hoo&quot; i finally get to put my greasy fingers all over my desktop monitor!!!<br /><br />the Second school of thought says &quot;My current dual display monitors will be divided, one in the kitchen, &amp; one in the guest bedroom, and say hello to my little friend&quot; as he pull out his 80&quot; flat screen to replace all other monitors in desktop computing <br /><br />the first school of thought seems to believe everything will be getting smaller and smaller, until he does his computing on his watch inside his sock drawer that practically looks like a drop of water, its so smooth<br /><br />the second school of thought sees the need for them to get bigger and bigger, with 50&quot;-60&quot; minimum for Quad HD, and actually dreams of the day when he'll have a 32460x16820 adorning his wall with programs opened everywhere and no need to minimize anything, and is already planning where he's going to put his two 60&quot; &amp; two 80&quot; flatscreens<br /><br />but both schools can exist peacefully, the first school can enjoy a swiping tiles metro-like experience mini computing life on their wristwatch, pocket watch, or fanny pack, until things get so small they literally can be worn on his face like a pair of glasses where he can swipe away<br /><br />and the second school can enjoy computing from home, on their vast expanse of a desktop, where the wild animals are free to hop about on their monitor as if being actually out in the big open wild.. and keep their monitors clean &amp; soil-free.. thanks<br /><br />but the last thing anyone needs is someone telling people that higher resolution = more shiny swipey thingies of the exact same size..<br /><br />no thanks<p>Statistics: Posted by <a href="http://www.classicshell.net/forum/memberlist.php?mode=viewprofile&amp;u=359">Tenzen</a> — Tue Mar 05, 2013 4:01 pm</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[muse2u]]></name></author>
+<updated>2013-03-05T13:45:37-07:00</updated>
+<published>2013-03-05T13:45:37-07:00</published>
+<id>http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1738#p1738</id>
+<link href="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1738#p1738"/>
+<title type="html"><![CDATA[Re: Add left/right scroll to cascading start menu]]></title>
+
+<content type="html" xml:base="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1738#p1738"><![CDATA[
+Good suggestion to shorten startup menu entry names. I have gone through the startup menu and edited the entries and recovered a couple of columns, but not sufficient enough to bring the whole cascading menu into view.<br /><br />If the issue was simply the number of start menu entries, I agree that the implementation of a scrolling menu will not address the needs of a large number of users, since obviously the number of applications that I have installed on this particular test computer is unusual. Your suggestion to change the resolution (increase) and font size (decrease) leads into why I posted this request and why I think the requirement of a scrolling menu would have a greater audience.<br /><br />Increasing the resolution and making the font of the menu smaller would indeed result in more start up menu columns being visible on the desktop. But there is a practical limit to how far you can go with that approach. As the monitor resolutions increase to accommodate enhanced viewing of HD images and video, and device screens get smaller and smaller, you approach a limit where the human eye can no longer comfortably view the default icon/character sizes. We can somewhat compensate by increasing the icon and font size. The ability to view the font-reduced start menu is further restricted if our vision is reduced by age or other eye maladies. I suspect that there are a large number of computer users out there that would benefit from a start menu feature that would allow them to increase the font size of the menu to a comfortable viewing size, knowing that if the menu exceeds the screen size, they can simply scroll left or right using the standard scroll bar or maybe even an enhanced click and drag menu.<br /><br />I find that the single scrollable menu column is not an efficient alternative. The only other option is to drop the desktop paradigm altogether and adopt what has has already been implemented by smart phones, iPods, Tablets, and Windows 8. I believe that dropping the Start Menu from Windows 8 and introducing the Metro Start screens, consisting of a cacophony of fist-sized tiles, is the first volley from Microsoft to eliminate the desktop completely by Windows 9.  I personally don't believe that a one-size fits all is the best solution but it may not be practical to maintain multiple versions of OS and application GUIS. An example is the current MS Office 2013 app installed on Win 8, which is basically a schizophrenic dumbed-down Metro app that has to switch to a desktop compatibility mode in order to get any real work done. If the change in paradigm was simply to address the limitations of a smaller viewing area, one might accept the move. Unfortunately, the strategic plan is to turn the PC into another Apple ipod like device where the OS/device publisher filters the apps through a store, controls what is not against their interest to be running on their device (oops there goes all the open-source apps), facilitate the charging of apps per user instead of per computer (try installing a Metro app and you'll find that it only installs in the Windows Account that initiated the purchase, you have to be a rocket scientist and setup each Windows account with the same Microsoft ID, reinstall the app in that account). But I digress and this is not the forum for that rant.<br /><br />A scrollable menu would increase the life cycle of existing Windows XP, Vista, Windows 7 &amp; 8, using the desktop paradigm.<p>Statistics: Posted by <a href="http://www.classicshell.net/forum/memberlist.php?mode=viewprofile&amp;u=407">muse2u</a> — Tue Mar 05, 2013 1:45 pm</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[Jcee]]></name></author>
+<updated>2013-03-03T17:14:43-07:00</updated>
+<published>2013-03-03T17:14:43-07:00</published>
+<id>http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1642#p1642</id>
+<link href="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1642#p1642"/>
+<title type="html"><![CDATA[Re: Add left/right scroll to cascading start menu]]></title>
+
+<content type="html" xml:base="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1642#p1642"><![CDATA[
+well there are a few other options;<br />- shortening the names of the shortcuts that have the longest names in each row (as the width of the row is determined by this)<br />- adjusting the screen resolution (if it isnt already maxed out), although this affects alot of other things..<br /><br />- And if still needed, reducing the font size, and adjusting padding, its sorta for advanced users though<br />you have to download reshacker, open the .skin file your using and find the font entries and edit them, then save and move the new file back to your skins directory, then select your new skin (unless you replaced the old one)<br /><br />If you cant do this, and still want it done, just tell me the theme you are using, and the font size you want...<br /><br />As far as horizontal scrolling that is a good idea, since it would only affect the users that need it <img src="http://www.classicshell.net/forum/images/smilies/icon_razz.gif" alt=":P" title="Razz" />, and wouldn't even need a new option (it should be obvious that the user wants to see everything in the start menu, so if it doesnt fit on screen... scrolling should be automatic)<br /><br /><br /><br />However im not the developer.. so its not up to me to add it... (it may be deemed to much work, for to little of a crowed)<p>Statistics: Posted by <a href="http://www.classicshell.net/forum/memberlist.php?mode=viewprofile&amp;u=62">Jcee</a> — Sun Mar 03, 2013 5:14 pm</p><hr />
+]]></content>
+</entry>
+<entry>
+<author><name><![CDATA[muse2u]]></name></author>
+<updated>2013-03-03T16:52:06-07:00</updated>
+<published>2013-03-03T16:52:06-07:00</published>
+<id>http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1641#p1641</id>
+<link href="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1641#p1641"/>
+<title type="html"><![CDATA[Add left/right scroll to cascading start menu]]></title>
+
+<content type="html" xml:base="http://www.classicshell.net/forum/viewtopic.php?t=336&amp;p=1641#p1641"><![CDATA[
+I have a large start menu that, if cascaded, exceeds the size of the screen. Currently the only option I have is to turn off cascading and turn on vertical scrolling of a single column. What would be useful is a left/right scrolling of the cascaded start menu when the number of columns exceeds the screen size.<p>Statistics: Posted by <a href="http://www.classicshell.net/forum/memberlist.php?mode=viewprofile&amp;u=407">muse2u</a> — Sun Mar 03, 2013 4:52 pm</p><hr />
+]]></content>
+</entry>
+</feed>

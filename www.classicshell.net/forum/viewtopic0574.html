@@ -1,0 +1,581 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=5&t=61&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - How to add Pin To functionality for CS 3.x &amp; extra features</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">How to add Pin To functionality for CS 3.x &amp; extra features</span><br /><span class="gensmall"><a href="viewtopicfacb.html?f=5&amp;t=61">http://www.classicshell.net/forum/viewtopic.php?f=5&amp;t=61</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Jan 10, 2013 9:19 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>How to add Pin To functionality for CS 3.x &amp; extra features</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><strong><em>Note: 'Pin to Start Menu' is already built-in for Classic Shell 4.0 and later to pin EXE files and shortcuts. You do not really need to add this registry tweak for those versions for every day pinning of programs and shortcuts. However, this can be useful for users who are still using Classic Shell 3.6.x or earlier, or also for those users who want some extra pinning abilities to other folders besides the Start Menu folder. If you added Pin To Start Menu previously using this registry tweak, see the last post in this thread on how to remove it.</em></strong><br /><img src="../../i.imgur.com/o54Zm.png" alt="" /><br /><br />Short version:<br />1. Download PinToCSM.zip attached to this post<br />2. Copy both shellexecute.exe and makelink.exe to your Windows directory which is typically C:\Windows.<br />3. Double click the reg file to merge it.<br /><br />You will get a nice &quot;Pin to Classic Start Menu&quot; item in right click menu with a nice icon. It works for multiple files at once as well and you can pin ANYthing - folders and any file by right clicking it.<br /><br />To uninstall/remove this tweak, copy-paste the contents of the last post into a text file, save as .REG and merge that, then delete the makelink.exe and shellexecute.exe files.<br /><br />Long version:<br /><br />Classic Start Menu before 4.0 didn't support pinning from context menu. It was then that I wrote this tutorial to add pinning ability via the context menu. Classic Shell 4.0 added right click pinning feature for all .EXE files and .LNK files (shortcuts). Unfortunately, it works only for 1 file at a time and it doesn't work for folders or other file types. So this tutorial is still useful for those who want to pin many files at once or pin folders using right click.<br /><br />We can of course drag and drop ANY item - whether it's a folder, file, or URL to the Start Menu folder area or directly paste them in %appdata%\Microsoft\Windows\Start Menu or %ProgramData%\Microsoft\Windows\Start Menu. However, this is not as convenient as pinning. Since pinning is the same thing as 1-click shortcut creation, I used a few free tools and a registry tweak to add &quot;pinning&quot; functionality:<br /><br />1. Download PinToCSM.zip attached to this post and extract it somewhere. It contains makelink.exe, a freeware command line tool (whose website at <!-- m --><a class="postlink" href="http://kerys.co.uk/">http://kerys.co.uk</a><!-- m --> unfortunately went down but you will see by doing makelinkexe /? that it's freeware). And a reg file needed to add the command to the context menu.<br /><br />2. Because it is a command line tool, when we pin it, it will show a console window. We don't want to view the console window every time we pin. So the ZIP file also includes ShellExecute.exe, which is a wrapper for the ShellExecute API (the built-in Windows API to run anything). It can run makelink.exe as a hidden command, so the console window is not shown.<br /><br />3. Copy both shellexecute.exe and makelink.exe to your Windows directory which is typically C:\Windows. This step is only needed to add these 2 EXEs to the system path. (If you don't want to copy these to the Windows directory, you will need to edit the reg file to point the EXEs to the path where you put them, otherwise just copying them to %windir% is enough). Now double click the reg file.<br /><br /><br />That's all. Now you will get a nice &quot;Pin to Classic Start Menu&quot; item in your context menu for everything as the image shows. It works at a time on multiple files too, so pin away. The blue pin icon is loaded from imageres.dll on Windows 7 and Windows 8 (Vista users may need to adjust the icon in the reg file).<br /><br />Let me know if it works for you.<br /><br />Also, the makelink.exe tool is a very powerful tool. You can run makelink.exe /? to see the full CLIDL values for various folders and various other parameters. You can optionally edit the REG file to make it pin to another folder instead of the Start Menu folder, for example, the All Programs folder if you change the number after 'CSIDL:' in the reg file to 2 (which means All Programs).
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<img src="download/filed58f.png?id=732" alt="Pin.png" /><br />
+			<span class="gensmall">Pin.png [ 6.56 KiB | Viewed 22942 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+				<tr>
+					<td>
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileed21.php?id=203">PinToCSM.zip</a> [70.04 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 1217 times</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Feb 28, 2013 2:47 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I have a Question<br /><br />How can I use ShellExecute.exe to hide the command window from showing when i run normal Bat files? can it be used for that?<br /><br />i Tried creating a new bat file with the following command:  ShellExecute.exe /f:L:\Tenzen's Bat Files\5 Minute Shutdown.bat, but that didnt work<br /><br />I already have ShellExecute in C:\Windows, does it need to be in the System32 folder for this to work?<br /><br />i'd like to start the automatic Timed Shutdown from my bat files without showing the Command Windows opening<br /><br />the batfile contains the following command:    c:\windows\system32\shutdown -s -t 300<br /><br />do you think a new bat file with this command would work?:   ShellExecute.exe /f:c:\windows\system32\shutdown -s -t 300<br /><br />thanks
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Feb 28, 2013 4:41 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />That ShellExecute wrapper has a switch: /R:Hidden and /P switch for parameters to pass to the program you call.<br /><br />You could also use a VBScript to run anything hidden:<br /><br />Dim WSHShell <br />Set WSHShell=WScript.CreateObject(&quot;WScript.Shell&quot;) <br />WSHShell.Run &quot;C:\Windows\Notepad.exe&quot;, 0<br /><br />Paste it in Notepad and save as .vbs. Substitute by path to your BAT file.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Feb 28, 2013 8:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />hmm, well, i tried this:<br /><br />Dim WSHShell<br />Set WSHShell=WScript.CreateObject(&quot;WScript.Shell&quot;)<br />WSHShell.Run &quot;L:\Tenzen'sBat Files\5 Minute Shutdown.bat&quot;, 0<br /><br />but it didnt work<br /><br />anyway, can you tell me the exact format for the text for a bat file to run:   c:\windows\system32\shutdown -s -t 300<br /><br />so its not as simple as simply putting shellexecute.exe in front of it I guess, with switches? which switches and how should it all be written?<br /><br />thanks for ur help
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Feb 28, 2013 10:15 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Because your path is a long path with spaces, use like this (3 double quotes): Also inside the bat file, use quotes and full path if needed.<br /><br />Dim WSHShell<br />Set WSHShell=WScript.CreateObject(&quot;WScript.Shell&quot;)<br />WSHShell.Run &quot;&quot;&quot;L:\Tenzen'sBat Files\5 Minute Shutdown.bat&quot;&quot;&quot;, 0<br /><br />This is simpler than shellexecute and doesn't require any 3rd party utilities.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Feb 28, 2013 5:48 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />sweet, works great.. <br /><br />will 3 quotes also work if its a short name without spaces?<br /><br />and also, do you know way to use the shellexecute.exe in a bat file? if its possible, i think i'd still prefer that method<br /><br />if one little program can make it so i dont have to remember or deal with all that vbscript syntax, its well worth it to me
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Feb 28, 2013 10:19 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />If you enter just shellexecute it will show you the syntax. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" />  /F: &lt;file to run&gt; /P:&lt;parameters to pass&gt; /R:&lt;window state&gt;. So for your shutdown.exe, it should be:   shellexecute /F:shutdown.exe /P:-s -t 300 /R:hidden. I haven't tested it.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Fri Mar 01, 2013 6:14 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />well, i tried the following:<br /><br />shellexecute.exe /F:shutdown.exe -s -t 300 /R:hidden<br />shellexecute.exe /F:shutdown -s -t 300 /R:hidden<br />shellexecute /F:shutdown.exe -s -t 300 /R:hidden<br />shellexecute /F:shutdown -s -t 300 /R:hidden<br />shellexecute.exe /R:hidden /F:shutdown -s -t 300<br /><br />but couldnt figure it out.. its ok, i dont mind the boxes popping up, it shows me its working anyway<br /><br />thanks
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Mar 01, 2013 7:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />shellexecute /F:shutdown.exe /P:-s -t 300 /R:hidden works perfectly. It can't be that you are not noticing the /P switch even after mentioning it 3 times? <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Fri Mar 01, 2013 7:19 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />i still get a little black box.. it seems its only half the black box, before i think it was 2 black boxes one after another, now maybe its just one..<br /><br />am i having an extra black box pop up somehow??<br /><br />and is your shellexecute.exe just in your C:\Windows folder<br /><br />im in Win7 Ultimate 64-bit<br /><br />thanks for ur help
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Mar 01, 2013 11:12 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />shellexecute and other executables just need to be in your system path. Are you linking to the batch file? You don't need the batch file at all. Just use the above command as the Start Menu command, just like you would use it from the Run dialog.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Fri Mar 01, 2013 7:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />shellexecute /F:shutdown.exe /P:-s -t 300 /R:hidden typed directly into the &quot;Edit Button's&quot; &quot;Command&quot; field worked perfectly!<br /><br />wow, so Classic Shell's own &quot;Command&quot; box functions exactly like the Windows Command Dialog?.... i wasnt aware of that.. i thought it just recognized some basic commands..<br /><br />thats a super powerful tool<br /><br />thanks again, i'll update the tut
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Wed Apr 10, 2013 7:57 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hey, back to ask the master...<br /><br />any idea if Shell Execute can be used in a script with a relative path?<br /><br />The Batch File is:<br />----------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\Start.exe&quot;<br />----------------------------------------------------<br />it works great as is.. but a Dos Window pops up, and I'm trying to get rid of that..<br /><br />Its to be run from a USB Drive on multiple computers where the Drive letter wont be the same from PC to PC<br /><br />I cant figure out the syntax..<br /><br />so far I've tried:<br />----------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start &quot;&quot; &quot;%drive%Portable Apps\Start.exe&quot; /R:hidden&quot;<br />--------------------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start &quot;&quot; &quot;%drive%Portable Apps\Start.exe&quot; /R:hidden<br />----------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start &quot;%drive%Portable Apps\Start.exe&quot; /R:hidden<br />----------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start %drive%Portable Apps\Start.exe /R:hidden<br />----------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start &quot;Portable Apps\Start.exe&quot; /R:hidden&quot;<br />----------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start &quot;Portable Apps\Start.exe&quot; /R:hidden<br />------------------------------------------------------------------<br />set drive=%cd:~0,3%<br />echo %drive%<br /><br />start &quot;&quot; &quot;%drive%Portable Apps\ShellExecute.exe /F:start Portable Apps\Start.exe /R:hidden<br />-----------------------------------------------------------------<br /><br />Anyway, none of those work... I put Shell Execute on the USB Drive in a folder I named &quot;Portable Apps&quot;... then I am trying to make the batch file launch the program &quot;Start.exe&quot; located on the same USB in the same folder<br /><br />is that possible??<br /><br />thanks
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed Apr 10, 2013 10:01 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Nope, relative path won't work. Environment variables may work or adding the folder to the system path.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Apr 11, 2013 3:08 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />any idea why not?<br /><br />do u know why this might not be hiding the dos window:<br /><br />&quot;J:\My Portable Apps\ShellExecute.exe&quot; /F:&quot;J:\My Portable Apps\Shortcut.bat&quot; /R:Hidden<br /><br />it runs as if there was no shellexecute /r:hidden at all, popping up a dos window<br /><br />also tried it as:<br /><br />&quot;&quot;&quot;J:\My Portable Apps\ShellExecute.exe&quot;&quot;&quot; /F:&quot;&quot;&quot;J:\My Portable Apps\Shortcut.bat&quot;&quot;&quot; /R:Hidden<br /><br />same behavior<br /><br />also same thing if I go straight to the .exe file, as such:<br /><br />&quot;J:\My Portable Apps\ShellExecute.exe&quot; /F:&quot;J:\My Portable Apps\Program.exe&quot; /R:Hidden<br /><br /><br />thanks
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Apr 11, 2013 3:46 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Try &quot;J:\My Portable Apps\ShellExecute.exe&quot; /F:&quot;cmd /c &quot;J:\My Portable Apps\Shortcut.bat&quot;&quot; /R:Hidden
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Apr 11, 2013 3:50 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />well, I see its from the fact that its even in a Bat file..<br /><br />Apparently, Shellexecute's '/r:hidden' cannot be used from batch files, as the window just pops up anyway, because its a batch file..<br /><br />So, it would seem that in order to run a Shellexecute /r:hidden command from a USB drive, you'd have to have something like a shortcut creator that bundles Icons, AND that accepts dos commands directly, AND that uses relative paths..<br /><br />anyone know of such a program?<br /><br />instead of Bat to EXE, maybe something like a CMD to EXE or something<br /><br />or maybe you'd just have to write your own VB script and bundle it with an Icon in an Exe wrapper...<br /><br />and all this because Windows doesnt know how to handle Relative Paths..<br /><br />I can see people leaving to Linux over this issue alone..
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Apr 11, 2013 3:59 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" /><div class="quotetitle">GauravK wrote:</div><div class="quotecontent">Try &quot;J:\My Portable Apps\ShellExecute.exe&quot; /F:&quot;cmd /c &quot;J:\My Portable Apps\Shortcut.bat&quot;&quot; /R:Hidden</div><br /><br />well, that looks very promising.. <br /><br />I couldnt get it to work, but using cmd would seem to be whats missing<br /><br />what about something like &quot;cmd /c &quot;J:\My Portable Apps\ShellExecute.exe&quot;&quot; /F:&quot;J:\My Portable Apps\Shortcut.bat&quot; /R:Hidden<br /><br />that didnt work, but putting cmd at the beginning would maybe allow shell.exe to run in cmd.. anyway, i think it needs to run through cmd somehow.. another program or method perhaps<br /><br />thanks for the ideas
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Apr 25, 2013 6:12 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />so, if this works:<br /><br />shellexecute /F:shutdown.exe /P:-s -t 3600 /R:hidden<br /><br />Why doesnt this work?:<br /><br />shellexecute /F:shutdown.exe -a /R:hidden<br /><br />anyway to use shell execute to get:   &quot;shutdown -a&quot;  (cancel Shutdown)  to work hidden?<br /><br />thanks
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Thu Apr 25, 2013 6:16 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Fixed it..<br /><br />shellexecute /F:shutdown.exe /P:-a /R:hidden<br /><br />makes sense..
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Mon Jun 17, 2013 6:15 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: How to add &quot;Pin to Start Menu&quot; functionality</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Btw, to uninstall this context menu tweak, merge this reg (paste into Notepad, save as .REG and merge it). Then, delete makelink.exe and shellexecute.exe if you no longer need them.<br /><br />Windows Registry Editor Version 5.00<br /><br />[-HKEY_CURRENT_USER\Software\Classes\*\Shell\PintoClassicStartMenu]<br /><br />[-HKEY_CURRENT_USER\Software\Classes\AllFileSystemObjects\Shell\PintoClassicStartMenu]<br /><br />[-HKEY_CURRENT_USER\Software\Classes\Drive\Shell\PintoClassicStartMenu]<br /><br />[-HKEY_CURRENT_USER\Software\Classes\lnkfile\Shell\PintoClassicStartMenu]<br /><br />[-HKEY_CURRENT_USER\Software\Classes\InternetShortcut\Shell\PintoClassicStartMenu]<br /><br />[-HKEY_CURRENT_USER\Software\Classes\Microsoft.Website\Shell\PintoClassicStartMenu]
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=5&t=61&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:05 GMT -->
+</html>

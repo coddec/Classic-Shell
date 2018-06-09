@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-gb">
+<link rel="self" type="application/atom+xml" href="http://www.classicshell.net/forum/feed.php?f=18&amp;t=5441" />
+
+<title>Classic Shell</title>
+<subtitle>Classic Shell support forum</subtitle>
+<link href="http://www.classicshell.net/forum/index.php" />
+<updated>2015-12-07T11:09:53-07:00</updated>
+
+<author><name><![CDATA[Classic Shell]]></name></author>
+<id>http://www.classicshell.net/forum/feed.php?f=18&amp;t=5441</id>
+<entry>
+<author><name><![CDATA[p3y0t3]]></name></author>
+<updated>2015-12-07T11:09:53-07:00</updated>
+<published>2015-12-07T11:09:53-07:00</published>
+<id>http://www.classicshell.net/forum/viewtopic.php?t=5441&amp;p=23902#p23902</id>
+<link href="http://www.classicshell.net/forum/viewtopic.php?t=5441&amp;p=23902#p23902"/>
+<title type="html"><![CDATA[Start 0rb - Ouch! My eye.. (p3y0t3)]]></title>
+
+<content type="html" xml:base="http://www.classicshell.net/forum/viewtopic.php?t=5441&amp;p=23902#p23902"><![CDATA[
+Ok, this is far far from serious daily usage orb'ing (izzat a word? hrm).. Figured maybe somebody out there could appreciate my slightly eyecentric, morbid sense of humor. Maybe not, who knows. nJoy <img src="http://www.classicshell.net/forum/images/smilies/icon_e_wink.gif" alt=";-)" title="Wink" /><p>Statistics: Posted by <a href="http://www.classicshell.net/forum/memberlist.php?mode=viewprofile&amp;u=12134">p3y0t3</a> — Mon Dec 07, 2015 11:09 am</p><hr />
+]]></content>
+</entry>
+</feed>

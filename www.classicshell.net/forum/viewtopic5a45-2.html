@@ -1,0 +1,4001 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-gb" xml:lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=7650&p=33261 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:40:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="en-gb" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>Classic Shell &bull; View topic - New skin with full customization (can set background,colors)</title>
+
+<link rel="alternate" type="application/atom+xml" title="Feed - Classic Shell" href="feed.php" /><link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="feed9d17.php?mode=topics" /><link rel="alternate" type="application/atom+xml" title="Feed - Forum - Start Menu Skins" href="feed48ab.php?f=17" /><link rel="alternate" type="application/atom+xml" title="Feed - Topic - New skin with full customization (can set background,colors)" href="feed6d91.php?f=17&amp;t=7650" />
+
+<link rel="stylesheet" href="styles/subsilver2/theme/stylesheet.css" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('Enter the page number you wish to go to:', '2');
+	var per_page = '50';
+	var base_url = 'viewtopic6d91.html?f=17&amp;t=7650';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+
+
+// ]]>
+</script>
+<style>
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #D9F1FA;
+	text-decoration: none;
+	white-space: nowrap;
+}
+a.menu {
+	text-decoration: none;
+	color: #D9F1FA;
+}
+a.menu:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+a.menu:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+}
+.title {
+	font-family: Arial;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	color: #0E4687;
+}
+.cpr {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+.bgrx {
+	background-repeat: repeat-x;
+}
+td.cpr a {
+	text-decoration: none;
+	color: #D9F1FA !important;
+}
+td.cpr a:hover {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+td.cpr a:visited {
+	color: #D9F1FA;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body class="ltr">
+
+<a name="top"></a>
+
+<div id="wrapheader">
+<table border="0" cellpadding="0" cellspacing="0" height="123px" width="100%">
+
+		<tr>
+  <td background="../images/bg_head.png" height="1" class="menu">
+    <table style="width: 100%; height: 123px;" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width: 179px; text-align: center;" class="menu"><img src="../images/corner.png" style="width: 179px; height: 129px;" alt=""><br>
+        </td>
+        <td class="menu">
+          <table style="width: 100%; height: 81px;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="vertical-align: middle; width: 600px; height: 101px;" class="menu">
+
+                <h1 class="title" style="margin-top: 20px; height: 65px; vertical-align: middle;">
+
+<!-- Caption -->
+
+Classic Shell: Forum
+
+                </h1>
+              </td>
+              <td style="width: 447px; height: 101px;" class="menu"><br>
+              </td>
+		</tr>
+            <tr>
+              <td height="28px" colspan="2" background="../images/bg_menu.png" class="menu">
+                <table height="25px"  border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+
+<!-- Start Navigation -->
+
+<td class="menu" align="center"><a href="http://www.classicshell.net/" class="menu">HOME</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/forum" class="menu">FORUM</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/faq" class="menu">F.A.Q.</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/gallery" class="menu">SCREENSHOTS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/translations" class="menu">TRANSLATIONS</a></td>
+<td class="menu" align="center" width="36">|</td>
+<td class="menu" align="center"><a href="http://www.classicshell.net/downloads" class="menu">ALL DOWNLOADS</a></td>
+
+
+<!-- End Navigation -->
+
+
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+	<div id="menubar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="genmed">
+				<a href="ucp26c3.html?mode=login"><img src="styles/subsilver2/theme/images/icon_mini_login.gif" width="12" height="13" alt="*" /> Login</a>&nbsp; &nbsp;<a href="ucp8319.html?mode=register"><img src="styles/subsilver2/theme/images/icon_mini_register.gif" width="12" height="13" alt="*" /> Register</a>
+					
+			</td>
+			<td class="genmed" align="right">
+				<a href="faq.html"><img src="styles/subsilver2/theme/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> FAQ</a>
+				&nbsp; &nbsp;<a href="search.html"><img src="styles/subsilver2/theme/images/icon_mini_search.gif" width="12" height="13" alt="*" /> Search</a>&nbsp; &nbsp;<a href="memberlist.html"><img src="styles/subsilver2/theme/images/icon_mini_members.gif" width="12" height="13" alt="*" /> Members</a>
+			</td>
+		</tr>
+		</table>
+	</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+		<tr>
+			<td class="gensmall"></td>
+			<td class="gensmall" align="right">It is currently Thu Jun 07, 2018 11:34 pm<br /></td>
+		</tr>
+		</table>
+	</div>
+
+</div>
+
+<div id="wrapcentre">
+
+	
+	<p class="searchbar" style="line-height:1.3">
+		<span style="float: left;"><a href="search4d23.html?search_id=unsolved_topics">View unsolved topics</a><br /><a href="search33a7.html?search_id=unanswered">View unanswered posts</a> | <a href="search526f.html?search_id=active_topics">View active topics</a></span>
+		
+	</p>
+	
+
+	<br style="clear: both;" />
+
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+
+	<br />
+
+<div id="pageheader">
+	<h2><a class="titles" href="viewtopic8941.html?f=17&amp;t=7650&amp;start=50">New skin with full customization (can set background,colors)</a></h2>
+
+
+</div>
+
+<br clear="all" /><br />
+
+<div id="pagecontent">
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting1434.html?mode=reply&amp;f=17&amp;t=7650"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 93 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopic93bf.html?f=17&amp;t=7650&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic6d91.html?f=17&amp;t=7650">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat">
+			<table width="100%" cellspacing="0">
+			<tr>
+				<td class="nav" nowrap="nowrap">&nbsp;
+				<a href="viewtopicfd49-2.html?f=17&amp;t=7650&amp;start=50&amp;view=print" title="Print view">Print view</a>
+				</td>
+				<td class="nav" align="right" nowrap="nowrap"><a href="viewtopic7882-3.html?f=17&amp;t=7650&amp;view=previous">Previous topic</a> | <a href="viewtopice266.html?f=17&amp;t=7650&amp;view=next">Next topic</a>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	
+		<tr>
+			<th>Author</th>
+			<th>Message</th>
+		</tr>
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33046"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33046">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic3fb3-2.html?p=33046#p33046"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 6:21 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Btw your skin is awesome! The background choosing feature along with the card color idea to quickly mask it with some color tint makes it brilliant!</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5dfd.png?id=4727" alt="Blu Ray.png" /><br />
+			<span class="gensmall">Blu Ray.png [ 629.01 KiB | Viewed 11570 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd63c.html?mode=quote&amp;f=17&amp;p=33046"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33047"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33047">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic00a5.html?p=33047#p33047"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 7:15 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello meetHG. I looked up your name. It means part of ice, or of the moon?<br /><br />Yep, or Han jee. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />The darkened mod I made was on purpose, from past experience with picture menus. <br />It is to avoid any possibility of having white background with white text, which is unreadable.<br />See my first picture skin, made before patterns feature (built into bitmap), with the tint option:<br /><br /><!-- l --><a class="postlink-local" href="viewtopicaec5.html?f=17&amp;t=2385">viewtopic.php?f=17&amp;t=2385</a><!-- l --><br /><br />Even Win 10 does it when in tablet mode. <br /><br />Your skin could be made so it will only do that if external picture, like on one of shpkong's modded skins. As that is where we have no control over what picture the person picks to use.<br />I forget which one. One of his V3 types.<br /><br />It just takes more bitmaps put in to cover all the circumstances involved, <br />backed up with headers with AND, NOT, and OR combinations.<br /><br />Aye, yes. So many variables that have to be taken into account, which leads to more confusion.<br />The headers need to be in a special order logically to work properly.<br />Really have to hunker down away from distractions, to figure it all out. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />About using patterns instead of tint colors. When I was using tint colors, same as yours, there were certain conditons where I could not achieve dark grey borders. It blended in to same color below threshhold. The transparency to desktop background refused to get any darker. It was neat effect though. Same as other effect, where at one stage, I had the menu slit part as transparent, with the border boundaries totally opaque without any tint color. <br /><br />I wish there was some in-skin-file option that could remove the glass color as strongly as in the CSM glass overide/opacity settings.<br /><br />Anyway, you have gained a lot of knowledge now, and yay, Gaurav is helping you out now. <br />It is time for me to throw in the towel.<br />I don't think I can help you any further. You are now master apprentice. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />I go back to my novice roots.<br />If there is something that you really need to get a good answer to, <br />maybe send a personal message directly to Ivo.<br /><br />Bye. <br /><br />I just deleted the blue ray file from previous post. Stopped it at 57 downloads.<br /><br />I will download and try out your new revised skin tonight or tomorrow. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2c06.html?mode=quote&amp;f=17&amp;p=33047"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33048"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33048">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicbf52.html?p=33048#p33048"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 7:45 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">So, OK, I understand what you want to say but little confused.<br />My English can't be helped!!<br /><br />So, I will do some settings as Gaurav pointed out.<br />Then, I will post the skin.<br />And Then, Some Testing by you and me.<br />And If it turn OK<br />Blue-Ray Will be released.<br /><br />Bye. Have A good day.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingb700.html?mode=quote&amp;f=17&amp;p=33048"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33049"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33049">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic4f8c.html?p=33049#p33049"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 8:17 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Also, I see You learned a few words of Hindi.<br />शुभदिन (Have a nice day).</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting436b.html?mode=quote&amp;f=17&amp;p=33049"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33052"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33052">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic54d6-2.html?p=33052#p33052"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 6:05 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi meetHG.<br /><br />I provided a picture to explain better in a previous post when the boundary border would blend into nothing effect.<br />That is why I experimented with a black pattern image, to get a stronger darker border. Either way has good points.<br />If you want more solid, go the pattern way. For more ever-changing blending effect stick with your way.<br /><br />Something else I was saying from before. It looks as though on your skin, <br />one can get the opaque border with transparent inner menu part,<br />by having &quot;Glass Throughout&quot; and &quot;Show Background Card Color&quot; turned on.<br /><br /><br /><br />Don't take me as being mean for what I'm going to say. <br />I just have to pretend I'm trying out skin for first time.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />The &quot;Main Menu Transparency&quot; settings are still a bit confusing to understand. <br />I don't know. Transparent what? Transparent borders if no image? Glass what? <br />Could a word be put beside to describe more. example &quot;Transparent boundaries when activated&quot;<br /><br />or have them all setup with default neutral grey transparency values. <br />Think about it for awhile. <br />It's not really needed, but could make it easier to understand, and even more useful.<br />They could apply to all those transparency selections.<br />I put it in a text file. Feel free to use. If not appropriate, no sweat. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br /><br /><br />OK, back to other things now.<br /><br />Because skin has so many options, it might be intimidating for user, the first time.<br />For default first time menu view, could have so black arrows show instead of white, <br />so everything matches and looks the best it can be:<br /><br />from<br />OPTION WHITEARROW=&quot;Use White Arrows In Main Menu&quot;,1<br />OPTION SUBWHITEARROW=&quot;Use White Arrows In Submenus&quot;,1<br /><br />to<br /><br />OPTION WHITEARROW=&quot;Use White Arrows In Main Menu&quot;,<span style="background-color:#ffff00;">0</span><br />OPTION SUBWHITEARROW=&quot;Use White Arrows In Submenus&quot;,<span style="background-color:#ffff00;">0</span><br /><br /><br />At 144 dpi, the bigger arrows look ok. Maybe Gaurav is using an older skin version?<br /><br />Here is something like Gaurav was talking about, that gets activated with touch screens,<br />to make the arrow area bigger, for finger tapping. <br /><br /><br />[TOUCH_ENABLED]<br />Main_split_arrow_padding=14,14,100%<br />Main2_split_arrow_padding=14,14,100%<br />Main2_text_padding=1,10,8,10,100%<br />Shutdown_arrow_padding=14,14,100%<br />Shutdown_text_padding=10,8,10,8,100%<br /><br />Can practically make the menu into anything you want, using desktop wallpapers as menu image.<br />The only thing a user has to be aware of, is it draws from the top left corner, if English language.<br />Sometimes what looks like a wallpaper could look great, isn't, because wallpaper was so huge, <br />Only a small top left corner part of wallpaper image is seen.<br />The last screenshot picture is of MS wallpaper, by Adhemas Batista with your latest (not modified) skin .<br /><br />What's next color picker separators? <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="images/upload_icons/txt.gif" alt="" /> 
+				<a href="download/filefcc5.php?id=4737">Optional script for Main Transparency defaults.txt</a> [1.62 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 112 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file233e.png?id=4732" alt="Border  difference .png" /><br />
+			<span class="gensmall">Border  difference .png [ 153.82 KiB | Viewed 11519 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file9cf3.jpg?id=4730" alt="Latest HG skin with MS wallpaper.jpg" /><br />
+			<span class="gensmall">Latest HG skin with MS wallpaper.jpg [ 90.87 KiB | Viewed 11519 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+							<br /><br />
+							<span class="gensmall">Last edited by <a href="memberliste3e9.html?mode=viewprofile&amp;u=856">juniper7</a> on Sat Jun 17, 2017 9:27 pm, edited 1 time in total.</span>
+						
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingccd8.html?mode=quote&amp;f=17&amp;p=33052"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33053"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33053">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic629c-2.html?p=33053#p33053"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 10:24 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Hi meetHG.<br /><br />I provided a picture to explain better in a previous post when the boundary border would blend into nothing effect.<br />That is why I experimented with a black pattern image, to get a stronger darker border. Either way has good points.<br />If you want more solid, go the pattern way. For more ever-changing blending effect stick with your way.<br /></div><br /><br />OK, I understand it. Yeah, I see that there is no distinction. Actually this is due to the fact that both the background card color and boundary color are same and being of same intensity in the Main_bitmap_mask, they just appear to be one. If you want to increase the border intensity, then increase the intensity of green channel.<br /><br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Something else I was saying from before. It looks as though on your skin, <br />one can get the opaque border with transparent inner menu part,<br />by having &quot;Glass Throughout&quot; and &quot;Show Background Card Color&quot; turned on.<br /></div><br /><br />I noticed it. So, Should I do something?<br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">Don't take me as being mean for what I'm going to say. <br />I just have to pretend I'm trying out skin for first time.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />The &quot;Main Menu Transparency&quot; settings are still a bit confusing to understand. <br />I don't know. Transparent what? Transparent borders if no image? Glass what? <br />Could a word be put beside to describe more. example &quot;Transparent boundaries when activated&quot;<br /></div><br />I now noticed it too. I will change the options to &quot;Transparent Boundaries&quot; And &quot;Glass Boundaries&quot; or something else to make it more descriptive.<br /><br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">or have them all setup with default neutral grey transparency values, <br />but switch to your regular bitmaps when color background/boundaries turned on. <br />It would mean extra bitmaps and text. Think about it for awhile. <br />It's not really needed, but could make it easier to understand, and even more useful.<br />They could apply to all those transparency selections.<br />See my mockup (houses) picture. The picture of menu showing transparency text is real. Other text &amp; stuff added later. <br />EDIT: Woops.<br />That text for mod I think I made wrong.<br />Should probably be <br />[TRANS AND NOT (COLORBOUND OR COLORCARD)] <br /></div><br /><br /><br />I don't understand the default neutral grey stuff. Please explain it.<br />I also noticed in the picture you have written tranparency (alpha values) in the Main_pattern_mask.<br />Again, i could not understand it. Is Alpha value in pattern mask and emblem mask not for 4th pattern/emblem contribution?<br /><br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">OK, back to other things now.<br /><br />Because skin has so many options, it might be intimidating for user, the first time.<br />For default first time menu view, could have so black arrows show instead of white, <br />so everything matches and looks the best it can be:<br /><br />from<br />OPTION WHITEARROW=&quot;Use White Arrows In Main Menu&quot;,1<br />OPTION SUBWHITEARROW=&quot;Use White Arrows In Submenus&quot;,1<br /><br />to<br /><br />OPTION WHITEARROW=&quot;Use White Arrows In Main Menu&quot;,<span style="background-color:#ffff00;">0</span><br />OPTION SUBWHITEARROW=&quot;Use White Arrows In Submenus&quot;,<span style="background-color:#ffff00;">0</span><br /></div><br /><br />I understand it. Yeah, skin have many options. I will find a beautifull picture having light colors so that black arrows and black separators can be used as the default.<br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">[TOUCH_ENABLED]<br />Main_split_arrow_padding=14,14,100%<br />Main2_split_arrow_padding=14,14,100%<br />Main2_text_padding=1,10,8,10,100%<br />Shutdown_arrow_padding=14,14,100%<br />Shutdown_text_padding=10,8,10,8,100%<br /></div><br /><br />Is it complete? That is Can I copy and paste in my skin without any modifications?<br /><div class="quotetitle">juniper7 wrote:</div><div class="quotecontent">What's next color picker separators? <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div><br />Color Picker separators. I don't understand. Is it Color pickers for the separators?</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0b17.html?mode=quote&amp;f=17&amp;p=33053"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33054"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33054">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic8f11-2.html?p=33054#p33054"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jun 16, 2017 11:35 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello again<br /><br />[Opaque border with transparent inner menu part.]<br />No, don't do anything. I like that effect. <br />I had that effect before too in my first mod of your skin way back.<br /><br /><br /><br /><br />[The &quot;Main Menu Transparency&quot; settings are still a bit confusing to understand.]<br /><br />If Gaurav didn't say anything about it, leave it as is.<br />On the other hand, if you like to tinker, then different story. They can be made to have a preset grey color, similar to having the color picker enabled for a grey color. We talked about it before. I like to use real bitmaps to tweak it better, that's all. You could use all the same bitmaps you have already.<br />Just where the custom color picker is, replace with a real grey color #hex number. <br />I think it should work.<br /><br /><br />[I don't understand the default neutral grey stuff. Please explain it.]<br /><br />Same as above. If new bitmaps are used, it just overrides the bitmaps before it.<br />Don't worry about it. Just forget my blabbering. I go on and on about nothing sometimes. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br /><br /><br />[The reset default view.]<br /><br />The picture is beautiful already. Whatever you think looks good.<br />For myself I like all white text, separators, and arrows.<br />I was just showing the &quot;1&quot; will make the option show when skin is first used, or reset.<br /><br /><br /><br /><br />[Touch enabled text.]<br /><br />Yes, copy and paste close to end of file.<br />You can verify if it works with Gaurav.<br /><br /><br /><br /><br />[What's next, color picker separators?]<br /><br />A color picker for separators, yes. <br />Only joking, but as I said before, if you like to tinker, tinker away.  <br /><br /><br />You know that is a beautiful blurred picture. It's big too, Works for 144 DPI.<br />Because of the blur, I can fantasize it to be all kinds of things,<br />a volcano blowing its top, a colorful sunset, or even Holi festival. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br /><br />Good night.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting34d8.html?mode=quote&amp;f=17&amp;p=33054"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33058"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33058">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic06bd.html?p=33058#p33058"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 6:05 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK, I will do as appropriate.<br /><br />And Do Separators have a color mask?<br /><br />Thanks</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingb02e.html?mode=quote&amp;f=17&amp;p=33058"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33059"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33059">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic4a03.html?p=33059#p33059"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 8:14 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, Juniper</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting4143.html?mode=quote&amp;f=17&amp;p=33059"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33060"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33060">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic21a3.html?p=33060#p33060"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 8:17 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi.<br /><br />Something like this<br /><br /><br />:black<br />Main_separator=7<br />Main_separator_tint1=#000000<br />Main_separator_mask=#FF0000<br />Main_separator_slices_X=1,23,1<br /><br /><br />:white<br />Main_separator=7<br />Main_separator_tint1=#FFFFFF<br />Main_separator_mask=#FF0000<br />Main_separator_slices_X=1,23,1<br /><br /><br /><br /><br />I want to check out some things Gaurav said about HiDPI.<br /><br />I don't understand about icon frames in submenu?<br />See picture of search view. It looks ok. I did not do anything yet to paddings.<br /><br /><br />If I change what you have <br /><br />Shutdown_text_padding=10,6,10,7<br />Shutdown_icon_padding=5,0,-5,0<br /><br />to <br /><br />Shutdown_text_padding=10,6,10,7,100%<br />Shutdown_icon_padding=5,0,-5,0,100%<br /><br />The size will increase automatically with increase of DPI.<br />See picture. I think it would be a good idea to see where the &quot;,100%&quot;<br />are in the Metro skin, and copy over to your skin.<br /><br /><br />I see Main_text_padding=0,0,0,0<br />All other text padding have higher numbers.<br /><br />I notice main font size is different. Is that what you want?<br />Main_font=&quot;Segoe UI&quot;,normal,-11<br />Main2_font=&quot;Segoe UI&quot;,normal,-9<br /><br />Will get back to you later if you need anything.<br /><br />Bye. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/fileed30.png?id=4734" alt="Icon frames at 144 DPI.png" /><br />
+			<span class="gensmall">Icon frames at 144 DPI.png [ 38.48 KiB | Viewed 11464 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/filec632.png?id=4733" alt="increasing size with 100 percent added.png" /><br />
+			<span class="gensmall">increasing size with 100 percent added.png [ 23.42 KiB | Viewed 11464 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting6455.html?mode=quote&amp;f=17&amp;p=33060"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33061"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33061">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic62f3.html?p=33061#p33061"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 8:57 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I'm guessing Gaurav may have the small icons setup in CSM to be instead of default 24 size for submenu at 144DPI, <br />that they are around 40 pixel size? That could be it!<br /><br />Here is picture of submenu at 144DPI. of your latest skin. No changes to any paddings in submenu were made.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filec995.png?id=4735" alt="Submenu 144 DPI.png" /><br />
+			<span class="gensmall">Submenu 144 DPI.png [ 23.39 KiB | Viewed 11457 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga339.html?mode=quote&amp;f=17&amp;p=33061"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33062"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33062">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic5a10.html?p=33062#p33062"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 9:09 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">My small icon size is 40, large icon size is 48. The DPI setting in Windows is set to 150% (DPI 144). Actual display PPI is 176 pixels per inch.</div>
+
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingdb0a.html?mode=quote&amp;f=17&amp;p=33062"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33063"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33063">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopice21b.html?p=33063#p33063"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Sat Jun 17, 2017 9:28 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK, Gaurav.  Wow. 176 . I'm surprised screen isn't blurry, if not divided evenly?<br /><br />I think it's best if padding increased at least a tiny bit. I know meetHG likes everything tightly packed.<br /><br />This could work:<br /><br /><br />Could increase just a little bit from<br /><br />Submenu_icon_padding=5,0,0,0<br /><br />to<br /><br />Submenu_icon_padding=5,1,0,1,100%</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file4b99.png?id=4736" alt="adjusted.png" /><br />
+			<span class="gensmall">adjusted.png [ 16.71 KiB | Viewed 11447 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga9f0.html?mode=quote&amp;f=17&amp;p=33063"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33259"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33259">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic6b90.html?p=33259#p33259"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 5:59 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi Juniper And Gaurav,<br />Long Time No See.<br />OK OK, Long Time No Post.<br /><br />Actually, I got busy in something. This also kept me away from the internet most of the time. I do sometimes connect but not for long. Now I am over from the work and back in action.<br /><br />So, I done a lot of changes in the Blue-ray.<br />Blue-ray has now completely different makeover. It required rewrite of code and also the re-production of bitmaps.<br /><br />Anyway, now it is done. Only thing remained is removal of bugs and glitches.<br /><br />So, Use it and reply. Especially the HIDPI Area.<br /><br />NOTE:- Currently there is not any image inside the skin file, so you have to point to an image by using option present in the setting menu, before using it. Otherwise it is not going to work.<br /><br />Thanks in advance.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/fileeaee.php?id=4762">In Development.skin7</a> [558.5 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 61 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting266a.html?mode=quote&amp;f=17&amp;p=33259"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33260"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33260">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic054b.html?p=33260#p33260"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 6:45 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I'm glad you are still creating. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br />I thought I might have been too insistent with recomendations, and scared you off.<br /><br />I will look at your new skin tonight, or tom.<img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting6d9d.html?mode=quote&amp;f=17&amp;p=33260"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33261"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33261">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic3b65-3.html?p=33261#p33261"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 6:49 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK. Thanks.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingb9dc.html?mode=quote&amp;f=17&amp;p=33261"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33262"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33262">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicf44f-4.html?p=33262#p33262"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 7:29 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">1. Shutdown button is not on the same row as search box. It is more noticeable since it is white now.<br />2. Right column vertical padding is too less. Earlier version was OK.<br />3. Need separate submenu arrow color option<br />4. Split button right portion (Jumplist and shutdown) is still way too small (but it's like that in the default Classic Shell skins too) <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" /><br /><br />Here's a pic:</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5d32.png?id=4763" alt="Pic.png" /><br />
+			<span class="gensmall">Pic.png [ 1.12 MiB | Viewed 11108 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0eac-2.html?mode=quote&amp;f=17&amp;p=33262"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33264"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33264">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic1698-2.html?p=33264#p33264"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 7:53 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">OK, I got it.<br /><br />1] Shutdown button needs a little things- a 100% behind the text. I was adding it before uploading the skin but forgot. On normal DPI (96), search box and shutdown button are nearly in the same row.<br /><br />2] The reason for this is HIDPI. No problem I will add new bitmaps to adjust them. Below is the screenshot at 96 dpi. Here it looks OK, if not perfect.<br /><br />3] OK I will add it. One question- Earlier when I was making the skin I changed the tint of arrows and user frame to match the accent color. Although I removed it now, I want to know that If earlier settings were more better or not?<br /><br />4]I will adjust the padding.<br /><br />Thanks for help.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file0735.jpg?id=4765" alt="Untitled.jpg" /><br />
+			<span class="gensmall">Untitled.jpg [ 189.23 KiB | Viewed 11107 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting2275.html?mode=quote&amp;f=17&amp;p=33264"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33265"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33265">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic6ef5.html?p=33265#p33265"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 8:15 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Looks like it's best for people with HiDPI screens to help you, like Gaurav.<br /><br />Sometimes I don't notice things on my regular monitor, when I put to 144DPI. <br />They get cut off, or look so big, it's hard to compare everything together.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting49d6-2.html?mode=quote&amp;f=17&amp;p=33265"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33276"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33276">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicc305.html?p=33276#p33276"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 11, 2017 11:29 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi there.<br /><br />1] Shutdown Bitmap --------------------- Done + Bonus (Now, search_box and shutdown_button are perfectly aligned at 144 DPI)<br /><br /><br />2] Split_arrow------------------------------Done (Required 100% Behind the arrow_padding)<br /><br />3] Submenu_white_arrow-----------------Done + Bonus (Added a new option in the settings menu, see yourself)<br /><br />4] Vertical_padding------------------------Hmm, remaining <img src="images/smilies/icon_e_confused.gif" alt=":?" title="Confused" />. When I try to solve it, I realised how much work it involves. It involves adjustment of Main_bitmap mask+ Main_pattern_mask +Search_background_mask +Search_pattern_mask + Main_bitmap (for transparency mode) + Main_bitmap (for glass mode) and may be some more.<br />Then, a sudden question came to my mind- Did Gaurav mean about the highlighted numbers in the text - <span style="background-color:#00ff00;">0</span>,5,5,0 OR the central line itself.<br />So, if you mean about the number, it is easy- can be done in 5 secs Or If you mean the width of central line itself- then it requires a god amount of time. So, please tell what should I do before I do? <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /><br /><br />OK Thanks Gaurav for finding these. Any other recommendations? New Skin File Is Below.<br /><br /><br />And One more question Gaurav, Below are two files-one normal and one non-working. If you open non-working file in the resource hacker, you will find that all the folders' text are italics and icons and manifest files are not showing. I don't know the reason but this happens many times to me. if you know the reason please tell and how to make it working.<br /><br />And Where aaaaaare youuuuuuu Juniper? You can't escape from me by saying like in the above reply.<img src="images/smilies/icon_twisted.gif" alt=":twisted:" title="Twisted Evil" /> You Have to help.<br />I am waiting for you. <img src="images/smilies/icon_neutral.gif" alt=":|" title="Neutral" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="gensmall"><b>File comment:</b> This File Works OK</span><br />
+		
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file553d.php?id=4774">In Development.skin7</a> [559.5 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 56 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="gensmall"><b>File comment:</b> This File is damaged.</span><br />
+		
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file003d.php?id=4773">In Development.skin7</a> [559 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 65 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8ac7.html?mode=quote&amp;f=17&amp;p=33276"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33282"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33282">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic04cc.html?p=33282#p33282"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jul 12, 2017 10:32 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> Excuses, um, there is only 24 hours in day, not 25. <br />I only said 'I'll look at it', not do anything. <br />I'm weaning myself off CSM, as I've been told, <br />there's something called &quot;Outdoor Summer Activities&quot; <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <br /><br />Ok.<br />I didn't download the #1 skin, as you added another 2 updated. <br />Hey, got to put a,b,c,1,2,3, or something. Confusing with same names. <br /><br />I downloaded the damaged #3 skin. Works for me with v3.6.0 Reshacker<br />Upon trying in CSM just a white default menu, unless a picture image is added.<br /><br />The power button looks unique, with the transparent border frame part,<br />just like the separators. Symmetrically placed, at least in English language. <br /><br />Looks alright. I tried some options.<br />I see so many 'select', but is there selector button color option?<br />I don't remember, was there a selector button color at one time, or was it up to user to use override glass color?<br /><br />Circle frames are different, still neat with broken part.<br /><br />Downloaded #2 good skin.<br />Ok, same thing. Only white default menu, unless click box /user picture image inserted. I see your note now. Kind of weird. Even if I change 0 to 1 in your file,<br /><br />OPTION_IMAGE PATTERN1=Select Different Image as Background,1 <br /><br />and reset skin, it still starts out CSM default white skin?<br /><br />P U. Ok, got it. Pin Unpin.<br /><br />Trying 144DPI now.<br />Maybe what Gaurav means, is due to the font used in second column is smaller, then the height of the selector button is smaller. The different font size will make width of left column gigantic, right column on skinny diet. Either leave as is, as that is your style, or increase the second and forth numbers of Main2_text_padding, or add the ,100% at end for hiDPI users like Gaurav. <br /><br />Ok, that's all I have time for. I never tried every option.<br />I would give it a pass, except for the no go default reset skin at first use. It's a bit of a turn off.<br />But you are going to fix it anyway. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> <br /><br />Bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting95ab.html?mode=quote&amp;f=17&amp;p=33282"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33299"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33299">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic8198-2.html?p=33299#p33299"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 6:24 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody"><img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" />. OK.<br /><br />Got it. Actually I thought of adding numbers but didn't add it. I call this &quot;LMR&quot;----- Last Moment Rush.<br />There are many things I thought of adding, but at the last moment, I got hasty and want to see the results (/review) immediately.<br />No Problem, I will take care of this next time.<br />Starting from now, alphabets will be added.<br />Like - &quot;In <strong>A </strong>Development&quot; <img src="images/smilies/icon_cool.gif" alt="8-)" title="Cool" /> <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" />.<br /><br />Really. It works normally!!<br />Below are some screenshots of what I was talking about italics stuff in previous reply.<br />Did something like this happens to you ever? If yes, thank god. I am not the only one. If No, but Why me? This thing has ruined my skins from the start. When I nearly done all the changes, this happens and I have to start over. But afterwards I found way to tackle the problem. But It is still irritating.<br /><br />I also saw that you are using the old version of reshack. And every other one on the forum seems to use it.<br />Let me know why? I am using the latest version.<br /><br />Yeah, I was thinking about it. Is there any code for making it centred symmetrically? As when the width of second column changes, This alignment change.<br />May Be Ivo know it?<br /><br />I changed the word &quot;Choose&quot; to &quot;Select&quot;. As why should we become &quot;CHOOS - E&quot; <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" />.<br />It was always like that. Selector Button Colour Option Always point to the glass colour.<br />I don't remember of adding it.<br /><br />Yeah, You are right. These things don't seem to work.<br />For example, If I add like this:<br /><br />OPTION_COLOR ACCENT=Select the Main Menu Accent Color,1,TRUE,#640000<br /><br />And we reset the skin from the settings menu, we will see that option is not enabled, instead it will be off.<br />And when we enable it, it points to #640000 color.<br />I don't know why.<br /><br />P.U. And M, M for More.<br />Do you like these?<br /><br />OK, If this what Gaurav means, then might it be corrected using 100% behind the Main2_text_padding.<br />I never tried it. Might it not work.<br />You can try it.<br /><br />Yup, I am going to add a beautiful picture when I found one.<br />May be in two or three days.<br /><br />I was thinking of removing transparent and glass option from the Main menu transparency settings as they don't look as great as solid. And Like before, Glass and transparency don't works unless a background card colour is selected. I also found a bug- During transparency and glass setting enabled, Search background is still solid. It is due to that Search_background bitmap has no transparency. This can be corrected, but it is needed only if glass and transparency settings are available. So, Should I remove them or not.<br /><br />One more question- What do you think skin has got better or worse than before?<br /><br />Bye.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file7659.png?id=4780" alt="Screenshot (17).png" /><br />
+			<span class="gensmall">Screenshot (17).png [ 40.81 KiB | Viewed 10999 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/file29f0.png?id=4779" alt="Screenshot (18).png" /><br />
+			<span class="gensmall">Screenshot (18).png [ 47.78 KiB | Viewed 10999 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file0430.png?id=4778" alt="Screenshot (19).png" /><br />
+			<span class="gensmall">Screenshot (19).png [ 49.65 KiB | Viewed 10999 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting14f6.html?mode=quote&amp;f=17&amp;p=33299"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33307"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33307">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic0a37-2.html?p=33307#p33307"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 10:01 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Just a quick reply, for one of the issues.<br />I went back to look at good and bad file. Ok you are right. I don't really care about what the font view looks like. It can be changed anyway in Reshacker. <br />Are you going to change the icon inside for a personal one, to show up in the &quot;About&quot; box? <br />The font of Reshacker 3.6.0 stays same but icon group does not show properly.<br />Stuff like that has happened to me before too.<br />Like when I make an extra skin folder. It is usually my fault, because I targeted it to use a garbage text file. <br />I found the new Reshacker versions more complicated to use. I did not like the way its search worked. I had to make sure compile button clicked each time before search could work, and never figured out how to add images, like you have, so I just use old one.<br />The old one has a problem with transparent bitmaps sometimes. Sometimes can't replace the bitmap, until it is deleted first. Happens a lot with a user picture bitmap.<br /><br />The old Resource Hacker is here:<br /><!-- m --><a class="postlink" href="download/file2251.php?id=2723">http://www.classicshell.net/forum/downl ... hp?id=2723</a><!-- m --><br /><br />Enough time for one more thing.<br />[centered symmetrically]<br />Someone awhile ago, asked if every menu entry could be auto centered. They have a mock up picture.<br />Ivo said not possible.<br /><br />Still time left. OK, one more.<br />I think it was redblade8 that had a problem with user picture option showing,<br />even when put to 0 instead of 1. I think we ended up using a different name than the default &quot;USER_IMAGE&quot;. So sometimes there are work arounds that can work. Even if a tiny little 1 pixel image all that's needed for default without external picture image? <br />Bye</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file8567.png?id=4783" alt="Badfile  does have errors.png" /><br />
+			<span class="gensmall">Badfile  does have errors.png [ 28.85 KiB | Viewed 10983 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd2e7.html?mode=quote&amp;f=17&amp;p=33307"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33313"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33313">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic968f.html?p=33313#p33313"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 2:26 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Here is a little bit more. We have too much info to converse just in one post. <br /><br /><br />Errors in Reshacker. Whatever version works for you.<br />I would change the way you save the file. Most of time now, after clicking the compile button, I just click on the exit X of window, then it asks if I want to save, yes, save as type, select all files, highlight the file, click save, and it overwrites the file. The only problem is easy to overwrite the wrong file, and your backup just vanished.<br />Sometimes I mistakenly opened up an older file, made changes, and quickly saved, without realizing it just overwrote my newest file in a different location, because program holds onto last location of file, that program used before. <br />Enough about those embarrassment errors in my head program. <br /><br /><br /><br />[Main2_text_padding]<br />If you add ,100% <br />Main2_text_padding=7,7,7,7,100% will convert to be about Main2_text_padding=11,11,11,11<br />when at 144DPI.<br />You could do it a different way if you want exact:<br />leave Main2_text_padding=7,7,7,7 as is <br />and then add a separate text padding under the hidpi header that turns on automatically if 144DPI:<br /><br />[HIGH_DPI]<br />Main2_text_padding=11,11,11,11<br /><br />Just adding ,100% is easiest and I think tracks better for all DPI. <br /><br />That's it for today <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file6912.png?id=4786" alt="Image not picked.png" /><br />
+			<span class="gensmall">Image not picked.png [ 12.34 KiB | Viewed 10966 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8bb5.html?mode=quote&amp;f=17&amp;p=33313"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33317"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33317">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic684d.html?p=33317#p33317"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 4:26 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Back for last time today.<br />You won't be hearing from me for the next couple days.<br />This is all I can answer.<br /><br />[P.U. And M, M for More. Do you like these?]<br />I like More money, More happiness &amp; Peace.<br />Oh, that's where the more is. I never knew that. So it replaced the realistic looking magnifier.<br />If I type money in search box, and click on more, I don't get any more.<br />If the 16 pixel boxes were bigger, even the whole word could fit.<br />I'm neutral on it, but it matches the rest of skin.<br /><br /><br /><br /><br /><br /><br /><br />For me I would change &quot;Select the Main Accent Color&quot;<br /><br />to &quot;Select the Main Border Accent color&quot; or Edge or Boundary(like you had before) or Framework or Constituent Separator?<br /><br /><br />[removing transparent and glass option from the Main menu transparency settings]<br />True opaque always better than transparent/glass, as the blurred illusion is on your preblurred images.<br />You know it's funny. The first skin didn't have any options. Now so many options. <br />Your skin is making me jealous. I'll have to go back and add more options on one of my skins, to beat you. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br />Question.<br />Did you ever try out putting that extra text for default look without turning on card color and boundaries color options?: <br /><!-- l --><a class="postlink-local" href="download/filefcc5.php?id=4737">download/file.php?id=4737</a><!-- l --><br /><br />in your older  <br />Blue Ray NEAR RELEASE 2 ADDED HIDPI AND MADE ARROWS THICK&quot; skin<br /><br />I think search transparency worked back then. <br /><br />[So, Should I remove them or not?]<br />Besides Gaurav and me, has anybody commented, or sent a personal message on the subject?<br />If not, do what looks good to you.<br /><br /><br />[What do you think skin has got better or worse than before?]<br />I don't know. Whatever I say today, could be totally different tomorrow. Ask others. Is anyone out there?<br /><br /><br /><br />OK BYE</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0e70.html?mode=quote&amp;f=17&amp;p=33317"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33319"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33319">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic2095-2.html?p=33319#p33319"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 9:40 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">May be I add an Icon for the About box.<br />I earlier tried but it doesn't look great.<br />A good icon is needed, i am finding it.<br /><br />Looks like old Reshacker have problems too.<br /><br />And for image adding, I just invented a little naughty trick.<br />You know, If you add a bitmap file, it goes to bitmap folder in Reshack automatically.<br />and If you add a png imge, it goes to PNG folder automatically.<br />Same with icons and maybe with some other file types too.<br />But we want to add images to image folder, not to the png folder.<br />So, I just first add to an .res file (which don't have automatic folder created) and name the folder &quot;Image&quot;. <br />After this, I replace the .res file with right image what we wanted. <img src="images/smilies/icon_cool.gif" alt="8-)" title="Cool" /> <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" />.<br /><br />OK, No centring magic words.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga91f.html?mode=quote&amp;f=17&amp;p=33319"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33320"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33320">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic5a4b-3.html?p=33320#p33320"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 9:41 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I use the Save button in the toolbar to save the file.<br />I also took some additional precautions like- When I have done adding a feature or done a lot of editing, I copy the skin file to another location as a backup, just like checkpoints in the Mobile racing games. So if happens to the skin while further editing in the future, I don't have to rewrite from the start, but just start over from little back.<br /><br />OK, I will add the 100%.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting69df.html?mode=quote&amp;f=17&amp;p=33320"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33321"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33321">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicf381.html?p=33321#p33321"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 13, 2017 9:41 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">For the accent color option, there is one thing to know (unless you don't know) that in the latest file, Accent color is not only applied to boundaries and separators but also to arrows, user frame, submenu pager arrow, P.U.M. buttons, and programs icon.<br />So, If you still think Boundary accent color is better term, I will change it.<br /><br />Really. You are jealous? I don't know that I am that good.<br />It's just all about the time. You are a young adult man with a job to do and don't have enough time for these things.<br />And I am just a little boy of 17 which is free all the day, sitting at home, waiting for admission to a college. I have more than enough time to do these things.<br /><br />Yeah, I remember that script. You told me about it earlier. It uses a gray tint by default when using transparent and glass options. Although I never added it.<br />Search bitmap might work earlier. I don't test that before. It was yours.<br />Now I made myself and have 255/255 alpha. So, transparency don't works.<br /><br />So, I made my mind. I will remove these transparency and glass settings.<br />These will be in comments, so if anybody wanted it, may use it.<br />In this way, we don't have to correct the search_background bitmaps either.<br /><br />I will shortly upload the new skin file.<br /><br />Ok, Bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8dbe.html?mode=quote&amp;f=17&amp;p=33321"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33354"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33354">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicb09e-2.html?p=33354#p33354"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 17, 2017 9:50 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi meetHG. <br />I still did not try every option out.<br />Ah, yes. Not just the border, but all kinds of accents. Accents it is.<br /><br />At first I didn't notice the borders look thinner, with border removed at bottom. <br />What I did was use your sunset mountain image from last skin, and compare. <br />The best part of your skin is the glass border when it's setup for the intermingling of the picture.<br />The default black or white look good. <br />When I put in an accent color similar to glass color looks good too. <br />Is there any way to have accent color track the glass color, like the selector buttons do, <br />maybe not same intensity though? <br /><br />My Win 10 desktop background always changing, which changes the glass/metro color.<br />Sometimes, not always, other picture images make it hard to see the colored arrows.<br />I think I like it when the arrows are same color as text.<br /><br />Now I really don't know which menu is better. <br />I like the old border thickness, but I like the new skin selector transparency.<br /><br />Just remembered, a couple spelling mistakes for the options. &quot;s&quot; is missing in Tranparent<br /><br />You can never tell who is on the internet. I could be a multi millionaire, with nothing to do sometimes,<br />or an unemployed bedridden individual with a lot of time. I do use my wireless mouse in bed sometimes.<br />I did eat a can of Heinz baked beans last night as well!<br /><br />My project. I'm changing the Bare glass skin to have less transparent white, like one of your skins.<br />Now that you showed me what a &quot;more&quot; picture is, I'm changing to a white magnifier with maybe a plus inside.<br />Ok maybe not. I guess the plus sign is for making bigger view, not more. I tried looking on internet for a &quot;more&quot; symbol.<br />All I got was bigger than sign, which looks like metro arrow. <br />I'm adding option for round selectors. Going to take awhile to do. Turning into bore chore.<br /><br />Seeya. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingbf66.html?mode=quote&amp;f=17&amp;p=33354"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33356"></a>
+				<b class="postauthor">Gaurav</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33356">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic841c.html?p=33356#p33356"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 17, 2017 11:18 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file209d.png?avatar=54_1464201643.png" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jan 03, 2013 12:38 am<br /><b>Posts:</b> 5341
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Sorry for late reply.....life tasks never end <img src="images/smilies/icon_e_sad.gif" alt=":(" title="Sad" /> I don't know how you got the non-working skin, it usually happens if you save it while Classic Start Menu is still running. Before saving it, you must exit the menu.<br /><br />I made some changes to the high DPI section to show what I meant about #2 and #4. Sorry if the split button's right portion seems big-ass ugly but I like the buttons big on my PC for touch+high DPI with my tiny mouse pointer which can't be enlarged by DPI scaling beyond a certain extent. <img src="images/smilies/icon_mrgreen.gif" alt=":mrgreen:" title="Mr. Green" /> Notice the big ass jumplist buttons too similar to the Shutdown arrow button. Here is the modded version.<br /><br />I would add those 3 parameters to the non High DPI portion too (but of course with values adjusted and appropriate to normal DPI):<br />Main_split_arrow_padding=xx,xx,100%<br />Main2_split_arrow_padding=xx,xx,100%<br />Shutdown_arrow_padding=xx,xx,100%<br /><br /><br />Is there any reason to have &quot;Use White Arrows in submenu&quot; greyed out unless &quot;Don't use accent color.....&quot; is checked? You could remove that dependency. <img src="images/smilies/icon_e_wink.gif" alt=";)" title="Wink" /> <br /><br />I find everything else OK. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> Great job meetHG really with this skin and thanks to skinning pro, juniper7 <img src="images/smilies/icon_e_geek.gif" alt=":geek:" title="Geek" /> for your invaluable help with skinning.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file2270.png?id=4790" alt="Screenshot.png" /><br />
+			<span class="gensmall">Screenshot.png [ 778.97 KiB | Viewed 10753 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file37d5.php?id=4789">In Development.skin7</a> [560 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 65 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+						<div class="postbody"><br />_________________<br /><span style="font-family:Segoe UI Semibold;"><span style="font-size: 100%; line-height: 116%;">Links to some general topics</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">:</span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"></span></span><span style="font-family:Segoe UI Semibold;"></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic9d3a.html?f=4&amp;t=2399" class="postlink">Compare Start Menus</a></span></span> <br /><br /><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">●</span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;"> <a href="viewtopic5327.html?f=4&amp;t=1588" class="postlink">Read the Search box usage guide</a></span></span><span style="font-size: 100%; line-height: 116%;"><span style="font-family:Segoe UI Semibold;">. <br /><br />I am a Windows enthusiast and did Classic Shell&#39;s testing and usability/UX feedback.</span></span></div>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist367b.html?mode=viewprofile&amp;u=54"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting52f6.html?mode=quote&amp;f=17&amp;p=33356"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33358"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33358">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic5bbe-2.html?p=33358#p33358"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 17, 2017 11:43 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">There sure is a way .<br />Accent color is appearing due to several tint options. If you adjust the tint settings present below the OPTION_COLOR ACCENT, red channel by default point to the glass color.<br /><br />But how so. Arrow color comes from the accent color selected in the settings menu, not from the glass color. If Accent color is not selected, black is used by default.<br /><br />Oops, Spellings. Ok, I will correct them.<br /><br />Ok, By Juniper.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinga6c7.html?mode=quote&amp;f=17&amp;p=33358"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33359"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33359">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopica72c.html?p=33359#p33359"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Mon Jul 17, 2017 11:43 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Thanks for that, gaurav. Now I will exit the menu before saving any changes. This saves a lot of trouble.<br /><br />One question about these padding scripts:-<br />Main_arrow_padding option is present in the skin file.<br />So, Main_split_arrow_padding will inherit from the Main_arrow_padding (as per skinning tutorial).<br />And Main2_arrow_padding will also inherit in the same way from_main_arrow_padding.<br />And Main2_split_arrow_padding will ,then, inherit from the main2_arrow_padding.<br />And Shutdown_Arrow_padding also inherits from the main_arrow_padding.<br />So, In this way, Main_arrow_padding will suffice the below three. Right or not?<br />If yes, then why we add these three padding scripts?<br /><br />Yeah, there sure is reason. Submenu arrows and separators also take color from the accent color.<br />But there is one mistake. Option should be like this &quot;Choose Menu Accent Color&quot; ,not &quot;Choose Main Menu Accent Color&quot;. I will correct them.<br /><br />OK, Bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting447a.html?mode=quote&amp;f=17&amp;p=33359"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33360"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33360">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic7fe5-2.html?p=33360#p33360"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 18, 2017 1:13 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Below is the new skin file. I corrected the mistakes.<br /><br />Also Added the transparency as suggested by juniper.<br />One thing is remaining- Although I added the alpha channel in the Search_background bitmaps but due to some reason, search area transparency and main menu transparency are not matching. I tried hard to find the reason but couldn't find out.<br />Try to find the solution.<br /><br />I also changed some paddings and HIDPI settings.<br />Hey, Gaurav please check if this skin do the good with paddings at HIDPI.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file7141.jpg?id=4792" alt="Screenshot (35).jpg" /><br />
+			<span class="gensmall">Screenshot (35).jpg [ 116.95 KiB | Viewed 10708 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file16af.php?id=4791">In Development Rev-B.skin7</a> [561.5 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 66 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge515.html?mode=quote&amp;f=17&amp;p=33360"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33364"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33364">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic03d6-2.html?p=33364#p33364"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 18, 2017 12:24 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi.<br /><br />Say what? Huh? <br />I thought you made a final decision that you were going to cut out the main background transparency/blur? <br />Opaque background still looks best, because it doesn't look milky, and more intense. <br />Am I missing something? It just seems redundant with the Main Menu transparency/glass blur options up there. <br />Can't those two radio options be put under the Show Background Card color option, that only enable when card color picked.<br />And maybe default true is 000000 black? <br /><br /><br />I did not notice transparency, or brightness difference with main/search views. What options were on at the time?<br /><br />The translucent bar either side of shutdown button, matches height now. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postinge341-2.html?mode=quote&amp;f=17&amp;p=33364"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33369"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33369">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopica46f.html?p=33369#p33369"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 18, 2017 7:26 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Oops. Changed mind at the last time.<br />Actually I was using the skin without any image and selecting &quot;choose different image&quot; option. There glass and transparent options come handy.<br /><br />Hey, You say that to do like this.<br />Didn't You said to automatically add a grey background color when glass and transparent option is selected.<br />But, You know what- thoose two radio buttons down the background color is a good idea. I will adjust them.<br /><br />I am out of home and PC is at home. Replying with Mobile.<br />So i can not post the image of settings menu with exact options right now, but try to use a dark background color to make the difference in transparency more noticeable. If you use light colors it is hard to see the difference.<br /><br />I don' t understand about the translucent bars.<br /><br />Hey, Try the menu at HiDPI, I made some chandes to the paddings in list and submenu veiw. See if they look ok or not.<br /><br />Ok. Bye. Have a nice day.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8321.html?mode=quote&amp;f=17&amp;p=33369"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33370"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33370">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic5dc9-2.html?p=33370#p33370"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 18, 2017 8:56 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hello.<br /><br />[Hey, You say that to do like this]<br />Yeah, I did too. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> My excuse is that text was different. It used the bitmaps that were there already, <br />giving grey trans/glass blur borders, or mild transparancy/glass blur without borders.<br />I swear it must be search bots that download attachments. That add on text script, downloaded 18 times now.<br /><br /><br />I can put at 144 DPI, but my monitor is not same as high density systems like 3200 x 1800.<br />It looks ok to me. But if you are like Gaurav, in order for it to look good and work properly,<br />he likes arrow padding boosted, vertical second column text padding increased, <br />and more vertical Submenu_icon_padding=5,1,1,1,100%, all for 144Dpi.<br />(What you put is half good. Submenu_icon_padding=5,0,0,0,100%. I doubt 0 will multiply to anything higher than zero, though)<br /><br />It would be great if there was a second opinion from someone with one of those monitors. <br />On my monitor 144DPI size makes menu huge.<br />I have to sit four to five feet away.<br /><br /><br />[translucent bars] see picture<br />I guess it's part of search background. I see tiny multicolored bitmaps, cute.<br /><br />My update project. Why oh why did I want to make perfectly round ended selectors. If they stretch, or shrink, it all distorts badly.<br />I have to make so many exact sizes. Single and split = 2 x 3 100%, 125%, 144% x 3 small, large , no icons x 5 diff types = Qty 90<br />Shoot plus 9 new program selectors for a grand total of 99 selectors to make. Oh boy.<br /><br />See you <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file5f88.png?id=4793" alt="Those thingys.png" /><br />
+			<span class="gensmall">Those thingys.png [ 30.1 KiB | Viewed 10659 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting8f40.html?mode=quote&amp;f=17&amp;p=33370"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33373"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33373">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicbf8a.html?p=33373#p33373"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Tue Jul 18, 2017 11:20 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi<br />I wanted to have the borders with glass Windows 10 auto color, for myself. I am happy now.  <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /> <br />I copied OPTION_COLOR ACCENT section and pasted for new section with different name, and took away the @ACCENT@<br />and left like this <br />[WINDOWS_ACCENT]<br />Main_bitmap_tint1=<br />Main_bitmap_search_tint1=<br />Main_bitmap_jump_tint1=<br />Main_separator_tint1=</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingef45-2.html?mode=quote&amp;f=17&amp;p=33373"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33382"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33382">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicbccb-2.html?p=33382#p33382"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jul 19, 2017 6:36 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Home Sweet Home. Come back after a tiring journey. Uff.<br /><br />Ok, I got it. And Also I will shift glass and transparent settings below background color option.<br /><br />I talked to Gaurav. He said he is busy. <img src="images/smilies/icon_neutral.gif" alt=":|" title="Neutral" /> <br />About the icon padding, I think in rev-b text padding will alone can take care of it.<br />Here's a little info- In Main Menu Column1, Icon padding does the padding job and text padding is zero.<br />In others like column2, submenu, list, text padding does the job and icon padding is for the alignment of icons only. <img src="images/smilies/icon_e_ugeek.gif" alt=":ugeek:" title="Uber Geek" /> <br /><br />Hey, I don't know from where these bars come. Can you please elaborate with a bigger picture. <img src="images/smilies/icon_question.gif" alt=":?:" title="Question" /> <br /><br />Round selectors. Umm.. Do you mean rectangular selectors with round corners?<br />If yes, then don't get upset. You can make them with less effort.<br />I will tell how, but first clear that I am right or wrong with the above question. <img src="images/smilies/icon_e_wink.gif" alt=";)" title="Wink" /> <br /><br />Oh Boy, You are quest of ideas <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /> . I get an idea from your windows accent settings.<br />Idea is to remove the default black color. Accent option can be used for that.<br />Color should automatically point to glass color in rev-c.<br /><br />Below is the skin file.<br />Hope you try it.<br /><br />This skin still have the transparency difference bug.<br />Now I have posted the settings menu also.<br />Check If you can find the culprit.<br /><br />Ok, Bye.<br />Have a good day.<br /><br /><br />EDIT:- I tried the skin after doing changes.<br />It helped less and also destroyed several things. <img src="images/smilies/icon_eek.gif" alt=":shock:" title="Shocked" /> <br />So reverting all the changes<br />Plus tired of Transparency and blur, I removed them entirely from the skin.<br /><br />Uff.... This ruined all my mood. <img src="images/smilies/icon_mad.gif" alt=":x" title="Mad" /> <br /><br />Here's the skin.<br />Check if you find some setting that need to be adjusted.<br />If not, Skin will be officially launched tomorrow. <img src="images/smilies/icon_e_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<span class="genmed">
+				<img src="styles/subsilver2/imageset/icon_topic_attach.gif" width="14" height="18" alt="" title="" /> 
+				<a href="download/file459c.php?id=4794">2] In Development Rev-C.zip</a> [34.28 KiB]
+			</span><br />
+			<span class="gensmall">Downloaded 66 times</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd9ad-2.html?mode=quote&amp;f=17&amp;p=33382"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33383"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33383">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic8349.html?p=33383#p33383"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jul 19, 2017 8:44 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Traveling can be very draining, worse when it's a new area.<br /><br />I'll get back to you tonight about the bar. You mean that is not your design?<br /><br />Yes, rectangle with round ends. To make it go a little faster, <br />I made templates that can be used over, and over with PixelFormer.<br /><br />You know I started making the split selector with a vertcal line. <br />The more I made, the more dirty they looked. I had to stop that design. They looked too porno, if you know what I mean.<br />See picture, I'm not putting that in my updated skin. I made it different now with a complete circle. <br />Now, I must have made about qty 50 so far. Then I had an idea to make a smaller circle at end. <br />It looked better, but it is too late. I have committed myself to the second version, not the third version. <br />I'm not starting over again. <br /><br />I will try your skin sometime tonight.<br /><br />I am the Master of Disaster. You know I tried playing with your now complicated skin, maybe doing same thing as you.<br />I totally wasted it. I made too many changes, (wrong changes), and killed it. It won't even start now. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />There is a point, where you have to say, &quot;That's it, no more changes, this IS the FINAL one&quot;!<br /><br />Have a good one. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/filee1da.png?id=4795" alt="selector vertical line split.png" /><br />
+			<span class="gensmall">selector vertical line split.png [ 13.74 KiB | Viewed 10631 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting174f.html?mode=quote&amp;f=17&amp;p=33383"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33389"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33389">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopicf27d.html?p=33389#p33389"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Wed Jul 19, 2017 6:15 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi meetHG.<br />I spent some time with skin.<br />I don't know what is causing that bar at the bottom.<br /><br />Clues:<br />At 144 dpi visible as in picture.<br />If dpi reduced a little or menu height is reduced, bar goes lower. <br />Turning off search box makes it go lower, but not disappear.<br />Hiding shutdown button shows bar all the way across menu, including side borders.<br />Put internal black pattern image, looks ok, then same picture again, same problem.<br />Try a number of different external picture images. <br />Most good, 2 bad. It appears to take portion of top image and put at bottom ? <br />There has to be a 1 or more pixel height that is getting stretched with menu.<br /><br /><br /><br />I'm tired now. Time to call it a day. <br />Good night.<br /><br />EDIT: Top is bottom as tile means repeat. <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <img src="images/smilies/icon_mad.gif" alt=":x" title="Mad" /> <img src="images/smilies/icon_lol.gif" alt=":lol:" title="Laughing" /> <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />:o<br /><br />Nothing wrong with your skin. The tile just repeated itself, because it's a patterned image.<br />That was way over my head. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file6de2.png?id=4799" alt="Part of top is now at bottom.png" /><br />
+			<span class="gensmall">Part of top is now at bottom.png [ 34.53 KiB | Viewed 10582 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+							<tr>
+								<td class="row1">
+			<img src="download/filea551.png?id=4797" alt="Changes with menu height.png" /><br />
+			<span class="gensmall">Changes with menu height.png [ 19.72 KiB | Viewed 10602 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingd069-2.html?mode=quote&amp;f=17&amp;p=33389"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33398"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33398">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic4936-2.html?p=33398#p33398"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Thu Jul 20, 2017 2:26 am&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi, Juniper<br />Skin is officially launched. I am not posting link to it, as you know well where to find it.<br /><br />I will come back for your round selectors here soon.<br /><br />Bye.</div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting0fdc.html?mode=quote&amp;f=17&amp;p=33398"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row2">
+
+			<td align="center" valign="middle">
+				<a name="p33423"></a>
+				<b class="postauthor">meetHG</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33423">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic33a7.html?p=33423#p33423"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jul 21, 2017 9:44 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu May 25, 2017 9:44 am<br /><b>Posts:</b> 84
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">Hi Juniper, Oops somewhat late.<br />Got Some work to do.<br /><br />So, yes selectors.<br />I take a look. You wanted selectors like in the below picture earlier, but after that they don't look great.<br />Then you shifted to round selectors.<br />Well, earlier was easy to made, as we can change the slices and leave the circular edges, so that only straight portion is in the extension slice.<br /><br />Round selectors are somewhat else. We can easily setup the Slice_X, but Slices_Y will produce the distortion in the circular areas.<br />I think there is no other choice to make all the selectors for different things. But I am not sure.<br />Although one idea came to my mind, but I am not sure it will work or not. I had not tried it.<br />Well, I will take a look today.<br /><br />Bye.</div>
+
+					
+						<br clear="all" /><br />
+
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><b class="genmed">Attachments: </b></td>
+						</tr>
+						
+							<tr>
+								<td class="row2">
+			<img src="download/file118b.png?id=4807" alt="Untitled.png" /><br />
+			<span class="gensmall">Untitled.png [ 2.11 KiB | Viewed 10521 times ]</span>
+		
+
+		<br />
+	</td>
+							</tr>
+						
+						</table>
+					
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row2">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberlist4f64.html?mode=viewprofile&amp;u=20364"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="posting3526-3.html?mode=quote&amp;f=17&amp;p=33423"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr class="row1">
+
+			<td align="center" valign="middle">
+				<a name="p33424"></a>
+				<b class="postauthor">juniper7</b>
+			</td>
+			<td width="100%" height="25">
+				<table width="100%" cellspacing="0">
+				<tr>
+				
+					<td class="gensmall" width="100%"><div style="float: left;">&nbsp;<b>Post subject:</b> <a href="#p33424">Re: New skin with full customization (can set background,col</a></div><div style="float: right;"><a href="viewtopic0c46.html?p=33424#p33424"><img src="styles/subsilver2/imageset/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a><b>Posted:</b> Fri Jul 21, 2017 10:45 pm&nbsp;</div></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td valign="top" class="profile">
+				<table cellspacing="4" align="center" width="150">
+			
+				<tr>
+					<td><img src="styles/subsilver2/imageset/en/icon_user_offline.gif" alt="Offline" title="Offline" /></td>
+				</tr>
+			
+				<tr>
+					<td><img src="download/file63f2.jpg?avatar=856_1379385760.jpg" width="90" height="90" alt="User avatar" /></td>
+				</tr>
+			
+				</table>
+
+				<span class="postdetails">
+					<br /><b>Joined:</b> Thu Jun 13, 2013 12:07 pm<br /><b>Posts:</b> 1014
+				</span>
+
+			</td>
+			<td valign="top">
+				<table width="100%" cellspacing="5">
+				<tr>
+					<td>
+					
+
+						<div class="postbody">I've made those types with straight sides before. Thanks for investigating.<br /><br />Round selectors will get straight sides if dpi, font, text size increased.<br />If any of the above is reverse, the shape collapses in on itself, looking terrible.<br /><br />I found out there is nothing I can do when the search box selector is used. <br />I tried adjusting the main selector slices, the best I could, but still look like rats ate it.<br />I don't think there is a separate selector for search box.<br />By the way,  <br />I finished and uploaded that project already. Thanks anyway. <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /><br /><br />You may not hear from me for awhile. Doing projects away from computer. <br />Bye meetHG.  <img src="images/smilies/icon_e_smile.gif" alt=":)" title="Smile" /></div>
+
+					<br clear="all" /><br />
+
+						<table width="100%" cellspacing="0">
+						<tr valign="middle">
+							<td class="gensmall" align="right">
+							
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="row1">
+
+			<td class="profile"><strong><a href="#wrapheader">Top</a></strong></td>
+			<td><div class="gensmall" style="float: left;">&nbsp;<a href="memberliste3e9.html?mode=viewprofile&amp;u=856"><img src="styles/subsilver2/imageset/en/icon_user_profile.gif" alt="Profile" title="Profile" /></a> &nbsp;</div> <div class="gensmall" style="float: right;"><a href="postingc7de.html?mode=quote&amp;f=17&amp;p=33424"><img src="styles/subsilver2/imageset/en/icon_post_quote.gif" alt="Reply with quote" title="Reply with quote" /></a> &nbsp;</div></td>
+	
+		</tr>
+
+	<tr>
+		<td class="spacer" colspan="2" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+	</tr>
+	</table>
+
+	<table width="100%" cellspacing="1" class="tablebg">
+	<tr align="center">
+		<td class="cat"><form name="viewtopic" method="post" action="http://www.classicshell.net/forum/viewtopic.php?f=17&amp;t=7650&amp;start=50"><span class="gensmall">Display posts from previous:</span> <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select>&nbsp;<span class="gensmall">Sort by</span> <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select> <select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select>&nbsp;<input class="btnlite" type="submit" value="Go" name="sort" /></form></td>
+	</tr>
+	</table>
+	
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="left" valign="middle" nowrap="nowrap">
+		<a href="posting2915.html?mode=post&amp;f=17"><img src="styles/subsilver2/imageset/en/button_topic_new.gif" alt="Post new topic" title="Post new topic" /></a>&nbsp;<a href="posting1434.html?mode=reply&amp;f=17&amp;t=7650"><img src="styles/subsilver2/imageset/en/button_topic_reply.gif" alt="Reply to topic" title="Reply to topic" /></a>
+		</td>
+		
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;Page <strong>2</strong> of <strong>2</strong><br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ 93 posts ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="Click to jump to page…">Go to page</a> <a href="viewtopic93bf.html?f=17&amp;t=7650&amp;start=0">Previous</a>&nbsp;&nbsp;<a href="viewtopic6d91.html?f=17&amp;t=7650">1</a><span class="page-sep">, </span><strong>2</strong></b></td>
+		
+	</tr>
+	</table>
+
+</div>
+
+<div id="pagefooter"></div>
+
+<br clear="all" />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs"><a href="index-2.html">Board index</a> &#187; <a href="viewforumf2fa.html?f=16">User Content</a> &#187; <a href="viewforum48ab.html?f=17">Start Menu Skins</a></p>
+			<p class="datetime">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</p>
+		</td>
+	</tr>
+	</table>
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4>Who is online</h4></td>
+	</tr>
+	<tr>
+		<td class="row1"><p class="gensmall">Users browsing this forum: No registered users and 4 guests</p></td>
+	</tr>
+	</table>
+
+
+<br clear="all" />
+
+<table width="100%" cellspacing="1">
+<tr>
+	<td width="40%" valign="top" nowrap="nowrap" align="left"></td>
+	<td align="right" valign="top" nowrap="nowrap"><span class="gensmall">You <strong>cannot</strong> post new topics in this forum<br />You <strong>cannot</strong> reply to topics in this forum<br />You <strong>cannot</strong> edit your posts in this forum<br />You <strong>cannot</strong> delete your posts in this forum<br />You <strong>cannot</strong> post attachments in this forum<br /></span></td>
+</tr>
+</table>
+
+<br clear="all" />
+
+<table width="100%" cellspacing="0">
+<tr>
+	<td><form method="get" name="search" action="http://www.classicshell.net/forum/search.php"><span class="gensmall">Search for:</span> <input class="post" type="text" name="keywords" size="20" /> <input class="btnlite" type="submit" value="Go" /><input type="hidden" name="t" value="7650" />
+<input type="hidden" name="sf" value="msgonly" />
+</form></td>
+	<td align="right">
+	<form method="post" name="jumpbox" action="http://www.classicshell.net/forum/viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}">
+
+	<table cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:</span>&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.forms['jumpbox'].submit() }">
+
+		
+			<option value="-1">Select a forum</option>
+		<option value="-1">------------------</option>
+			<option value="3">Classic Shell</option>
+		
+			<option value="4">&nbsp; &nbsp;Announcements</option>
+		
+			<option value="5">&nbsp; &nbsp;Tutorials</option>
+		
+			<option value="6">Discussion</option>
+		
+			<option value="7">&nbsp; &nbsp;Classic Start Menu</option>
+		
+			<option value="8">&nbsp; &nbsp;Classic Explorer</option>
+		
+			<option value="9">&nbsp; &nbsp;Classic IE</option>
+		
+			<option value="10">&nbsp; &nbsp;Chitchat</option>
+		
+			<option value="19">&nbsp; &nbsp;Classic Shell 4.0 beta</option>
+		
+			<option value="22">&nbsp; &nbsp;Hack hotline</option>
+		
+			<option value="11">Development</option>
+		
+			<option value="12">&nbsp; &nbsp;Bug Reports</option>
+		
+			<option value="13">&nbsp; &nbsp;Feature Requests</option>
+		
+			<option value="20">&nbsp; &nbsp;Translations</option>
+		
+			<option value="16">User Content</option>
+		
+			<option value="17" selected="selected">&nbsp; &nbsp;Start Menu Skins</option>
+		
+			<option value="18">&nbsp; &nbsp;Start Buttons</option>
+		
+			<option value="21">&nbsp; &nbsp;Taskbar Skins</option>
+		
+
+		</select>&nbsp;<input class="btnlite" type="submit" value="Go" /></td>
+	</tr>
+	</table>
+
+	</form>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+<div id="wrapfooter">
+	
+	<span class="copyright">
+	</span>
+<table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+      <td class="bgrx" background="../images/bg_bottom.gif" bgcolor="#88cce6" height="1">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding: 0" colspan="4" height="8"><img src="../images/spacer.gif" height="8" width="1"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+            <td style="padding: 0; text-align: left" class="cpr" width="50%">
+            Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group, Almsamim WYSIWYG
+            </td>
+            <td style="padding: 0; text-align: right" class="cpr" width="50%">
+            Classic Shell &copy; 2010-2016, Ivo Beltchev.<br>All right reserved.
+            </td>
+            <td style="padding: 0" width="21"><img src="../images/spacer.gif" height="1" width="21"></td>
+          </tr>
+          <tr>
+            <td style="padding: 0" colspan="4" height="7"><img src="../images/spacer.gif" height="7" width="1"></td>
+          </tr>
+      </table>
+      </td>
+    </tr>
+</table>
+</div>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=17&t=7650&p=33261 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:40:14 GMT -->
+</html>

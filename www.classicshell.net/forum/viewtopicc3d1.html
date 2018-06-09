@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=4999&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:52:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Apply start menu settings and customizations to All Users</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Apply start menu settings and customizations to All Users</span><br /><span class="gensmall"><a href="viewtopic17c2.html?f=7&amp;t=4999">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=4999</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>heisey</b> [ Mon Aug 17, 2015 6:53 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Apply start menu settings and customizations to All Users</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hi all,<br /><br />Is there a way to apply all Classic Start Menu customizations and settings changes made to one user account to all user accounts rather than doing them individually (Windows 7 Enterprise)?<br /><br />TIA for any advice,<br /><br />Laura
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Mon Aug 17, 2015 8:36 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Apply start menu settings and customizations to All User</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes there are two options to do this. Either edit the Registry or use Group Policy.<br /><br />1. For editing the Registry so the configuration can be applied to all users (and is enforced/locked down so users cannot modify it), you have to copy the settings from the HKCU\Software\IvoSoft branch to HKLM\Software\IvoSoft branch. Look up the settings in HKCU branch (current user) and copy them to HKLM to affect all users. But the Registry keys for settings in HKCU and HKLM are slightly different.<br /><br />For HKCU, the settings are at HKEY_CURRENT_USER\Software\IvoSoft\ClassicStartMenu\Settings<br />For HKLM, the settings are at HKEY_LOCAL_MACHINE\Software\IvoSoft\ClassicStartMenu<br /><br />Modify a setting in the Settings dialog to know its Registry name and value. Look it up in HKEY_CURRENT_USER\Software\IvoSoft\ClassicStartMenu\Settings and then create the same configuration at HKEY_LOCAL_MACHINE\Software\IvoSoft\ClassicStartMenu (note that there is no 'Settings' subkey for HKLM).<br /><br />Sometimes you may want to lock a setting to its default value, but you don't know what the default value is. Then create a DWORD value and set it to 0xDEFA.<br /><br />In some cases you may not want to lock the value for all users, but simply modify the initial value of the setting. In such case add &quot;_Default&quot; to the name of the value. For example if you want to context menu to be disabled by default but still allow the users to enable it if they wish, create a DWORD value named &quot;EnableContextMenu_Default&quot; and set it to 0.<br /><br /><strong>This is also explained in the 'Administrative Settings' section of the documentation. Right click the Start button and click Help.</strong><br /><br />2. Another method is Group Policy. The file, C:\Program Files\Classic Shell\PolicyDefinitions.zip includes the policy definitions. If you have an Active Directory domain, extract the files to %logonserver%\sysvol\%userdnsdomain%\policies\PolicyDefinitions\ or whatever your Group Policy Central Store is. For Local Group Policy, extract them to C:\Windows\PolicyDefinitions folder.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>ath0mps0</b> [ Wed Sep 16, 2015 6:30 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Apply start menu settings and customizations to All User</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Is there a way to eliminate the initial display of the Classic Shell Settings page for all users?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Wed Sep 16, 2015 7:01 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Apply start menu settings and customizations to All User</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, to eliminate initial display of settings window, there is a Group Policy setting called <strong>Menu style</strong> under Computer Configuration branch.<br /><br />You can also choose to edit registry directly instead. <br />For a single user account which is currently logged in, create a DWORD value called &quot;ShowedStyle2&quot; in <strong>HKCU</strong>\Software\IvoSoft\ClassicStartMenu and set it to 1. <br /><br />For the HKLM branch (which affects <strong><span style="text-decoration: underline">all users</span></strong>), to suppress the initial opening of the settings, create a new string value <strong>MenuStyle_Default</strong> in  <strong>HKLM</strong>\Software\IvoSoft\ClassicStartMenu and set it to &quot;Classic1&quot;, &quot;Classic2&quot; or &quot;Win7&quot; depending on which style you want to be the default. <br /><br />The menu must be restarted after changing registry settings. You can exit it from the command line using: &quot;C:\Program Files\Classic Shell\ClassicStartMenu.exe&quot; -exit
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>sadonly</b> [ Tue Sep 29, 2015 2:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Apply start menu settings and customizations to All User</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />hi. <br />maybe an option to backup restore setting or various settings to server side by using forum account, by example, would be a better way.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=4999&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:52:12 GMT -->
+</html>

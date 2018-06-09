@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=5&t=423&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Disable/ Enable System Devices - Camera, Mic, Network, etc..</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Disable/ Enable System Devices - Camera, Mic, Network, etc..</span><br /><span class="gensmall"><a href="viewtopic451c.html?f=5&amp;t=423">http://www.classicshell.net/forum/viewtopic.php?f=5&amp;t=423</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Fri Mar 22, 2013 7:58 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Disable/ Enable System Devices - Camera, Mic, Network, etc..</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />For this Tutorial, I'll be demonstrating how to use DevCon to Enable / Disable your Microphone &amp; Webcam and/or Network Adapter and other System Devices by disabling specific Imaging &amp; Sound or other Devices Installed on your system.. <br /><br />It works best if your Microphone is plugged into a separate Audio device than your speakers, such as an on-board Audio &amp; a PCI Audio Card or an External USB Audio Device.. otherwise your speakers will be turned off with your microphone<br /><br />This is an important security measure, since its quite easy to hack into your microphone &amp; camera, and people can see &amp; listen to you wherever you are, even if you disable them in your Audio or Camera settings.. Also great for laptops when you have a camera pointing at your face 24/7 and no way to turn it away from you<br /><br /><div align="right">-</div><span style="text-decoration: underline"><strong>How to Use DevCon to Disable / Enable System Devices from Custom Classic Shell Buttons:</strong></span><br /><div align="right">-</div><ul><li><strong>Step 1 - Getting a Working Devcon.exe File:</strong> <br /><ul><li>I've found the older stand-alone ones dont work so good as they arent updated, and the newest versions are only included in the WDK</li><li>Download the WDK (Windows Driver Kit) from Microsoft, here:<ul><li><strong>WDK Setup</strong> <a href="../../download.microsoft.com/download/2/4/C/24CA7FB3-FF2E-4DB5-BA52-62A4399A4601/wdk/wdksetup.exe" class="postlink">http://download.microsoft.com/download/2/4/C/24CA7FB3-FF2E-4DB5-BA52-62A4399A4601/wdk/wdksetup.exe</a></li><li>from Here: <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/gg487428.aspx" class="postlink">http://msdn.microsoft.com/en-us/library/windows/hardware/gg487428.aspx</a></li></ul></li><li>Choose &quot;Download Windows Driver Kit 8&quot;</li><li>Don't Select to Download Additional Things, just select the normal install, its about a 1GB Download... if you have problems later, you may want to download the offline installer for use with other computers.. I believe its an .ISO file</li><li>You only need one 85kb program.. you can delete the rest after you extract the one little program.. if you download the program by itself from Microsoft, its older and likely wont work in Windows 7, so you probably just have to get the entire WDK first</li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 2 - Extracting the Program from the WDK to your System:</strong><ul><li>Browse to your install folder, such as D:\Program Files (x86)\Windows Kits\8.0\Tools\x64 (for 64-bit versions of Windows)</li><li>Find the program called Devcon.exe</li><li>Right-click &amp; select &quot;Copy&quot;</li><li>Browse to C:\Windows\System32</li><li>Right-Click an Empty area and select &quot;Paste&quot;</li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 3 - Identifying your Devices:</strong><ul><li>Open Device Manager: <br /><ul><li>Hit the Windows Key+Pause/Break Key</li><li>Click on Device Manager in the upper right-hand corner</li></ul></li><li>Browse down to &quot;Imaging Devices&quot; and look at the name of your camera, remember it</li><li>Browse down to &quot;Sound, Video, &amp; Game Controllers&quot; &amp; look at the name of your Audio Controller, remember it as well</li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 4 - Creating a Device List with Devcon:</strong><br /><ul><li>Method1:<ul><li>Open Device Manager</li><li>Right-click the device you want to get the ID for</li><li>Select &quot;Properties&quot; &gt; Then go to the &quot;Details&quot; tab</li><li>Select &quot;Hardware Ids&quot;, then copy the First String Value</li></ul></li><li>Method 2:<br /><ul><li>Hit Start&gt;Run&gt;Type &quot;Cmd&quot; &amp; Hit Ctrl+Shift+Enter to open a Command Prompt with Administrator Privileges </li><li>Type: <br /><ul><li>devcon hwids * &gt; hwids.txt</li></ul></li><li>a Long List should Appear</li><li>Browse to: C:\Users\<span style="font-size: 100%; line-height: 116%;"><em>Your Username</em></span></li><li>Open hwids.txt</li><li>Edit&gt;Find</li><li>Search for the name of your USB or IEEE Video Device you remembered from above</li><li>Copy the First String of Numbers under the name, below &quot;Hardware ID's&quot;, such as:<ul><li> USB\VID_0AC8&amp;PID_3313&amp;REV_0100&amp;M310_010100</li></ul></li><li>Repeat with the Audio Device you use for your Microphone (not the device you use for your speakers)</li></ul></li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 5 - (Enabling the .Bat File Extension):</strong><ul><li>Be sure your computer is set to &quot;view extensions for known file types&quot;:<ul><li>Open a Window</li><li>Click &quot;Organize&quot;</li><li>Click &quot;Folder &amp; Search Options&quot;</li><li>Click the &quot;View&quot; Tab</li><li>Uncheck &quot;Hide extensions for Known File Types&quot;</li><li>Click Apply</li></ul></li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 6 - Creating the .Bat Files:</strong></li></ul><ul><ul><li>Create 2 Bat Files:<ul><li>Right-Click your Desktop<br /><li>New&gt;Text Document</li><li>Name it &quot;Disable Chat.bat&quot; </li><li>Click Save</li><li>Right-Click your Desktop Again</li><li>New&gt;Text Document</li><li>Name it &quot;Enable Chat.bat&quot; </li><li>Click Save</li></ul></li><li>Enter the Following Text in the &quot;Disable.Bat&quot; File:<ul><li>C:\Windows\System32\devcon disable &quot;Your Device ID you Remembered from steps 3 &amp; 4 above&quot;</li><li>Such as: C:\Windows\System32\devcon disable &quot;USB\VID_0AC8&amp;PID_3313&amp;REV_0100&amp;M310_010100&quot;</li><li>The Quotes &amp; Spaces are Important</li></ul></li><li>Repeat with all Devices you want to Disable on this .Bat File, Such as: <ul><li>C:\Windows\System32\devcon disable &quot;USB\VID_0AC8&amp;PID_3313&amp;REV_0100&amp;M310_010100&quot;</li><li>C:\Windows\System32\devcon disable &quot;USB\VID_F183&amp;PID_AF5&amp;REV_01&amp;M31_0100&quot;</li></ul></li></ul></li></ul><ul><ul><li>Click Save &amp; Close the Disable.Bat File<br /><li>Enter the Following Text in the &quot;Enable.Bat&quot; File:<ul><li>C:\Windows\System32\devcon enable &quot;Your Device ID you Remembered from steps 4 &amp; 5 above&quot;</li><li>Such as: C:\Windows\System32\devcon enable &quot;USB\VID_0AC8&amp;PID_3313&amp;REV_0100&amp;M310_010100&quot;</li><li>The Quotes &amp; Spaces are very Important</li></ul></li><li>Repeat with all Devices you want to Enable on this .Bat File, Such as:</li></ul></li></ul><blockquote class="editor"><blockquote class="editor"><blockquote class="editor">C:\Windows\System32\devcon enable &quot;USB\VID_0AC8&amp;PID_3313&amp;REV_0100&amp;M310_010100&quot;<br />C:\Windows\System32\devcon enable &quot;USB\VID_F183&amp;PID_AF5&amp;REV_01&amp;M31_0100&quot;</blockquote></blockquote></blockquote><ul><ul><li>Click Save &amp; Close the Enable.Bat File<br /><li>Put the Files in a Permanent Storage Location</li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 7 - Allowing your .Bat to Run with Administrator Privileges:</strong><ul><li>Right-Click the &quot;Disable.Bat&quot; file</li><li>Click &quot;Create Shortcut&quot;</li><li>Right-Click on the Shortcut</li><li>Name the Shortcut &quot;Disable Online Communication&quot;</li><li>Select &quot;Properties&quot;</li><li>Go to the &quot;Shortcut&quot; Tab</li><li>Click on &quot;Advanced...&quot;</li><li>Select &quot;Run as Administrator&quot;</li><li>Click OK, Apply, &amp; OK</li><li>Repeat the same steps with the &quot;Enable.Bat&quot; file, Creating a Shortcut named &quot;Enable Online Communication&quot;, and allowing it to Run as an Administrator</li><li>Change the Icon for the Shortcuts, if you like</li></ul></li></ul><div align="right">-</div><ul><li><strong>Step 8 - Adding your Devcon .Bat Files to Classic Shell:</strong><ul><li><strong>Method 1: </strong><br /><ul><li>Create 2 new items</li><li>Right-Click &gt; Rename Item<ul><li>Name them &quot;DisableChat&quot; &amp; &quot;EnableChat&quot;</li></ul></li><li>Right-Click &gt; Edit Item <br /><ul><li>Label: &quot;Disable Chat&quot; &amp; &quot;Enable Chat&quot;</li><li>Link: &quot;(Full Path to Shortcut Location)\Disable Online Communication.lnk&quot; &amp; &quot;(Full Path to Shortcut Location)\Enable Online Communication.lnk&quot;</li><li>Icons: I've included 2 Icons I use at the bottom of this post</li></ul></li></ul></li><li><strong>Method 2: </strong><br /><ul><li>Place the Shortcuts in the folder you keep all of your Classic Menu Shortcuts to &quot;Run as Administrator&quot; items, such as &quot;CMD as Administrator&quot; in your custom &quot;Run...&quot; folder button, as described here: <a href="viewtopic5b94.html?f=5&amp;t=297" class="postlink">http://classicshell.net/forum/viewtopic.php?f=5&amp;t=297</a></li><li>Click Start Menu&gt;Run... Folder &gt; Run As Administrator &gt; Disable </li></ul></li><li><strong>After executing the Disable or Enable Command, click Yes to the UAC Prompt</strong></li><li><strong>You know it works when you right-click the device in Device Manager and it reads &quot;enable&quot; instead of &quot;Disable&quot;, and vice versa</strong></li></ul></li></ul><div align="right">-</div><br /><div align="center"><span style="text-decoration: underline"><strong>Additional Information about DevCon </strong></span><br /><div align="right">-</div></div><strong>** DEVCON COMMANDS MUST BE RUN AS AN ADMINISTRATOR <br />** DEVCON BAT FILE COMMANDS MUST BE RUN FROM SHORTCUTS WHICH ARE SET TO RUN AS ADMINISTRATOR</strong> (the Bat file wont run automatically as an administrator)<br /><strong>** DEVICE IDS MUST BE SURROUNDED WITH QUOTES</strong> (if there are any Spaces or special characters, such as '&amp;', etc)<br /><strong>** INSTANCE IDS MUST HAVE AN @ AT THE BEGINNING OF THE STRING, WITH THE ENTIRE STRING &amp; THE @ ALL IN QUOTES</strong> (as the above quotes are needed)<br />** <strong>DEVCON RUNS ONLY THROUGH THE COMMAND PROMPT , </strong>or through direct reference, such as in .Bat files. It does not Open when you click on it, since it needs to have an argument, and cannot run by simply &quot;devcon&quot;, which produces an error and is the reason why it opens suddenly &amp; then closes if you try to click on it. <br /><div align="right">-</div><strong>Here are some Useful Devcon commands:</strong><br /><div align="right">-</div>devcon status * Shows Status of all Devices<br />devcon status usb\* Shows Status of all USB Devices<br />devcon status pci\* Shows Status of all PCI devices<br />devcon status &quot;Hardware ID #&quot; Paste your hardware ID to show the Status of it<br />devcon hwids * Shows all Hardware IDs<br />devcon hwids * &gt; hwids.txt (output to C:\Users\Username)<br />devcon hwids usb\* Shows Hardware IDs to all USB devices<br />devcon hwids pci\* Shows Hardware IDs to all pci devices<br />devcon find * Finds all Devices<br />devcon find usb\* Finds all USB Devices<br />devcon find pci\* Finds all PCI Devices<br />devcon find &quot;Hardware ID #&quot; Paste your hardware ID to Find it<br /><br />devcon listclass usb 1394 (Lists Classes for both USB &amp; 1394 Devices)<br />also:<br />devcon find * | find &quot;Creative&quot;<br />devcon find * | find &quot;PCI&quot;<br />devcon find * | find &quot;USB&quot;<br /><br />--------------------------------------------------------------------------------------<br /><br /><strong>Here is a more comprehensive list of Devcon Commands, from Microsoft:</strong><br /><br /><a href="http://support.microsoft.com/kb/311272" class="postlink">http://support.microsoft.com/kb/311272</a>
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<img src="download/filef787.png?id=181" alt="Enable.png" /><br />
+			<span class="gensmall">Enable.png [ 24.13 KiB | Viewed 36634 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+				<tr>
+					<td>
+			<img src="download/file0741.png?id=180" alt="Disable.png" /><br />
+			<span class="gensmall">Disable.png [ 24.17 KiB | Viewed 36634 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Tenzen</b> [ Fri Mar 22, 2013 9:31 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Create DevCon Commands to Enable/Disable Camera &amp; Microp</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />This same method is also very useful for Disabling &amp; Enabling the Network Adapter for entering Instant &amp; Secure Offline Computing Mode<br /><br />Just replace the Device ID with the first string in your Network Adapter Hardware ID<br /><br />then follow all the steps, changing the names to &quot;Connect&quot; &amp; &quot;Disconnect&quot;<br /><br />then customize your Icons
+
+		
+			<br clear="all" /><br />
+
+			<table class="tablebg" width="100%" cellspacing="1">
+			<tr>
+				<td><b class="genmed">Attachments: </b></td>
+			</tr>
+			
+				<tr>
+					<td>
+			<img src="download/file7cff.png?id=191" alt="Disconnect.png" /><br />
+			<span class="gensmall">Disconnect.png [ 83.21 KiB | Viewed 36629 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+				<tr>
+					<td>
+			<img src="download/fileb4d1.png?id=190" alt="Connect.png" /><br />
+			<span class="gensmall">Connect.png [ 79.92 KiB | Viewed 36629 times ]</span>
+		
+
+		<br />
+	</td>
+				</tr>
+			
+			</table>
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Sachin</b> [ Fri Jan 22, 2016 11:56 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Disable/ Enable System Devices - Camera, Mic, Network, e</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />After you'r trick I can disable my Microphone in Device Manager but it's seems still enable in &quot;Sound &gt; Recording&quot;.<br /><br /><img src="../../1fgm8h9.oloadcdn.net/dl/l/3l2ruowNrRQ/RRgejVD510g/not_disabled_in_Sound6999.json?mime=true" alt="" /><br /><br /><img src="images/smilies/icon_rolleyes.gif" alt=":roll:" title="Rolling Eyes" /> Here you can see that. Google Chrome still use my Mic. I want to stop that.<br />When I disable Mic from &quot;Sound&quot; that disappears in &quot;Device Manager&quot;.<br /><br /><img src="../../1fgm8h9.oloadcdn.net/dl/l/J-hd7YnSWFM/_rsWQFllv8s/after_disable_in_Sound6999.json?mime=true" alt="" /><br /><br />I want totally disable the Mic so any application can't access that without my permission &amp; save my laptop's battery life also.<br />So can we do that....... !!! If possible please mention that asap. <br /><br /><br />The following trick working properly for Camera.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=5&t=423&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 03:35:24 GMT -->
+</html>

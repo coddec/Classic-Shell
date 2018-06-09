@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=13&t=99&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:59:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Allow installer to take command line option for config xml</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Allow installer to take command line option for config xml</span><br /><span class="gensmall"><a href="viewtopica574.html?f=13&amp;t=99">http://www.classicshell.net/forum/viewtopic.php?f=13&amp;t=99</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>jep</b> [ Fri Jan 18, 2013 12:06 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Allow installer to take command line option for config xml</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It would be helpful if you could pass an xml file to the installer to have it load that just like it would be if you chose &quot;Load from XML file&quot;.  That, along with silent install options that would let you configure stuff like whether to add a start menu folder, auto-check for updates, etc. would make it a lot easier to install on lots of machines on our network.<br /><br />Thanks for such a great app.  The one good thing about MS removing the start menu in win8 was that it brought me to an app like this.  Love my new totally configured start menu.  Much better than MS's choices.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Jan 18, 2013 2:03 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />All Classic Shell settings are stored in the registry at HKEY_CURRENT_USER\Software\IvoSoft. So you can back up that key and silently merge it. The XML is only there as a manual way for novice users to easily restore the settings.<br /><br />Note that <strong>changing the registry settings directly while the Start Menu is running isn't supported</strong>. So you can right click the Start button -&gt; Exit. Merge a set of exported .REG settings and start the menu again from C:\Program Files\Classic Shell\ClassicStartMenu.exe.<br /><br />You can also automate this using a batch file:<br /><br />&quot;C:\Program Files\Classic Shell\ClassicStartMenu.exe&quot; -exit<br />Regedit /s &quot;&lt;Path to REG file.reg&gt;&quot;<br />&quot;C:\Program Files\Classic Shell\ClassicStartMenu.exe&quot;
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>jep</b> [ Fri Jan 18, 2013 9:28 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I had read that different versions of classic shell could change the registry structure and so it wasn't the best way to go.  I perhaps incorrectly assumed the xml would be a little more generic and less prone to that.  What I'm actually thinking now is I just need a regular job to overwrite the current settings with the one from the file on the network.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Jan 18, 2013 6:28 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />XML file is same a registry settings. You can export the settings from HKCU\Software\IvoSoft key to export all Classic Shell settings. If you wish to export only Start Menu settings, export only this branch:<br />HKCU\Software\IvoSoft\ClassicStartMenu\Settings.<br /><br />Finally, if you wish to make these settings the same for all user accounts on one PC, export them from HKCU\Software\IvoSoft\ClassicStartMenu\Settings and add them to <strong>HKEY_LOCAL_MACHINE</strong>\Software\IvoSoft\ClassicStartMenu (Note HKLM instead of HKCU and the lack of a \Settings key at the end).<br /><br />If you merge them in HKLM, the settings are locked for administrators. They can't be modified from settings GUI by users.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>dvkrgr</b> [ Tue Jan 22, 2013 4:10 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />By importing the registry hive, does this also disable the first run of settings dialog opening with new users?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Tue Jan 22, 2013 7:11 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Yes, this is stored in the ShowedStyle value.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>dvkrgr</b> [ Fri Jan 25, 2013 8:05 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />When pushing out via user logon GPO, should ClassicStart be installed before or after the .reg?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Jan 25, 2013 9:02 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />It should make no difference whether the reg is merged before or after because when uninstalled, the settings are left and preserved in the registry. So a clean first-time install should be the same as a reinstall. Make sure you export the settings with &quot;ShowedStyle&quot; set to 1 in HKCU so you don't get prompted for the style.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>mbrinkho</b> [ Thu Feb 13, 2014 12:23 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Having a heck of a time getting this to work. I just want to set some registry keys so that all users get the same default config when they login for the first time, I don't necessarily care if they can change them or not. I tried exporting the HKCU:Software\IvoSoft key and modifying the .REG file so that it imports into HKLM and that didn't do it [step removed]. I'd prefer not to use group policy if at all possible. Any ideas?
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Feb 13, 2014 12:36 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Allow installer to take command line option for config x</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />For the Classic Start Menu:<br /><br />For current user, the key is HKCU\Software\IvoSoft\ClassicStartMenu\<strong>Settings</strong>.<br />For all users, the Settings subkey is not required. The key is HKLM\SOFTWARE\IvoSoft\<strong>ClassicStartMenu</strong><br /><br />Same rule applies for Classic Explorer and Classic IE registry keys.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=13&t=99&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 10:59:23 GMT -->
+</html>

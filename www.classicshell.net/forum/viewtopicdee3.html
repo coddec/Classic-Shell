@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=7884&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 11:04:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Question about ADMX-Setting &quot;Common Programs Folder&quot;</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Question about ADMX-Setting &quot;Common Programs Folder&quot;</span><br /><span class="gensmall"><a href="viewtopic9f8c-2.html?f=7&amp;t=7884">http://www.classicshell.net/forum/viewtopic.php?f=7&amp;t=7884</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Wotan</b> [ Thu Sep 07, 2017 8:18 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Hello,<br /><br />I am testing classic-shell on Windows Server 2016 in an enterprise-scenario. (Terminal-Server)<br />I want to have the startmenu-folder redirected for all users to a network-share.<br />I got the recommendation to use the default Microsoft folder-redirection on startmenu and not the classic-shell ADMX-setting (Common Start Menu folder).<br /><br />However ... everything is working fine.<br />The problem is, that the user gets shortcuts from the network-share <strong>and also</strong> from &quot;%ProgramData%\Microsoft\Windows\Start Menu&quot; in his Classic-Shell start menu.<br />Now I am unsure about the strategy to get rid of the shortcuts from &quot;%ProgramData%&quot;.<br /><br />Should I delete all the entries from &quot;%ProgramData%\Microsoft\Windows\Start Menu&quot; in my base image?<br />or<br />Should I set the Classic Shell ADMX-setting &quot;Common Programs Folder&quot;?<br /><br />I tested the mentioned ADMX-setting. On my first try I left the input-box for &quot;Common Start Menu folder&quot; blank. This had no effect.<br />Then I did set it to &quot;C:\Temp&quot;, which is currently empty, and I didn't had shortcuts in start menu.<br />In production the mentioned folder might get filled up. Where should I point it best to, to get no shortcuts?<br />I don't want to point it to a folder which doesn't exist, because maybe the software tries everytime to reach the folder or something like that ...<br /><br />Any recommendations?<br /><br />Thank you!
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Thu Sep 07, 2017 8:33 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Try the group policy &quot;Remove common program groups from Start Menu&quot; in Administrative Templates -&gt; Start Menu and Taskbar.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Sep 07, 2017 9:24 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />@Wotan, note that this is a Windows Group Policy setting for &quot;Start Menu and Taskbar&quot;.<br /><br />Also, what if you redirect both the common programs folder as well as the common Start Menu folder using the 2 Classic Shell Policy settings for both? The common programs folder is part of the Common Start menu folder so I vaguely recollect Ivo explaining to me that both should be redirected for it to work correctly.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Wotan</b> [ Thu Sep 07, 2017 9:52 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Thank you for your answers!<br /><br />@Ivo:<br /><span style="color:#3366ff;">&gt;&gt;&gt; Try the group policy &quot;Remove common program groups from Start Menu&quot; in Administrative Templates -&gt; Start Menu and Taskbar.</span><br /><br />I know this this setting. It does have a negative side-effect, because it will remove the &quot;Public Desktop&quot; as well and I don't want that! <img src="images/smilies/icon_e_sad.gif" alt=":-(" title="Sad" /><br /><br /><br />@Gaurav:<br /><span style="color:#3366ff;">&gt;&gt;&gt; Also, what if you redirect both the common programs folder as well as the common Start Menu folder using the 2 Classic Shell Policy settings for both?</span><br /><br />As I did mention in my first post, I got recommended to keep/use the default Microsoft folder-redirection instead of the integrated-ClassicShell redirection. (=&quot;Common Start Menu Folder&quot;-Setting)
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Sep 07, 2017 10:56 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I see. I misunderstood because you wrote &quot;however everything is working fine&quot; so I concluded that you used the Classic Shell policies against your recommendation and yet everything is fine except for this issue. <img src="images/smilies/icon_razz.gif" alt=":P" title="Razz" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Wotan</b> [ Thu Sep 07, 2017 12:18 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />OK, I did read through my text again and I am sorry, that it was not that clear.<br />But back to the question in Post #1 ...
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Sep 07, 2017 12:25 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Question about ADMX-Setting &quot;Common Programs Folder&quot;</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />As a workaround, you could use Group Policy Preferences to create shortcuts on the user's desktop.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=7&t=7884&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 11:04:43 GMT -->
+</html>

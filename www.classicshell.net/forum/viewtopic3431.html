@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=7902&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:12:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Instant WerFault.exe crash on ClassicShell 4_3_1</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Instant WerFault.exe crash on ClassicShell 4_3_1</span><br /><span class="gensmall"><a href="viewtopicd62f.html?f=12&amp;t=7902">http://www.classicshell.net/forum/viewtopic.php?f=12&amp;t=7902</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Complaint_Bot</b> [ Wed Sep 13, 2017 11:54 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Instant WerFault.exe crash on ClassicShell 4_3_1</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />I am running Windows 10x64 Pro Version 1703.<br /><br />Classicshell instantly crashes, popping WerFault.exe, upon installation. <br />After installation when I click the start menu I get the default Windows start menu. It's horrible, and I hate it.<br />I have tried uninstalling and reinstalling multiple times. I have tried using the cleanup utility to remove and reinstall. <br />Here is the corresponding event in the Event Viewer:<br /><br /><div class="quotetitle"><b>Quote:</b></div><div class="quotecontent">Faulting application name: ClassicStartMenu.exe, version: 4.3.1.0, time stamp: 0x59907505<br />Faulting module name: ucrtbase.dll, version: 10.0.15063.413, time stamp: 0x5ba8b66e<br />Exception code: 0xc0000005<br />Fault offset: 0x0000000000045ac0<br />Faulting process id: 0x2194<br />Faulting application start time: 0x01d32d2162d0274c<br />Faulting application path: C:\Program Files\Classic Shell\ClassicStartMenu.exe<br />Faulting module path: C:\WINDOWS\System32\ucrtbase.dll<br />Report Id: 164541f2-fc33-46dc-9014-9f62fff7c612<br />Faulting package full name: <br />Faulting package-relative application ID: </div><br /><br />AND<br /><br /><div class="quotetitle"><b>Quote:</b></div><div class="quotecontent">Fault bucket , type 0<br />Event Name: APPCRASH<br />Response: Not available<br />Cab Id: 0<br /><br />Problem signature:<br />P1: ClassicStartMenu.exe<br />P2: 4.3.1.0<br />P3: 59907505<br />P4: ucrtbase.dll<br />P5: 10.0.15063.413<br />P6: 5ba8b66e<br />P7: c0000005<br />P8: 0000000000045ac0<br />P9: <br />P10: <br /><br />Attached files:<br /><br />These files may be available here:<br />C:\ProgramData\Microsoft\Windows\WER\ReportQueue\AppCrash_ClassicStartMenu_c87bfb494991ddbfce4ec7e0dbb6591af3de0df_22dd3d46_20de5103<br /><br />Analysis symbol: <br />Rechecking for solution: 0<br />Report Id: 164541f2-fc33-46dc-9014-9f62fff7c612<br />Report Status: 100<br />Hashed bucket: </div><br /><br />The path cited above leads to a .wer file. Let me know if you need that or any additional information. <br /><br />Let me know if there is any testing you would like me to do.<br /><br />I tried to capture a procdump and this is what happened:<br /><div class="codetitle"><b>Code:</b></div><div class="codecontent">./procdump -e ClassicStartMenu.exe -w<br /><br />ProcDump v9.0 - Sysinternals process dump utility<br />Copyright (C) 2009-2017 Mark Russinovich and Andrew Richards<br />Sysinternals - www.sysinternals.com<br /><br />Waiting for process named ClassicStartMenu.exe...<br /><br />Process: ClassicStartMenu.exe (3748)<br />Process image: C:\Program Files\Classic Shell\ClassicStartMenu.exe<br />CPU threshold: n/a<br />Performance counter: n/a<br />Commit threshold: n/a<br />Threshold seconds: n/a<br />Hung window check: Disabled<br />Log debug strings: Disabled<br />Exception monitor: Unhandled<br />Exception filter: &#91;Includes&#93;<br />*<br />&#91;Excludes&#93;<br />Terminate monitor: Disabled<br />Cloning type: Disabled<br />Concurrent limit: n/a<br />Avoid outage: n/a<br />Number of dumps: 1<br />Dump folder: Z:\bin\SysInternals\<br />Dump filename/mask: PROCESSNAME_YYMMDD_HHMMSS<br />Queue to WER: Disabled<br />Kill after dump: Disabled<br /><br /><br />Press Ctrl-C to end monitoring without terminating the process.<br /><br />&#91;23:53:00&#93; The process has exited.<br />&#91;23:53:00&#93; Dump count not reached.</div><br /><br />I attached a dump from the &quot;slow&quot; method.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Thu Sep 14, 2017 3:55 am ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Instant WerFault.exe crash on ClassicShell 4_3_1</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />ucrtbase.dll is the C programming language runtime library DLL that is part of Windows. It might be missing, corrupted or replaced by some wrong version on your PC.<br /><br />From an elevated command prompt, run the 2 following commands in succession. Let them finish. It may take a while.<br /><br />Dism /Online /Cleanup-Image /ScanHealth<br />Dism /Online /Cleanup-Image /RestoreHealth<br /><br />Thereafter, run this command:<br />sfc /scannow<br />Let it finish.<br /><br />Restart Windows 10. Now see if the crash goes away.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=12&t=7902&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:12:17 GMT -->
+</html>

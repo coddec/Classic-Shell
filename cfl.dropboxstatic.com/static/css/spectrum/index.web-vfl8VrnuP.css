@@ -1,0 +1,2975 @@
+
+/* -- account_menu/index.web.css */
+.mc-account-menu-item {
+  width: 100%;
+  box-sizing: inherit;
+  padding: 4px 16px;
+  margin: 16px 0 0 0;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  display: block;
+}
+
+.mc-account-menu-item:hover {
+  background-color: #f7f9fa;
+  text-decoration: none;
+}
+
+.mc-account-menu-item:disabled {
+  background-color: transparent;
+  color: #c1c7cd;
+  cursor: auto;
+}
+
+.mc-account-menu-title {
+  width: 100%;
+  box-sizing: inherit;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 0 0 16px 0;
+  padding: 16px 16px;
+  text-align: left;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  cursor: default;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.mc-account-menu-item + .mc-account-menu-item {
+  margin: 0;
+}
+
+.mc-account-menu-item:first-child {
+  margin-top: 16px;
+}
+
+.mc-account-menu-item:last-child {
+  margin-bottom: 16px;
+}
+
+.mc-account-menu-item:focus {
+  background-color: #f7f9fa;
+}
+
+.mc-account-menu-separator {
+  border: none;
+  border-bottom: 1px solid #e6e8eb;
+  margin: 16px 0;
+}
+
+/* web specific content */
+
+/* -- avatar/index.web.css */
+.mc-avatar-text {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.mc-avatar-text-inactive {
+  opacity: 0.5;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+}
+
+.mc-avatar-initials-24 {
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.mc-avatar-initials-32 {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.mc-avatar-initials-40 {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.mc-avatar {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+  outline: 0;
+}
+
+.mc-avatar-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mc-avatar-image-inactive {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* web specific content */
+
+/* -- backdrop/index.web.css */
+.mc-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 11;
+  background-color: rgba(99, 114, 130, 0.5);
+}
+
+/* web specific content */
+
+/* -- button/index.web.css */
+/** All styled buttons */
+
+.mc-button {
+  display: inline-block;
+  zoom: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  user-drag: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-sizing: border-box;
+
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 4px;
+  outline: none;
+  margin: 0;
+}
+
+.mc-button-styleless {
+  /* this is the only class a styleless button gets */
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mc-button .mc-button-content {
+  position: relative; /* This seemingly useless rule is key for IE buttons to not shift upon click. */
+}
+
+.mc-button-invisible {
+  /* use opacity instead of visibility for screen readers */
+  opacity: 0;
+}
+
+.mc-button-circular {
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 50%;
+}
+
+.mc-button-circular:hover {
+  background: none;
+}
+
+.mc-button-full-width {
+  width: 100%;
+}
+
+.mc-button-wrap-content {
+  height: auto;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Web specfic styling */
+
+.mc-button {
+  cursor: pointer;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  height: 32px;
+}
+
+.mc-button:disabled,
+.mc-button-disabled {
+  cursor: default;
+}
+
+.mc-button:focus,
+.mc-popover-trigger:focus > .mc-button,
+.mc-dropdown-menu-button:focus > .mc-button {
+  /* Temp focus patch for <Button tagName="span" /> to be styled when nested in of a popover or menu trigger */
+  /* See https://github.com/dropbox/mcl/issues/25 */
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+/* Get rid of the Firefox inner focus border */
+
+.mc-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/** Primary button styles */
+
+.mc-button-primary {
+  background-color: #0070e0;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  line-height: 32px;
+  padding: 0 16px;
+}
+
+.mc-button-primary:hover {
+  background-color: #007af5;
+}
+
+.mc-button-primary:active {
+  background-color: #005dd6;
+}
+
+.mc-button-primary:disabled,
+.mc-button-primary.mc-button-disabled {
+  background-color: #99c6f3;
+}
+
+/** Secondary button styles */
+
+.mc-button-secondary {
+  line-height: 30px;
+  padding: 0 15px;
+  font-weight: 400;
+  border: 1px solid #c1c7cd;
+  color: #1b2733;
+  background-color: #fff;
+}
+
+.mc-button-secondary:hover {
+  border-color: #007af5;
+  color: #007af5;
+}
+
+.mc-button-secondary:active {
+  border-color: #005dd6;
+  color: #005dd6;
+}
+
+.mc-button-secondary:disabled,
+.mc-button-secondary.mc-button-disabled {
+  color: #c1c7cd;
+  border-color: #c1c7cd;
+}
+
+/** Additional variant styles */
+
+.mc-button-large {
+  height: 40px;
+  line-height: 40px;
+}
+
+.mc-button-small {
+  height: 20px;
+  line-height: 20px;
+}
+
+.mc-button-borderless,
+.mc-button-borderless:active,
+.mc-button-borderless:hover,
+.mc-button-borderless:disabled {
+  border-color: transparent;
+}
+
+/* -- checkbox/index.web.css */
+.mc-checkbox {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.mc-checkbox-disabled {
+  cursor: default;
+}
+
+.mc-checkbox-invisible {
+  visibility: hidden;
+}
+
+.mc-checkbox-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.mc-checkbox-border {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #c1c7cd;
+  border-radius: 3px;
+}
+
+.mc-checkbox-input:hover ~ .mc-checkbox-border,
+.mc-checkbox-input:focus ~ .mc-checkbox-border,
+.mc-checkbox-hovered .mc-checkbox-border {
+  border: 1px solid #0070e0;
+}
+
+.mc-checkbox-disabled .mc-checkbox-input:disabled ~ .mc-checkbox-border {
+  border: 1px solid #c1c7cd;
+}
+
+.mc-checkbox-input:focus ~ .mc-checkbox-border {
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+.mc-checkbox-checked .mc-checkbox-checked-icon {
+  display: block;
+}
+
+.mc-checkbox-checked {
+  background-color: #0070e0;
+}
+
+.mc-checkbox-checked .mc-checkbox-border {
+  border: 1px solid #0070e0;
+}
+
+.mc-checkbox-mixed .mc-checkbox-mixed-icon {
+  display: block;
+}
+
+.mc-checkbox-checked-icon {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.mc-checkbox-mixed-icon {
+  display: none;
+  position: absolute;
+  top: 9px;
+  left: 7px;
+}
+
+/* web specific content */
+
+/* -- colorized_icon/index.web.css */
+.mc-colorized-icon {
+  color: currentColor;
+}
+
+/* Modifier class added to other icons that overwrite fills and strokes */
+
+.mc-colorized-icon--colorized rect[fill]:not([fill='none']),
+.mc-colorized-icon--colorized path[fill]:not([fill='none']),
+.mc-colorized-icon--colorized circle[fill]:not([fill='none']),
+.mc-colorized-icon--colorized g[fill]:not([fill='none']) path,
+.mc-colorized-icon--colorized g[fill]:not([fill='none']) rect,
+.mc-colorized-icon--colorized g[fill]:not([fill='none']) circle {
+  fill: currentColor;
+}
+
+.mc-colorized-icon--colorized rect[stroke]:not([stroke='none']),
+.mc-colorized-icon--colorized path[stroke]:not([stroke='none']),
+.mc-colorized-icon--colorized circle[stroke]:not([stroke='none']),
+.mc-colorized-icon--colorized g[stroke]:not([stroke='none']) path,
+.mc-colorized-icon--colorized g[stroke]:not([stroke='none']) rect,
+.mc-colorized-icon--colorized g[stroke]:not([stroke='none']) circle {
+  stroke: currentColor;
+}
+
+/* web specific content */
+
+/* -- datepicker/index.web.css */
+/* DayPicker styles */
+
+.mc-datepicker .DayPicker {
+  display: inline-block;
+  width: 230px;
+}
+
+.mc-datepicker .DayPicker * {
+  outline: none;
+}
+
+.mc-datepicker .DayPicker-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16), 0 8px 16px rgba(27, 39, 51, 0.08);
+  border-radius: 4px;
+}
+
+.mc-datepicker .DayPicker-Month {
+  display: table;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border-collapse: separate;
+  border-spacing: 0px 4px;
+}
+
+.mc-datepicker .DayPicker-NavBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0 8px;
+  top: 16px;
+}
+
+.mc-datepicker .DayPicker-NavButton {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.mc-datepicker .DayPicker-NavButton:focus {
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+.mc-datepicker .DayPicker-NavButton--prev {
+  left: 16px;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjU2IDI1NjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBjbGFzcz0iIj48Zz48Zz4KCTxnPgoJCTxwb2x5Z29uIHBvaW50cz0iMjA3LjA5MywzMC4xODcgMTc2LjkwNywwIDQ4LjkwNywxMjggMTc2LjkwNywyNTYgMjA3LjA5MywyMjUuODEzIDEwOS4yOCwxMjggICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6Izc3NzY3NiIgZGF0YS1vbGRfY29sb3I9IiM3Njc0NzQiPjwvcG9seWdvbj4KCTwvZz4KPC9nPjwvZz4gPC9zdmc+');
+}
+
+.mc-datepicker .DayPicker-NavButton--next {
+  right: 16px;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjU2IDI1NjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBjbGFzcz0iIj48Zz48Zz4KCTxnPgoJCTxwb2x5Z29uIHBvaW50cz0iNzkuMDkzLDAgNDguOTA3LDMwLjE4NyAxNDYuNzIsMTI4IDQ4LjkwNywyMjUuODEzIDc5LjA5MywyNTYgMjA3LjA5MywxMjggICAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6Izc3NzY3NiIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcG9seWdvbj4KCTwvZz4KPC9nPjwvZz4gPC9zdmc+');
+}
+
+.mc-datepicker .DayPicker-NavButton--interactionDisabled {
+  display: none;
+}
+
+.mc-datepicker .DayPicker-Caption {
+  display: table-caption;
+  padding: 0 25px;
+  text-align: center;
+  width: 155px;
+}
+
+.mc-datepicker .DayPicker-Caption > div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mc-datepicker .DayPicker-Weekdays {
+  display: table-header-group;
+}
+
+.mc-datepicker .DayPicker-WeekdaysRow {
+  display: table-row;
+}
+
+.mc-datepicker .DayPicker-Weekday {
+  display: table-cell;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.mc-datepicker .DayPicker-Body {
+  display: table-row-group;
+}
+
+.mc-datepicker .DayPicker-Week {
+  display: table-row;
+}
+
+.mc-datepicker .DayPicker-Day {
+  display: table-cell;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.mc-datepicker .DayPicker-WeekNumber {
+  display: table-cell;
+  padding: 8px;
+  text-align: right;
+  vertical-align: middle;
+  min-width: 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mc-datepicker .DayPicker--interactionDisabled .DayPicker-Day {
+  cursor: default;
+}
+
+.mc-datepicker .DayPicker-Weekday abbr {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.mc-datepicker .DayPicker-Footer {
+  display: table-caption;
+  caption-side: bottom;
+  padding-top: 8px;
+}
+
+.mc-datepicker .DayPicker-TodayButton {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+/* Default modifiers */
+
+.mc-datepicker .DayPicker-Day--disabled {
+  cursor: default;
+}
+
+.mc-datepicker .DayPicker-Day--outside {
+  cursor: default;
+}
+
+.mc-datepicker .DayPicker-wrapper {
+  outline: none;
+  background-color: #fff;
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+.mc-datepicker .DayPicker-Weekday {
+  padding: 16px 0 8px 0;
+  color: #637282;
+  font-size: 10px;
+  width: 30px;
+}
+
+.mc-datepicker .DayPicker-NavBar {
+  height: 24px;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.mc-datepicker .DayPicker-NavButton {
+  height: 10px;
+  width: 10px;
+}
+
+.mc-datepicker .DayPicker-Month {
+  margin: 0 10px;
+}
+
+.mc-datepicker .DayPicker-NavButton--prev {
+  left: 15px;
+}
+
+.mc-datepicker .DayPicker-NavButton--next {
+  right: 15px;
+}
+
+.mc-datepicker .DayPicker-Caption {
+  color: #1b2733;
+  height: 26px;
+}
+
+.mc-datepicker .DayPicker-Day {
+  font-size: 14px;
+  border-radius: 4px;
+  color: #637282;
+  border-width: 0;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+.mc-datepicker .DayPicker-Day:hover:not(.DayPicker-Day--outside):not(.DayPicker-Day--disabled) {
+  color: #1b2733;
+  background-color: #f7f9fa;
+}
+
+.mc-datepicker .DayPicker-Day--disabled {
+  color: #c1c7cd;
+}
+
+.mc-datepicker .DayPicker-Day:active:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  color: #fff;
+  background-color: #0070e0;
+}
+
+.mc-datepicker .DayPicker-Day:focus {
+  box-shadow: 0 0 0 3px #99c6f3;
+  position: relative; /* Hack to position button on top of siblings that otherwise cut the border */
+}
+
+.mc-datepicker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  color: #637282;
+  background-color: #ebf4fd;
+}
+
+/* mc-datepicker-input */
+
+.mc-datepicker-input svg {
+  pointer-events: none;
+}
+
+.mc-datepicker-input .mc-datepicker {
+  position: relative;
+  left: 1px;
+}
+
+.mc-datepicker-input-customInputWrapper:not(:only-of-type) svg,
+.mc-datepicker-input input:focus ~ svg {
+  stroke: #0070e0;
+  stroke-width: 0.5;
+}
+
+.mc-datepicker-input {
+  display: inline-block;
+  width: 230px;
+}
+
+.mc-datepicker-input input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.mc-datepicker-input .DayPicker {
+  margin-top: 10px;
+}
+
+.mc-datepicker-input .mc-datepicker-input-customInputWrapper {
+  position: relative;
+  margin-top: 10px;
+  right: 1px;
+}
+
+.mc-datepicker-input .mc-datepicker-input-customInputWrapper input[readonly] {
+  cursor: default;
+}
+
+.mc-datepicker-input .mc-datepicker-wrapper {
+  position: absolute;
+}
+
+.mc-datepicker-input .mc-datepicker-input-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  cursor: pointer;
+}
+
+.mc-datepicker-input .mc-datepicker-input-icon svg {
+  height: 25px;
+}
+
+.mc-datepicker-range {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.mc-datepicker-range .mc-datepicker-range-to {
+  margin-left: 20px;
+}
+
+.mc-datepicker-range .DayPicker-Day:not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+  border-radius: 0;
+}
+
+.mc-datepicker-range .DayPicker-Day.DayPicker-Day--end,
+.mc-datepicker-range .DayPicker-Day.DayPicker-Day--start {
+  border-radius: 4px;
+}
+
+.mc-datepicker-range
+  .mc-datepicker-range-to
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside).DayPicker-Day--end,
+.mc-datepicker-range
+  .mc-datepicker-range-from
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside).DayPicker-Day--start {
+  color: #fff;
+  background-color: #0070e0;
+}
+
+.mc-datepicker-range .mc-datepicker-range-to .DayPicker-Day--selected.DayPicker-Day--start,
+.mc-datepicker-range .mc-datepicker-range-from .DayPicker-Day--selected.DayPicker-Day--end {
+  border-radius: 0;
+}
+
+.mc-datepicker-range .DayPicker-Day--selected:not(.DayPicker-Day--outside) {
+  color: #637282;
+  background-color: #ebf4fd;
+}
+
+/* -- dropdown_button/index.web.css */
+/*
+  Alignment of the caret and button content should probably be through flexbox
+  IE10 lacks some basic flexbox support (such as inline flex-children)
+  and text-overflow within elements with non-block parents.
+
+  https://tails.corp.dropbox.com/D245337 removed flexbox and added IE10 support.
+*/
+
+.mc-dropdown-button {
+  min-width: 200px;
+  text-align: left;
+}
+
+.mc-dropdown-button .mc-button-content::before {
+  float: right;
+  display: inline-block;
+  content: '';
+
+  /* create a triangle with borders */
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #637282;
+}
+
+.mc-dropdown-button-content {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* web specific content */
+
+.mc-dropdown-button .mc-button-content::before {
+  margin: 14px 0 12px 16px; /* 2px is a visual alignment adjustment */
+}
+
+/* -- dropdown_menu/index.web.css */
+/** DropdownMenu */
+
+.mc-dropdown-menu {
+}
+
+.mc-dropdown-menu-button {
+}
+
+/** Menu */
+
+.mc-menu {
+  padding: 0;
+  margin-top: 8px;
+  width: 200px;
+  max-height: 320px;
+  overflow: auto;
+  position: absolute;
+  z-index: 1;
+
+  font-family: 'AtlasGrotesk', sans-serif;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16), 0 8px 16px rgba(27, 39, 51, 0.08);
+  border-radius: 4px;
+}
+
+/** MenuItem */
+
+.mc-menu-item {
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+.mc-menu-item-button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
+  line-height: 32px;
+  font-size: 14px;
+  text-align: left;
+
+  font-family: 'AtlasGrotesk', sans-serif;
+  color: #1b2733;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+}
+
+.mc-menu-item-button .mc-button-content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.mc-menu-item:focus .mc-menu-item-button,
+.mc-menu-item-button:focus,
+.mc-menu-item-button:hover {
+  background-color: #f7f9fa;
+}
+
+.mc-menu-item-selected .mc-menu-item-button,
+.mc-menu-item-button:active {
+  color: #005dd6;
+}
+
+.mc-menu-item:first-of-type .mc-menu-item-button {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.mc-menu-item:last-of-type .mc-menu-item-button {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* web specific content */
+
+/* -- facepile/index.web.css */
+.mc-facepile-members {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.mc-facepile {
+  display: inline-block;
+}
+
+.mc-facepile-inner {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+  font-weight: inherit;
+}
+
+.mc-facepile-container {
+  display: inline-block;
+  font-weight: inherit;
+}
+
+.mc-facepile-shadow-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-perspective: 1px;
+          perspective: 1px;
+}
+
+.mc-facepile-image {
+  display: block;
+  min-width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  font-weight: inherit;
+}
+
+/* web specific content */
+
+/* -- facepile_tooltip/index.web.css */
+.mc-facepile-tooltip-container {
+  display: inline-block;
+}
+
+.mc-facepile-tooltip-content-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 100%;
+}
+
+.mc-facepile-tooltip-content {
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mc-facepile-tooltip-content-arrow {
+  border: 5px solid transparent;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+}
+
+/* web specific content */
+
+/* -- icon_star/index.web.css */
+.mc-icon-star path {
+  fill: #0070e0;
+}
+
+.mc-icon-star-hovered path,
+.mc-icon-star:not(.mc-icon-star-state-manapathed):hover path {
+  fill: #007af5;
+}
+
+.mc-icon-star-active path,
+.mc-icon-star:not(.mc-icon-star-state-manapathed):active path {
+  fill: #005dd6;
+}
+
+.mc-icon-star-selected path {
+  fill: #0070e0;
+}
+
+.mc-icon-star-selected.mc-icon-star-hovered path,
+.mc-icon-star-selected:not(.mc-icon-star-state-manapathed):hover path {
+  fill: #007af5;
+}
+
+.mc-icon-star-selected.mc-icon-star-active path,
+.mc-icon-star-selected:not(.mc-icon-star-state-manapathed):active path {
+  fill: #005dd6;
+}
+
+.mc-icon-star-disabled path {
+  fill: #c1c7cd;
+}
+
+/* web specific content */
+
+/* -- input/index.web.css */
+.mc-input {
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #1b2733;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #c1c7cd;
+  border-radius: 4px;
+}
+
+.mc-input.disabled,
+.mc-input:disabled {
+  border-color: #e6e8eb;
+  background-color: #e6e8eb;
+}
+
+.mc-input.invalid,
+.mc-input:invalid {
+  border-color: #d62c0b;
+  box-shadow: none;
+}
+
+.mc-input:focus,
+.mc-input.focus {
+  border: 1px solid #0070e0;
+  outline: none;
+}
+
+/* web specific content */
+
+/* -- label/index.web.css */
+.mc-label {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+/* web specific content */
+
+/* -- media_table/index.web.css */
+.mc-media-row,
+.mc-media-cell,
+.mc-media-cell-content,
+.mc-media-actions {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-media-row {
+  box-sizing: border-box;
+  border-bottom: 1px solid #e6e8eb;
+  position: relative; /* support for absolute position of media-actions */
+  min-height: 64px;
+}
+
+.mc-table tr.mc-media-row {
+  /* override default cursor value of 'auto' on table tr {} in some user agents! */
+  cursor: inherit;
+}
+
+.mc-table tr.mc-media-row.mc-media-row-clickable {
+  /* nesting necessary because of above selection */
+  cursor: pointer;
+}
+
+/* Culled row */
+
+.mc-media-row-culled {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+/* Double-line height row */
+
+.mc-media-row-double-line {
+  min-height: 72px;
+}
+
+.mc-media-row-clickable:active {
+  background-color: #f0f4f5;
+}
+
+.mc-media-row-selected {
+  background-color: #ebf4fd;
+}
+
+.mc-media-row-selected.mc-media-row-clickable:active {
+  background-color: #d6e8fa;
+}
+
+.mc-media-row-droppable {
+  background-color: #edfaf1;
+}
+
+.mc-media-row-dragover {
+  background-color: #ddf0e2;
+}
+
+.mc-media-cell {
+  -ms-flex: 1;
+      flex: 1;
+  padding: 0;
+  min-height: 63px; /* 1px border */
+}
+
+.mc-media-cell-double-line {
+  min-height: 71px; /* 1px border */
+}
+
+.mc-media-cell-content {
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  min-width: 0;
+}
+
+.mc-media-cell-icon {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-preferred-size: 64px;
+      flex-basis: 64px;
+}
+
+.mc-media-cell-text-title,
+.mc-media-cell-text-subtitle,
+.mc-media-cell-text-detail {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mc-media-cell-text-title,
+.mc-media-cell-text-detail {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.mc-media-cell-text-detail {
+  color: #637282;
+}
+
+.mc-media-cell-text-subtitle {
+  color: #637282;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.mc-media-cell-text-quote {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.mc-media-cell-text-highlight {
+  color: #0070e0;
+}
+
+/* Media actions */
+
+.mc-media-actions {
+  -ms-flex-align: center;
+      align-items: center;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  padding: 0;
+}
+
+.mc-media-actions > * {
+  margin-right: 16px;
+}
+
+/* web specific content */
+
+/* -- media_table_skeleton/index.web.css */
+@-webkit-keyframes mediaTableGlint {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+
+@keyframes mediaTableGlint {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+
+.media-table-skeleton,
+.media-table-skeleton-head,
+.media-table-skeleton-head-row,
+.media-table-skeleton-head-cell,
+.media-table-skeleton-icon,
+.media-table-skeleton-body,
+.media-table-skeleton-row,
+.media-table-skeleton-cell-content,
+.media-table-skeleton-cell-detail,
+.media-table-skeleton-placeholder-head,
+.media-table-skeleton-placeholder-content,
+.media-table-skeleton-placeholder-detail {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.media-table-skeleton,
+.media-table-skeleton-head,
+.media-table-skeleton-head-row,
+.media-table-skeleton-body {
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+
+.media-table-skeleton-head-cell,
+.media-table-skeleton-cell-content,
+.media-table-skeleton-cell-detail {
+  padding: 0; /* unset user agent */
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.media-table-skeleton {
+  overflow: hidden;
+}
+
+.media-table-skeleton-head {
+  border-bottom: 1px solid #e6e8eb;
+  height: 40px;
+  box-sizing: border-box;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.media-table-skeleton-head-row {
+}
+
+.media-table-skeleton-placeholder-head::after,
+.media-table-skeleton-placeholder-content::after,
+.media-table-skeleton-placeholder-detail::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: -100px;
+  width: 120px;
+  height: 80px;
+  opacity: 1;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-animation-name: mediaTableGlint;
+          animation-name: mediaTableGlint;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+}
+
+.media-table-skeleton-placeholder-head,
+.media-table-skeleton-placeholder-content,
+.media-table-skeleton-placeholder-detail {
+  position: relative;
+  color: transparent;
+  opacity: 0.06;
+  background-color: #637282;
+}
+
+.media-table-skeleton-placeholder-head {
+  height: 12px;
+  -ms-flex-preferred-size: 32px;
+      flex-basis: 32px;
+}
+
+.media-table-skeleton-placeholder-content,
+.media-table-skeleton-placeholder-detail {
+  height: 16px;
+}
+
+.media-table-skeleton-placeholder-content {
+  -ms-flex-preferred-size: 168px;
+      flex-basis: 168px;
+  margin-right: 16px;
+}
+
+.media-table-skeleton-placeholder-detail {
+  -ms-flex-preferred-size: 32px;
+      flex-basis: 32px;
+}
+
+.media-table-skeleton-row {
+  height: 64px;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e8eb;
+  position: relative;
+  -ms-flex-align: center;
+      align-items: center;
+  width: 100%;
+}
+
+.media-table-skeleton-cell-content {
+  -ms-flex: 3;
+      flex: 3;
+}
+
+.media-table-skeleton-cell-detail {
+  -ms-flex: 2;
+      flex: 2;
+}
+
+.media-table-skeleton-icon {
+  -ms-flex: 0 0 64px;
+      flex: 0 0 64px;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+/* web specific content */
+
+/* -- mobile_menu/index.web.css */
+.mc-mobile-menu-container {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.mc-mobile-menu-content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+}
+
+.mc-mobile-menu-section {
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(99, 114, 130, 0.16);
+  margin-bottom: 15px;
+  padding: 8px 0;
+}
+
+.mc-mobile-menu-section:last-child {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.mc-mobile-menu-item {
+  background: #fff;
+  border: #fff 5px;
+  font-family: 'AtlasGrotesk', sans-serif;
+  color: #0070e0;
+  font-size: 14px;
+  padding: 10px 30px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-mobile-menu-close-button {
+  text-align: center;
+  height: 40px;
+}
+
+/* web specific content */
+
+/* -- modal/index.web.css */
+.scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+}
+
+.mc-no-scroll,
+.mc-no-scroll body {
+  overflow-y: hidden;
+}
+
+.mc-modal {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 12;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16), 0 8px 16px rgba(27, 39, 51, 0.08);
+}
+
+.mc-modal-overlay {
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 11;
+  background-color: rgba(99, 114, 130, 0.5);
+}
+
+.mc-modal-body {
+  position: relative;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.mc-modal-close {
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  z-index: 20;
+  right: 16px;
+  top: 16px;
+  width: 32px;
+  height: 32px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer;
+}
+
+.mc-modal-close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mc-util-modal {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+
+.mc-util-modal-regular {
+  width: 560px;
+}
+
+.mc-util-modal-small {
+  width: 432px;
+}
+
+.mc-util-modal-header {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  line-height: 64px;
+  padding: 0 24px 0 24px;
+  font-size: 16px;
+}
+
+.mc-util-modal-body {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  padding: 0 24px 24px 24px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.mc-util-modal-actions {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  height: 64px;
+  padding: 0 24px 0 24px;
+  background-color: #f7f9fa;
+  border-top: 1px solid #e6e8eb;
+  border-radius: 0 0 4px 4px;
+}
+
+.mc-util-modal-actions-buttons > * {
+  margin-left: 8px;
+}
+
+.mc-util-modal-small .mc-util-modal-actions-buttons {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+}
+
+.mc-util-modal-small .mc-util-modal-actions-buttons > * {
+  width: 50%;
+}
+
+/* web specific content */
+
+/* -- overflow_button/index.web.css */
+.mc-overflow-button {
+  color: #637282;
+  padding: 0 1px; /* 32px icon + 1px border + 1px padding = 36px */
+}
+
+.mc-overflow-button-icon {
+  margin-top: -1px; /* icon height is 32px and does not consider the border */
+}
+
+.mc-overflow-button:not(:disabled):hover .mc-overflow-button-icon g,
+.mc-overflow-button:not(:disabled):active .mc-overflow-button-icon g {
+  fill: #0070e0; /* we don't have a system for changing icon colors yet, fix me */
+}
+
+/* web specific content */
+
+/* -- packages/spectrum-icons/templates/actionable/index.web.css */
+.mc-icon-template-actionable {
+}
+
+.mc-icon-template-actionable-disabled {
+  opacity: 0.5;
+}
+
+/* web specific content */
+
+/* -- packages/spectrum-icons/templates/content/index.web.css */
+.mc-icon-template-content {
+}
+
+.mc-icon-template-content-disabled {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+/* web specific content */
+
+/* -- packages/spectrum-icons/templates/selectable/index.web.css */
+.mc-icon-template-selectable path {
+  fill: #637282;
+}
+
+.mc-icon-template-selectable-hovered path,
+.mc-icon-template-selectable:not(.mc-icon-template-selectable-state-manapathed):hover path {
+  fill: #6a7c8f;
+}
+
+.mc-icon-template-selectable-active path,
+.mc-icon-template-selectable:not(.mc-icon-template-selectable-state-manapathed):active path {
+  fill: #536170;
+}
+
+.mc-icon-template-selectable-selected path {
+  fill: #0070e0;
+}
+
+.mc-icon-template-selectable-selected.mc-icon-template-selectable-hovered path,
+.mc-icon-template-selectable-selected:not(.mc-icon-template-selectable-state-manapathed):hover
+  path {
+  fill: #007af5;
+}
+
+.mc-icon-template-selectable-selected.mc-icon-template-selectable-active path,
+.mc-icon-template-selectable-selected:not(.mc-icon-template-selectable-state-manapathed):active
+  path {
+  fill: #005dd6;
+}
+
+.mc-icon-template-selectable-disabled path {
+  fill: #c1c7cd;
+}
+
+/* web specific content */
+
+/* -- packages/spectrum-icons/templates/status/index.web.css */
+.mc-icon-template-status-rotating {
+  -webkit-animation: rotate 3s linear infinite;
+          animation: rotate 3s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* web specific content */
+
+/* -- popover/index.web.css */
+.mc-popover-item-group-separator {
+  border: none;
+  border-bottom: 1px solid #e6e8eb;
+  margin: 8px 0;
+  padding: 0;
+}
+
+.mc-popover-item-group:first-of-type {
+  padding-top: 8px;
+}
+
+.mc-popover-item-group:last-of-type {
+  padding-bottom: 8px;
+}
+
+.mc-popover-selectable-item {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.mc-popover-selectable-item:enabled:hover,
+.mc-popover-selectable-item:focus {
+  background-color: #f7f9fa;
+}
+
+.mc-popover-selectable-item:enabled:active {
+  background-color: #e6e8eb;
+}
+
+.mc-popover-selectable-item .mc-popover-selectable-item-checkbox {
+  cursor: pointer;
+}
+
+.mc-popover-selectable-item-selected {
+  color: #0070e0;
+  font-weight: 500;
+}
+
+.mc-popover-selectable-item-disabled .mc-popover-selectable-item-text {
+  color: #c1c7cd;
+}
+
+.mc-popover-selectable-item-content,
+.mc-popover-selectable-item-check-wrapper,
+.mc-popover-selectable-item-icon-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-popover-selectable-item-content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.mc-popover-selectable-item-check-wrapper {
+  min-width: 32px;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.mc-popover-selectable-item-icon-wrapper {
+  min-width: 32px;
+  padding: 4px 8px 4px 0;
+}
+
+.mc-popover-selectable-item-text {
+  padding: 4px 8px 4px 0;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+}
+
+.mc-popover-item-group-title {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #637282;
+  margin: 0;
+  padding: 4px 16px 4px 32px;
+}
+
+.mc-popover {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  color: #1b2733;
+}
+
+.mc-popover-trigger {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mc-popover-content {
+  position: absolute;
+  box-sizing: inherit;
+  display: -ms-flexbox;
+  display: flex;
+  left: 0;
+  width: 344px;
+  z-index: 1;
+}
+
+.mc-popover-content-menu {
+  padding: 0px;
+  display: inline-block;
+  box-sizing: inherit;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  min-width: 160px;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16), 0 8px 16px rgba(27, 39, 51, 0.08);
+  border-radius: 4px;
+  outline: none;
+}
+
+.mc-popover-content-attach-left {
+  left: 0;
+  right: auto;
+  margin-left: -8px;
+}
+
+.mc-popover-content-attach-right {
+  right: 0;
+  left: auto;
+  margin-right: -8px;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+
+.mc-popover-content-position-above {
+  bottom: 100%;
+  margin-bottom: 8px;
+}
+
+.mc-popover-content-position-below {
+  top: 100%;
+  margin-top: 8px;
+}
+
+.mc-popover-content-position-right {
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.mc-popover-content-position-left {
+  top: 0;
+  right: 100%;
+  margin-right: 10px;
+  left: auto;
+}
+
+.mc-popover-content-scroller {
+  box-sizing: inherit;
+  display: block;
+  overflow: auto;
+}
+
+.mc-popover-content-description {
+  width: 100%;
+  box-sizing: inherit;
+  border: none;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  padding: 8px 16px;
+  text-align: left;
+}
+
+.mc-popover-content-title {
+  width: 100%;
+  box-sizing: inherit;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 0;
+  padding: 8px 16px 7px 16px; /* 7px because of bottom border */
+  text-align: left;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  cursor: default;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.mc-popover-content-title + .mc-popover-content-item {
+  margin-top: 8px;
+}
+
+.mc-popover-content-item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  display: block;
+}
+
+.mc-popover-content-item:hover {
+  background-color: #f7f9fa;
+}
+
+.mc-popover-content-item:disabled {
+  background-color: transparent;
+  color: #c1c7cd;
+  cursor: default;
+}
+
+.mc-popover-content-item:first-child {
+  margin-top: 8px;
+}
+
+.mc-popover-content-item:last-child {
+  margin-bottom: 8px;
+}
+
+.mc-popover-content-item:focus {
+  background-color: #f7f9fa;
+}
+
+.mc-popover-content-separator {
+  border: none;
+  border-bottom: 1px solid #e6e8eb;
+  margin: 8px 0 8px 16px;
+}
+
+/* web specific content */
+
+/* -- positioned_portal/index.web.css */
+.mc-positioned-portal-wrapper {
+  display: inline-block;
+}
+
+.mc-positioned-portal-content {
+  position: fixed;
+  display: inline-block;
+  z-index: 10001;
+}
+
+/* web specific content */
+
+/* -- radio_button/index.web.css */
+.mc-radio {
+  transition: opacity 0.1s ease-out, box-shadow 0.15s ease-out;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  box-shadow: inset 0px 0px 0px 1px #c1c7cd;
+  cursor: pointer;
+  border-radius: 50%;
+  /* flex-shrink:0 prevents resizing when contained in flex containers, such as in a Modal */
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.mc-radio:checked {
+  box-shadow: inset 0px 0px 0px 5px #0070e0;
+}
+
+.mc-radio:active:not(:disabled) {
+  background-color: #ebf4fd;
+}
+
+.mc-radio:hover {
+  box-shadow: inset 0px 0px 0px 1px #0070e0;
+}
+
+.mc-radio:checked:hover:not(.mc-radio-disabled) {
+  box-shadow: inset 0px 0px 0px 5px #007af5;
+}
+
+.mc-radio:focus {
+  box-shadow: inset 0px 0px 0px 1px #0070e0, 0 0 0 3px #99c6f3;
+}
+
+.mc-radio:focus:active {
+  box-shadow: inset 0px 0px 0px 1px #0070e0;
+}
+
+.mc-radio:checked:focus {
+  box-shadow: inset 0px 0px 0px 5px #0070e0, 0 0 0 3px #99c6f3;
+}
+
+.mc-radio:checked:active:not(:disabled) {
+  box-shadow: inset 0px 0px 0px 5px #005dd6;
+  background-color: #d6e8fa;
+}
+
+.mc-radio-disabled:hover {
+  box-shadow: inset 0px 0px 0px 1px #c1c7cd;
+}
+
+.mc-radio-disabled {
+  box-shadow: inset 0px 0px 0px 1px #c1c7cd;
+  background-color: #e6e8eb;
+}
+
+.mc-radio-disabled:checked {
+  background-color: #c1c7cd;
+  box-shadow: inset 0px 0px 0px 5px #e6e8eb,
+    0px 0px 0px 1px #c1c7cd;
+}
+
+/*ie10+ cant draw box-shadow with border radius that is centered 100% of the time, so we need to
+ minimize the number of box-shadow we use at the same time in ie10+ */
+
+.mc-radio::-ms-check {
+  border: 0;
+  color: transparent;
+  background-color: transparent;
+}
+
+_:-ms-lang(x),
+.mc-radio,
+.mc-radio::-ms-check {
+  border: 1px solid #c1c7cd;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:checked,
+.mc-radio:checked::-ms-check {
+  border: 5px solid #0070e0;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:hover,
+.mc-radio:hover::-ms-check {
+  border: 2px solid #0070e0;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:checked:hover:not(.mc-radio-disabled),
+.mc-radio:checked:hover:not(.mc-radio-disabled)::-ms-check {
+  border: 5px solid #007af5;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:focus,
+.mc-radio:focus::-ms-check {
+  border: 3px solid #99c6f3;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:focus:active,
+.mc-radio:focus:active::-ms-check {
+  border: 1px solid #0070e0;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio:checked:focus {
+  border: 5px solid #0070e0;
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+_:-ms-lang(x),
+.mc-radio:checked:focus::-ms-check {
+  border: 5px solid #0070e0;
+}
+
+_:-ms-lang(x),
+.mc-radio:checked:active:not(:disabled),
+.mc-radio:checked:active:not(:disabled)::-ms-check {
+  border: 5px solid #005dd6;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio-disabled:hover,
+.mc-radio-disabled:hover::-ms-check {
+  border: 1px solid #c1c7cd;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio-disabled,
+.mc-radio-disabled::-ms-check {
+  border: 1px solid #c1c7cd;
+  box-shadow: none;
+}
+
+_:-ms-lang(x),
+.mc-radio-disabled:checked,
+.mc-radio-disabled:checked::-ms-check {
+  border: 5px solid #e6e8eb;
+  box-shadow: none;
+}
+
+/* web specific content */
+
+/* -- snackbar/index.web.css */
+.mc-snackbar {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  height: 44px;
+  background-color: #f7f9fa;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16), 0 8px 16px rgba(27, 39, 51, 0.08);
+  font-size: 14px;
+  font-weight: 400;
+  color: #1b2733;
+  -webkit-animation: snackbarload 0.15s cubic-bezier(0.2, 0, 0.5, 1.7);
+          animation: snackbarload 0.15s cubic-bezier(0.2, 0, 0.5, 1.7);
+  pointer-events: all;
+  max-width: 600px;
+  min-width: 400px;
+}
+
+.mc-snackbar-container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  box-sizing: border-box;
+  padding: 0 24px;
+}
+
+.mc-snackbar-container--snackbar-icon {
+  padding-left: 8px;
+}
+
+.mc-snackbar-title {
+  -ms-flex: 1;
+      flex: 1;
+}
+
+/* 1.3 Action Links component and overrides. This overrides the default anchor
+treatment and uses $color_stone as the default color */
+
+.mc-snackbar-actions {
+  -ms-flex-align: start;
+      align-items: flex-start;
+  margin-left: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  color: #637282;
+  font-size: 14px;
+  -ms-flex: none;
+      flex: none;
+}
+
+.mc-snackbar-actions:hover {
+  color: #007af5;
+}
+
+/* 1.4 - Icon container for any element that would be embedded inside of a Snackbar */
+
+.mc-snackbar-icon {
+  margin-right: 4px;
+}
+
+.mc-snackbar-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+/* 1.5 - Progress bar for syncing Snackbar. Kind of janky: using negative margin
+and some rough border-radius properties in order to get alignment correct and prevent
+clipping with .c-snackbar border. */
+
+.mc-progress-bar-bg {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  border-radius: 0px 0px 4px 4px;
+  width: 100%;
+  margin-top: -4px;
+  background-color: #d6e8fa;
+  height: 4px;
+}
+
+.mc-progress-bar-fg {
+  width: 0%;
+  height: 4px;
+  border-radius: 0px 4px 4px 8px;
+  background-color: #0070e0;
+  transition: all linear 1s;
+}
+
+.mc-snackbar-holder-backdrop {
+  position: fixed;
+  display: inline-block;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 12;
+  pointer-events: none;
+  -webkit-animation: backgroundfade 0.2s linear;
+          animation: backgroundfade 0.2s linear;
+}
+
+.mc-snackbar-holder-backdrop .mc-snackbar {
+  margin-top: 132px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@-webkit-keyframes snackbarload {
+  0% {
+    margin-top: 160px;
+  }
+  100% {
+    margin-top: 132px;
+  }
+}
+
+@keyframes snackbarload {
+  0% {
+    margin-top: 160px;
+  }
+  100% {
+    margin-top: 132px;
+  }
+}
+
+@-webkit-keyframes backgroundfade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes backgroundfade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+/* web specific content */
+
+/* -- suggestions_list/index.web.css */
+/* resetting default ul css that comes from browser */
+
+.mc-suggestions-list .mc-suggestions-list-culled-list {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mc-suggestions-list {
+  position: absolute;
+  width: inherit;
+  border: 1px solid #e6e8eb;
+  border-radius: 4px;
+  margin-top: 4px;
+  box-shadow: 0px 8px 16px rgba(27, 39, 51, 0.08);
+  background-color: #fff;
+  padding: 8px 0 8px 0;
+}
+
+.mc-suggestions-list-suggestion {
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 16px 16px 16px;
+  font-size: 14px;
+  font-family: AtlasGrotesk;
+}
+
+.mc-suggestions-list-suggestion-hover,
+.mc-suggestions-list-suggestion:hover {
+  background-color: #f7f9fa;
+}
+
+.mc-suggestions-list-suggestion.selected,
+.mc-suggestions-list-suggestion-focus,
+.mc-suggestions-list-suggestion:focus {
+  background-color: #e6e8eb;
+}
+
+.mc-suggestions-list-suggestion-active,
+.mc-suggestions-list-suggestion:active {
+  background-color: #e6e8eb;
+}
+
+/* web specific content */
+
+/* -- tabbed_header/index.web.css */
+.mc-tabbed-header-list,
+.mc-tabbed-header-item,
+.mc-tabbed-header-tab,
+.mc-tabbed-header-tab-content {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-tabbed-header-list {
+  border-bottom: 1px solid #e6e8eb;
+  box-sizing: border-box;
+  font-family: 'AtlasGrotesk', sans-serif;
+  list-style-type: none;
+  margin: 0;
+  max-height: 40px;
+  padding: 0;
+}
+
+.mc-tabbed-header-item {
+  margin-right: 32px;
+}
+
+.mc-tabbed-header-tab {
+  background: none;
+  border: none;
+  color: #637282;
+  cursor: pointer;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.mc-tabbed-header-tab:focus {
+  outline: none;
+}
+
+.mc-tabbed-header-tab-content-space {
+  font-weight: 500;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  display: inline-block;
+}
+
+.mc-tabbed-header-tab-content-selected {
+  border-bottom: 1px solid #1b2733;
+  color: #1b2733;
+  font-weight: 500;
+}
+
+/* web specific content */
+
+/* -- table/index.web.css */
+.mc-table,
+.mc-table-head,
+.mc-table-body,
+.mc-table-row,
+.mc-table-cell {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-table {
+  font-family: 'AtlasGrotesk', sans-serif;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  color: #1b2733;
+}
+
+.mc-table-head {
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-preferred-size: 40px;
+      flex-basis: 40px;
+}
+
+.mc-table-body {
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+
+/* Culled table body */
+
+.mc-table-body-culled {
+  position: relative;
+}
+
+.mc-table-row {
+  border-bottom: 1px solid #e6e8eb;
+  background: #fff;
+}
+
+/* Culled table row */
+
+.mc-table-row-culled {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.mc-table tr.mc-table-row {
+  /* override default cursor value of 'auto' on table tr {} in some user agents! */
+  cursor: inherit;
+}
+
+.mc-table-head-row {
+  -ms-flex-align: center;
+      align-items: center;
+  box-sizing: border-box;
+  color: #637282;
+  -ms-flex: 1;
+      flex: 1;
+}
+
+/* Fixed table header row */
+
+.mc-table-head-row-fixed {
+  position: fixed;
+  z-index: 4;
+}
+
+.mc-table-cell {
+  min-width: 0;
+  -ms-flex: 1;
+      flex: 1;
+}
+
+.mc-table-head-cell {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+/* web specific content */
+
+/* -- tertiary_link/index.web.css */
+.mc-tertiary-link-button,
+.mc-tertiary-list,
+.mc-tertiary-list-element,
+.mc-tertiary-icon-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-tertiary-link-button {
+  display: -ms-flexbox;
+  display: flex;
+  zoom: 1;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  user-drag: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-sizing: border-box;
+  text-align: left;
+
+  font-family: 'AtlasGrotesk', sans-serif;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 4px;
+  outline: none;
+  margin: 0;
+  padding: 0 8px 0 0;
+  max-width: 100%;
+
+  -ms-flex-align: center;
+
+      align-items: center;
+  color: #0070e0;
+}
+
+.mc-tertiary-link-button:hover {
+  color: #007af5;
+}
+
+.mc-tertiary-link-button:active {
+  color: #005dd6;
+}
+
+.mc-tertiary-link-button:focus {
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+.mc-tertiary-link-button:disabled {
+  /* This is a magic number and should be replaced with a color
+    constant when the icon supports color filling */
+  opacity: 0.4;
+  cursor: default;
+}
+
+.mc-tertiary-link-button-content {
+  /* Wrap the button content in a flex container
+    because in some browsers (FF45) a button cannot have display flex
+  */
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-tertiary-list {
+  margin: 0;
+  padding: 0;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  list-style-type: none;
+}
+
+.mc-tertiary-list-element {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-tertiary-icon-wrapper {
+  margin-bottom: auto;
+  min-width: 32px;
+}
+
+.mc-tertiary-icon-text {
+  font-weight: 400;
+  /* these are magic numbers that do not exist in the design system */
+  line-height: 22px;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+/* web specific content */
+
+/* -- tip_card/index.web.css */
+.mc-tip-card {
+  padding: 16px;
+  background-color: #f7f9fa;
+  border-radius: 4px;
+  border: 1px solid #e6e8eb;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mc-tip-card-description {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+  font-size: 14px;
+  font-family: 'AtlasGrotesk', sans-serif;
+  color: #1b2733;
+}
+
+.mc-tip-card-dismiss {
+  -ms-flex: 0 0 24px;
+      flex: 0 0 24px;
+  margin-left: 8px;
+  height: 24px;
+}
+
+.mc-tip-card-dismiss-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.mc-tip-card-dismiss-icon g {
+  fill: #637282;
+}
+
+.mc-tip-card-dismiss-icon g:hover {
+  fill: #6a7c8f;
+}
+
+.mc-tip-card-dismiss-icon g:active {
+  fill: #536170;
+}
+
+/* web specific content */
+
+/* -- toggle/index.web.css */
+.mc-toggle {
+  line-height: 24px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  color: #637282;
+}
+
+/* Color the label text blue when checked */
+
+.mc-toggle-checked {
+  color: #0070e0;
+}
+
+/* Color the label text light grey when enabled */
+
+.mc-toggle-disabled {
+  color: #c1c7cd;
+}
+
+.mc-toggle-input-wrapper {
+  display: inline-block;
+  width: calc((12px + 4px) * 2);
+  color: #637282;
+  margin-left: 8px;
+}
+
+.mc-toggle-input {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.mc-toggle-track {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.mc-toggle-track:after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 2px;
+  transition: -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+
+/** Make the inner part of the toggle move to the right when checked */
+
+.mc-toggle-input:checked + .mc-toggle-track:after {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+/* Color the toggle track dark grey by default and make it non-selectable */
+
+.mc-toggle-track {
+  background-color: #c1c7cd;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/* Color the toggle track blue when checked */
+
+.mc-toggle-input:checked + .mc-toggle-track {
+  background: #0070e0;
+}
+
+/* Color the toggle track light grey when disabled */
+
+.mc-toggle-input:disabled + .mc-toggle-track {
+  background: #e6e8eb;
+}
+
+/** Color the inner part of the toggle light blue on click when enabled and checked */
+
+.mc-toggle-input-interactive:enabled:checked:active + .mc-toggle-track:after {
+  background-color: #99c6f3;
+}
+
+/** Color the inner part of the toggle dark grey when disabled */
+
+.mc-toggle-input:disabled + .mc-toggle-track:after {
+  background: #c1c7cd;
+}
+
+/* Show a pointer on hover when enabled */
+
+.mc-toggle-input:enabled,
+.mc-toggle-input:enabled + .mc-toggle-track {
+  cursor: pointer;
+}
+
+/* Draw a focus ring around the toggle */
+
+.mc-toggle-input-interactive:focus + .mc-toggle-track {
+  box-shadow: 0 0 0 3px #99c6f3;
+  border-radius: 4px;
+}
+
+/* web specific content */
+
+/* -- token/index.web.css */
+.mc-token {
+  min-width: 0;
+  -ms-flex-pack: center;
+      justify-content: center;
+  border-radius: 2px;
+  cursor: default;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 4px;
+  font-size: 13px;
+  color: #1b2733;
+  background-color: #f7f9fa;
+  text-align: center;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 24px;
+  box-shadow: 0px 0px 0px 1px #e6e8eb inset;
+  outline: none;
+}
+
+.mc-token:not(:focus):hover,
+.mc-token-hovered:not(.mc-token-focused):hover {
+  box-shadow: 0px 0px 0px 1px #c1c7cd;
+}
+
+.mc-token-content {
+  min-width: 0;
+  max-width: 200px;
+  display: block;
+  color: inherit;
+  padding: 5px;
+  font-family: 'AtlasGrotesk', sans-serif;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mc-token-close {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.mc-token-close-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.mc-token-selected {
+  background-color: #6a7c8f;
+  color: #f7f9fa;
+  box-shadow: none;
+}
+
+.mc-token-close-icon path {
+  fill: #637282;
+}
+
+.mc-token-selected .mc-token-close-icon path {
+  fill: #f7f9fa;
+}
+
+.mc-token-warning {
+  background-color: #ffe28f;
+  box-shadow: none;
+}
+
+.mc-token-warning:not(:focus):hover,
+.mc-token-hovered.mc-token-warning:not(.mc-token-focused):hover {
+  box-shadow: 0px 0px 0px 1px #ffc726 inset;
+}
+
+.mc-token-selected.mc-token-warning {
+  background-color: #ffc726;
+  color: #1b2733;
+}
+
+.mc-token-selected.mc-token-warning .mc-token-close path {
+  fill: #637282;
+}
+
+.mc-token-error {
+  background-color: #f79c82;
+  box-shadow: none;
+}
+
+.mc-token-error:not(:focus):hover,
+.mc-token-hovered.mc-token-error:not(.mc-token-focused):hover {
+  box-shadow: 0px 0px 0px 1px #d62c0b inset;
+}
+
+.mc-token-error.mc-token-selected {
+  background-color: #d62c0b;
+}
+
+.mc-token-selected.mc-token-error .mc-token-close path {
+  fill: #f7f9fa;
+}
+
+.mc-token:focus.mc-token-focused {
+  box-shadow: 0 0 0 3px #99c6f3;
+}
+
+/* web specific content */
+
+/* -- tokenized_input/index.web.css */
+.mc-tokenized-input {
+  background-color: #fff;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-height: 32px;
+  height: auto;
+  max-height: 104px;
+  overflow-y: auto;
+  padding: 4px;
+  -ms-flex-align: center;
+      align-items: center;
+  border-radius: 4px;
+}
+
+.mc-tokenized-input-input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  min-width: 150px;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  height: 32px;
+}
+
+/* IE 11. input shows a 'X' icon when input has text. This will hide the 'X'*/
+
+.mc-tokenized-input-input::-ms-clear {
+  width: 0;
+  height: 0;
+}
+
+.mc-tokenized-input:focus-within {
+  box-shadow: 0 0 0 3px #99c6f3;
+  border-radius: 4px;
+}
+
+/* web specific content */
+
+/* -- tooltip/index.web.css */
+.mc-tooltip {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  background: #1b2733;
+  border-radius: 4px;
+  z-index: 10001;
+  color: #1b2733;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 400;
+  max-width: 300px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.mc-tooltip-body {
+  color: #f7f9fa;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-tooltip-single-line {
+  max-width: 400px;
+  white-space: nowrap;
+}
+
+/* control of tooltip appearance speed*/
+
+.mc-tooltip-delay {
+  -webkit-animation: delayed-tooltip 0.5s ease;
+          animation: delayed-tooltip 0.5s ease;
+}
+
+.mc-tooltip-no-delay {
+  -webkit-animation: delayed-tooltip 0s ease;
+          animation: delayed-tooltip 0s ease;
+}
+
+@-webkit-keyframes delayed-tooltip {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  99% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@keyframes delayed-tooltip {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  99% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 1;
+  }
+}
+
+/*tooltip arrow*/
+
+/*todo():use shards after we move to 16 and give option to change arrow*/
+
+.mc-tooltip:after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: solid;
+  border-radius: 0 0 0 2px;
+  background-color: inherit;
+  border-width: 0px 0px 1px 1px;
+  border-right: 0px transparent;
+  border-top: 0px transparent;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.mc-tooltip-left:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-135deg);
+          transform: translate(-50%, -50%) rotate(-135deg);
+  left: 100%;
+}
+
+.mc-tooltip-right:after {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  left: 0%;
+}
+
+.mc-tooltip-top:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  top: 100%;
+}
+
+.mc-tooltip-bottom:after {
+  -webkit-transform: translate(-50%, -50%) rotate(135deg);
+          transform: translate(-50%, -50%) rotate(135deg);
+  top: 0%;
+}
+
+.mc-tooltip-bottom:after,
+.mc-tooltip-top:after {
+  left: 50%;
+}
+
+.mc-tooltip-right:after,
+.mc-tooltip-left:after {
+  top: 50%;
+}
+
+/* web specific content */
+
+/* -- typeahead/index.web.css */
+.mc-typeahead {
+  position: relative;
+  width: 100%;
+}
+
+/* web specific content */

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Settings component="StartMenu" version="3.9.0">
+	<MenuStyle value="Classic2"/>
+	<Hover value="Nothing"/>
+	<MaxRecentDocuments value="20"/>
+	<SortRecentDocuments value="Date"/>
+	<Shutdown value="Menu"/>
+	<LogOff value="1"/>
+	<Search value="1"/>
+	<MaxRecentPrograms value="6"/>
+	<RecentProgsTop value="0"/>
+	<RecentProgKeys value="NoKey"/>
+	<EnableJumplists value="0"/>
+	<ScrollType value="Scroll"/>
+	<SearchBox value="Hide"/>
+	<SubMenuAnimation value="None"/>
+	<MenuCaption value="Windows 8 Professional"/>
+	<MenuUsername value="A N"/>
+	<FontSmoothing value="ClearType"/>
+	<MenuShadow value="0"/>
+	<SkinC2 value="Windows 8"/>
+	<SkinVariationC2 value=""/>
+	<SkinOptionsC2 value="E55CEDD3|C26EAF5D|86F3669C|5225DC46|5D3248DC|1FC64124|5EA361A2|6EDFA36A|2E838408|22C9A1E2|0663DC39|"/>
+	<EnableStartButton value="1"/>
+	<StartButtonType value="CustomButton"/>
+	<StartButtonPath value="%SystemDrive%\Program Files\Classic Shell\Skins\PowerFinal12.png"/>
+	<StartButtonSize value="58"/>
+	<NoTaskbarTransparency2 value="1"/>
+	<DisableHotCorner value="DisableStart"/>
+	<CascadingMenu value="0"/>
+</Settings>

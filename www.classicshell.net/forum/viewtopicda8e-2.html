@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr" lang="en-gb">
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=19&t=1193&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:03:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="robots" content="noindex" />
+<title>Classic Shell :: View topic - Search and or Indexing question</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+}
+
+img {
+	border: 0;
+}
+
+td {
+	font-family: Verdana,serif;
+	font-size: 10pt;
+	line-height: 150%;
+}
+
+.code, .codecontent, 
+.quote, .quotecontent {
+	margin: 0 5px 0 5px;
+	padding: 5px;
+	font-size: smaller;
+	border: black solid 1px;
+}
+
+.quotetitle {
+	color: black;
+	display : block;
+	font-weight: bold;
+}
+
+.forum {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.topic {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.gensmall {
+	font-size: 8pt;
+}
+
+hr {
+	color: #888;
+	height: 3px;
+	border-style: solid;
+}
+
+hr.sep {
+	color: #aaa;
+	height: 1px;
+	border-style: dashed;
+}
+//-->
+</style>
+
+</head>
+<body>
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td colspan="2" align="center"><span class="Forum">Classic Shell</span><br /><span class="gensmall"><a href="index.html">http://www.classicshell.net/forum/</a></span></td>
+</tr>
+<tr>
+	<td colspan="2"><br /></td>
+</tr>
+<tr>
+	<td><span class="topic">Search and or Indexing question</span><br /><span class="gensmall"><a href="viewtopic8693.html?f=19&amp;t=1193">http://www.classicshell.net/forum/viewtopic.php?f=19&amp;t=1193</a></span></td>
+	<td align="right" valign="bottom"><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+</tr>
+</table>
+
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>PGomersall</b> [ Fri Aug 30, 2013 1:06 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Search and or Indexing question</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ivo,<br />We have deployed 3.9.3 to a few hundred desktops and an RDP cluster. All users are running W8 on the desktop and WS2012 on RDS. We have roaming profiles enabled and redirect documents, pictures, favorites etc. AppData is local but obviously roaming is copied to the profile server on logoff.<br />We now have many users logging on and CPU on the fileserver that hosts home folders with redirected folders mentioned above shoots up and sticks at 100% for minutes. So my question is &quot;does CSM try to index these folders at logon&quot; and is this causing high CPU on the file server.<br />I only ask as this is a possibility. Last year we had same setup but with W7 + WS2K8R2 and no issues.<br />If this is a possible reason for the high CPU is there a way to disable the indexing or change the way it operates?<br />Regards,<br />Pete
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Fri Aug 30, 2013 1:46 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Search and or Indexing question</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />The start menu scans the Start Menu folders and looks for shortcuts. Then it tries to resolve the targets of those shortcuts. This information is needed for features like &quot;frequently used programs&quot; or &quot;highlight new programs&quot;. Some of that information is cached, however on startup it has to go and verify if it is up to date (it is faster than the original scan, but not free).<br /><br />The start menu does not index the files for search purposes. That's done by the indexing service. Look at your indexing settings to see if some unwanted folders are listed there.<br /><br />See what process is consuming CPU and I/O bandwidth. Also see if not starting the start menu has any effect (you can disable it per user from the General Behavior tab).
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>PGomersall</b> [ Fri Aug 30, 2013 2:34 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Search and or Indexing question</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />Ivo,<br />What about links to Documents, Pictures etc. in right hand pane of start menu?<br />Pete
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Ivo</b> [ Fri Aug 30, 2013 2:37 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Search and or Indexing question</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />No, it doesn't get into those. Only the contents of the Start Menu folders (both of them).<br />Run Process Monitor and see who touches what.
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+	<hr width="85%" />
+
+	<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+	<tr>
+		<td width="10%" nowrap="nowrap">Author:&nbsp;</td>
+		<td><b>Gaurav</b> [ Fri Aug 30, 2013 8:16 pm ]</td>
+	</tr>
+	<tr>
+		<td width="10%" nowrap="nowrap">Post subject:&nbsp;</td>
+		<td><b>Re: Search and or Indexing question</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr class="sep" />If it was Windows 7, Server 2008/R2 or Vista, the gadget platform was available. There was a nearly official gadget from a Microsoft employee on the shell team to control the speed of indexing and see display status information: <a href="http://gallery-live.com/sidebar-gadgets/Indexer Status Gadget" class="postlink">http://gallery-live.com/sidebar-gadgets/Indexer%20Status%20Gadget</a><br /><img src="http://windowsvistablog.com/photos/windows_experience_images/images/497035/original.aspx" alt="" /> <br /><img src="../../i1-win.softpedia-static.com/screenshots/thumbs/Indexer-Status-Gadget-thumb.png" alt="" />
+
+		
+
+		</td>
+	</tr>
+	</table>
+
+
+<hr width="85%" />
+
+<table width="85%" cellspacing="3" cellpadding="0" border="0" align="center">
+<tr>
+	<td><span class="gensmall">Page <strong>1</strong> of <strong>1</strong></span></td>
+	<td align="right"><span class="gensmall">All times are UTC - 8 hours [ <abbr title="Daylight Saving Time">DST</abbr> ]</span></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><span class="gensmall">Powered by phpBB&reg; Forum Software &copy; phpBB Group<br />https://www.phpbb.com/</span></td>
+</tr>
+</table>
+
+</body>
+
+<!-- Mirrored from www.classicshell.net/forum/viewtopic.php?f=19&t=1193&view=print by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Jun 2018 09:03:09 GMT -->
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Settings component="StartMenu" version="4.0.2">
+	<MenuStyle value="Classic1"/>
+	<MaxRecentDocuments value="20"/>
+	<Shutdown value="Show"/>
+	<LogOff value="1"/>
+	<ConfirmLogOff value="1"/>
+	<Search value="1"/>
+	<RecentPrograms value="None"/>
+	<EnableJumplists value="0"/>
+	<HighlightNew value="0"/>
+	<CheckWinUpdates value="0"/>
+	<MenuDelay value="200"/>
+	<EnableDragDrop value="1"/>
+	<ScrollType value="Auto"/>
+	<SameSizeColumns value="1"/>
+	<SearchFilesCommand value="C:\Program Files\Locate32\Locate32.exe"/>
+	<SearchBox value="Hide"/>
+	<MaxMainMenuWidth value="80"/>
+	<MenuCaption value="Windows 7 Professional 32-bit SP1"/>
+	<MenuShadow value="1"/>
+	<SkinC1 value="Windows Aero"/>
+	<SkinVariationC1 value=""/>
+	<SkinOptionsC1 value="BD80CDB3|C26EAF5D|86F3669D|5225DC47|5D3248DD|1FC64124|5EA361A2|0663DC38|"/>
+	<CascadeAll value="1"/>
+	<AllProgramsDelay value="200"/>
+	<SkinA value="&lt;No Skin&gt;"/>
+	<SkinVariationA value=""/>
+	<SkinOptionsA value=""/>
+	<EnableContextMenu value="0"/>
+	<EnableExit value="0"/>
+</Settings>

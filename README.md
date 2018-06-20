@@ -1,15 +1,15 @@
-# Classic Shell ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
+### Classic Shell ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
 
 <br>
 
 ---
-# [ Future development will be made at:
-# https://github.com/passionate-coder
-# https://github.com/passionate-coder/Classic-Start ]
-# Discussion forum: https://gitq.com/passionate-coder/Classic-Start
-# Discussion forum: https://gitter.im/passionate-coder
+## Future development will be made at https://github.com/passionate-coder
 
-## Please submit any [issues](https://github.com/passionate-coder/Classic-Start/issues), [pull requests](https://github.com/passionate-coder/Classic-Start/pulls) to above repositories
+Classic-Start discussion forum: https://gitq.com/passionate-coder/Classic-Start
+
+Project discussion forum: https://gitter.im/passionate-coder
+
+### Please submit any [issues](https://github.com/passionate-coder/Classic-Start/issues), [pull requests](https://github.com/passionate-coder/Classic-Start/pulls) to above repositories
 ---
 
 <br>

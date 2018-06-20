@@ -3701,6 +3701,11 @@ STDAPI ShGetKnownFolderItem(REFKNOWNFOLDERID rfid, IShellItem **ppItem )
 	if (rfid==FOLDERID_Games && (GetTickCount()&16))
 		return E_FAIL;
 #endif
+	// Skip getting the Games menu on RS4
+	if(IsWin10RS4() && rfid==FOLDERID_Games)
+	{
+		return E_FAIL;
+	}
 	CString path=GetKnownFolderSetting(rfid);
 	if (!path.IsEmpty())
 	{

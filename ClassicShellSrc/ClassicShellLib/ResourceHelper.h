@@ -63,6 +63,9 @@ bool IsWin81Update1( void );
 // Returns true if the version is Windows10 RS1 or later
 bool IsWin10RS1( void );
 
+// Returns true if the version is Windows10 RS4 (Spring Creator Update) or later
+bool IsWin10RS4( void );
+
 // Wrapper for IShellFolder::ParseDisplayName
 HRESULT ShParseDisplayName( const wchar_t *pszName, PIDLIST_ABSOLUTE *ppidl, SFGAOF sfgaoIn, SFGAOF *psfgaoOut );
 

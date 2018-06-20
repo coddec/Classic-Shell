@@ -1,7 +1,7 @@
 // Classic Shell (c) 2009-2016, Ivo Beltchev
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "StringSet.h"
 #include "StringUtils.h"
 #include "Settings.h"
@@ -678,6 +678,51 @@ bool IsWin10RS1( void )
 {
 	static bool bIsRS1=IsWin10RS1Helper();
 	return bIsRS1;
+}
+
+typedef LONG NTSTATUS, *PNTSTATUS;
+#define STATUS_SUCCESS (0x00000000)
+typedef NTSTATUS (WINAPI* RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
+// *DO NOT USE DIRECTLY* : Call GetOSVersion() instead.
+//
+// The functions above return a windows version
+// that is rather not user-readable. This code should give
+// us a number we can reference with the "public" windows builds
+// such as what is returned by  'winver.exe'.
+RTL_OSVERSIONINFOW GetRealOSVersion() {
+	HMODULE hMod = ::GetModuleHandleW(L"ntdll.dll");
+	if (hMod) {
+		RtlGetVersionPtr fxPtr = (RtlGetVersionPtr)::GetProcAddress(hMod, "RtlGetVersion");
+		if (fxPtr != nullptr) {
+			RTL_OSVERSIONINFOW rovi = { 0 };
+			rovi.dwOSVersionInfoSize = sizeof(rovi);
+			if ( STATUS_SUCCESS == fxPtr(&rovi) ) {
+				return rovi;
+			}
+		}
+	}
+	RTL_OSVERSIONINFOW rovi = { 0 };
+	return rovi;
+}
+
+static RTL_OSVERSIONINFOW GetOSVersion()
+{
+	// cache result to avoid calling the dll multiple times.
+	static RTL_OSVERSIONINFOW ver = GetRealOSVersion();
+	return ver;
+}
+
+static bool IsWin10RS4Helper( void )
+{
+	auto version = GetOSVersion();
+	return version.dwMajorVersion > 8 && version.dwBuildNumber > 17131;
+}
+
+// Returns true if the version is Windows10 RS4 (Spring Creator Update) or later
+bool IsWin10RS4( void )
+{
+	static bool bIsRS4=IsWin10RS4Helper();
+	return bIsRS4;
 }
 
 // Wrapper for IShellFolder::ParseDisplayName

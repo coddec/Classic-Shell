@@ -8089,9 +8089,9 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	}
 
 	if (GetSettingBool(L"MenuShadow") && s_Skin.Main_shadow==MenuSkin::SHADOW_ON)
-		SetClassLong(pStartMenu->m_hWnd,GCL_STYLE,GetClassLong(pStartMenu->m_hWnd,GCL_STYLE)|CS_DROPSHADOW);
+		SetClassLongPtr(pStartMenu->m_hWnd,GCL_STYLE,GetClassLongPtr(pStartMenu->m_hWnd,GCL_STYLE)|CS_DROPSHADOW);
 	else
-		SetClassLong(pStartMenu->m_hWnd,GCL_STYLE,GetClassLong(pStartMenu->m_hWnd,GCL_STYLE)&~CS_DROPSHADOW);
+		SetClassLongPtr(pStartMenu->m_hWnd,GCL_STYLE,GetClassLongPtr(pStartMenu->m_hWnd,GCL_STYLE)&~CS_DROPSHADOW);
 
 	if (s_bWin7Style && !s_bAllPrograms && s_Skin.User_bitmapSize.cx>0)
 	{

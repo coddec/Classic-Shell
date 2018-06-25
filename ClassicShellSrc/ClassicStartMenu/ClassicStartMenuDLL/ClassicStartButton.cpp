@@ -71,7 +71,7 @@ protected:
 private:
 	enum { TIMER_BLEND=1, TIMER_LEAVE=2 };
 
-	int m_TaskbarId;
+	size_t m_TaskbarId;
 	SIZE m_Size;
 	HBITMAP m_Bitmap, m_Blendmap;
 	unsigned int *m_Bits, *m_BlendBits;
@@ -121,7 +121,7 @@ CStartButton::CStartButton( void )
 
 LRESULT CStartButton::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
-	int params=(int)(intptr_t)(((CREATESTRUCT*)lParam)->lpCreateParams);
+	size_t params=(intptr_t)(((CREATESTRUCT*)lParam)->lpCreateParams);
 	m_bRTL=(params&1)!=0;
 	m_TaskbarId=params>>1;
 	m_bSmallIcons=IsTaskbarSmallIcons();
@@ -605,8 +605,8 @@ static std::map<int,CStartButton> g_StartButtons;
 
 HWND CreateStartButton( int taskbarId, HWND taskBar, HWND rebar, const RECT &rcTask )
 {
-	bool bRTL=(GetWindowLong(rebar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)!=0;
-	DWORD styleTopmost=GetWindowLong(taskBar,GWL_EXSTYLE)&WS_EX_TOPMOST;
+	bool bRTL=(GetWindowLongPtr(rebar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)!=0;
+	DWORD styleTopmost=GetWindowLongPtr(taskBar,GWL_EXSTYLE)&WS_EX_TOPMOST;
 	CStartButton &button=g_StartButtons[taskbarId];
 	button.Create(taskBar,NULL,NULL,WS_POPUP,styleTopmost|WS_EX_TOOLWINDOW|WS_EX_LAYERED,0U,(void*)(intptr_t)(taskbarId*2+(bRTL?1:0)));
 	SIZE size=button.GetSize();

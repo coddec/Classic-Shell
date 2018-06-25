@@ -1726,7 +1726,7 @@ void CItemManager::AddOldItems( const std::vector<unsigned> &hashes )
 	if (m_OldItemInfos.empty())
 		regItems.SetBinaryValue(L"OldItems",NULL,0);
 	else
-		regItems.SetBinaryValue(L"OldItems",&m_OldItemInfos[0],(int)m_OldItemInfos.size()*sizeof(OldItemInfo));
+		regItems.SetBinaryValue(L"OldItems",&m_OldItemInfos[0],ULONG((size_t)m_OldItemInfos.size()*sizeof(OldItemInfo)));
 }
 
 CString GetPropertyStoreString( IPropertyStore *pStore, REFPROPERTYKEY key )

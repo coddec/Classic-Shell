@@ -32,7 +32,8 @@
 #endif
 
 const int MAIN_TASK_BAR=0;
-std::map<int,TaskbarInfo> g_TaskbarInfos;
+typedef std::map<size_t,TaskbarInfo> id_taskbar_map;
+id_taskbar_map g_TaskbarInfos;
 static int g_LastTaskbar=MAIN_TASK_BAR;
 static int g_NextTaskbar=0;
 HWND g_TaskBar, g_OwnerWindow;
@@ -67,7 +68,7 @@ static RECT g_TaskbarMargins;
 int g_CurrentCSMTaskbar=-1, g_CurrentWSMTaskbar=-1;
 
 static void FindWindowsMenu( void );
-static void RecreateStartButton( int taskbarId );
+static void RecreateStartButton( size_t taskbarId );
 static bool WindowsMenuOpened( void );
 
 static tSetWindowCompositionAttribute SetWindowCompositionAttribute;
@@ -302,7 +303,7 @@ protected:
 		if (LOWORD(wParam)!=WA_INACTIVE)
 			return 0;
 
-		if (CMenuContainer::s_bPreventClosing && lParam && (::GetWindowLong((HWND)lParam,GWL_EXSTYLE)&WS_EX_TOPMOST))
+		if (CMenuContainer::s_bPreventClosing && lParam && (::GetWindowLongPtr((HWND)lParam,GWL_EXSTYLE)&WS_EX_TOPMOST))
 			return 0;
 
 		// check if another menu window is being activated
@@ -390,29 +391,29 @@ static const TaskbarInfo *GetDefaultTaskbarInfo( void )
 	if (GetSettingBool(L"AllTaskbars"))
 	{
 		HMONITOR monitor=MonitorFromPoint(CPoint(GetMessagePos()),MONITOR_DEFAULTTONEAREST);
-		for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+		for (std::map<size_t,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 		{
 			MONITORINFO info;
 			HMONITOR monitor2=NULL;
 			if (GetTaskbarPosition(it->second.taskBar,&info,&monitor2,NULL)!=0xFFFFFFFF && monitor2==monitor)
 				return &it->second;
 		}
-		std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.find(g_LastTaskbar);
+		id_taskbar_map::const_iterator it=g_TaskbarInfos.find(g_LastTaskbar);
 		if (it!=g_TaskbarInfos.end())
 			return &it->second;
 	}
 	return &g_TaskbarInfos.begin()->second;
 }
 
-TaskbarInfo *GetTaskbarInfo( int taskbarId )
+TaskbarInfo *GetTaskbarInfo( size_t taskbarId )
 {
-	std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.find(taskbarId);
+	std::map<size_t,TaskbarInfo>::iterator it=g_TaskbarInfos.find(taskbarId);
 	return (it==g_TaskbarInfos.end())?NULL:&it->second;
 }
 
 static TaskbarInfo *FindTaskBarInfoButton( HWND button )
 {
-	for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 		if (it->second.startButton==button || it->second.oldButton==button)
 			return &it->second;
 	return NULL;
@@ -420,7 +421,7 @@ static TaskbarInfo *FindTaskBarInfoButton( HWND button )
 
 static TaskbarInfo *FindTaskBarInfoBar( HWND bar )
 {
-	for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 		if (it->second.taskBar==bar)
 			return &it->second;
 	return NULL;
@@ -694,7 +695,7 @@ UINT GetTaskbarPosition( HWND taskBar, MONITORINFO *pInfo, HMONITOR *pMonitor, R
 }
 
 // Returns true if the mouse is on the taskbar portion of the start button
-bool PointAroundStartButton( int taskbarId, const CPoint &pt )
+bool PointAroundStartButton( size_t taskbarId, const CPoint &pt )
 {
 	const TaskbarInfo *taskBar=GetTaskbarInfo(taskbarId);
 	if (!taskBar || !taskBar->startButton) return false;
@@ -708,7 +709,7 @@ bool PointAroundStartButton( int taskbarId, const CPoint &pt )
 	GetWindowRect(taskBar->startButton,&rc);
 	if (uEdge==ABE_LEFT || uEdge==ABE_RIGHT)
 		return pt.y<rc.bottom;
-	else if (GetWindowLong(taskBar->taskBar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)
+	else if (GetWindowLongPtr(taskBar->taskBar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)
 		return pt.x>rc.left;
 	else
 		return pt.x<rc.right;
@@ -752,7 +753,7 @@ void ResetHotCorners( void )
 
 void RedrawTaskbars( void )
 {
-	for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 		InvalidateRect(it->second.taskBar,NULL,TRUE);
 }
 
@@ -828,7 +829,7 @@ public:
 					HMONITOR monitor;
 					if (SUCCEEDED(pMonitor->GetHandle(&monitor)))
 					{
-						for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+						for (id_taskbar_map::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 						{
 							if (monitor==MonitorFromWindow(it->second.taskBar,MONITOR_DEFAULTTONULL))
 							{
@@ -1046,7 +1047,7 @@ static LRESULT CALLBACK HookAppManager( int code, WPARAM wParam, LPARAM lParam )
 					return CallNextHookEx(NULL,code,wParam,lParam);
 				typedef BOOL (WINAPI *tGetWindowBand)(HWND,DWORD*);
 				static tGetWindowBand GetWindowBand=(tGetWindowBand)GetProcAddress(GetModuleHandle(L"user32.dll"),"GetWindowBand");
-				for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+				for (id_taskbar_map::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 				{
 					DWORD band;
 					if (!GetWindowBand || !GetWindowBand(it->second.taskBar,&band) || band==1)
@@ -1091,7 +1092,7 @@ static LRESULT CALLBACK HookAppManager( int code, WPARAM wParam, LPARAM lParam )
 			}
 			if (corner==1)
 			{
-				for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+				for (id_taskbar_map::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 				{
 					UINT uEdge=GetTaskbarPosition(it->second.taskBar,NULL,NULL,NULL);
 					if (uEdge==ABE_BOTTOM)
@@ -1739,9 +1740,9 @@ static LRESULT CALLBACK SubclassTaskBarProc( HWND hWnd, UINT uMsg, WPARAM wParam
 			else
 			{
 				zPos=pPos->hwndInsertAfter;
-				if (zPos==HWND_TOP && !(GetWindowLong(taskBar->startButton,GWL_EXSTYLE)&WS_EX_TOPMOST))
+				if (zPos==HWND_TOP && !(GetWindowLongPtr(taskBar->startButton,GWL_EXSTYLE)&WS_EX_TOPMOST))
 					zPos=HWND_TOPMOST;
-				if (zPos==HWND_TOPMOST && !(GetWindowLong(hWnd,GWL_EXSTYLE)&WS_EX_TOPMOST))
+				if (zPos==HWND_TOPMOST && !(GetWindowLongPtr(hWnd,GWL_EXSTYLE)&WS_EX_TOPMOST))
 					zPos=HWND_TOP;
 				if (zPos==HWND_BOTTOM)
 					buttonFlags|=SWP_NOZORDER;
@@ -1762,7 +1763,7 @@ static LRESULT CALLBACK SubclassTaskBarProc( HWND hWnd, UINT uMsg, WPARAM wParam
 			}
 			else
 			{
-				if (GetWindowLong(taskBar->rebar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)
+				if (GetWindowLongPtr(taskBar->rebar,GWL_EXSTYLE)&WS_EX_LAYOUTRTL)
 					x=rcTask.right-taskBar->startButtonSize.cx;
 				else
 					x=rcTask.left;
@@ -2386,7 +2387,7 @@ void UpdateTaskBars( TUpdateTaskbar update )
 					DeleteDC(hdc);
 				}
 			}
-			for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+			for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 				RedrawWindow(it->second.taskBar,NULL,NULL,RDW_INVALIDATE|RDW_ALLCHILDREN);
 		}
 		return;
@@ -2406,7 +2407,7 @@ void UpdateTaskBars( TUpdateTaskbar update )
 	}
 	if (g_bTrimHooks)
 		bButton=false;
-	for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 	{
 		TaskbarInfo &taskBar=it->second;
 		bool bButton2=bButton && (bAll || taskBar.taskBar==g_TaskBar);
@@ -2550,7 +2551,7 @@ void UpdateTaskBars( TUpdateTaskbar update )
 			}
 		}
 	}
-	for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 	{
 		TaskbarInfo &taskBar=it->second;
 		SendMessage(taskBar.taskBar,WM_SETTINGCHANGE,0,0);
@@ -3006,9 +3007,9 @@ if (!g_bTrimHooks)
 	UpdateTaskBars(TASKBAR_UPDATE_TEXTURE);
 }
 
-static void RecreateStartButton( int taskbarId )
+static void RecreateStartButton( size_t taskbarId )
 {
-	for (std::map<int,TaskbarInfo>::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 	{
 		TaskbarInfo &taskBar=it->second;
 		if (taskbarId>=0 && taskBar.taskbarId!=taskbarId)
@@ -3133,7 +3134,7 @@ static void CleanStartMenuDLL( void )
 	ResetHotCorners();
 	UpdateTaskBars(TASKBAR_CLEAR);
 	g_WinStartButton=NULL;
-	for (std::map<int,TaskbarInfo>::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
+	for (id_taskbar_map::const_iterator it=g_TaskbarInfos.begin();it!=g_TaskbarInfos.end();++it)
 	{
 		if (it->second.rebar)
 			RemoveWindowSubclass(it->second.rebar,SubclassRebarProc,'CLSH');

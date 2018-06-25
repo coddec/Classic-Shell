@@ -240,7 +240,7 @@ static DWORD WINAPI NewShortcutThread( void *param )
 
 static DWORD WINAPI SleepThread( void *param )
 {
-	SetSuspendState((BOOL)(intptr_t)param,FALSE,FALSE);
+	SetSuspendState((intptr_t)param != 0,FALSE,FALSE);
 	return 0;
 }
 
@@ -469,9 +469,9 @@ void CMenuContainer::OpenSubMenu( int index, TActivateType type, bool bShift )
 	pMenu->Create(parent,NULL,s_SubmenuStyle,WS_EX_TOOLWINDOW|WS_EX_TOPMOST|(s_bRTL?WS_EX_LAYOUTRTL:0));
 
 	if (GetSettingBool(L"MenuShadow") && s_Skin.Submenu_shadow==MenuSkin::SHADOW_ON)
-		SetClassLong(pMenu->m_hWnd,GCL_STYLE,GetClassLong(pMenu->m_hWnd,GCL_STYLE)|CS_DROPSHADOW);
+		SetClassLongPtr(pMenu->m_hWnd,GCL_STYLE,GetClassLongPtr(pMenu->m_hWnd,GCL_STYLE)|CS_DROPSHADOW);
 	else
-		SetClassLong(pMenu->m_hWnd,GCL_STYLE,GetClassLong(pMenu->m_hWnd,GCL_STYLE)&~CS_DROPSHADOW);
+		SetClassLongPtr(pMenu->m_hWnd,GCL_STYLE,GetClassLongPtr(pMenu->m_hWnd,GCL_STYLE)&~CS_DROPSHADOW);
 
 	if (!parent && s_TaskBar)
 	{
@@ -2245,7 +2245,7 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 
 	if (res==CMD_SORT)
 	{
-		if (pData && pData->bProgramsTree)
+		if (pData && pData->bProgramsTree && m_pProgramsTree)
 		{
 			m_pProgramsTree->OrderElements(pData->hTreeItem,TreeView_GetParent(m_pProgramsTree->m_hWnd,pData->hTreeItem),std::vector<unsigned int>(),false,true);
 		}
@@ -2956,16 +2956,16 @@ void CMenuContainer::DragTreeItem( const void *treeItem, bool bApp )
 	item.id=MENU_NO;
 	item.name=pTreeItem->name;
 	item.pItemInfo=pTreeItem->pItemInfo1;
-	item.pItem1=pTreeItem->pItemInfo1->GetPidl();
 	item.pItem2=pTreeItem->pItemInfo2?(PIDLIST_ABSOLUTE)pTreeItem->pItemInfo2->GetPidl():NULL;
 	item.bFolder=pTreeItem->bFolder;
 	item.bMetroLink=false;
 	item.bMetroApp=false;
-	if (pTreeItem->pItemInfo1)
+	if(item.pItemInfo)
 	{
+		item.pItem1=pTreeItem->pItemInfo1->GetPidl();
 		CItemManager::RWLock lock(&g_ItemManager,false,CItemManager::RWLOCK_ITEMS);
-		item.bMetroLink=pTreeItem->pItemInfo1->IsMetroLink();
-		item.bMetroApp=pTreeItem->pItemInfo1->IsMetroApp();
+		item.bMetroLink=item.pItemInfo->IsMetroLink();
+		item.bMetroApp=item.pItemInfo->IsMetroApp();
 	}
 	DragOut(m_ProgramTreeIndex,bApp);
 	item.id=MENU_PROGRAMS_TREE;

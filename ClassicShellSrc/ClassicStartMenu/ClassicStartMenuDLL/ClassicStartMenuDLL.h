@@ -71,7 +71,7 @@ struct TaskbarInfo
 	bool HasPart( HWND part ) const;
 };
 
-TaskbarInfo *GetTaskbarInfo( int taskbarId );
+TaskbarInfo *GetTaskbarInfo( size_t taskbarId );
 UINT GetTaskbarPosition( HWND taskBar, MONITORINFO *pInfo, HMONITOR *pMonitor, RECT *pRc );
 
 extern HWND STARTMENUAPI g_TaskBar, g_OwnerWindow;
@@ -113,7 +113,7 @@ enum THotkeys
 // Set the hotkeys and controls for the start menu
 void EnableHotkeys( THotkeys enable );
 
-bool PointAroundStartButton( int taskbarId, const CPoint &pt=CPoint(GetMessagePos()) );
+bool PointAroundStartButton( size_t taskbarId, const CPoint &pt=CPoint(GetMessagePos()) );
 void ResetHotCorners( void );
 void RedrawTaskbars( void );
 

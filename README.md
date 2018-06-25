@@ -1,4 +1,4 @@
-# Classic Start ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicShellLoc/English/images/ClassicShell.png)
+# Classic Start ![Classic Shell](https://raw.githubusercontent.com/coddec/Classic-Shell/master/ClassicStartLoc/English/images/ClassicStart.png)
 
 # Home Page: https://passionate-coder.github.io/Classic-Start/
 

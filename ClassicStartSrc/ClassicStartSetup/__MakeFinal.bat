@@ -7,7 +7,7 @@ set PATH=C:\Program Files\7-Zip\;C:\Program Files (x86)\HTML Help Workshop;C:\Pr
 rem git clean -dfx
 
 @rem Default version
-@set CS_VERSION=4.3.2
+@set CS_VERSION=4.4.102
 
 @if defined APPVEYOR_BUILD_VERSION (
 	@set CS_VERSION=%APPVEYOR_BUILD_VERSION%

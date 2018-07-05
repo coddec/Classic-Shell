@@ -769,9 +769,6 @@ CMenuContainer::~CMenuContainer( void )
 	if (m_SearchIcons)
 		DeleteObject(m_SearchIcons);
 	if (m_pProgramsTree) m_pProgramsTree->Release();
-
-	if (s_pFrameworkInputPane && m_InputCookie)
-		s_pFrameworkInputPane->Unadvise(m_InputCookie);
 }
 
 void CMenuContainer::AddFirstFolder( IShellItem *pFolder, std::vector<MenuItem> &items, int options )
@@ -6214,6 +6211,10 @@ LRESULT CMenuContainer::OnDestroy( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 		CloseThemeData(m_ScrollTheme);
 		m_ScrollTheme=NULL;
 	}
+
+    if (s_pFrameworkInputPane && m_InputCookie)
+        s_pFrameworkInputPane->Unadvise(m_InputCookie);
+
 	return 0;
 }
 

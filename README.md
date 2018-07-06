@@ -26,4 +26,4 @@ How To Skin a Start Menu: https://coddec.github.io/Classic-Shell/www.classicshel
 	
 Classic Shell - Custom Start Buttons: https://coddec.github.io/Classic-Shell/www.classicshell.net/tutorials/buttontutorial.html
 
-Report a bug/issue or submit a feature request: https://github.com/coddec/Classic-Shell/issues
+Report a bug/issue or submit a feature request: https://github.com/passionate-coder/Classic-Start/issues

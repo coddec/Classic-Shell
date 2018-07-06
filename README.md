@@ -19,7 +19,7 @@ Discussion room: https://gitter.im/passionate-coder
 
 ---
 
-*For archival reasons, we have a mirror of `www.classicshell.net` [here](https://coddec.github.io/Classic-Shell/www.classicshell.net/).
+*For archival reasons, we have a mirror of `www.classicshell.net` [here](https://coddec.github.io/Classic-Shell/www.classicshell.net/).*
 
 How To Skin a Start Menu: https://coddec.github.io/Classic-Shell/www.classicshell.net/tutorials/skintutorial.html
 	

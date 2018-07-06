@@ -5,6 +5,7 @@
 [![GitHub Release](https://img.shields.io/github/release/passionate-coder/Classic-Start.svg)](https://github.com/passionate-coder/Classic-Start/releases) [![GitHub Pre-Release](https://img.shields.io/github/release/passionate-coder/Classic-Start/all.svg)](https://github.com/passionate-coder/Classic-Start/releases) [![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/classic-start/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)
 
 Home Page: https://passionate-coder.github.io/Classic-Start/
+
 Discussion room: https://gitter.im/passionate-coder
 
 #### Downloads: https://github.com/passionate-coder/Classic-Start/releases

@@ -5,6 +5,10 @@ cd Output
 7z a ..\Final\ClassicStartPDB_%CS_VERSION_STR%.zip PDB32 PDB64
 cd ..
 
+if defined APPVEYOR (
+	appveyor PushArtifact Final\ClassicStartPDB_%CS_VERSION_STR%.zip
+)
+
 cd ..
 
 REM ***** Collect Sources

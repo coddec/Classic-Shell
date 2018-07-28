@@ -2,7 +2,7 @@
 
 *Originally* **[Classic Shell](http://www.classicshell.net)** *by [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)*
 
-[![GitHub Release](https://img.shields.io/github/release/NeoClassic-UI/Menu.svg)](https://github.com/NeoClassic-UI/Menu/releases) [![GitHub Pre-Release](https://img.shields.io/github/release/NeoClassic-UI/Menu/all.svg)](https://github.com/passionate-coder/Classic-Start/releases) [![Build status](https://ci.appveyor.com/api/projects/status/dib45bf3snylbydy/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/classic-start/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)
+[![GitHub Release](https://img.shields.io/github/release/NeoClassic-UI/Menu.svg)](https://github.com/NeoClassic-UI/Menu/releases) [![GitHub Pre-Release](https://img.shields.io/github/release/NeoClassic-UI/Menu/all.svg)](https://github.com/passionate-coder/Classic-Start/releases) [![Build status](https://ci.appveyor.com/api/projects/status/6ydldy3ijsa4dkgb/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/menu/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/passionate-coder/Disc-Chitchat)
 
 Home Page: https://passionate-coder.github.io/Classic-Start/
 

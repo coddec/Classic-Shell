@@ -12,6 +12,7 @@
 #include "TouchHelper.h"
 #include <vector>
 #include <map>
+#include <ctxtcall.h>
 
 //#define PREVENT_CLOSING // define this to prevent the menu from closing when it is deactivated (useful for debugging)
 //#define REPEAT_ITEMS 10 // define this to repeat each menu item (useful to simulate large menus)
@@ -628,7 +629,8 @@ private:
 	CAbsolutePidl m_Path2[2];
 	CComPtr<IShellItem> m_pDropFolder[2]; // the primary folder (used only as a drop target)
 	CComPtr<IShellView> m_pShellView; // keep the view alive because some buggy namespace extensions clean up if there is no view
-	CComPtr<CMenuAccessible> m_pAccessible;
+	CComPtr<IContextCallback> m_pAccessibleContext;
+	CComPtr<IAccessible> m_pAccessible;
 	CComPtr<CDropTargetProxy> m_pDropTargetProxy;
 	DWORD m_InputCookie;
 	std::vector<int> m_ColumnOffsets;
@@ -982,6 +984,14 @@ private:
 		CLOSE_KEEP_MODE   =16,
 	};
 	static void CloseSubMenus( int flags, CMenuContainer *pAfter );
+
+	struct CreateAccessibleData
+	{
+		CMenuContainer *pMenu;
+		IStream *pStream;
+	};
+	static HRESULT __stdcall CreateAccessible( ComCallData *pData );
+	static HRESULT __stdcall ReleaseAccessible( ComCallData *pData );
 
 	// To control the placement of the start menu, send ClassicStartMenu.StartMenuMsg message right after the start menu is created but before it is displayed
 	// The lParam must point to StartMenuParams

@@ -4426,19 +4426,51 @@ LRESULT CMenuContainer::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 	if (m_Options&CONTAINER_SEARCH)
 		s_SearchMenu=m_hWnd;
 	s_HotPos=GetMessagePos();
+	m_pAccessible=NULL;
 	if (GetSettingBool(L"EnableAccessibility"))
 	{
-		m_pAccessible=new CMenuAccessible(this);
+		if (SUCCEEDED(m_pAccessibleContext.CoCreateInstance(CLSID_ContextSwitcher)))
+		{
+			CreateAccessibleData createData={this};
+			ComCallData callData={};
+			callData.pUserDefined=&createData;
+			if (SUCCEEDED(m_pAccessibleContext->ContextCallback(CreateAccessible,&callData,IID_IAccessible,4,NULL)))
+			{
+				if (FAILED(CoGetInterfaceAndReleaseStream(createData.pStream,IID_IAccessible,(void**)&m_pAccessible)))
+				{
+					m_pAccessibleContext=NULL;
+				}
+			}
+			else
+			{
+				m_pAccessibleContext=NULL;
+			}
+		}
 		NotifyWinEvent(EVENT_SYSTEM_MENUPOPUPSTART,m_hWnd,OBJID_CLIENT,CHILDID_SELF);
 	}
-	else
-		m_pAccessible=NULL;
 	m_pDropTargetProxy=new CDropTargetProxy(this);
 	RegisterDragDrop(m_hWnd,m_pDropTargetProxy);
 	if (!m_bSubMenu && s_pFrameworkInputPane)
 		s_pFrameworkInputPane->AdviseWithHWND(m_hWnd,this,&m_InputCookie);
 	PlayMenuSound(m_bSubMenu?SOUND_POPUP:SOUND_MAIN);
 	return 0;
+}
+
+HRESULT __stdcall CMenuContainer::CreateAccessible( ComCallData *pData )
+{
+	CreateAccessibleData *pCreateData=(CreateAccessibleData*)pData->pUserDefined;
+	CComPtr<CMenuAccessible> pAccessible=new CMenuAccessible(pCreateData->pMenu);
+	HRESULT hr=CoMarshalInterThreadInterfaceInStream(IID_IAccessible,pAccessible,&pCreateData->pStream);
+	if (FAILED(hr))
+	{
+		pAccessible->Reset();
+	}
+	return hr;
+}
+
+HRESULT __stdcall CMenuContainer::ReleaseAccessible( ComCallData *pData )
+{
+	return CoDisconnectContext(INFINITE);
 }
 
 bool CMenuContainer::GetItemRect( int index, RECT &rc )
@@ -6111,7 +6143,8 @@ LRESULT CMenuContainer::OnDestroy( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 	if (m_pAccessible)
 	{
 		NotifyWinEvent(EVENT_SYSTEM_MENUPOPUPEND,m_hWnd,OBJID_CLIENT,CHILDID_SELF);
-		m_pAccessible->Reset();
+		m_pAccessibleContext->ContextCallback(ReleaseAccessible,NULL,IID_IAccessible,4,NULL);
+		m_pAccessibleContext=NULL;
 		m_pAccessible=NULL;
 	}
 	if (m_pDropTargetHelper && m_pDragObject)

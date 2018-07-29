@@ -215,7 +215,7 @@ static void WriteFolder( FILE *f, const wchar_t *path, int tabs, bool bRecursive
 						wchar_t args[256];
 						if (FAILED(pLink->GetArguments(args,_countof(args))))
 							args[0]=0;
-						CComQIPtr<IPropertyStore> pStore=pLink;
+						CComQIPtr<IPropertyStore> pStore(pLink);
 						CString appid;
 						if (pStore)
 						{
@@ -647,8 +647,8 @@ static void WriteLogFile( FILE *f )
 		{
 			CComString pName;
 			pProgram->GetDisplayName(SIGDN_NORMALDISPLAY,&pName);
-			CString name=pName;
-			CComQIPtr<IShellItem2> pProgram2=pProgram;
+			CString name(pName);
+			CComQIPtr<IShellItem2> pProgram2(pProgram);
 			if (pProgram2)
 			{
 				CComString pVersion;

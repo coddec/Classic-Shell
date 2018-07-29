@@ -185,7 +185,7 @@ static void StartStartMenu( void )
 	}
 	PathAppend(path,L"StartMenu.exe");
 	LogToFile(STARTUP_LOG,L"StartMenuHelper: starting \"%s\" -startup",path);
-	if (CreateProcess(path,L"StartMenu.exe -startup",NULL,NULL,TRUE,0,NULL,NULL,&startupInfo,&processInfo))
+	if (CreateProcess(path,(LPWSTR)L"StartMenu.exe -startup",NULL,NULL,TRUE,0,NULL,NULL,&startupInfo,&processInfo))
 	{
 		CloseHandle(processInfo.hProcess);
 		CloseHandle(processInfo.hThread);

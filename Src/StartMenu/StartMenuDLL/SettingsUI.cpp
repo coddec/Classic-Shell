@@ -849,7 +849,7 @@ LRESULT CSkinSettingsDlg::OnSelEndOK( WORD wNotifyCode, WORD wID, HWND hWndCtl, 
 	m_SkinIndex=(int)SendDlgItemMessage(IDC_COMBOSKIN,CB_GETCURSEL);
 	{
 		CSettingsLockWrite lock;
-		const wchar_t *strNew=m_SkinIndex==0?L"":m_SkinNames[m_SkinIndex];
+		const wchar_t *strNew=m_SkinIndex==0?L"":m_SkinNames[m_SkinIndex].GetString();
 		const wchar_t *strOld=m_pSetting[0].value.vt==VT_BSTR?m_pSetting[0].value.bstrVal:L"???";
 		if (wcscmp(strNew,strOld)!=0)
 			SetSettingsDirty();
@@ -3340,7 +3340,7 @@ LRESULT CCustomMenuDlg7::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, 
 
 	TOOLINFO tool={sizeof(tool),TTF_SUBCLASS|TTF_IDISHWND,m_hWnd,'CLSH'};
 	tool.uId=(UINT_PTR)m_List.m_hWnd;
-	tool.lpszText=L"";
+	tool.lpszText=(LPWSTR)L"";
 	::SendMessage(ListView_GetToolTips(m_List),TTM_ADDTOOL,0,(LPARAM)&tool);
 
 	return TRUE;

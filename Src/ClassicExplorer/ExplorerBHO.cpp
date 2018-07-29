@@ -88,7 +88,7 @@ LRESULT CALLBACK CExplorerBHO::SubclassTreeProc( HWND hWnd, UINT uMsg, WPARAM wP
 			CComPtr<IShellView> pView;
 			if (pThis->m_pBrowser && SUCCEEDED(pThis->m_pBrowser->QueryActiveShellView(&pView)))
 			{
-				CComQIPtr<IFolderView> pView2=pView;
+				CComQIPtr<IFolderView> pView2(pView);
 
 				CComPtr<IPersistFolder2> pFolder;
 				CAbsolutePidl pidl2;
@@ -319,7 +319,7 @@ bool CExplorerBHO::GetStatusText( wchar_t *buf, int size, const wchar_t *oldText
 	CComPtr<IShellView> pView;
 	if (m_pBrowser && SUCCEEDED(m_pBrowser->QueryActiveShellView(&pView)))
 	{
-		CComQIPtr<IFolderView> pView2=pView;
+		CComQIPtr<IFolderView> pView2(pView);
 
 		CComPtr<IPersistFolder2> pFolder;
 		if (pView2 && SUCCEEDED(pView2->GetFolder(IID_IPersistFolder2,(void**)&pFolder)))
@@ -332,7 +332,7 @@ bool CExplorerBHO::GetStatusText( wchar_t *buf, int size, const wchar_t *oldText
 				PITEMID_CHILD child;
 				if (SUCCEEDED(pView2->Items(SVGIO_SELECTION,IID_IEnumIDList,(void**)&pEnum)) && pEnum && pEnum->Next(1,&child,NULL)==S_OK)
 				{
-					CComQIPtr<IShellFolder> pFolder2=pFolder;
+					CComQIPtr<IShellFolder> pFolder2(pFolder);
 					if (pFolder2)
 					{
 						CComPtr<IQueryInfo> pQueryInfo;
@@ -431,12 +431,12 @@ void CExplorerBHO::GetFileSize( wchar_t *buf, int size )
 	int time0=GetTickCount();
 	if (m_pBrowser && SUCCEEDED(m_pBrowser->QueryActiveShellView(&pView)))
 	{
-		CComQIPtr<IFolderView> pView2=pView;
+		CComQIPtr<IFolderView> pView2(pView);
 		CComPtr<IPersistFolder2> pFolder;
 		CAbsolutePidl pidl;
 		if (pView2 && SUCCEEDED(pView2->GetFolder(IID_IPersistFolder2,(void**)&pFolder)) && SUCCEEDED(pFolder->GetCurFolder(&pidl)))
 		{
-			CComQIPtr<IShellFolder2> pFolder2=pFolder;
+			CComQIPtr<IShellFolder2> pFolder2(pFolder);
 			UINT type=SVGIO_SELECTION;
 			int count, selCount;
 			if (SUCCEEDED(pView2->ItemCount(SVGIO_ALLVIEW,&count)))
@@ -1414,7 +1414,7 @@ STDMETHODIMP CExplorerBHO::OnDocumentComplete( IDispatch *pDisp, VARIANT *URL )
 		m_pBrowser->QueryActiveShellView(&pView);
 		if (pView)
 		{
-			CComQIPtr<IFolderView> pFolderView=pView;
+			CComQIPtr<IFolderView> pFolderView(pView);
 			if (pFolderView)
 			{
 				if (GetSettingBool(L"ShowHeaders"))
@@ -1425,7 +1425,7 @@ STDMETHODIMP CExplorerBHO::OnDocumentComplete( IDispatch *pDisp, VARIANT *URL )
 					// The code to turn on the headers is borrowed from the Explorer7Fixes project under the terms of the MIT license:
 					// http://github.com/ijprest/Explorer7Fixes - Copyright (c) 2010 Ian Prest
 
-					CComQIPtr<IFolderView2> pView2=pFolderView;
+					CComQIPtr<IFolderView2> pView2(pFolderView);
 					if (pView2)
 					{
 						// Turn on the sort header!
@@ -1474,7 +1474,7 @@ STDMETHODIMP CExplorerBHO::OnDocumentComplete( IDispatch *pDisp, VARIANT *URL )
 		}
 		if (GetSettingBool(L"HideScrollTip"))
 		{
-			CComQIPtr<IFolderViewOptions> pOptions=m_pBrowser;
+			CComQIPtr<IFolderViewOptions> pOptions(m_pBrowser);
 			if (pOptions)
 				pOptions->SetFolderViewOptions(FVO_NOSCROLLTIPS,FVO_NOSCROLLTIPS);
 		}

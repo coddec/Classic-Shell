@@ -156,19 +156,19 @@ LRESULT CMetroColorViewer::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam
 
 	HWND list=GetDlgItem(IDC_LIST1);
 	{
-		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,380,L"Name"};
+		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,380,(LPWSTR)L"Name"};
 		ListView_InsertColumn(list,0,&column);
 	}
 	{
-		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,50,L"#"};
+		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,50,(LPWSTR)L"#"};
 		ListView_InsertColumn(list,1,&column);
 	}
 	{
-		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,100,L"Code"};
+		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,100,(LPWSTR)L"Code"};
 		ListView_InsertColumn(list,2,&column);
 	}
 	{
-		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,100,L"Color"};
+		LVCOLUMN column={LVCF_WIDTH|LVCF_TEXT,0,100,(LPWSTR)L"Color"};
 		ListView_InsertColumn(list,3,&column);
 	}
 	int order[]={1,0,2,3};

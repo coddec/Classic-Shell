@@ -543,7 +543,7 @@ bool CSearchManager::SearchScope::ParseSearchConnector( const wchar_t *fname )
 			return false;
 		if (_wcsnicmp(url,L"file:",5)==0)
 			return false; // ignore files
-		CString url2=url;
+		CString url2(url);
 		StringUpper(url2);
 		roots.push_back(url2);
 		return true;
@@ -1003,7 +1003,7 @@ void CSearchManager::SearchThread( void )
 			CComPtr<IBindCtx> pBindCtx0;
 			CreateBindCtx(0,&pBindCtx0);
 			if (!pBindCtx0) continue;
-			pBindCtx0->RegisterObjectParam(STR_PARSE_WITH_PROPERTIES,pStore);
+			pBindCtx0->RegisterObjectParam((LPOLESTR)STR_PARSE_WITH_PROPERTIES,pStore);
 
 #ifdef LAUNDER_SEARCH_RESULTS
 			CComPtr<ISearchFolderItemFactory> pSearchFactory;

@@ -2202,7 +2202,7 @@ void CMenuContainer::AddJumpListItems( std::vector<MenuItem> &items )
 			if (jumpItem.type==CJumpItem::TYPE_LINK)
 			{
 				item.SetName(jumpItem.name,false);
-				CComQIPtr<IShellLink> pLink=jumpItem.pItem;
+				CComQIPtr<IShellLink> pLink(jumpItem.pItem);
 				if (pLink)
 				{
 					pLink->GetIDList(&item.pItem1);
@@ -2215,7 +2215,7 @@ void CMenuContainer::AddJumpListItems( std::vector<MenuItem> &items )
 			else if (jumpItem.type==CJumpItem::TYPE_ITEM)
 			{
 				item.SetName(jumpItem.name,false);
-				CComQIPtr<IShellItem> pItem=jumpItem.pItem;
+				CComQIPtr<IShellItem> pItem(jumpItem.pItem);
 				if (pItem)
 					SHGetIDListFromObject(pItem,&item.pItem1);
 			}
@@ -2335,7 +2335,7 @@ void CMenuContainer::InitItems( void )
 		CComPtr<IShellLink> pLink;
 		if (SUCCEEDED(pLink.CoCreateInstance(CLSID_ShellLink)))
 		{
-			CComQIPtr<IPersistFile> pFile=pLink;
+			CComQIPtr<IPersistFile> pFile(pLink);
 			if (pFile)
 			{
 				// go through the items until we find s_MaxRecentDocuments documents
@@ -6640,7 +6640,7 @@ bool CMenuContainer::GetDescription( int index, wchar_t *text, int size )
 		}
 		if (jumpItem.type==CJumpItem::TYPE_ITEM)
 		{
-			CComQIPtr<IShellItem> pItem=jumpItem.pItem;
+			CComQIPtr<IShellItem> pItem(jumpItem.pItem);
 			if (pItem)
 			{
 				{
@@ -6665,7 +6665,7 @@ bool CMenuContainer::GetDescription( int index, wchar_t *text, int size )
 		}
 		else if (jumpItem.type==CJumpItem::TYPE_LINK)
 		{
-			CComQIPtr<IShellLink> pLink=jumpItem.pItem;
+			CComQIPtr<IShellLink> pLink(jumpItem.pItem);
 			if (pLink)
 			{
 				if (SUCCEEDED(pLink->GetDescription(text,size)) && text[0])

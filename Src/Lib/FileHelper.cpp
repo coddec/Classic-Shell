@@ -16,7 +16,7 @@ bool CreateFakeFolder( const wchar_t *source, const wchar_t *fname )
 		HRESULT hr=pLink.CoCreateInstance(CLSID_ShellLink);
 		if (FAILED(hr)) return false;
 		pLink->SetPath(source);
-		CComQIPtr<IPersistFile> pFile=pLink;
+		CComQIPtr<IPersistFile> pFile(pLink);
 		if (!pFile) return false;
 		hr=pFile->Save(path,TRUE);
 		if (FAILED(hr)) return false;

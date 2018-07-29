@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <filesystem>
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 static void CopyRegKey(HKEY root, const wchar_t* srcKey, const wchar_t* dstKey)
 {

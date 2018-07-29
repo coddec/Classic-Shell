@@ -388,7 +388,7 @@ void CUpdateDlg::UpdateUI( void )
 	}
 	else
 	{
-		SetDlgItemText(IDC_STATICLATEST,(m_Data.newVersion==0)?LoadStringEx(IDS_UPDATE_FAIL):L"");
+		SetDlgItemText(IDC_STATICLATEST,(m_Data.newVersion==0)?LoadStringEx(IDS_UPDATE_FAIL).GetString():L"");
 		SetDlgItemText(IDC_EDITTEXT,L"");
 		GetDlgItem(IDC_EDITTEXT).ShowWindow(SW_HIDE);
 		GetDlgItem(IDC_BUTTONDOWNLOAD).ShowWindow(SW_HIDE);

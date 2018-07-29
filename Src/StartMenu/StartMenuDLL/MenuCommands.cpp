@@ -814,7 +814,7 @@ static bool ExecuteSysCommand( TMenuID menuCommand )
 				memset(&processInfo,0,sizeof(processInfo));
 				wchar_t exe[_MAX_PATH]=L"%windir%\\system32\\shutdown.exe";
 				DoEnvironmentSubst(exe,_countof(exe));
-				if (CreateProcess(exe,L"shutdown.exe /r /o /t 0",NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,NULL,&startupInfo,&processInfo))
+				if (CreateProcess(exe,(LPWSTR)L"shutdown.exe /r /o /t 0",NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,NULL,&startupInfo,&processInfo))
 				{
 					CloseHandle(processInfo.hThread);
 					CloseHandle(processInfo.hProcess);
@@ -1072,7 +1072,7 @@ static HRESULT CreatePinLink( PCIDLIST_ABSOLUTE sourcePidl, const wchar_t *name,
 			if (FAILED(hr)) return hr;
 		}
 
-		CComQIPtr<IPersistFile> pFile=pLink;
+		CComQIPtr<IPersistFile> pFile(pLink);
 		if (!pFile) return E_FAIL;
 		hr=pFile->Save(finalPath,TRUE);
 	}
@@ -1080,9 +1080,9 @@ static HRESULT CreatePinLink( PCIDLIST_ABSOLUTE sourcePidl, const wchar_t *name,
 		// reopen the link and set the "no new" property. without reopening the original properties are lost
 		CComPtr<IShellLink> pLink;
 		hr=pLink.CoCreateInstance(CLSID_ShellLink);
-		CComQIPtr<IPersistFile> pFile=pLink;
+		CComQIPtr<IPersistFile> pFile(pLink);
 		hr=pFile->Load(finalPath,STGM_READWRITE);
-		CComQIPtr<IPropertyStore> pStore=pLink;
+		CComQIPtr<IPropertyStore> pStore(pLink);
 		if (pStore)
 		{
 			PROPVARIANT val;
@@ -1559,7 +1559,7 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 		if (bQueryMenu)
 		{
 			SHCreateItemFromIDList(pItemPidl1,IID_IShellItem,(void**)&pItem);
-			CComQIPtr<IShellItem2> pItem2=pItem;
+			CComQIPtr<IShellItem2> pItem2(pItem);
 			if (pItem2 &&
 				((item.categoryHash&CSearchManager::CATEGORY_MASK)!=CSearchManager::CATEGORY_ITEM ||
 				(GetSettingInt(L"CompatibilityFixes")&COMPATIBILITY_UPDATE_ITEMS))) // don't update search items because we don't have the right bind context for them
@@ -2698,10 +2698,10 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 							StrRetToStr(&str,newPidl,&pPath);
 							CComPtr<IShellLink> pLink;
 							pLink.CoCreateInstance(CLSID_ShellLink);
-							CComQIPtr<IPersistFile> pFile=pLink;
+							CComQIPtr<IPersistFile> pFile(pLink);
 							if (pFile && SUCCEEDED(pFile->Load(pPath,STGM_READWRITE)))
 							{
-								CComQIPtr<IPropertyStore> pStore=pLink;
+								CComQIPtr<IPropertyStore> pStore(pLink);
 								if (pStore)
 								{
 									PROPVARIANT val;

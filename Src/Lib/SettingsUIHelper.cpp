@@ -1223,7 +1223,7 @@ bool BrowseLinkHelper( HWND parent, wchar_t *text )
 	CComPtr<IFileOpenDialog> pDialog;
 	if (FAILED(pDialog.CoCreateInstance(CLSID_FileOpenDialog,NULL,CLSCTX_INPROC_SERVER)))
 		return false;
-	CComQIPtr<IFileDialogCustomize> pCustomize=pDialog;
+	CComQIPtr<IFileDialogCustomize> pCustomize(pDialog);
 	if (!pCustomize)
 		return false;
 

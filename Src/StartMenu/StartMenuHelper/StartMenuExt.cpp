@@ -38,7 +38,7 @@ static HRESULT CreateLink( const wchar_t *source, LPITEMIDLIST sourcePidl, const
 
 		if (dir)
 			pLink->SetWorkingDirectory(dir);
-		CComQIPtr<IPersistFile> pFile=pLink;
+		CComQIPtr<IPersistFile> pFile(pLink);
 		if (!pFile) return E_FAIL;
 		hr=pFile->Save(fname,TRUE);
 	}
@@ -46,9 +46,9 @@ static HRESULT CreateLink( const wchar_t *source, LPITEMIDLIST sourcePidl, const
 		// reopen the link and set the "no new" property. without reopening the original properties are lost
 		CComPtr<IShellLink> pLink;
 		hr=pLink.CoCreateInstance(CLSID_ShellLink);
-		CComQIPtr<IPersistFile> pFile=pLink;
+		CComQIPtr<IPersistFile> pFile(pLink);
 		hr=pFile->Load(fname,STGM_READWRITE);
-		CComQIPtr<IPropertyStore> pStore=pLink;
+		CComQIPtr<IPropertyStore> pStore(pLink);
 		if (pStore)
 		{
 			PROPVARIANT val;

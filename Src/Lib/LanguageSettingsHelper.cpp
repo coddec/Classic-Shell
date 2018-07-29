@@ -344,7 +344,7 @@ LRESULT CLanguageSettingsDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lPa
 	m_Tooltip.Create(TOOLTIPS_CLASS,m_hWnd,NULL,NULL,WS_POPUP|TTS_NOPREFIX);
 	TOOLINFO tool={sizeof(tool),TTF_SUBCLASS|TTF_IDISHWND,m_hWnd,'CLSH'};
 	tool.uId=(UINT_PTR)list.m_hWnd;
-	tool.lpszText=L"";
+	tool.lpszText=(LPWSTR)L"";
 	m_Tooltip.SendMessage(TTM_ADDTOOL,0,(LPARAM)&tool);
 
 	return TRUE;
@@ -378,7 +378,7 @@ LRESULT CLanguageSettingsDlg::OnCheckUpdates( WORD wNotifyCode, WORD wID, HWND h
 		CWindow list=GetDlgItem(IDC_LISTLANGUAGE);
 		for (int idx=0;idx<(int)m_LanguageIDs.size();idx++)
 		{
-			const wchar_t *name=idx>0?m_LanguageIDs[idx].name:L"";
+			const wchar_t *name=idx>0?m_LanguageIDs[idx].name.GetString():L"";
 			if (_wcsicmp(language,name)==0)
 			{
 				ListView_SetItemState(list,idx,LVIS_SELECTED|LVIS_FOCUSED,LVIS_SELECTED|LVIS_FOCUSED);
@@ -403,7 +403,7 @@ LRESULT CLanguageSettingsDlg::OnSelChange( int idCtrl, LPNMHDR pnmh, BOOL& bHand
 	int idx=ListView_GetNextItem(list,-1,LVNI_SELECTED);
 	if (idx<0) return 0;
 
-	const wchar_t *name=idx>0?m_LanguageIDs[idx].name:L"";
+	const wchar_t *name=idx>0?m_LanguageIDs[idx].name.GetString():L"";
 	CSettingsLockWrite lock;
 	CComVariant val(name);
 	if (m_pSetting->value!=val)
@@ -499,7 +499,7 @@ void CLanguageSettingsDlg::SetGroup( CSetting *pGroup )
 	CWindow list=GetDlgItem(IDC_LISTLANGUAGE);
 	for (int idx=0;idx<(int)m_LanguageIDs.size();idx++)
 	{
-		const wchar_t *name=idx>0?m_LanguageIDs[idx].name:L"";
+		const wchar_t *name=idx>0?m_LanguageIDs[idx].name.GetString():L"";
 		if (_wcsicmp(language,name)==0)
 		{
 			ListView_SetItemState(list,idx,LVIS_SELECTED|LVIS_FOCUSED,LVIS_SELECTED|LVIS_FOCUSED);

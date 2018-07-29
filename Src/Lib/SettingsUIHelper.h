@@ -34,16 +34,16 @@ public:
 
 	void Create( HWND hWndParent, DLGTEMPLATE *pTemplate )
 	{
-		ATLASSUME(m_hWnd == NULL);
-		if (!m_thunk.Init(NULL,NULL))
+		ATLASSUME(this->m_hWnd == NULL);
+		if (!this->m_thunk.Init(NULL,NULL))
 		{
 			SetLastError(ERROR_OUTOFMEMORY);
 			return;
 		}
 
-		_AtlWinModule.AddCreateWndData(&m_thunk.cd,(CDialogImplBaseT<CWindow>*)this);
+		_AtlWinModule.AddCreateWndData(&this->m_thunk.cd,(CDialogImplBaseT<CWindow>*)this);
 		HWND hWnd=::CreateDialogIndirect(_AtlBaseModule.GetResourceInstance(),pTemplate,hWndParent,T::StartDialogProc);
-		ATLASSUME(m_hWnd==hWnd);
+		ATLASSUME(this->m_hWnd==hWnd);
 	}
 
 protected:
@@ -110,13 +110,13 @@ protected:
 		pThis->GetWindowRect(&rc);
 		m_WindowSize.cx=rc.right-rc.left;
 		m_WindowSize.cy=rc.bottom-rc.top;
-		for (std::vector<Control>::iterator it=m_Controls.begin();it!=m_Controls.end();++it)
+		for (auto& it : m_Controls)
 		{
-			it->hwnd=pThis->GetDlgItem(it->id);
-			Assert(it->hwnd);
-			if (!it->hwnd) continue;
-			::GetWindowRect(it->hwnd,&it->rect0);
-			::MapWindowPoints(NULL,m_hWnd,(POINT*)&it->rect0,2);
+			it.hwnd=pThis->GetDlgItem(it.id);
+			Assert(it.hwnd);
+			if (!it.hwnd) continue;
+			::GetWindowRect(it.hwnd,&it.rect0);
+			::MapWindowPoints(NULL,this->m_hWnd,(POINT*)&it.rect0,2);
 		}
 	}
 
@@ -129,22 +129,22 @@ protected:
 		int dy=rc.bottom-m_ClientSize.cy;
 		int dx2=dx/2;
 		int dy2=dy/2;
-		for (std::vector<Control>::iterator it=m_Controls.begin();it!=m_Controls.end();++it)
+		for (const auto& it : m_Controls)
 		{
-			if (!it->hwnd) continue;
-			int x1=it->rect0.left;
-			int y1=it->rect0.top;
-			int x2=it->rect0.right;
-			int y2=it->rect0.bottom;
-			if (it->flags&MOVE_LEFT) x1+=dx;
-			else if (it->flags&MOVE_LEFT2) x1+=dx2;
-			if (it->flags&MOVE_TOP) y1+=dy;
-			else if (it->flags&MOVE_TOP2) y1+=dy2;
-			if (it->flags&MOVE_RIGHT) x2+=dx;
-			else if (it->flags&MOVE_RIGHT2) x2+=dx2;
-			if (it->flags&MOVE_BOTTOM) y2+=dy;
-			else if (it->flags&MOVE_BOTTOM2) y2+=dy2;
-			::SetWindowPos(it->hwnd,NULL,x1,y1,x2-x1,y2-y1,SWP_NOZORDER|SWP_NOCOPYBITS);
+			if (!it.hwnd) continue;
+			int x1=it.rect0.left;
+			int y1=it.rect0.top;
+			int x2=it.rect0.right;
+			int y2=it.rect0.bottom;
+			if (it.flags&MOVE_LEFT) x1+=dx;
+			else if (it.flags&MOVE_LEFT2) x1+=dx2;
+			if (it.flags&MOVE_TOP) y1+=dy;
+			else if (it.flags&MOVE_TOP2) y1+=dy2;
+			if (it.flags&MOVE_RIGHT) x2+=dx;
+			else if (it.flags&MOVE_RIGHT2) x2+=dx2;
+			if (it.flags&MOVE_BOTTOM) y2+=dy;
+			else if (it.flags&MOVE_BOTTOM2) y2+=dy2;
+			::SetWindowPos(it.hwnd,NULL,x1,y1,x2-x1,y2-y1,SWP_NOZORDER|SWP_NOCOPYBITS);
 		}
 		if (m_Gripper.m_hWnd)
 		{
@@ -170,7 +170,7 @@ protected:
 
 	void GetStoreRect( RECT &rc )
 	{
-		GetWindowRect(&rc);
+		this->GetWindowRect(&rc);
 		rc.right-=rc.left+m_WindowSize.cx;
 		rc.bottom-=rc.top+m_WindowSize.cy;
 	}
@@ -178,7 +178,7 @@ protected:
 	void GetPlacementRect( RECT &rc )
 	{
 		WINDOWPLACEMENT placement;
-		GetWindowPlacement(&placement);
+		this->GetWindowPlacement(&placement);
 		rc=placement.rcNormalPosition;
 		rc.right-=rc.left+m_WindowSize.cx;
 		rc.bottom-=rc.top+m_WindowSize.cy;
@@ -186,8 +186,8 @@ protected:
 
 	void SetStoreRect( const RECT &rc )
 	{
-		SetWindowPos(NULL,rc.left,rc.top,m_WindowSize.cx+rc.right,m_WindowSize.cy+rc.bottom,SWP_NOZORDER|SWP_NOCOPYBITS);
-		SendMessage(DM_REPOSITION);
+		this->SetWindowPos(NULL,rc.left,rc.top,m_WindowSize.cx+rc.right,m_WindowSize.cy+rc.bottom,SWP_NOZORDER|SWP_NOCOPYBITS);
+		this->SendMessage(DM_REPOSITION);
 	}
 
 private:

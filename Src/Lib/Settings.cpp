@@ -732,7 +732,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 	DWORD ver=0;
 	{
 		CComVariant value;
-		CComQIPtr<IXMLDOMElement> element=node;
+		CComQIPtr<IXMLDOMElement> element(node);
 		if (!element || element->getAttribute(CComBSTR(L"component"),&value)!=S_OK || value.vt!=VT_BSTR)
 			return CString(L"XML parsing error: The tag 'Settings' is missing the 'component' attribute.");
 		if (_wcsicmp(value.bstrVal,m_CompName)!=0)
@@ -797,7 +797,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 				}
 				else
 				{
-					CComQIPtr<IXMLDOMElement> element=child;
+					CComQIPtr<IXMLDOMElement> element(child);
 					if (element)
 					{
 						CComVariant value;

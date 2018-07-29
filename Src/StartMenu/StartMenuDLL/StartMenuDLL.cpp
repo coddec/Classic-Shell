@@ -588,7 +588,7 @@ void EnableStartTooltip( bool bEnable )
 		else
 		{
 			TOOLINFO info=g_StartButtonTool;
-			info.lpszText=L"";
+			info.lpszText=(LPWSTR)L"";
 			SendMessage(g_Tooltip,TTM_UPDATETIPTEXT,0,(LPARAM)&info);
 		}
 	}

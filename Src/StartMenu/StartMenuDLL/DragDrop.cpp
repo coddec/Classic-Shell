@@ -320,7 +320,7 @@ bool CMenuContainer::DragOut( int index, bool bApp )
 
 	// force synchronous operation
 	{
-		CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
+		CComQIPtr<IDataObjectAsyncCapability> pAsync(pDataObj);
 		if (pAsync)
 			pAsync->SetAsyncMode(FALSE);
 	}

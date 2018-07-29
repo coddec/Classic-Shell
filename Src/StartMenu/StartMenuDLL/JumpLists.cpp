@@ -270,7 +270,7 @@ static void AddJumpItem( CJumpGroup &group, IUnknown *pUnknown, std::vector<CCom
 				return;
 		}
 		item.type=CJumpItem::TYPE_LINK;
-		CComQIPtr<IPropertyStore> pStore=pLink;
+		CComQIPtr<IPropertyStore> pStore(pLink);
 		if (pStore)
 		{
 			PROPVARIANT val;
@@ -309,7 +309,7 @@ static void AddJumpItem( CJumpGroup &group, IUnknown *pUnknown, std::vector<CCom
 				pName.MakeUpper();
 				item.hash=CalcFNVHash(pName);
 			}
-			CComQIPtr<IPropertyStore> pStore=pLink;
+			CComQIPtr<IPropertyStore> pStore(pLink);
 			if (pStore)
 			{
 				CString args=GetPropertyStoreString(pStore,PKEY_Link_Arguments);
@@ -374,12 +374,12 @@ bool GetJumplist( const wchar_t *appid, CJumpList &list, int maxCount, int maxHe
 			AddJumpCollection(group,pPinnedList,ignoreItems,ignoreLinks);
 			for (std::vector<CJumpItem>::const_iterator it=group.items.begin();it!=group.items.end();++it)
 			{
-				CComQIPtr<IShellItem> pShellItem=it->pItem;
+				CComQIPtr<IShellItem> pShellItem(it->pItem);
 				if (pShellItem)
 					ignoreItems.push_back(pShellItem);
 				else
 				{
-					CComQIPtr<IShellLink> pLink=it->pItem;
+					CComQIPtr<IShellLink> pLink(it->pItem);
 					if (pLink)
 					{
 						unsigned int hash=CalcLinkHash(pLink);
@@ -528,7 +528,7 @@ bool ExecuteJumpItem( const CItemManager::ItemInfo *pAppInfo, const CJumpItem &i
 			appid=pAppInfo->GetAppid();
 		}
 		LOG_MENU(LOG_OPEN,L"Execute Item: name=%s, appid=%s",item.name,appid);*/
-		CComQIPtr<IShellItem> pItem=item.pItem;
+		CComQIPtr<IShellItem> pItem(item.pItem);
 		if (!pItem)
 			return false;
 /*		CComString pName;
@@ -618,7 +618,7 @@ bool ExecuteJumpItem( const CItemManager::ItemInfo *pAppInfo, const CJumpItem &i
 	if (item.type==CJumpItem::TYPE_LINK)
 	{
 		// invoke the link through its context menu
-		CComQIPtr<IContextMenu> pMenu=item.pItem;
+		CComQIPtr<IContextMenu> pMenu(item.pItem);
 		if (!pMenu) return false;
 		HRESULT hr;
 		HMENU menu=CreatePopupMenu();

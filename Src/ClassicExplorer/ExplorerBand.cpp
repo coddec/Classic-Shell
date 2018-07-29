@@ -440,7 +440,7 @@ void CBandWindow::SendEmail( void )
 	if (FAILED(m_pBrowser->QueryActiveShellView(&pView))) return;
 
 	// check if there is anything selected
-	CComQIPtr<IFolderView> pView2=pView;
+	CComQIPtr<IFolderView> pView2(pView);
 	int count;
 	if (pView2 && SUCCEEDED(pView2->ItemCount(SVGIO_SELECTION,&count)) && count==0)
 		return;
@@ -449,7 +449,7 @@ void CBandWindow::SendEmail( void )
 	CComPtr<IDataObject> pDataObj;
 	if (FAILED(pView->GetItemObject(SVGIO_SELECTION,IID_IDataObject,(void**)&pDataObj)))
 		return;
-	CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
+	CComQIPtr<IDataObjectAsyncCapability> pAsync(pDataObj);
 	if (pAsync)
 		pAsync->SetAsyncMode(FALSE);
 
@@ -494,7 +494,7 @@ void CBandWindow::SendToZip( void )
 	if (FAILED(m_pBrowser->QueryActiveShellView(&pView))) return;
 
 	// check if there is anything selected
-	CComQIPtr<IFolderView> pView2=pView;
+	CComQIPtr<IFolderView> pView2(pView);
 
 	CComPtr<IShellFolder> pFolder;
 	if (FAILED(pView2->GetFolder(IID_IShellFolder,(void**)&pFolder)) || !pFolder) return;
@@ -507,7 +507,7 @@ void CBandWindow::SendToZip( void )
 	CComPtr<IDataObject> pDataObj;
 	if (FAILED(pView->GetItemObject(SVGIO_SELECTION,IID_IDataObject,(void**)&pDataObj)))
 		return;
-	CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
+	CComQIPtr<IDataObjectAsyncCapability> pAsync(pDataObj);
 	if (pAsync)
 		pAsync->SetAsyncMode(FALSE);
 
@@ -515,7 +515,7 @@ void CBandWindow::SendToZip( void )
 	CComPtr<IDropTarget> pDropTarget;
 	if (SUCCEEDED(CoCreateInstance(CLSID_SendToZip,NULL,CLSCTX_ALL,IID_IDropTarget,(void **)&pDropTarget)))
 	{
-		CComQIPtr<IObjectWithSite> pDropWithSite=pDropTarget;
+		CComQIPtr<IObjectWithSite> pDropWithSite(pDropTarget);
 		if (pDropWithSite)
 		{
 			CComObject<CSendToZipHelper> *pHelper;
@@ -568,7 +568,7 @@ void CBandWindow::NewFolder( void )
 {
 	CComPtr<IShellView> pView;
 	if (FAILED(m_pBrowser->QueryActiveShellView(&pView))) return;
-	CComQIPtr<IFolderView> pView2=pView;
+	CComQIPtr<IFolderView> pView2(pView);
 	if (!pView2) return;
 
 	{
@@ -705,7 +705,7 @@ void CBandWindow::ExecuteCommandFile( const wchar_t *pText )
 		CComPtr<IShellView> pView;
 		if (SUCCEEDED(m_pBrowser->QueryActiveShellView(&pView)))
 		{
-			CComQIPtr<IFolderView> pView2=pView;
+			CComQIPtr<IFolderView> pView2(pView);
 			if (!pView2) return;
 			CComPtr<IShellFolder> pFolder;
 			if (FAILED(pView2->GetFolder(IID_IShellFolder,(void**)&pFolder)) || !pFolder) return;
@@ -785,7 +785,7 @@ void CBandWindow::ExecuteCustomCommand( const wchar_t *pCommand )
 	{
 		CComPtr<IPersistFolder2> pFolder;
 		CAbsolutePidl pidl;
-		CComQIPtr<IFolderView> pView2=pView;
+		CComQIPtr<IFolderView> pView2(pView);
 		if (pView2 && SUCCEEDED(pView2->GetFolder(IID_IPersistFolder2,(void**)&pFolder)) && SUCCEEDED(pFolder->GetCurFolder(&pidl)))
 		{
 			// get current path
@@ -900,13 +900,13 @@ void CBandWindow::ExecuteCustomCommand( const wchar_t *pCommand )
 		}
 		else if (_wcsicmp(exe,L"sortby")==0)
 		{
-			CComQIPtr<IFolderView2> pView2=pView;
+			CComQIPtr<IFolderView2> pView2(pView);
 			if (pView2)
 				ViewByProperty(pView2,params,false);
 		}
 		else if (_wcsicmp(exe,L"groupby")==0)
 		{
-			CComQIPtr<IFolderView2> pView2=pView;
+			CComQIPtr<IFolderView2> pView2(pView);
 			if (pView2)
 				ViewByProperty(pView2,params,true);
 		}
@@ -1128,7 +1128,7 @@ LRESULT CBandWindow::OnCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 		CComPtr<IShellView> pView;
 		if (SUCCEEDED(m_pBrowser->QueryActiveShellView(&pView)))
 		{
-			CComQIPtr<IFolderView2> pView2=pView;
+			CComQIPtr<IFolderView2> pView2(pView);
 			if (pView2) pView2->DoRename();
 		}
 		return TRUE;
@@ -1283,7 +1283,7 @@ LRESULT CBandWindow::OnCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 		if (FAILED(m_pBrowser->QueryActiveShellView(&pView)))
 			return TRUE;
 
-		CComQIPtr<IFolderView2> pView2=pView;
+		CComQIPtr<IFolderView2> pView2(pView);
 		if (!pView2) return TRUE;
 
 		// ID_DESELECT
@@ -1730,7 +1730,7 @@ void CBandWindow::UpdateToolbar( void )
 		m_pBrowser->QueryActiveShellView(&pView);
 		if (pView)
 		{
-			CComQIPtr<IFolderView> pView2=pView;
+			CComQIPtr<IFolderView> pView2(pView);
 			if (pView2)
 			{
 				CComPtr<IPersistFolder2> pFolder;

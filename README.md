@@ -9,6 +9,7 @@ Home Page: https://passionate-coder.github.io/Classic-Start/
 Discussion room: https://gitter.im/NeoClassic-UI/
 
 #### Downloads: https://github.com/NeoClassic-UI/Menu/releases
+#### Latest nightly build: https://ci.appveyor.com/project/passionate-coder/menu/branch/master/artifacts
 
 ### Features
 

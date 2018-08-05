@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+ <meta http-equiv="Content-Language" content="zh-TW">
+
+
+
+
+
+
+
+
+
+
+ <meta content="text/html; charset=big5" http-equiv="content-type"><title>Classic IE</title>
+<style type="text/css">
+h1 {
+  font-family: "Times New Roman",Times,serif;
+  color: #0070c0;
+}
+p {
+  font-family: Arial,Helvetica,sans-serif;
+}
+body {
+  font-family: Arial,Helvetica,sans-serif;
+}</style></head><body>
+<h1><a target="_blank" href="http://www.classicshell.net/"><img src="images/OpenShell.png" style="border: 0px solid ; width: 64px; height: 64px;" alt="Open-Shell 網站" title="Open-Shell 網站"></a>&nbsp; Classic IE</h1><span style="font-style: italic; color: rgb(0, 112, 192); font-weight: bold;"></span><span style="color: rgb(79, 129, 189); font-weight: bold;"><br>
+Classic IE</span>
+是 Internet Explorer 的小外掛程式:<br>
+<ul>
+  <li>在標題列加入標題，以便能看到頁面的完整標題</li>
+  <li>在狀態列顯示安全性區域</li>
+  <li>在狀態列顯示載入進度</li>
+</ul>
+<br>
+檢視完整頁面標題，即使不適合索引標籤:<br>
+<img style="width: 748px; height: 190px;" alt="" src="images/ie9_caption.png"><br>
+<br>查看進度和安全性區域:<br>
+<img style="width: 429px; height: 56px;" alt="" src="images/ie9_status.png"><br>
+<br>
+<h1><a name="install"></a>安裝</h1>
+當您安裝 Classic IE 後首次執行 Internet Explorer ，可能提示有安裝新的附加元件稱為 ClassicIEBHO 和是否要啟用。 按一下 [啟用] 按鈕。 如果未得到提示，移至 <span style="font-weight: bold;">工具 -&gt; 管理附加元件</span> 並確認 ClassicIEBHO 已啟用。 啟用附加元件後必須重新啟動 Internet Explorer 以啟動外掛程式。<br>
+<br>
+<h1><a name="settings"></a>設定</h1>
+您可以從 <span style="font-weight: bold;">工具 -&gt; Classic IE 設定</span> 或從 [開始] 功能表存取設定。 設定控制標題的色彩和字型，以及在狀態列顯示什麼資訊。<br>
+<img style="width: 683px; height: 438px;" alt="" src="images/ie9_settings.png"><br>
+<br>您可以選擇只查看基本設定，或所有可用的設定。 暫留在每個設定的上方以查看其作用的簡述。 在搜尋方塊輸入依名稱尋找設定。<br>每個設定有預設值。 預設值可以是常數，或根據目前系統設定而定。 編輯設定後會成為「已修改」且以粗體顯示。 若要返回預設值，在設定按一下右鍵。<br>
+
+<br>
+您可以儲存設定為 XML 檔案，並稍後載入回來。 按下 [<span style="font-weight: bold;">備份</span>] 按鈕以存取這些功能。 從那也可以重設所有的設定為其預設值。<br>
+
+
+<br>
+
+
+按下 [確定] 還原設定。 您需要重新啟動 Internet Explorer 以套用新的設定。<br>
+
+
+<br>
+<h1><a name="admin"></a>系統管理設定</h1>
+設定是每個使用者且存放在登錄檔。 預設每個使用者能編輯其所有的設定。 系統管理員能鎖定指定設定，因此沒有使用者能編輯。 這是透過加入設定到 <span style="font-weight: bold;">HKEY_LOCAL_MACHINE\SOFTWARE\OpenShell\ClassicIE</span> 登錄檔機碼來達成。<br>
+<br>
+您可能也希望不鎖定設定但只覆寫其初始值。 則在登錄檔數值的名稱加入「_Default」&quot;。<br>
+<br>
+了解設定的登錄檔名稱與其數值之輕鬆方式，是修改它接著在以下機碼中尋找: <span style="font-weight: bold;">HKEY_CURRENT_USER\Software\OpenShell\ClassicIE\Settings</span>。<br>有時您可能要鎖定設定為預設值，但不知預設值為何。 則建立 DWORD 數值並設定成 0xDEFA。<br>
+
+<br>
+
+這也是全域設定 <span style="font-weight: bold;">EnableSettings</span>。 在登錄檔設定為 0 以防止使用者開啟 [設定] 對話方塊:<br>
+
+<img style="width: 656px; height: 292px;" alt="" src="images/settings_disable_ie9.png"><br>
+<br>
+也支援透過群組原則編輯設定。 擷取在安裝資料夾中找到的檔案 <b>PolicyDefinitions.zip</b> 並閱讀文件 <b>PolicyDefinitions.rtf</b> 取得更多詳細資料。<br>
+<br>
+</body></html>

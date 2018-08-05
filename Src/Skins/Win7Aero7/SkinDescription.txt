@@ -1,0 +1,311 @@
+; Windows Aero skin
+
+; About - text to use in the About box for this skin. use \n for new line
+About=#7101
+
+; AboutIcon - the ID of an icon resource to use in the About box
+AboutIcon=1
+
+; Version - version of the required skin engine. Set to 2 if the skin uses any of the new features introduced in Open-Shell 1.9.0 like full glass,
+; skinnable sub-menus, skinnable pager buttons, skinnable arrows, etc
+Version=2
+
+;MAIN BITMAP SECTION - describes the background of the main menu
+
+; Main_bitmap - ID of a bitmap resource to use for the main menu in "large icons" mode. Default is no bitmap
+; The bitmap must contain a rectangular portion of opaque solid color behind the menu items
+Main_bitmap=1
+Main_bitmap_search=8
+Main_bitmap_jump=13
+
+; Main_bitmap_mask - a bitmap or a solid color in #RRGGBB format that is used to blend Main_bitmap with the glass color and the menu background color.
+; The red channel is the weight of the glass color and the green channel is the weight of the background color
+Main_bitmap_mask=2
+Main_bitmap_search_mask=9
+Main_bitmap_jump_mask=14
+
+; Main_opacity - sets the opacity for the main menu. The values are:
+; solid - the menu is a solid rectangle. It is filled with the Main_background color and the Main_bitmap is drawn on top
+; region - the pixels from the bitmap with alpha=0 are fully transparent. The other pixels are fully opaque. The Main_background color is not used
+; alpha - the full alpha for each pixel is used. Alpha goes from 0 (transparent) to 255 (opaque). The Main_background color is not used
+; glass - the full alpha for each pixel is used. Alpha goes from 0 (transparent), 1 (full glass) to 255 (no glass). The Main_background color is not used
+; The default is "solid"
+Main_opacity=glass
+Main2_opacity=fullglass
+
+; Main_bitmap_slices_X - must contain 6 numbers. The sum of the numbers must be equal to the width of the Main_bitmap image
+; number 1 is the width of the image to use for the left edge
+; number 2 is the width of the image to stretch and use as the background for the caption
+; number 3 is the width of the image to use on the right of the caption
+; number 4 is the width of the image to use on the left of the menu
+; number 5 is the width of the image to stretch and use as the background for the menu
+; number 6 is the width of the image to use for the right edge
+; If the second number is 0 there is no caption
+Main_bitmap_slices_X=13,1,6,0,1,7
+Main_bitmap_search_slices_X=13,1,13
+Main_bitmap_jump_slices_X=13,1,2,2,1,13
+
+; Main_bitmap_slices_Y - must contain 3 numbers. The sum of the numbers must be equal to the height of the Main_bitmap image
+; number 1 is the height of the image to use for the top edge
+; number 2 is the height of the image to stretch and use as the background
+; number 3 is the height of the image to use for the bottom edge
+Main_bitmap_slices_Y=13,360,12
+Main_bitmap_search_slices_Y=13,360,12
+Main_bitmap_jump_slices_Y=13,360,12
+
+
+
+;MAIN MENU SECTION - describes the menu portion of the main menu
+
+; Main_large_icons - 0 - use small icons in the main menu, 1 - use large icons. Default is 0
+; The small icons are 16x16 if the DPI is 96, 20x20 for DPI 120 and 24x24 for DPI 144
+; The large icons are twice the size of the small icons
+; The sub-menus always use small icons
+Main_large_icons=1
+
+; Main_font - font to use for the main menu items. The format is "font name",[normal/bold],point size. Defaults to the system font
+Main_font="Segoe UI",normal,-9
+
+; Main_background - RRGGBB color to use for the background of the main menu. Defaults to the system menu color
+Main_background=#FFFFFF
+
+; Main_text_color - 4 colors for the text in the main menu. By default the system color is used
+; color 1 is for normal menu items
+; color 2 is for selected menu items
+; color 3 is for disabled menu items
+; color 4 is for selected disabled menu items
+Main_text_color=#000000,#000000,#7F7F7F,#7F7F7F
+
+; Main_padding - number of pixels to add on left/top/right/bottom of the menu
+; If Main_bitmap is not set, the width of the standard window border is subtracted from the right/top/bottom sides (and the left side if there is no caption)
+; This is usually 2 pixels for the Classic theme and 1 pixel for Aero or Basic
+Main_padding=10,10,3,8
+Main_search_padding=10,10,10,8
+Main_jump_padding=3,10,10,8
+
+; Main_selection - describes how the selected menu item is drawn in the main menu. Can be:
+; - an ID of a bitmap resource (can be 32-bit bitmap with transparency or 24-bit bitmap with no transparency)
+; - a #RRGGBB color
+; Default is the system highlight color
+Main_selection=3
+
+; Main_selection_slices_X, Main_selection_slices_Y - slices of the selection mark image. The first and third are the corners, and the middle is stretched to fill the area
+Main_selection_slices_X=3,1,3
+Main_selection_slices_Y=4,66,4
+
+; Main_split_selection - a bitmap to use for the split-button selection (can be 32-bit bitmap with transparency or 24-bit bitmap with no transparency)
+; If Main_split_selection, the split buttons will be drawn using Main_selection
+Main_split_selection=15
+
+; Main_split_selection_slices_X - slices of the split selection mark image. The first 3 are for the main button portion. The last 3 are for the arrow portion
+Main_split_selection_slices_X=3,1,3,2,1,3
+Main_split_selection_slices_Y=4,66,4
+
+; Main_pager - a bitmap that contains the background for the pager buttons (the ones that scroll menus up and down)
+Main_pager=4
+
+; Main_pager_slices_X, Main_pager_slices_Y - the slices for Main_pager
+Main_pager_slices_X=3,10,3
+Main_pager_slices_Y=3,9,3
+
+; Main_pager_arrows - a bitmap that contains the arrow image to draw on top of the Main_pager background
+Main_pager_arrows=5
+
+; Main_arrows - bitmap for the sub-menu arrows. The top half of the image is the normal arrow and the bottom half is the selected arrow
+Main_arrow_color=#000000,#000000
+Main_arrow_padding=8,10,100%
+Main_split_arrow_padding=10,10,100%
+
+; Main_separator - ID of a bitmap resource to use for the main menu separator. If no value is set the system separator is used
+Main_separator=17
+
+; Main_separator_slices_X - the horizontal slices for the separator bitmap
+Main_separator_slices_X=8,6,8
+
+; Second column
+
+Main2_text_color=#FFFFFF,#FFFFFF,#7F7F7F,#7F7F7F
+Main2_padding=3,10,4,8
+Main2_selection=10
+Main2_selection_slices_X=4,63,4
+Main2_selection_slices_Y=4,20,4
+Main2_split_selection=16
+Main2_split_selection_slices_X=4,63,4,0,16,4
+Main2_split_selection_slices_Y=4,20,4
+Main2_arrow_color=#FFFFFF,#FFFFFF
+Main2_separator=11
+Main2_separator_slices_X=15,100,15
+Main2_icon_padding=4,4,3,4,100%
+Main2_arrow_padding=7,7,100%
+Main_new_selection=6
+Main_new_selection_slices_X=3,1,3
+Main_new_selection_slices_Y=4,66,4
+
+; Shutdown button
+
+Shutdown_selection=19
+Shutdown_search_selection=20
+Shutdown_jump_selection=20
+Shutdown_selection_slices_X=5,10,3,2,7,5
+Shutdown_selection_slices_Y=4,16,4
+Shutdown_padding=0,9,0,4,100%
+Shutdown_text_padding=10,5,12,6,100%
+Shutdown_icon_padding=5,3,-5,3,100%
+Shutdown_text_color=#FFFFFF,#FFFFFF
+Shutdown_search_text_color=#000000,#000000
+Shutdown_jump_text_color=#000000,#000000
+Shutdown_arrow=21
+Shutdown_search_arrow=22
+Shutdown_jump_arrow=22
+Shutdown_arrow_padding=7,9,100%
+
+
+; Programs tree
+
+Programs_selection=3
+Programs_selection_slices_X=3,1,3
+Programs_selection_slices_Y=4,66,4
+Programs_new_selection=#FFE099
+Programs_text_color=#000000,#000000,#7F7F7F,#7F7F7F
+Programs_text_padding=0,2,0,2,100%
+Programs_icon_padding=2,2,2,2,100%
+Programs_indent=-5
+Programs_icon=7
+
+Programs_button_text_padding=1,5,8,5,100%
+Programs_button_new_text_padding=1,5,8,5,100%
+
+
+; LIST SECTION
+List_selection=3
+List_selection_slices_X=3,1,3
+List_selection_slices_Y=4,66,4
+List_split_selection=15
+List_split_selection_slices_X=3,1,3,2,1,3
+List_split_selection_slices_Y=4,66,4
+List_text_padding=0,0,4,0,100%
+List_separator_text_color=#003399,#003399
+List_separator_text_padding=3,0,0,0,100%
+List_separator_icon_padding=6,3,3,3,100%
+List_arrow_padding=5,7,100%
+List_separator_split_text_color=#003399,#003399
+List_separator_split_text_padding=3,0,0,0,100%
+List_separator_split_icon_padding=6,3,3,3,100%
+
+Main_search_indent=16
+Main2_text_padding=1,7,8,7,100%
+
+Search_padding=6,16,10,6,100%,100%,0%,100%
+Search_frame=0
+Search_background=23
+Search_background_mask=24
+Search_background_slices_X=3,2,3, 0,5,13, 0,1,3
+Search_background_slices_Y=5,1,3, 0,4,0, 2,2,3
+Search_background_padding=1,-3,1,1
+Search_hint_font="Segoe UI",italic,-9
+; More_bitmap - a bitmap for the "more" button in search categories. set to 0 to use the default icon. set to "none" to hide the button
+More_bitmap=none
+
+
+;SUB-MENU SECTION - describes the look of the sub-menus
+
+; The width of the standard window border is subtracted from all sides
+; This is usually 2 pixels for the Classic theme and 1 pixel for Aero or Basic
+Submenu_padding=2,2,2,2
+
+; These have the same meaning as the Main_... properties
+Submenu_thin_frame=1
+Submenu_font="Segoe UI",normal,-9
+Submenu_text_color=#000000,#000000,#7F7F7F,#7F7F7F
+Submenu_selection=3
+Submenu_selection_slices_X=3,1,3
+Submenu_selection_slices_Y=4,66,4
+Submenu_split_selection=15
+Submenu_split_selection_slices_X=3,1,3,2,1,3
+Submenu_split_selection_slices_Y=4,66,4
+Submenu_pager=4
+Submenu_pager_slices_X=3,10,3
+Submenu_pager_slices_Y=3,9,3
+Submenu_pager_arrows=5
+Submenu_arrow_color=#000000,#000000
+Submenu_separator_text_padding=3,4,4,8,100%
+Submenu_separator_font="Segoe UI",normal,-10
+Submenu_separator_text_color=#0062ad
+Submenu_new_selection=6
+Submenu_new_selection_slices_X=3,1,3
+Submenu_new_selection_slices_Y=4,66,4
+
+
+; OPTIONS
+
+OPTION USER_IMAGE=#7014,1
+OPTION SMALL_ICONS=#7011,0
+OPTION LARGE_FONT=#7006,0
+OPTION DISABLE_MASK=#7005,0
+OPTION WHITE_SUBMENUS=#7016,1
+
+
+[SMALL_ICONS]
+Main_large_icons=0
+Main_arrow_padding=7,9,100%
+Main_split_arrow_padding=9,9,100%
+Main2_text_padding=1,3,8,4,100%
+
+
+[LARGE_FONT]
+Main_font="Segoe UI",normal,-10
+Submenu_font="Segoe UI",normal,-10
+Shutdown_text_padding=10,5,12,6,100%
+Search_hint_font="Segoe UI",italic,-10
+Main_text_padding=1,0,8,2,100%
+Submenu_text_padding=1,0,8,2,100%
+Programs_text_padding=0,0,0,2,100%
+
+
+[WHITE_SUBMENUS]
+Submenu_background=#FFFFFF
+Submenu_separator=18
+Submenu_separator_slices_X=8,6,8
+
+
+[USER_IMAGE]
+; User_bitmap - the frame around the user picture
+User_bitmap=12
+User_image_size=48
+User_frame_position=36
+User_image_offset=8,8
+User_bitmap_outside=1
+
+
+[NOT DISABLE_MASK]
+; Main_selection_mask - a bitmap or a solid color in #RRGGBB format that is used to blend the selection bitmap with the glass color and the menu background color.
+; The red channel is the weight of the glass color and the green channel is the weight of the background color
+Main2_selection_mask=#800000
+Main2_split_selection_mask=#800000
+Shutdown_selection_mask=#800000
+Shutdown_selection_search_mask=#800000
+Shutdown_selection_jump_mask=#800000
+
+[DISABLE_MASK]
+Main_bitmap_mask=0
+Main_bitmap_search_mask=0
+Main_bitmap_jump_mask=0
+
+[HIGH_DPI]
+Submenu_pager_arrows=25
+Shutdown_arrow=26
+Shutdown_search_arrow=27
+Shutdown_jump_arrow=27
+Main_separator=28
+Programs_icon=30
+Programs_button_text_padding=1,0,8,1,100%
+Programs_button_new_text_padding=1,0,8,1,100%
+
+[USER_IMAGE AND HIGH_DPI]
+User_bitmap=31
+User_image_size=64
+User_frame_position=40
+
+
+[WHITE_SUBMENUS AND HIGH_DPI]
+Submenu_separator=29

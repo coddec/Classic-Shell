@@ -1,0 +1,108 @@
+HKCR
+{
+	ClassicIE.ClassicIEBHO.1 = s 'ClassicIEBHO Class'
+	{
+		CLSID = s '{EA801577-E6AD-4BD5-8F71-4BE0154331A4}'
+	}
+	ClassicIE.ClassicIEBHO = s 'ClassicIEBHO Class'
+	{
+		CLSID = s '{EA801577-E6AD-4BD5-8F71-4BE0154331A4}'
+		CurVer = s 'ClassicIE.ClassicIEBHO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {EA801577-E6AD-4BD5-8F71-4BE0154331A4} = s 'ClassicIEBHO Class'
+		{
+			ProgID = s 'ClassicIE.ClassicIEBHO.1'
+			VersionIndependentProgID = s 'ClassicIE.ClassicIEBHO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{FDA50A1E-B8CE-49DE-8D17-B034A84AA280}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove SOFTWARE
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove 'Browser Helper Objects'
+						{
+							ForceRemove '{EA801577-E6AD-4BD5-8F71-4BE0154331A4}'
+							{
+								val NoExplorer = d '1'
+							}
+						}
+					}
+					NoRemove Policies
+					{
+						NoRemove Ext
+						{
+							NoRemove CLSID
+							{
+								ForceRemove	val {EA801577-E6AD-4BD5-8F71-4BE0154331A4} = s '2'
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove SOFTWARE
+	{
+		NoRemove Microsoft
+		{
+			NoRemove 'Internet Explorer'
+			{
+				NoRemove 'Low Rights'
+				{
+					NoRemove ElevationPolicy
+					{
+						ForceRemove '{56753E59-AF1D-4FBA-9E15-31557124ADA2}'
+						{
+							val AppPath = s '%MODULEPATH%'
+							val AppName = s 'ClassicIE_32.exe'
+							val Policy = d '3'
+						}
+						ForceRemove '{C0393554-9B48-458A-B91B-3F684D003B2F}'
+						{
+							val AppPath = s '%MODULEPATH%'
+							val AppName = s 'ClassicIE_64.exe'
+							val Policy = d '3'
+						}
+						ForceRemove '{02E6771D-8375-42B9-9F83-B4730F697900}'
+						{
+							val AppPath = s '%MODULEPATH%'
+							val AppName = s 'Update.exe'
+							val Policy = d '3'
+						}
+					}
+				}
+				NoRemove Extensions
+				{
+					ForceRemove '{56753E59-AF1D-4FBA-9E15-31557124ADA2}'
+					{
+						val CLSID = s '{1FBA04EE-3024-11d2-8F1F-0000F87ABD16}'
+						val MenuText = s '%MENUTEXT%'
+						val Exec = s '%MODULEPATH%\ClassicIE_32.exe'
+					}
+				}
+			}
+		}
+	}
+}

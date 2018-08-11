@@ -11,6 +11,7 @@
 #include "ComHelper.h"
 #include "Settings.h"
 #include "psapi.h"
+#include "Legacy.h"
 
 #include "StartMenuDLL\StartMenuDLL.h"
 #include "StartMenuDLL\SettingsUI.h"
@@ -334,6 +335,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 			PropVariantClear(&val);
 		}
 	}*/
+
+	// one-time import from Classic Shell
+	ImportLegacyData();
 
 	DllLogToFile(STARTUP_LOG,L"StartMenu: start '%s'",lpstrCmdLine);
 	DWORD winVer=GetVersionEx(GetModuleHandle(L"user32.dll"));

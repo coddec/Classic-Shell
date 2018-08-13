@@ -121,7 +121,7 @@ class CStartHookWindow: public CWindowImpl<CStartHookWindow>
 {
 public:
 
-	DECLARE_WND_CLASS(L"Menu.CStartHookWindow")
+	DECLARE_WND_CLASS(L"OpenShellMenu.CStartHookWindow")
 
 	BEGIN_MSG_MAP( CStartHookWindow )
 		MESSAGE_HANDLER( WM_OPEN, OnOpen )
@@ -145,7 +145,7 @@ protected:
 
 LRESULT CStartHookWindow::OnOpen( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
-	if (g_TaskBar) ::PostMessage(g_TaskBar,RegisterWindowMessage(L"Menu.StartMenuMsg"),wParam,lParam);
+	if (g_TaskBar) ::PostMessage(g_TaskBar,RegisterWindowMessage(L"OpenShellMenu.StartMenuMsg"),wParam,lParam);
 	return 0;
 }
 
@@ -477,7 +477,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 			dll=LoadLibraryEx(path,NULL,LOAD_LIBRARY_AS_DATAFILE|LOAD_LIBRARY_AS_IMAGE_RESOURCE);
 		}
 		DllLoadTranslationResources(dll,NULL);
-		if (!DllSaveAdmx(COMPONENT_MENU,"Menu.admx","Menu.adml","MenuADMX.txt"))
+		if (!DllSaveAdmx(COMPONENT_MENU,"OpenShellStartMenu.admx","OpenShellStartMenu.adml","MenuADMX.txt"))
 			return 1;
 		if (!DllSaveAdmx(COMPONENT_SHARED,"OpenShell.admx","OpenShell.adml","OpenShellADMX.txt"))
 			return 1;
@@ -593,7 +593,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	bool bDefaultDesktop=(_wcsicmp(deskName,L"Default")==0);
 
 	wchar_t mutexName[1024];
-	Sprintf(mutexName,_countof(mutexName),L"Menu.Mutex.%s.%s",userName,deskName);
+	Sprintf(mutexName,_countof(mutexName),L"OpenShellMenu.Mutex.%s.%s",userName,deskName);
 	free(deskName);
 
 	if (open==CMD_NONE)
@@ -616,7 +616,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 					AllowSetForegroundWindow(process);
 					HWND taskBar=FindTaskBar(process);
 					if (taskBar)
-						PostMessage(taskBar,RegisterWindowMessage(L"Menu.StartMenuMsg"),(open==CMD_TOGGLE_NEW)?MSG_TOGGLENEW:MSG_TOGGLE,0);
+						PostMessage(taskBar,RegisterWindowMessage(L"OpenShellMenu.StartMenuMsg"),(open==CMD_TOGGLE_NEW)?MSG_TOGGLENEW:MSG_TOGGLE,0);
 					else
 						PostMessage(progWin,WM_SYSCOMMAND,SC_TASKLIST,(open==CMD_TOGGLE_NEW)?'WSMK':'CSM');
 				}
@@ -624,7 +624,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 			else if (open!=CMD_NONE)
 			{
 				AllowSetForegroundWindow(process);
-				HWND hwnd=FindWindow(L"Menu.CStartHookWindow",L"StartHookWindow");
+				HWND hwnd=FindWindow(L"OpenShellMenu.CStartHookWindow",L"StartHookWindow");
 				if (hwnd) PostMessage(hwnd,WM_OPEN,open,0);
 			}
 			if (open==MSG_EXIT && hMutex && WaitForSingleObject(hMutex,2000)==WAIT_OBJECT_0)

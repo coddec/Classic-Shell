@@ -437,7 +437,7 @@ LRESULT CALLBACK SubclassBalloonProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 class COwnerWindow: public CWindowImpl<COwnerWindow>
 {
 public:
-	DECLARE_WND_CLASS_EX(L"Update.COwnerWindow",0,COLOR_MENU)
+	DECLARE_WND_CLASS_EX(L"OpenShellUpdate.COwnerWindow",0,COLOR_MENU)
 
 	// message handlers
 	BEGIN_MSG_MAP( COwnerWindow )
@@ -478,7 +478,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	GetUserObjectInformation(desktop,UOI_NAME,deskName,len,&len);
 
 	wchar_t mutexName[1024];
-	Sprintf(mutexName,_countof(mutexName),L"Update.Mutex.%s.%s",userName,deskName);
+	Sprintf(mutexName,_countof(mutexName),L"OpenShellUpdate.Mutex.%s.%s",userName,deskName);
 	free(deskName);
 
 	HANDLE hMutex=CreateMutex(NULL,TRUE,mutexName);

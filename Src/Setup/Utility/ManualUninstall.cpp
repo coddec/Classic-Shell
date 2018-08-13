@@ -741,11 +741,11 @@ static void DeleteSettings( HKEY root, const wchar_t *rootName, const wchar_t *k
 			LogMessage(-1,L"Deleting registry key %s\\%s\\OpenShell",rootName,keyName);
 		else if (error!=ERROR_FILE_NOT_FOUND)
 			LogMessage(error,L"Failed to delete registry key %s\\%s\\OpenShell.",rootName,keyName);
-		error=RegDeleteTree2(hkey,L"Menu");
+		error=RegDeleteTree2(hkey,L"StartMenu");
 		if (error==ERROR_SUCCESS)
-			LogMessage(-1,L"Deleting registry key %s\\%s\\Menu",rootName,keyName);
+			LogMessage(-1,L"Deleting registry key %s\\%s\\StartMenu",rootName,keyName);
 		else if (error!=ERROR_FILE_NOT_FOUND)
-			LogMessage(error,L"Failed to delete registry key %s\\%s\\Menu.",rootName,keyName);
+			LogMessage(error,L"Failed to delete registry key %s\\%s\\StartMenu.",rootName,keyName);
 		RegCloseKey(hkey);
 
 		HKEY root2;
@@ -911,7 +911,7 @@ static void ManualUninstallInternal( void )
 	progress.SetWindowPos(HWND_TOP,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
 	{
 		// stop start menu
-		HWND hwnd=FindWindow(L"Menu.CStartHookWindow",L"StartHookWindow");
+		HWND hwnd=FindWindow(L"OpenShellMenu.CStartHookWindow",L"StartHookWindow");
 		if (hwnd) PostMessage(hwnd,WM_USER+10,MSG_EXIT,0);
 
 		int time=GetTickCount();
@@ -996,7 +996,6 @@ static void ManualUninstallInternal( void )
 	DeleteRegKeySOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\{449D0D6E-2412-4E61-B68F-1CB625CD9E52}",bIsWow64);
 	DeleteRegKeySOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\{EA801577-E6AD-4BD5-8F71-4BE0154331A4}",bIsWow64);
 	DeleteRegKeySOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\ShareOverlay",bIsWow64);
-	DeleteRegKeySOFTWARE(L"OpenShell\\OpenShell",bIsWow64);
 	DeleteRegKeySOFTWARE(L"OpenShell\\OpenShell",bIsWow64);
 
 	DeleteRegValueSOFTWARE(L"Microsoft\\Internet Explorer\\Toolbar",L"{553891B7-A0D5-4526-BE18-D3CE461D6310}",bIsWow64);

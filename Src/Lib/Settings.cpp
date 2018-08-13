@@ -416,8 +416,8 @@ static void GetRegPaths( TSettingsComponent component, const wchar_t *&regPath, 
 			gpPath=L"Software\\Policies\\OpenShell\\ClassicExplorer";
 			break;
 		case COMPONENT_MENU:
-			regPath=L"Software\\OpenShell\\Menu";
-			gpPath=L"Software\\Policies\\OpenShell\\Menu";
+			regPath=L"Software\\OpenShell\\StartMenu";
+			gpPath=L"Software\\Policies\\OpenShell\\StartMenu";
 			break;
 		case COMPONENT_IE:
 			regPath=L"Software\\OpenShell\\ClassicIE";
@@ -2418,7 +2418,7 @@ static const char *g_AdmxText1csm=
 "\t\t</definitions>\r\n"
 "\t</supportedOn>\r\n"
 "\t<categories>\r\n"
-"\t\t<category name=\"Menu\" displayName=\"$(string.MenuCat)\" explainText=\"$(string.MenuCatHelp)\">\r\n"
+"\t\t<category name=\"StartMenu\" displayName=\"$(string.MenuCat)\" explainText=\"$(string.MenuCatHelp)\">\r\n"
 "\t\t\t<parentCategory ref=\"classic_shell:OpenShell\" />\r\n"
 "\t\t</category>\r\n";
 
@@ -2545,9 +2545,9 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 			admlText1=g_AdmlText1ce;
 			break;
 		case COMPONENT_MENU:
-			keyName="Software\\Policies\\OpenShell\\Menu";
+			keyName="Software\\Policies\\OpenShell\\StartMenu";
 			prefix="CSM_";
-			catName="Menu";
+			catName="StartMenu";
 			admxText1=g_AdmxText1csm;
 			admlText1=g_AdmlText1csm;
 			break;

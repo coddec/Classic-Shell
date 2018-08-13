@@ -4273,8 +4273,8 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 		ULONGLONG curTime;
 		GetSystemTimeAsFileTime((FILETIME*)&curTime);
 		CRegKey regKey;
-		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu",KEY_WRITE)!=ERROR_SUCCESS)
-			regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu");
+		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu",KEY_WRITE)!=ERROR_SUCCESS)
+			regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu");
 
 		if (m_pParent->m_Items[m_ParentIndex].id==MENU_PROGRAMS)
 			regKey.SetQWORDValue(L"LastProgramsTime",curTime);
@@ -7544,7 +7544,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	s_bWin7Style=GetSettingInt(L"MenuStyle")==MENU_WIN7;
 
 	if (!s_StartMenuMsg)
-		s_StartMenuMsg=RegisterWindowMessage(L"Menu.StartMenuMsg");
+		s_StartMenuMsg=RegisterWindowMessage(L"OpenShellMenu.StartMenuMsg");
 	s_StartMenuParams.uEdge=0xFFFFFFFF;
 	s_TaskBarId=taskbarId;
 	TaskbarInfo *taskBar=GetTaskbarInfo(taskbarId);
@@ -8728,8 +8728,8 @@ void CMenuContainer::SetMenuMode( TMenuMode mode, bool bKeyboard )
 		ULONGLONG curTime;
 		GetSystemTimeAsFileTime((FILETIME*)&curTime);
 		CRegKey regKey;
-		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu",KEY_WRITE)!=ERROR_SUCCESS)
-			regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu");
+		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StarMenu",KEY_WRITE)!=ERROR_SUCCESS)
+			regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu");
 		regKey.SetQWORDValue(L"LastProgramsTime",curTime);
 		if (s_OldMenuState.mode!=MODE_SEARCH)
 			m_pProgramsTree->SetFocus();

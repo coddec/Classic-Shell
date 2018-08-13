@@ -286,7 +286,7 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	if (extract)
 	{
 		wchar_t msiName[_MAX_PATH];
-		Sprintf(msiName,_countof(msiName),L"Setup%d_%d_%d_%d.msi",extract,HIWORD(pVer->dwProductVersionMS),LOWORD(pVer->dwProductVersionMS),HIWORD(pVer->dwProductVersionLS));
+		Sprintf(msiName,_countof(msiName),L"OpenShellSetup%d_%d_%d_%d.msi",extract,HIWORD(pVer->dwProductVersionMS),LOWORD(pVer->dwProductVersionMS),HIWORD(pVer->dwProductVersionLS));
 		return ExtractMsi(hInstance,msiName,extract==64,bQuiet);
 	}
 
@@ -326,8 +326,8 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	BOOL b64=FALSE;
 	isWow64Process(GetCurrentProcess(),&b64);
 
-	// look for an old version the start menu (2.0.0 or older) and show a warning if it is still running. the uninstaller for such old versions doesn't close the start menu
-	HWND hwnd=FindWindow(L"Menu.CStartHookWindow",L"StartHookWindow");
+	// look for an old version of the classic start menu (2.0.0 or older) and show a warning if it is still running. the uninstaller for such old versions doesn't close the start menu
+	HWND hwnd=FindWindow(L"ClassicStartMenu.CStartHookWindow",L"StartHookWindow");
 	if (hwnd)
 	{
 		bool bStartMenu=false;
@@ -391,7 +391,7 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	}
 
 	wchar_t msiName[_MAX_PATH];
-	Sprintf(msiName,_countof(msiName),L"%%ALLUSERSPROFILE%%\\Setup%d_%d_%d_%d.msi",b64?64:32,HIWORD(pVer->dwProductVersionMS),LOWORD(pVer->dwProductVersionMS),HIWORD(pVer->dwProductVersionLS));
+	Sprintf(msiName,_countof(msiName),L"%%ALLUSERSPROFILE%%\\OpenShellSetup%d_%d_%d_%d.msi",b64?64:32,HIWORD(pVer->dwProductVersionMS),LOWORD(pVer->dwProductVersionMS),HIWORD(pVer->dwProductVersionLS));
 	DoEnvironmentSubst(msiName,_countof(msiName));
 	int ex=ExtractMsi(hInstance,msiName,b64!=FALSE,bQuiet);
 	if (ex) return ex;

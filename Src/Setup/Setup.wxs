@@ -66,7 +66,7 @@
 				<ComponentRef Id="ClassicExplorerSettings.exe" />
 				<ComponentRef Id="ExplorerSettingsLink" />
 			</Feature>
-			<Feature Id="Menu" Level="1" Title="!(loc.StartMenuTitle)" ConfigurableDirectory="APPLICATIONFOLDER" AllowAdvertise="no" Description="!(loc.StartMenuDesc)">
+			<Feature Id="StartMenu" Level="1" Title="!(loc.StartMenuTitle)" ConfigurableDirectory="APPLICATIONFOLDER" AllowAdvertise="no" Description="!(loc.StartMenuDesc)">
 				<ComponentRef Id="StartMenu.exe" />
 				<ComponentRef Id="StartMenuDLL.dll" />
 				<ComponentRef Id="StartMenuL10N.ini" />
@@ -392,21 +392,7 @@
 					<Text><![CDATA[<a href="https://github.com/Open-Shell/Open-Shell-Menu">!(loc.WebLink)</a>]]></Text>
 					<Condition Action="show">NOT Installed</Condition>
 				</Control>
-				<!-- <Control Type="Icon" Id="Icon2" Width="12" Height="12" X="7" Y="220" Hidden="yes" Text="donate.ico"> -->
-				<!-- <Condition Action="show">NOT Installed</Condition> -->
-				<!-- </Control> -->
-				<!-- <Control Type="Hyperlink" Id="Link2" Width="112" Height="10" X="22" Y="221" Hidden="yes" ToolTip="www.paypal.com"> -->
-				<!-- <Text><![CDATA[<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5N8TPRAQJWX8G&lc=US&item_name=Classic%20Shell&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">!(loc.DonateLink)</a>]]></Text> -->
-				<!-- <Condition Action="show">NOT Installed</Condition> -->
-				<!-- </Control> -->
-				<Control Type="Icon" Id="Icon3" Width="12" Height="12" X="185" Y="203" Hidden="yes" Text="facebook.ico">
-					<Condition Action="show">NOT Installed</Condition>
-				</Control>
-				<Control Type="Hyperlink" Id="Link3" Width="140" Height="10" X="200" Y="204" Hidden="yes" ToolTip="www.facebook.com">
-					<Text><![CDATA[<a href="https://www.facebook.com/classicshell">!(loc.FacebookLink)</a>]]></Text>
-					<Condition Action="show">NOT Installed</Condition>
-				</Control>
-				<Control Id="OptionalCheckBox" Type="CheckBox" X="188" Y="220" Width="130" Height="12" Hidden="yes" Property="WIXUI_EXITDIALOGOPTIONALCHECKBOX" CheckBoxValue="1" Text="!(loc.ViewReadme)">
+				<Control Id="OptionalCheckBox" Type="CheckBox" X="188" Y="204" Width="130" Height="12" Hidden="yes" Property="WIXUI_EXITDIALOGOPTIONALCHECKBOX" CheckBoxValue="1" Text="!(loc.ViewReadme)">
 					<Condition Action="show">NOT Installed</Condition>
 				</Control>
 			</Dialog>
@@ -452,7 +438,7 @@
 			<Component Id="StartMenu.exe" Guid="F74C0FF3-A8C0-4B6E-AFD2-F9467DE4D90B" Win64="yes" DiskId="2">
 				<File Id="StartMenu.exe" KeyPath="yes" Checksum="yes" Source="Output\x64\StartMenu.exe" Vital="yes" />
 				<Shortcut Id="StartMenuSettings" Name="Start Menu Settings" Advertise="no" Arguments="-settings" Description="!(loc.StartSettingsDesc)" Target="[APPLICATIONFOLDER]StartMenu.exe" WorkingDirectory="APPLICATIONFOLDER">
-					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Menu.Settings" />
+					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.StartMenu.Settings" />
 				</Shortcut>
 			</Component>
 			<Component Id="StartMenuDLL.dll" Guid="C5226061-17DE-4DF6-A088-CC84F6A7BE84" Win64="yes" DiskId="2">
@@ -462,7 +448,7 @@
 			<Component Id="StartMenu.exe" Guid="F74C0FF3-A8C0-4B6E-AFD2-F9467DE4D90B" Win64="no" DiskId="2">
 				<File Id="StartMenu.exe" KeyPath="yes" Checksum="yes" Source="Output\StartMenu.exe" Vital="yes" />
 				<Shortcut Id="StartMenuSettings" Name="Start Menu Settings" Advertise="no" Arguments="-settings" Description="!(loc.StartSettingsDesc)" Target="[APPLICATIONFOLDER]StartMenu.exe" WorkingDirectory="APPLICATIONFOLDER">
-					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Menu.Settings" />
+					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.StartMenu.Settings" />
 				</Shortcut>
 			</Component>
 			<Component Id="StartMenuDLL.dll" Guid="C5226061-17DE-4DF6-A088-CC84F6A7BE84" Win64="no" DiskId="2">
@@ -471,7 +457,7 @@
 			<?endif ?>
 			<Component Id="StartScreenLink" Guid="5C71165B-5451-417b-ADF5-86983ED2489A" Win64="$(var.CS_WIN64)">
 				<Shortcut Id="StartScreen" Name="Start Screen" Advertise="no" Arguments="-togglenew" Description="!(loc.StartScreenDesc)" Target="[APPLICATIONFOLDER]StartMenu.exe" WorkingDirectory="APPLICATIONFOLDER" Icon="StartScreen.exe">
-					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Menu.StartScreen" />
+					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.StartMenu.StartScreen" />
 					<ShortcutProperty Key="System.AppUserModel.StartPinOption" Value="1" />
 					<ShortcutProperty Key="System.AppUserModel.ExcludeFromShowInNewInstall" Value="1" />
 					<Icon Id="StartScreen.exe" SourceFile="..\StartMenu\StartMenuDLL\startb.ico" />
@@ -563,7 +549,7 @@
 			</Component>
 			<Component Id="AutoRun" Guid="64987C22-72C7-419D-B5A5-D2E6CB4865B6" Win64="$(var.CS_WIN64)">
 				<RegistryKey Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run">
-					<RegistryValue Value="&quot;[APPLICATIONFOLDER]StartMenu.exe&quot; -autorun" Type="string" Name="Open-Shell Menu" />
+					<RegistryValue Value="&quot;[APPLICATIONFOLDER]StartMenu.exe&quot; -autorun" Type="string" Name="Open-Shell Start Menu" />
 				</RegistryKey>
 			</Component>
 			<Component Id="TreatAs" Guid="B1E7462A-E1E2-47eb-A42C-7BD272D738AA" Win64="$(var.CS_WIN64)">
@@ -595,7 +581,7 @@
 			</Component>
 			<Component Id="MenuSettingsLink" Guid="F2B638D3-EBE1-4C8F-9C53-08A4F21ACFA3">
 				<Shortcut Id="MenuSettingsLink" Name="!(loc.StartMenuItem)" Advertise="no" Description="!(loc.StartSettingsDesc)" Target="[APPLICATIONFOLDER]StartMenu.exe" WorkingDirectory="APPLICATIONFOLDER" Arguments="-settings">
-					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Menu.Settings" />
+					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.StartMenu.Settings" />
 				</Shortcut>
 				<CreateFolder />
 				<Condition>START_MENU_FOLDER=1</Condition>
@@ -651,13 +637,11 @@
 		</Upgrade>
 		<InstallExecuteSequence>
 			<RemoveExistingProducts After="InstallInitialize" />
-			<Custom Action="CloseStartMenu" Before="InstallValidate"><![CDATA[((!Menu=3) AND (&Menu=2)) OR PREVIOUSVERSIONSINSTALLED OR REINSTALL]]></Custom>
-			<Custom Action="LaunchStartMenu" After="InstallFinalize"><![CDATA[(!Menu=3 OR &Menu=3) AND NOT REMOVE AND NOSTART<>1]]></Custom>
+			<Custom Action="CloseStartMenu" Before="InstallValidate"><![CDATA[((!StartMenu=3) AND (&StartMenu=2)) OR PREVIOUSVERSIONSINSTALLED OR REINSTALL]]></Custom>
+			<Custom Action="LaunchStartMenu" After="InstallFinalize"><![CDATA[(!StartMenu=3 OR &StartMenu=3) AND NOT REMOVE AND NOSTART<>1]]></Custom>
 		</InstallExecuteSequence>
 		<Binary Id="SetupHelper.exe" SourceFile="Output\SetupHelper.exe" />
 		<Binary Id="dialog2.jpg" SourceFile="..\Setup\dialog2.jpg" />
-		<Binary Id="donate.ico" SourceFile="..\Setup\donate.ico" />
 		<Binary Id="web.ico" SourceFile="..\Setup\web.ico" />
-		<Binary Id="facebook.ico" SourceFile="..\Setup\facebook.ico" />
 	</Product>
 </Wix>

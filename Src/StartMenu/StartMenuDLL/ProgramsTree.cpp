@@ -860,8 +860,8 @@ void CProgramsTree::AddMetroApps( std::vector<CTreeItem*> &items )
 	ULONGLONG curTime;
 	GetSystemTimeAsFileTime((FILETIME*)&curTime);
 	CRegKey regKey;
-	if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu",KEY_WRITE)!=ERROR_SUCCESS)
-		regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu");
+	if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu",KEY_WRITE)!=ERROR_SUCCESS)
+		regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu");
 	regKey.SetQWORDValue(L"LastAppsTime",curTime);
 }
 

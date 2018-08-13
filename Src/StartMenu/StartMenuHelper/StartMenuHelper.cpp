@@ -162,7 +162,7 @@ typedef HRESULT (__stdcall *FDllGetClassObject)(REFCLSID,REFIID,LPVOID*);
 
 static HMODULE g_ExplorerModule=NULL;
 
-static void StartMenu( void )
+static void StartStartMenu( void )
 {
 	STARTUPINFO startupInfo={sizeof(STARTUPINFO)};
 	PROCESS_INFORMATION processInfo;
@@ -208,7 +208,7 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 		{
 			LogToFile(STARTUP_LOG,L"StartMenuHelper: DllGetClassObject2");
 			if (GetSettingBool(L"AutoStart"))
-				StartMenu();
+				StartStartMenu();
 			FDllGetClassObject func=(FDllGetClassObject)GetProcAddress(g_ExplorerModule,"DllGetClassObject");
 			if (func)
 				res=func(g_ExplorerClsid,riid,ppv);

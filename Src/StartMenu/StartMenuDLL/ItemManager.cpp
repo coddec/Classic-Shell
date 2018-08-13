@@ -1527,7 +1527,7 @@ void CItemManager::UpdateNewPrograms( const POINT &balloonPos )
 	{
 		CRegKey regKey;
 		ULONGLONG val1, val2;
-		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu",KEY_READ)==ERROR_SUCCESS)
+		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu",KEY_READ)==ERROR_SUCCESS)
 		{
 			if (regKey.QueryQWORDValue(L"LastProgramsTime",val1)!=ERROR_SUCCESS)
 				val1=0;
@@ -1608,7 +1608,7 @@ void CItemManager::LoadOldItems( void )
 {
 	m_OldItemInfos.clear();
 	CRegKey regItems;
-	if (regItems.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu",KEY_READ)==ERROR_SUCCESS)
+	if (regItems.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu",KEY_READ)==ERROR_SUCCESS)
 	{
 		ULONG size=0;
 		regItems.QueryBinaryValue(L"OldItems",NULL,&size);
@@ -1721,8 +1721,8 @@ void CItemManager::AddOldItems( const std::vector<unsigned> &hashes )
 	}
 
 	CRegKey regItems;
-	if (regItems.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu")!=ERROR_SUCCESS)
-		regItems.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\Menu");
+	if (regItems.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu")!=ERROR_SUCCESS)
+		regItems.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\StartMenu");
 
 	if (m_OldItemInfos.empty())
 		regItems.SetBinaryValue(L"OldItems",NULL,0);

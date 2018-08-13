@@ -662,7 +662,7 @@ static void WriteLogFile( FILE *f )
 	for (std::set<CString,CompareStrings>::const_iterator it=programs.begin();it!=programs.end();++it)
 		fwprintf(f,L"\t\t%s\r\n",(const wchar_t*)(*it));
 
-	fwprintf(f,L"\r\nClassic Start\r\n");
+	fwprintf(f,L"\r\nOpen-Shell\r\n");
 	wchar_t csPath[_MAX_PATH]=L"";
 	// classic shell version
 	{
@@ -682,13 +682,13 @@ static void WriteLogFile( FILE *f )
 			size=_countof(csPath);
 			if (regKey.QueryStringValue(L"Path",csPath,&size)==ERROR_SUCCESS)
 			{
-				fwprintf(f,L"\tClassic Start path: '%s'\r\n",csPath);
+				fwprintf(f,L"\tOpen-Shell path: '%s'\r\n",csPath);
 				PathRemoveBackslash(csPath);
 			}
 
 			DWORD val;
 			if (regKey.QueryDWORDValue(L"Version",val)==ERROR_SUCCESS)
-				fwprintf(f,L"\tClassic Start version: %d.%d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
+				fwprintf(f,L"\tOpen-Shell version: %d.%d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
 
 			if (regKey.QueryDWORDValue(L"WinVersion",val)==ERROR_SUCCESS)
 				fwprintf(f,L"\tWin version during installation: %d.%02d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
@@ -974,7 +974,7 @@ static void WriteLogFileAdmin( FILE *f )
 	}
 	for (std::vector<DWORD>::const_iterator it=menus.begin();it!=menus.end();++it)
 	{
-		fwprintf(f,L"\r\nMenu process: %d\r\n",*it);
+		fwprintf(f,L"\r\nStartMenu process: %d\r\n",*it);
 		HANDLE hProcess=OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,FALSE,*it);
 		if (hProcess)
 		{

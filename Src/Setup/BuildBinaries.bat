@@ -81,17 +81,17 @@ copy /B Output\x64\ClassicExplorer64.dll Output\PDB64 > nul
 REM IE 32
 copy /B ..\ClassicIE\Setup\ClassicIEDLL_32.pdb Output\PDB32 > nul
 copy /B Output\ClassicIEDLL_32.dll Output\PDB32 > nul
-copy /B ..\ClassicIE\Setup\ClassicIE_32.exe Output\PDB32 > nul
+copy /B ..\ClassicIE\Setup\ClassicIE_32.pdb Output\PDB32 > nul
 copy /B Output\ClassicIE_32.exe Output\PDB32 > nul
 
 REM IE 64
 copy /B ..\ClassicIE\Setup64\ClassicIEDLL_64.pdb Output\PDB64 > nul
 copy /B Output\x64\ClassicIEDLL_64.dll Output\PDB64 > nul
-copy /B ..\ClassicIE\Setup64\ClassicIE_64.exe Output\PDB64 > nul
+copy /B ..\ClassicIE\Setup64\ClassicIE_64.pdb Output\PDB64 > nul
 copy /B Output\x64\ClassicIE_64.exe Output\PDB64 > nul
 
 REM Menu 32
-copy /B ..\StartMenu\Setup\Menu.pdb Output\PDB32 > nul
+copy /B ..\StartMenu\Setup\StartMenu.pdb Output\PDB32 > nul
 copy /B Output\StartMenu.exe Output\PDB32 > nul
 copy /B ..\StartMenu\Setup\StartMenuDLL.pdb Output\PDB32 > nul
 copy /B Output\StartMenuDLL.dll Output\PDB32 > nul
@@ -101,7 +101,7 @@ copy /B ..\Update\Release\Update.pdb Output\PDB32 > nul
 copy /B Output\Update.exe Output\PDB32 > nul
 
 REM Menu 64
-copy /B ..\StartMenu\Setup64\Menu.pdb Output\PDB64 > nul
+copy /B ..\StartMenu\Setup64\StartMenu.pdb Output\PDB64 > nul
 copy /B Output\x64\StartMenu.exe Output\PDB64 > nul
 copy /B ..\StartMenu\Setup64\StartMenuDLL.pdb Output\PDB64 > nul
 copy /B Output\x64\StartMenuDLL.dll Output\PDB64 > nul

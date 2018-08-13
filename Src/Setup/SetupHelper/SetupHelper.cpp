@@ -41,7 +41,7 @@ int ExitStartMenu( void )
 		}
 		RegCloseKey(hKey);
 	}
-	HWND updateOwner=FindWindow(L"Update.COwnerWindow",NULL);
+	HWND updateOwner=FindWindow(L"OpenShellUpdate.COwnerWindow",NULL);
 	if (updateOwner)
 		PostMessage(updateOwner,WM_CLEAR,0,0);
 	return 0;

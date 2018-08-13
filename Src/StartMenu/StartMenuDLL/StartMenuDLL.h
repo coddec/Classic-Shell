@@ -81,7 +81,7 @@ extern HWND g_ProgWin;
 extern HMONITOR g_WSMHMonitor;
 extern int g_CurrentCSMTaskbar, g_CurrentWSMTaskbar;
 
-enum TMenuMsgParam // wParam for the Menu.StartMenuMsg message
+enum TMenuMsgParam // wParam for the OpenShellMenu.StartMenuMsg message
 {
 	MSG_TOGGLE, // toggles the classic start menu
 	MSG_TOGGLENEW, // toggles the Windows start menu

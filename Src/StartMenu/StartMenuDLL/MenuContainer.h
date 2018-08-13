@@ -993,7 +993,7 @@ private:
 	static HRESULT __stdcall CreateAccessible( ComCallData *pData );
 	static HRESULT __stdcall ReleaseAccessible( ComCallData *pData );
 
-	// To control the placement of the start menu, send Menu.StartMenuMsg message right after the start menu is created but before it is displayed
+	// To control the placement of the start menu, send OpenShellMenu.StartMenuMsg message right after the start menu is created but before it is displayed
 	// The lParam must point to StartMenuParams
 	// monitorRect - the entire area available to the start menu (sub-menus will use it). It is usually the monitor area but can be less if the Desktop app is docked in Win8
 	// uEdge - the location of the taskbar - ABE_BOTTOM, ABE_LEFT, etc

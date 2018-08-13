@@ -564,13 +564,13 @@ static void FindTaskBar( void )
 {
 	if (!g_TaskBar)
 	{
-		g_StartMenuMsg=RegisterWindowMessage(L"Menu.StartMenuMsg");
+		g_StartMenuMsg=RegisterWindowMessage(L"OpenShellMenu.StartMenuMsg");
 		FindTaskBar(GetCurrentProcessId());
 		if (g_TaskBar)
 		{
-			g_HotkeyShiftID=GlobalAddAtom(L"Menu.HotkeyShift");
-			g_HotkeyCSMID=GlobalAddAtom(L"Menu.HotkeyCSM");
-			g_HotkeyWSMID=GlobalAddAtom(L"Menu.HotkeyWSM");
+			g_HotkeyShiftID=GlobalAddAtom(L"OpenShellMenu.HotkeyShift");
+			g_HotkeyCSMID=GlobalAddAtom(L"OpenShellMenu.HotkeyCSM");
+			g_HotkeyWSMID=GlobalAddAtom(L"OpenShellMenu.HotkeyWSM");
 			EnableHotkeys(HOTKEYS_NORMAL);
 			srand(GetTickCount());
 		}
@@ -2896,7 +2896,7 @@ static void InitStartMenuDLL( void )
 	DWORD progThread=GetWindowThreadProcessId(g_ProgWin,NULL);
 	g_ProgHook=SetWindowsHookEx(WH_GETMESSAGE,HookProgManThread,NULL,progThread);
 	g_StartHook=SetWindowsHookEx(WH_GETMESSAGE,HookDesktopThread,NULL,GetCurrentThreadId());
-	HWND hwnd=FindWindow(L"Menu.CStartHookWindow",L"StartHookWindow");
+	HWND hwnd=FindWindow(L"OpenShellMenu.CStartHookWindow",L"StartHookWindow");
 	LoadLibrary(L"StartMenuDLL.dll"); // keep the DLL from unloading
 	if (hwnd) PostMessage(hwnd,WM_CLEAR,0,0); // tell the exe to unhook this hook
 	if (GetWinVersion()>=WIN_VER_WIN8)
@@ -3120,7 +3120,7 @@ static void CleanStartMenuDLL( void )
 	CMenuFader::ClearAll();
 	UnhookDropTarget();
 	EnableHotkeys(HOTKEYS_CLEAR);
-	HWND hwnd=FindWindow(L"Menu.CStartHookWindow",L"StartHookWindow");
+	HWND hwnd=FindWindow(L"OpenShellMenu.CStartHookWindow",L"StartHookWindow");
 	UnhookWindowsHookEx(g_ProgHook);
 	UnhookWindowsHookEx(g_StartHook);
 	if (g_AppManagerHook) UnhookWindowsHookEx(g_AppManagerHook);

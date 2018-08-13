@@ -392,11 +392,7 @@
 					<Text><![CDATA[<a href="https://github.com/Open-Shell/Open-Shell-Menu">!(loc.WebLink)</a>]]></Text>
 					<Condition Action="show">NOT Installed</Condition>
 				</Control>
-				<Control Id="OptionalCheckBox" Type="CheckBox" X="188" Y="204" Width="130" Height="12" Hidden="yes" Property="WIXUI_EXITDIALOGOPTIONALCHECKBOX" CheckBoxValue="1" Text="!(loc.ViewReadme)">
-					<Condition Action="show">NOT Installed</Condition>
-				</Control>
 			</Dialog>
-			<Publish Dialog="ExitDialog2" Control="Finish" Event="DoAction" Value="ViewReadme">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
 			<InstallUISequence>
 				<Show Dialog="ExitDialog2" OnExit="success" />
 			</InstallUISequence>
@@ -611,8 +607,6 @@
 		<Property Id="ApplicationFolderName" Value="Open-Shell" />
 		<Property Id="WixAppFolder" Value="WixPerMachineFolder" />
 		<Property Id="ALLUSERS" Value="1" />
-		<Property Id="WixShellExecTarget" Value="[#OpenShellReadme.rtf]" />
-		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 		<Property Id="ARPHELPLINK" Value="http://www.classicshell.net/forum/" />
 		<Property Id="ARPSIZE" Value="9000" />
 		<Property Id="ARPURLINFOABOUT" Value="http://www.classicshell.net/" />
@@ -626,7 +620,6 @@
 		<Property Id="APPLICATIONFOLDER">
 			<RegistrySearch Id="Path" Root="HKLM" Key="Software\OpenShell\OpenShell" Name="Path" Type="raw" Win64="$(var.CS_WIN64)" />
 		</Property>
-		<CustomAction Id="ViewReadme" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 		<CustomAction Id="LaunchStartMenu" Impersonate="yes" ExeCommand="" FileKey="StartMenu.exe" Return="asyncNoWait" />
 		<CustomAction Id="CloseStartMenu" Impersonate="yes" BinaryKey="SetupHelper.exe" Return="ignore" ExeCommand="exitSM" />
 		<WixVariable Id="WixUIBannerBmp" Value="..\Setup\banner.jpg" />

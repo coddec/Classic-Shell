@@ -16,7 +16,6 @@
 // It unpacks the right installer into the temp directory and executes it.
 
 typedef BOOL (WINAPI *FIsWow64Process)( HANDLE hProcess, PBOOL Wow64Process );
-typedef BOOL (WINAPI *FQueryFullProcessImageName)( HANDLE hProcess, DWORD dwFlags, LPTSTR lpExeName, PDWORD lpdwSize );
 
 
 
@@ -326,49 +325,6 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	BOOL b64=FALSE;
 	isWow64Process(GetCurrentProcess(),&b64);
 
-	// look for an old version of the classic start menu (2.0.0 or older) and show a warning if it is still running. the uninstaller for such old versions doesn't close the start menu
-	HWND hwnd=FindWindow(L"ClassicStartMenu.CStartHookWindow",L"StartHookWindow");
-	if (hwnd)
-	{
-		bool bStartMenu=false;
-
-		DWORD id;
-		GetWindowThreadProcessId(hwnd,&id);
-		HANDLE process=OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,FALSE,id);
-		if (process)
-		{
-			bStartMenu=true;
-			wchar_t path[_MAX_PATH];
-			DWORD size=_countof(path);
-
-			FQueryFullProcessImageName queryFullProcessImageName=(FQueryFullProcessImageName)GetProcAddress(hKernel32,"QueryFullProcessImageNameW");
-			if (queryFullProcessImageName && queryFullProcessImageName(process,0,path,&size))
-			{
-				DWORD q;
-				DWORD size=GetFileVersionInfoSize(path,&q);
-				if (size)
-				{
-					std::vector<char> buf(size);
-					if (GetFileVersionInfo(path,0,size,&buf[0]))
-					{
-						VS_FIXEDFILEINFO *pVer;
-						UINT len;
-						if (VerQueryValue(&buf[0],L"\\",(void**)&pVer,&len) && pVer->dwProductVersionMS>0x20000)
-							bStartMenu=false;
-					}
-				}
-			}
-			CloseHandle(process);
-		}
-		if (bStartMenu)
-		{
-			wchar_t strTitle[256];
-			if (!LoadString(hInstance,IDS_APP_TITLE,strTitle,_countof(strTitle))) strTitle[0]=0;
-			wchar_t strText[1024];
-			if (!LoadString(hInstance,IDS_OLDSTARTMENU,strText,_countof(strText))) strText[0]=0;
-			MessageBox(NULL,strText,strTitle,MB_OK|MB_ICONWARNING);
-		}
-	}
 /*
 	// warning about being beta
 	if (!bQuiet)

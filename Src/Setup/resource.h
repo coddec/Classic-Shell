@@ -5,7 +5,6 @@
 #define IDS_APP_NAME                    100
 #define IDS_APP_TITLE                   100
 #define IDI_APPICON                     101
-#define IDS_OLDSTARTMENU                101
 #define IDS_ERR_CORRUPTED               102
 #define IDR_MSI_FILE32                  132
 #define IDR_MSI_FILE64                  164

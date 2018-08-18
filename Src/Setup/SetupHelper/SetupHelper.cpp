@@ -8,14 +8,12 @@
 #include <atlstr.h>
 #include "ResourceHelper.h"
 
-HINSTANCE g_hInstance;
-
 ///////////////////////////////////////////////////////////////////////////////
 
-int ExitStartMenu( void )
+int ExitStartMenu(const wchar_t* regPath, const wchar_t* exeName, const wchar_t* updaterClass)
 {
 	HKEY hKey=NULL;
-	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,L"SOFTWARE\\OpenShell\\OpenShell",0,NULL,REG_OPTION_NON_VOLATILE,KEY_READ|KEY_QUERY_VALUE|KEY_WOW64_64KEY,NULL,&hKey,NULL)==ERROR_SUCCESS)
+	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,regPath,0,NULL,REG_OPTION_NON_VOLATILE,KEY_READ|KEY_QUERY_VALUE|KEY_WOW64_64KEY,NULL,&hKey,NULL)==ERROR_SUCCESS)
 	{
 		DWORD type=0;
 		wchar_t path[_MAX_PATH];
@@ -25,7 +23,7 @@ int ExitStartMenu( void )
 			STARTUPINFO startupInfo={sizeof(startupInfo)};
 			PROCESS_INFORMATION processInfo;
 			memset(&processInfo,0,sizeof(processInfo));
-			wcscat_s(path,L"StartMenu.exe");
+			wcscat_s(path,exeName);
 			HANDLE h=CreateFile(path,GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 			if (h!=INVALID_HANDLE_VALUE)
 			{
@@ -41,9 +39,20 @@ int ExitStartMenu( void )
 		}
 		RegCloseKey(hKey);
 	}
-	HWND updateOwner=FindWindow(L"OpenShellUpdate.COwnerWindow",NULL);
+	HWND updateOwner=FindWindow(updaterClass,NULL);
 	if (updateOwner)
 		PostMessage(updateOwner,WM_CLEAR,0,0);
+	return 0;
+}
+
+int ExitStartMenu()
+{
+	// terminate Open-Shell Start Menu in clean way
+	ExitStartMenu(L"SOFTWARE\\OpenShell\\OpenShell", L"StartMenu.exe", L"OpenShellUpdate.COwnerWindow");
+
+	// try to terminate also ClassicShell Start Menu (to make upgrade a bit easier)
+	ExitStartMenu(L"SOFTWARE\\IvoSoft\\ClassicShell", L"ClassicStartMenu.exe", L"ClassicShellUpdate.COwnerWindow");
+
 	return 0;
 }
 
@@ -73,8 +82,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	int count;
 	wchar_t *const *params=CommandLineToArgvW(lpstrCmdLine,&count);
 	if (!params) return 1;
-
-	g_hInstance=hInstance;
 
 	for (;count>0;count--,params++)
 	{

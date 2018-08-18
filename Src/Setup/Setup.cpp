@@ -198,32 +198,8 @@ static int ExtractMsi( HINSTANCE hInstance, const wchar_t *msiName, bool b64, bo
 	return 0;
 }
 
-INT_PTR CALLBACK DialogProc( HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam )
-{
-	if (uMsg==WM_COMMAND && wParam==IDOK)
-	{
-		wchar_t text[256];
-		GetDlgItemText(hwndDlg,IDC_EDITPWD,text,_countof(text));
-		CharUpper(text);
-		if (CalcFNVHash(text)==0xdd7faf06)
-			EndDialog(hwndDlg,IDOK);
-		else
-			MessageBox(hwndDlg,L"Wrong password.",L"Error",MB_OK|MB_ICONERROR);
-		return TRUE;
-	}
-	if (uMsg==WM_COMMAND && wParam==IDCANCEL)
-	{
-		EndDialog(hwndDlg,IDCANCEL);
-		return TRUE;
-	}
-	return FALSE;
-}
-
 int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow )
 {
-	INITCOMMONCONTROLSEX init={sizeof(init),ICC_STANDARD_CLASSES};
-	InitCommonControlsEx(&init);
-
 	// get installer version
 	VS_FIXEDFILEINFO *pVer=NULL;
 	{
@@ -237,9 +213,6 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		if (pRes)
 			pVer=(VS_FIXEDFILEINFO*)((char*)pRes+40);
 	}
-
-	if (pVer && pVer->dwProductVersionMS==0x20008 && pVer->dwProductVersionLS==0 && DialogBox(hInstance,MAKEINTRESOURCE(IDD_DIALOGPWD),NULL,DialogProc)!=IDOK)
-		return 0;
 
 	int count;
 	wchar_t *const *params=CommandLineToArgvW(lpCmdLine,&count);
@@ -324,27 +297,6 @@ int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
 	BOOL b64=FALSE;
 	isWow64Process(GetCurrentProcess(),&b64);
-
-/*
-	// warning about being beta
-	if (!bQuiet)
-	{
-		if (MessageBox(NULL,L"Warning!\nThis is a beta version of Open-Shell. It contains features that are not fully tested. Please report any problems in the Open-Shell forums. If you prefer a stable build over the latest features, you can download one of the \"general release\" versions like 3.6.8.\nDo you want to continue with the installation?",L"Open-Shell Setup",MB_YESNO|MB_ICONWARNING)==IDNO)
-			return 99;
-	}
-*/
-
-	DWORD version;
-	{
-		HKEY hKey;
-		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE,L"SOFTWARE\\OpenShell\\OpenShell",0,KEY_READ|(b64?KEY_WOW64_64KEY:0),&hKey)==ERROR_SUCCESS)
-		{
-			DWORD size=sizeof(version);
-			if (RegQueryValueEx(hKey,L"Version",0,NULL,(BYTE*)&version,&size)!=ERROR_SUCCESS)
-				version=0;
-			RegCloseKey(hKey);
-		}
-	}
 
 	wchar_t msiName[_MAX_PATH];
 	Sprintf(msiName,_countof(msiName),L"%%ALLUSERSPROFILE%%\\OpenShellSetup%d_%d_%d_%d.msi",b64?64:32,HIWORD(pVer->dwProductVersionMS),LOWORD(pVer->dwProductVersionMS),HIWORD(pVer->dwProductVersionLS));

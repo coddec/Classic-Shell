@@ -9,7 +9,6 @@
 #define IDR_MSI_FILE32                  132
 #define IDR_MSI_FILE64                  164
 #define IDS_ERR_INTERNAL                166
-#define IDD_DIALOGPWD                   166
 #define IDS_ERR_EXTRACT                 167
 #define IDR_MSI_CHECKSUM                167
 #define IDS_ERR_WIN7                    169

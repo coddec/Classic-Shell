@@ -3,13 +3,13 @@
 <br>
 
 ---
-## Future development will be made at https://github.com/passionate-coder
+## Future development will be made at https://github.com/Open-Shell
 
 Classic-Start discussion forum: https://gitq.com/passionate-coder/Classic-Start
 
 Project discussion forum: https://gitter.im/passionate-coder
 
-### Please submit any [issues](https://github.com/passionate-coder/Classic-Start/issues), [pull requests](https://github.com/passionate-coder/Classic-Start/pulls) to above repositories
+### Please submit any [issues](https://github.com/Open-Shell/Open-Shell-Menu/issues), [pull requests](https://github.com/Open-Shell/Open-Shell-Menu/pulls) to above repositories
 ---
 
 <br>

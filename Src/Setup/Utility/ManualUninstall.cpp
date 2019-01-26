@@ -13,6 +13,7 @@
 #include <atlctl.h>
 #include <atlstr.h>
 #include <atltypes.h>
+#include <string>
 #include "ResourceHelper.h"
 #include "ComHelper.h"
 #include "StringUtils.h"

@@ -792,8 +792,8 @@ LRESULT CALLBACK CExplorerBHO::SubclassBreadcrumbProc( HWND hWnd, UINT uMsg, WPA
 				BOOL dwm;
 				if (theme && SUCCEEDED(DwmIsCompositionEnabled(&dwm)) && dwm)
 				{
-					DTTOPTS opts={sizeof(opts),DTT_COMPOSITED|DTT_TEXTCOLOR};
-					opts.crText=GetSysColor(COLOR_WINDOWTEXT);
+					DTTOPTS opts={sizeof(opts),DTT_COMPOSITED|DTT_COLORPROP};
+					opts.iColorPropId = COLOR_WINDOWTEXT;
 					DrawThemeTextEx(theme,hdcPaint,0,0,pThis->m_CurPath,-1,DT_NOPREFIX|DT_VCENTER|DT_SINGLELINE,&rc,&opts);
 				}
 				else

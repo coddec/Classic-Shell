@@ -319,7 +319,7 @@ LRESULT CUpdateDlg::OnDontRemind( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL
 
 LRESULT CUpdateDlg::OnWeb( int idCtrl, LPNMHDR pnmh, BOOL& bHandled )
 {
-	ShellExecute(m_hWnd,NULL,L"http://www.classicshell.net",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecute(m_hWnd,NULL,L"https://github.com/Open-Shell/Open-Shell-Menu",NULL,NULL,SW_SHOWNORMAL);
 	return 0;
 }
 

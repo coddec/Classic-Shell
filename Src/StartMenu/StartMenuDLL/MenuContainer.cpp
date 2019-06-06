@@ -7709,27 +7709,57 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 
 	s_bHasUpdates=(!bRemote || GetSettingBool(L"RemoteShutdown")) && GetSettingBool(L"CheckWinUpdates") && CheckForUpdates();
 
-	SYSTEM_POWER_CAPABILITIES powerCaps;
-	GetPwrCapabilities(&powerCaps);
-
-	bool bHibernate=false;
-	if (powerCaps.HiberFilePresent)
+	// Check control panel options for power buttons
+	bool bHibernate = true, bSleep = true, bLock = true;
 	{
-		bHibernate=true;
-/*	disabled for now, use group policy to hide Hibernate
-		// disable hibernate if hybrid sleep (fast s4) is enabled
-		SYSTEM_POWER_STATUS status;
-		if (GetSystemPowerStatus(&status) && (status.ACLineStatus==0 || status.ACLineStatus==1))
+		CRegKey regKeyButtons;
+		if (regKeyButtons.Open(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FlyoutMenuSettings", KEY_READ) == ERROR_SUCCESS)
 		{
-			GUID *pScheme;
-			if (PowerGetActiveScheme(NULL,&pScheme)==ERROR_SUCCESS)
-			{
-				DWORD index;
-				if ((status.ACLineStatus==1?PowerReadACValueIndex:PowerReadDCValueIndex)(NULL,pScheme,&GUID_SLEEP_SUBGROUP,&GUID_HIBERNATE_FASTS4_POLICY,&index)==ERROR_SUCCESS && index)
-					bHibernate=false;
-				LocalFree(pScheme);
-			}
-		}*/
+			DWORD dwValue = 1;
+			if (regKeyButtons.QueryDWORDValue(L"ShowHibernateOption", dwValue) == ERROR_SUCCESS)
+				if (dwValue == 0)
+					bHibernate = false;
+
+			if (regKeyButtons.QueryDWORDValue(L"ShowLockOption", dwValue) == ERROR_SUCCESS)
+				if (dwValue == 0)
+					bLock = false;
+
+			if (regKeyButtons.QueryDWORDValue(L"ShowSleepOption", dwValue) == ERROR_SUCCESS)
+				if (dwValue == 0)
+					bSleep = false;
+		}
+	}
+
+	if (bHibernate || bSleep)
+	{
+		SYSTEM_POWER_CAPABILITIES powerCaps;
+		GetPwrCapabilities(&powerCaps);
+
+		// no sleep capabilities, turn off the sleep option
+		if (!(powerCaps.SystemS1 || powerCaps.SystemS2 || powerCaps.SystemS3 || powerCaps.AoAc))
+		{
+			bSleep = false;
+		}
+
+		// no hibernate capabilities, turn off hibernate option
+		if (!powerCaps.HiberFilePresent)
+		{
+			bHibernate = false;
+			/*	disabled for now, use group policy to hide Hibernate
+					// disable hibernate if hybrid sleep (fast s4) is enabled
+					SYSTEM_POWER_STATUS status;
+					if (GetSystemPowerStatus(&status) && (status.ACLineStatus==0 || status.ACLineStatus==1))
+					{
+						GUID *pScheme;
+						if (PowerGetActiveScheme(NULL,&pScheme)==ERROR_SUCCESS)
+						{
+							DWORD index;
+							if ((status.ACLineStatus==1?PowerReadACValueIndex:PowerReadDCValueIndex)(NULL,pScheme,&GUID_SLEEP_SUBGROUP,&GUID_HIBERNATE_FASTS4_POLICY,&index)==ERROR_SUCCESS && index)
+								bHibernate=false;
+							LocalFree(pScheme);
+						}
+					}*/
+		}
 	}
 
 	for (int i=0;i<_countof(g_StdOptions);i++)
@@ -7939,8 +7969,11 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 						g_StdOptions[i].options=MENU_ENABLED|MENU_EXPANDED;
 				}
 				break;
+			case MENU_LOCK:
+				g_StdOptions[i].options=(bLock)?MENU_ENABLED|MENU_EXPANDED:0;
+				break;
 			case MENU_SLEEP:
-				g_StdOptions[i].options=(!s_bNoClose && (powerCaps.SystemS1 || powerCaps.SystemS2 || powerCaps.SystemS3 || powerCaps.AoAc))?MENU_ENABLED|MENU_EXPANDED:0;
+				g_StdOptions[i].options=(!s_bNoClose && bSleep)?MENU_ENABLED|MENU_EXPANDED:0;
 				break;
 			case MENU_HIBERNATE:
 				g_StdOptions[i].options=(!s_bNoClose && bHibernate)?MENU_ENABLED|MENU_EXPANDED:0;

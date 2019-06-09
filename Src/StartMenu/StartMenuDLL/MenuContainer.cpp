@@ -83,6 +83,7 @@ static StdMenuOption g_StdOptions[]=
 	{MENU_USERPICTURES,MENU_ENABLED}, // check policy
 	{MENU_SLEEP,MENU_ENABLED}, // check power caps
 	{MENU_HIBERNATE,MENU_ENABLED}, // check power caps
+	{MENU_LOCK,MENU_ENABLED}, // check power settings
 	{MENU_SWITCHUSER,MENU_ENABLED}, // check group policy
 	{MENU_APPS,MENU_ENABLED}, // enable on Win8+
 	{MENU_PCSETTINGS,MENU_ENABLED}, // enable on Win8+

@@ -274,6 +274,97 @@ public:
 //const wchar_t *g_AppId=L"Microsoft.BingWeather_8wekyb3d8bbwe!App";
 const wchar_t *g_AppId=L"microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.calendar";
 
+static DWORD g_winVer = GetVersionEx(GetModuleHandle(L"user32.dll"));
+
+bool WasOsUpgrade()
+{
+	CRegKey regKey;
+	if (regKey.Open(HKEY_LOCAL_MACHINE, L"Software\\OpenShell\\OpenShell", KEY_READ | KEY_WOW64_64KEY) == ERROR_SUCCESS)
+	{
+		DWORD ver;
+		if (regKey.QueryDWORDValue(L"WinVersion", ver) == ERROR_SUCCESS)
+		{
+			if (ver < g_winVer)
+				return true;
+		}
+	}
+
+	return false;
+}
+
+// starts new instance of StartMenu.exe with "-upgrade" command line parameter
+// UAC dialog is shown to ensure it will run with administrator privileges
+void RunOsUpgradeTaskAsAdmin()
+{
+#ifdef _WIN64
+	wchar_t path[_MAX_PATH] = L"%windir%\\System32\\StartMenuHelper64.dll";
+#else
+	wchar_t path[_MAX_PATH] = L"%windir%\\System32\\StartMenuHelper32.dll";
+#endif
+	DoEnvironmentSubst(path, _countof(path));
+	if (GetFileAttributes(path) != INVALID_FILE_ATTRIBUTES)
+	{
+		GetModuleFileName(NULL, path, _countof(path));
+		CoInitialize(NULL);
+		ShellExecute(NULL, L"runas", path, L"-upgrade", NULL, SW_SHOWNORMAL);
+		CoUninitialize();
+	}
+}
+
+DWORD PerformOsUpgradeTask(bool silent)
+{
+	CRegKey regKey;
+	DWORD error = regKey.Open(HKEY_LOCAL_MACHINE, L"Software\\OpenShell\\OpenShell", KEY_WRITE | KEY_WOW64_64KEY);
+	const wchar_t *nl = error == ERROR_SUCCESS ? L"\r\n\r\n" : L"\r\n";
+	if (error == ERROR_SUCCESS)
+	{
+		regKey.SetDWORDValue(L"WinVersion", g_winVer);
+
+		// run regsvr32 StartMenuHelper
+#ifdef _WIN64
+		wchar_t cmdLine[_MAX_PATH] = L"regsvr32 /s \"%windir%\\System32\\StartMenuHelper64.dll\"";
+#else
+		wchar_t cmdLine[_MAX_PATH] = L"regsvr32 /s \"%windir%\\System32\\StartMenuHelper32.dll\"";
+#endif
+		DoEnvironmentSubst(cmdLine, _countof(cmdLine));
+
+		wchar_t exe[_MAX_PATH] = L"%windir%\\System32\\regsvr32.exe";
+		DoEnvironmentSubst(exe, _countof(exe));
+
+		STARTUPINFO startupInfo = { sizeof(startupInfo) };
+		PROCESS_INFORMATION processInfo;
+		memset(&processInfo, 0, sizeof(processInfo));
+		if (CreateProcess(exe, cmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo))
+		{
+			CloseHandle(processInfo.hThread);
+			WaitForSingleObject(processInfo.hProcess, INFINITE);
+			GetExitCodeProcess(processInfo.hProcess, &error);
+			CloseHandle(processInfo.hProcess);
+		}
+		else
+		{
+			error = GetLastError();
+		}
+	}
+
+	if (!silent)
+	{
+		if (error)
+		{
+			wchar_t msg[1024];
+			int len = Sprintf(msg, _countof(msg), L"%s%s", DllLoadStringEx(IDS_UPGRADE_ERROR), nl);
+			FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, error, 0, msg + len, _countof(msg) - len, NULL);
+			MessageBox(NULL, msg, DllLoadStringEx(IDS_APP_TITLE), MB_OK | MB_ICONERROR);
+		}
+		else
+		{
+			MessageBox(NULL, DllLoadStringEx(IDS_UPGRADE_SUCCESS), DllLoadStringEx(IDS_APP_TITLE), MB_OK | MB_ICONINFORMATION);
+		}
+	}
+
+	return error;
+}
+
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCmdLine, int nCmdShow )
 {
 /*	CoInitialize(NULL);
@@ -340,8 +431,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	ImportLegacyData();
 
 	DllLogToFile(STARTUP_LOG,L"StartMenu: start '%s'",lpstrCmdLine);
-	DWORD winVer=GetVersionEx(GetModuleHandle(L"user32.dll"));
-	if (wcsstr(lpstrCmdLine,L"-startup") || (wcsstr(lpstrCmdLine,L"-autorun") && HIWORD(winVer)<WIN_VER_WIN8))
+
+	if (wcsstr(lpstrCmdLine,L"-startup") || (wcsstr(lpstrCmdLine,L"-autorun") && HIWORD(g_winVer)<WIN_VER_WIN8))
 	{
 		WaitDllInitThread();
 		if (!DllGetSettingBool(L"AutoStart"))
@@ -360,31 +451,11 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	else if (wcsstr(lpstrCmdLine,L"-autorun")) // on Win8+
 	{
 		WaitDllInitThread();
-		CRegKey regKey;
-		if (regKey.Open(HKEY_LOCAL_MACHINE,L"Software\\OpenShell\\OpenShell",KEY_READ|KEY_WOW64_64KEY)==ERROR_SUCCESS)
+		if (WasOsUpgrade())
 		{
-			DWORD ver1;
-			if (regKey.QueryDWORDValue(L"WinVersion",ver1)==ERROR_SUCCESS)
-			{
-				if (ver1<winVer)
-				{
-					// this is an upgrade
-					MessageBox(NULL,DllLoadStringEx(IDS_UPGRADE_WIN),DllLoadStringEx(IDS_APP_TITLE),MB_OK);
-#ifdef _WIN64
-					wchar_t path[_MAX_PATH]=L"%windir%\\System32\\StartMenuHelper64.dll";
-#else
-					wchar_t path[_MAX_PATH]=L"%windir%\\System32\\StartMenuHelper32.dll";
-#endif
-					DoEnvironmentSubst(path,_countof(path));
-					if (GetFileAttributes(path)!=INVALID_FILE_ATTRIBUTES)
-					{
-						GetModuleFileName(NULL,path,_countof(path));
-						CoInitialize(NULL);
-						ShellExecute(NULL,L"runas",path,L"-upgrade",NULL,SW_SHOWNORMAL);
-						CoUninitialize();
-					}
-				}
-			}
+			// this is an upgrade
+			MessageBox(NULL, DllLoadStringEx(IDS_UPGRADE_WIN), DllLoadStringEx(IDS_APP_TITLE), MB_OK);
+			RunOsUpgradeTaskAsAdmin();
 		}
 		if (!DllGetSettingBool(L"AutoStart"))
 		{
@@ -399,49 +470,14 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	if (wcsstr(lpstrCmdLine,L"-upgrade"))
 	{
 		WaitDllInitThread();
-		CRegKey regKey;
-		DWORD error=regKey.Open(HKEY_LOCAL_MACHINE,L"Software\\OpenShell\\OpenShell",KEY_WRITE|KEY_WOW64_64KEY);
-		const wchar_t *nl=error==ERROR_SUCCESS?L"\r\n\r\n":L"\r\n";
-		if (error==ERROR_SUCCESS)
-		{
-			regKey.SetDWORDValue(L"WinVersion",winVer);
 
-			// run regsvr32 StartMenuHelper
-#ifdef _WIN64
-			wchar_t cmdLine[_MAX_PATH]=L"regsvr32 /s \"%windir%\\System32\\StartMenuHelper64.dll\"";
-#else
-			wchar_t cmdLine[_MAX_PATH]=L"regsvr32 /s \"%windir%\\System32\\StartMenuHelper32.dll\"";
-#endif
-			DoEnvironmentSubst(cmdLine,_countof(cmdLine));
-
-			wchar_t exe[_MAX_PATH]=L"%windir%\\System32\\regsvr32.exe";
-			DoEnvironmentSubst(exe,_countof(exe));
-
-			STARTUPINFO startupInfo={sizeof(startupInfo)};
-			PROCESS_INFORMATION processInfo;
-			memset(&processInfo,0,sizeof(processInfo));
-			if (CreateProcess(exe,cmdLine,NULL,NULL,FALSE,0,NULL,NULL,&startupInfo,&processInfo))
-			{
-				CloseHandle(processInfo.hThread);
-				WaitForSingleObject(processInfo.hProcess,INFINITE);
-				GetExitCodeProcess(processInfo.hProcess,&error);
-				CloseHandle(processInfo.hProcess);
-			}
-			else
-				error=GetLastError();
-		}
-		if (error)
+		if (WasOsUpgrade())
 		{
-			wchar_t msg[1024];
-			int len=Sprintf(msg,_countof(msg),L"%s%s",DllLoadStringEx(IDS_UPGRADE_ERROR),nl);
-			FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,error,0,msg+len,_countof(msg)-len,NULL);
-			MessageBox(NULL,msg,DllLoadStringEx(IDS_APP_TITLE),MB_OK|MB_ICONERROR);
+			const bool silent = wcsstr(lpstrCmdLine, L"-silent") != nullptr;
+			return PerformOsUpgradeTask(silent);
 		}
-		else
-		{
-			MessageBox(NULL,DllLoadStringEx(IDS_UPGRADE_SUCCESS),DllLoadStringEx(IDS_APP_TITLE),MB_OK|MB_ICONINFORMATION);
-		}
-		return error;
+
+		return 0;
 	}
 
 	const wchar_t *pCmd=wcsstr(lpstrCmdLine,L"-cmd ");

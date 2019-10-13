@@ -292,7 +292,6 @@ public:
 	// message handlers
 	BEGIN_MSG_MAP( COwnerWindow )
 		MESSAGE_HANDLER( WM_ACTIVATE, OnActivate )
-		MESSAGE_HANDLER( WM_CLEAR, OnClear )
 		MESSAGE_HANDLER( WM_SYSCOLORCHANGE, OnColorChange )
 		MESSAGE_HANDLER( WM_SETTINGCHANGE, OnSettingChange )
 		MESSAGE_HANDLER( WM_DISPLAYCHANGE, OnDisplayChange )
@@ -304,7 +303,7 @@ protected:
 		if (LOWORD(wParam)!=WA_INACTIVE)
 			return 0;
 
-		if (CMenuContainer::s_bPreventClosing && lParam && (::GetWindowLongPtr((HWND)lParam,GWL_EXSTYLE)&WS_EX_TOPMOST))
+		if (CMenuContainer::s_bPreventClosing)
 			return 0;
 
 		// check if another menu window is being activated
@@ -313,41 +312,13 @@ protected:
 			if ((*it)->m_hWnd==(HWND)lParam)
 				return 0;
 
-		if (CMenuContainer::s_bPreventClosing)
-		{
-			CMenuContainer::HideTemp(true);
-		}
-		else
-		{
-			for (std::vector<CMenuContainer*>::reverse_iterator it=CMenuContainer::s_Menus.rbegin();it!=CMenuContainer::s_Menus.rend();++it)
-				if (!(*it)->m_bDestroyed)
-					(*it)->PostMessage(WM_CLOSE);
-		}
+		for (std::vector<CMenuContainer*>::reverse_iterator it=CMenuContainer::s_Menus.rbegin();it!=CMenuContainer::s_Menus.rend();++it)
+			if (!(*it)->m_bDestroyed)
+				(*it)->PostMessage(WM_CLOSE);
+
 		return 0;
 	}
 
-	LRESULT OnClear( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
-	{
-		bool bHide=(wParam!=0); // hide or destroy
-		if (CMenuContainer::s_bTempHidden!=bHide)
-		{
-			CMenuContainer::s_bTempHidden=bHide;
-			if (bHide && CMenuContainer::s_UserPicture.m_hWnd)
-				CMenuContainer::s_UserPicture.ShowWindow(SW_HIDE);
-			for (std::vector<CMenuContainer*>::iterator it=CMenuContainer::s_Menus.begin();it!=CMenuContainer::s_Menus.end();++it)
-			{
-				if ((*it)->m_hWnd && !(*it)->m_bDestroyed)
-				{
-					(*it)->m_bClosing=true;
-					if (!bHide)
-						(*it)->PostMessage(WM_CLOSE);
-					else
-						(*it)->ShowWindow(SW_HIDE);
-				}
-			}
-		}
-		return 0;
-	}
 
 	LRESULT OnColorChange( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 	{

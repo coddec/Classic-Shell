@@ -248,7 +248,6 @@ bool CMenuContainer::DragOutApps( const CItemManager::ItemInfo *pInfo )
 	s_bDragFromTree=false;
 	if (!m_bDestroyed)
 		KillTimer(TIMER_DRAG);
-	HideTemp(false);
 	s_bPreventClosing=false;
 
 	if (s_bDragClosed)
@@ -343,7 +342,6 @@ bool CMenuContainer::DragOut( int index, bool bApp )
 	if (!m_bDestroyed)
 		KillTimer(TIMER_DRAG);
 	s_bDragMovable=false;
-	HideTemp(false);
 	s_bPreventClosing=false;
 
 	if (s_bDragClosed)
@@ -863,8 +861,6 @@ HRESULT STDMETHODCALLTYPE CMenuContainer::Drop( IDataObject *pDataObj, DWORD grf
 			s_bPreventClosing=true;
 			AddRef();
 			pTarget->Drop(pDataObj,grfKeyState,pt,pdwEffect);
-			if (!bOld)
-				HideTemp(false);
 			s_bPreventClosing=bOld;
 			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
 				if (!(*it)->m_bDestroyed)

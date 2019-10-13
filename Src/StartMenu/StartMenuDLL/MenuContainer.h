@@ -957,7 +957,6 @@ private:
 	friend LRESULT CALLBACK SubclassTopMenuProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData );
 	friend HRESULT CreatePinLink( PCIDLIST_ABSOLUTE sourcePidl, const wchar_t *name, const wchar_t *iconPath, int iconIndex );
 
-	static void HideTemp( bool bHide );
 	static void AddMRUShortcut( const wchar_t *path );
 	static void AddMRUAppId( const wchar_t *appid );
 	static void DeleteMRUShortcut( const wchar_t *path );

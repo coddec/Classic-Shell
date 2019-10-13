@@ -1601,8 +1601,6 @@ HRESULT CProgramsTree::Drop( IDataObject *pDataObj, DWORD grfKeyState, POINTL pt
 	CMenuContainer::s_bPreventClosing=true;
 	m_pOwner->AddRef();
 	pTarget->Drop(pDataObj,grfKeyState,pt,pdwEffect);
-	if (!bOld)
-		CMenuContainer::HideTemp(false);
 	CMenuContainer::s_bPreventClosing=bOld;
 	for (std::vector<CMenuContainer*>::iterator it=CMenuContainer::s_Menus.begin();it!=CMenuContainer::s_Menus.end();++it)
 		if (!(*it)->m_bDestroyed)

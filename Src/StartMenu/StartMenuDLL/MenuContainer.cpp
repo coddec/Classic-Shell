@@ -6365,11 +6365,6 @@ LRESULT CMenuContainer::OnRefresh( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 	return 0;
 }
 
-void CMenuContainer::HideTemp( bool bHide )
-{
-	::PostMessage(g_OwnerWindow,WM_CLEAR,bHide,0);
-}
-
 LRESULT CMenuContainer::OnActivate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
 	if (LOWORD(wParam)!=WA_INACTIVE)
@@ -6379,6 +6374,9 @@ LRESULT CMenuContainer::OnActivate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 		return 0;
 	}
 #ifndef PREVENT_CLOSING
+	if (s_bPreventClosing)
+		return 0;
+
 	if (lParam)
 	{
 		// check if another menu window is being activated
@@ -6389,24 +6387,15 @@ LRESULT CMenuContainer::OnActivate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 
 		if ((HWND)lParam==g_OwnerWindow || (HWND)lParam==g_TopWin7Menu)
 			return 0;
-
-		if (s_bPreventClosing && (::GetWindowLong((HWND)lParam,GWL_EXSTYLE)&WS_EX_TOPMOST))
-			return 0;
 	}
 
-	// a non-top-most window tries to activate while we are still here
-	if (s_bPreventClosing && (!g_TopWin7Menu || !s_bAllPrograms))
-		HideTemp(true);
-	else
-	{
-		for (std::vector<CMenuContainer*>::reverse_iterator it=s_Menus.rbegin();it!=s_Menus.rend();++it)
-			if ((*it)->m_hWnd && !(*it)->m_bDestroyed)
-			{
-				(*it)->PostMessage(WM_CLOSE);
-				(*it)->m_bClosing=true;
-			}
-		if (g_TopWin7Menu && s_bAllPrograms) ::PostMessage(g_TopWin7Menu,WM_CLOSE,0,0);
-	}
+	for (std::vector<CMenuContainer*>::reverse_iterator it=s_Menus.rbegin();it!=s_Menus.rend();++it)
+		if ((*it)->m_hWnd && !(*it)->m_bDestroyed)
+		{
+			(*it)->PostMessage(WM_CLOSE);
+			(*it)->m_bClosing=true;
+		}
+	if (g_TopWin7Menu && s_bAllPrograms) ::PostMessage(g_TopWin7Menu,WM_CLOSE,0,0);
 #endif
 
 	return 0;

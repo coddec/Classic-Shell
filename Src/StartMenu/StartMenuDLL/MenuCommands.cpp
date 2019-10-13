@@ -2396,7 +2396,6 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				}
 			}
 			DestroyMenu(menu2);
-			HideTemp(false);
 			s_bPreventClosing=false;
 
 			PITEMID_CHILD newPidl=NULL;
@@ -2485,7 +2484,6 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				Invalidate();
 				if (m_HotItem<0) SetHotItem(index);
 			}
-			HideTemp(false);
 			s_bPreventClosing=false;
 		}
 		SetContextItem(-1);
@@ -2742,7 +2740,6 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				else
 					SetFocus();
 			}
-			HideTemp(false);
 			s_bPreventClosing=false;
 			s_HotPos=GetMessagePos();
 			res=CMD_RENAME;
@@ -2802,8 +2799,7 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 			if (bRefresh || bRefreshMain)
 				info.fMask|=CMIC_MASK_NOASYNC; // wait for delete/link commands to finish so we can refresh the menu
 
-			if ((type!=ACTIVATE_MENU && type!=ACTIVATE_DELETE) || GetWinVersion()<WIN_VER_WIN8)
-				s_bPreventClosing=true;
+			s_bPreventClosing=true;
 			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
 				(*it)->EnableWindow(FALSE); // disable all menus
 			bool bAllPrograms=s_bAllPrograms;
@@ -2880,7 +2876,6 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				else
 					SetFocus();
 			}
-			HideTemp(false);
 			s_bPreventClosing=false;
 
 			if (!bKeepOpen && !bRefresh && !bRefreshMain)

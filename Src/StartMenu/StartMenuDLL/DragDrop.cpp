@@ -852,9 +852,14 @@ HRESULT STDMETHODCALLTYPE CMenuContainer::Drop( IDataObject *pDataObj, DWORD grf
 			CComQIPtr<IDataObjectAsyncCapability> pAsync=pDataObj;
 			if (pAsync)
 				pAsync->SetAsyncMode(FALSE);
-			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
-				if (!(*it)->m_bDestroyed)
-					(*it)->EnableWindow(FALSE); // disable all menus
+			for (auto& it : s_Menus)
+			{
+				if (!it->m_bDestroyed)
+				{
+					it->EnableWindow(FALSE); // disable all menus
+					it->SetWindowPos(HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+				}
+			}
 			bool bAllPrograms=s_bAllPrograms;
 			if (bAllPrograms) ::EnableWindow(g_TopWin7Menu,FALSE);
 			bool bOld=s_bPreventClosing;
@@ -862,9 +867,14 @@ HRESULT STDMETHODCALLTYPE CMenuContainer::Drop( IDataObject *pDataObj, DWORD grf
 			AddRef();
 			pTarget->Drop(pDataObj,grfKeyState,pt,pdwEffect);
 			s_bPreventClosing=bOld;
-			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
-				if (!(*it)->m_bDestroyed)
-					(*it)->EnableWindow(TRUE); // enable all menus
+			for (auto& it : s_Menus)
+			{
+				if (!it->m_bDestroyed)
+				{
+					it->EnableWindow(TRUE); // enable all menus
+					it->SetWindowPos(HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+				}
+			}
 			if (bAllPrograms) ::EnableWindow(g_TopWin7Menu,TRUE);
 		}
 		else

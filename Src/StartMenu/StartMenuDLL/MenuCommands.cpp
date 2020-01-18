@@ -2800,8 +2800,11 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				info.fMask|=CMIC_MASK_NOASYNC; // wait for delete/link commands to finish so we can refresh the menu
 
 			s_bPreventClosing=true;
-			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
-				(*it)->EnableWindow(FALSE); // disable all menus
+			for (auto& it : s_Menus)
+			{
+				it->EnableWindow(FALSE); // disable all menus
+				it->SetWindowPos(HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+			}
 			bool bAllPrograms=s_bAllPrograms;
 			if (bAllPrograms) ::EnableWindow(g_TopWin7Menu,FALSE);
 			info.hwnd=g_OwnerWindow;
@@ -2846,9 +2849,14 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 					}
 				}
 			}
-			for (std::vector<CMenuContainer*>::iterator it=s_Menus.begin();it!=s_Menus.end();++it)
-				if (!(*it)->m_bDestroyed)
-					(*it)->EnableWindow(TRUE); // enable all menus
+			for (auto& it : s_Menus)
+			{
+				if (!it->m_bDestroyed)
+				{
+					it->EnableWindow(TRUE); // enable all menus
+					it->SetWindowPos(HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+				}
+			}
 			if (bAllPrograms) ::EnableWindow(g_TopWin7Menu,TRUE);
 			if (bRefreshMain && m_bSubMenu)
 			{

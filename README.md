@@ -23,6 +23,14 @@ If you just want to use it or looking for setup file, click here to download!!!
 
 [![GitHub All Releases](https://img.shields.io/github/downloads/Open-Shell/Open-Shell-Menu/total?style=for-the-badge)](https://github.com/Open-Shell/Open-Shell-Menu/releases)
 
+
+### Temporary Translation/Language Solution
+Translations/Language files/DLLs
+
+1. Download .dlls from here [https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html](https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html)
+
+2. After you download the DLL file you need to place it either in the Classic Shell's __install folder__ or in the __%ALLUSERSPROFILE%\ClassicShell\Languages__ folder.
+
 ---
 
 *For archival reasons, we have a mirror of `www.classicshell.net` [here](https://coddec.github.io/Classic-Shell/www.classicshell.net/).*

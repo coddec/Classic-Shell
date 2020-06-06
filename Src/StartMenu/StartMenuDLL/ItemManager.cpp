@@ -142,10 +142,11 @@ static bool DetectGrayscaleImage( const unsigned int *bits, int stride, int widt
 		for (int x=0;x<width;x++)
 		{
 			unsigned int pixel=bits[x];
+			int a=(pixel>>24)&255;
 			int r=(pixel>>16)&255;
 			int g=(pixel>>8)&255;
 			int b=(pixel)&255;
-			if (abs(r-g)>2 || abs(r-b)>2 || abs(g-b)>2)
+			if (abs(a-r)>2 || abs(r-g)>2 || abs(r-b)>2 || abs(g-b)>2)
 				return false; // found colored pixel
 			if (!(pixel&0xFF000000))
 				transparent++;

@@ -453,6 +453,32 @@ static void SaveReportFile( void )
 	}
 }
 
+static void RemoveShellExtKey(const wchar_t* progID)
+{
+	static const auto ShellExtName = L"StartMenuExt";
+	auto contextMenuHandlers = std::wstring(progID) + L"\\ShellEx\\ContextMenuHandlers";
+	auto startMenuExt = contextMenuHandlers + L"\\" + ShellExtName;
+
+	HKEY hkey = NULL;
+	if (RegOpenKeyEx(HKEY_CLASSES_ROOT, startMenuExt.c_str(), 0, KEY_READ | KEY_WOW64_64KEY, &hkey) == ERROR_SUCCESS)
+	{
+		RegCloseKey(hkey);
+		LogMessage(-1, L"Deleting registry key HKEY_CLASSES_ROOT\\%s", startMenuExt.c_str());
+		auto error = RegCreateKeyEx(HKEY_CLASSES_ROOT, contextMenuHandlers.c_str(), NULL, NULL, REG_OPTION_BACKUP_RESTORE, KEY_WRITE | DELETE | KEY_WOW64_64KEY, NULL, &hkey, NULL);
+		if (error == ERROR_SUCCESS)
+		{
+			error = RegDeleteTree2(hkey, ShellExtName);
+			if (error != ERROR_SUCCESS && error != ERROR_FILE_NOT_FOUND)
+				LogMessage(error, L"Failed to delete registry key HKEY_CLASSES_ROOT\\%s.", startMenuExt.c_str());
+			RegCloseKey(hkey);
+		}
+		else if (error != ERROR_FILE_NOT_FOUND)
+		{
+			LogMessage(error, L"Failed to open registry key HKEY_CLASSES_ROOT\\%s for writing.", contextMenuHandlers.c_str());
+		}
+	}
+}
+
 static bool RemoveRegistryKeys( bool bPin )
 {
 	HKEY hkey=NULL;
@@ -489,40 +515,10 @@ static bool RemoveRegistryKeys( bool bPin )
 		}
 	}
 
-	hkey=NULL;
 	if (bPin)
 	{
-		if (RegOpenKeyEx(HKEY_CLASSES_ROOT,L"Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers\\StartMenuExt",0,KEY_READ|KEY_WOW64_64KEY,&hkey)==ERROR_SUCCESS)
-		{
-			RegCloseKey(hkey);
-			LogMessage(-1,L"Deleting registry key HKEY_CLASSES_ROOT\\Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers\\StartMenuExt");
-			error=RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE|DELETE|KEY_WOW64_64KEY,NULL,&hkey,NULL);
-			if (error==ERROR_SUCCESS)
-			{
-				error=RegDeleteTree2(hkey,L"StartMenuExt");
-				if (error!=ERROR_SUCCESS && error!=ERROR_FILE_NOT_FOUND)
-					LogMessage(error,L"Failed to delete registry key HKEY_CLASSES_ROOT\\Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers\\StartMenuExt.");
-				RegCloseKey(hkey);
-			}
-			else if (error!=ERROR_FILE_NOT_FOUND)
-				LogMessage(error,L"Failed to open registry key HKEY_CLASSES_ROOT\\Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers for writing.");
-		}
-
-		if (RegOpenKeyEx(HKEY_CLASSES_ROOT,L"Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers\\StartMenuExt",0,KEY_READ|KEY_WOW64_64KEY,&hkey)==ERROR_SUCCESS)
-		{
-			RegCloseKey(hkey);
-			LogMessage(-1,L"Deleting registry key HKEY_CLASSES_ROOT\\Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers\\StartMenuExt");
-			error=RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE|DELETE|KEY_WOW64_64KEY,NULL,&hkey,NULL);
-			if (error==ERROR_SUCCESS)
-			{
-				error=RegDeleteTree2(hkey,L"StartMenuExt");
-				if (error!=ERROR_SUCCESS && error!=ERROR_FILE_NOT_FOUND)
-					LogMessage(error,L"Failed to delete registry key HKEY_CLASSES_ROOT\\Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers\\StartMenuExt.");
-				RegCloseKey(hkey);
-			}
-			else if (error!=ERROR_FILE_NOT_FOUND)
-				LogMessage(error,L"Failed to open registry key HKEY_CLASSES_ROOT\\Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers for writing.");
-		}
+		RemoveShellExtKey(L"Launcher.ImmersiveApplication");
+		RemoveShellExtKey(L"Launcher.SystemSettings");
 	}
 
 	return true;

@@ -25,6 +25,8 @@ const CLSID g_ExplorerClsid= {0xECD4FC4D, 0x521C, 0x11D0, {0xB7, 0x92, 0x00, 0xA
 const CLSID g_EmulationClsid= {0xD3214FBB, 0x3CA1, 0x406A, {0xB3, 0xE8, 0x3E, 0xB7, 0xC3, 0x93, 0xA1, 0x5E}};
 #define EMULATION_KEY L"TreatAs"
 
+#define SHELLEXT_NAME L"StartMenuExt"
+
 static void AdjustPrivileges( void )
 {
 	HANDLE hToken;
@@ -43,6 +45,18 @@ static void AdjustPrivileges( void )
 			AdjustTokenPrivileges(hToken,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),NULL,NULL); 
 		}
 		CloseHandle(hToken);
+	}
+}
+
+static void AddShellExt(const wchar_t* progID, const LPSECURITY_ATTRIBUTES sa)
+{
+	HKEY hkey = NULL;
+
+	if (RegCreateKeyEx(HKEY_CLASSES_ROOT, CString(progID) + L"\\ShellEx\\ContextMenuHandlers\\" SHELLEXT_NAME, NULL, NULL, REG_OPTION_BACKUP_RESTORE, KEY_WRITE, sa, &hkey, NULL) == ERROR_SUCCESS)
+	{
+		wchar_t val[] = L"{E595F05F-903F-4318-8B0A-7F633B520D2B}";
+		RegSetValueEx(hkey, NULL, NULL, REG_SZ, (BYTE*)val, sizeof(val));
+		RegCloseKey(hkey);
 	}
 }
 
@@ -103,21 +117,11 @@ static void AddRegistryKeys( bool bPin )
 					RegSetValueEx(hkey,NULL,NULL,REG_SZ,(BYTE*)val,sizeof(val));
 					RegCloseKey(hkey);
 				}
-				hkey=NULL;
+
 				if (bPin)
 				{
-					if (RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers\\StartMenuExt",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE,&sa,&hkey,NULL)==ERROR_SUCCESS)
-					{
-						wchar_t val[]=L"{E595F05F-903F-4318-8B0A-7F633B520D2B}";
-						RegSetValueEx(hkey,NULL,NULL,REG_SZ,(BYTE*)val,sizeof(val));
-						RegCloseKey(hkey);
-					}
-					if (RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers\\StartMenuExt",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE,&sa,&hkey,NULL)==ERROR_SUCCESS)
-					{
-						wchar_t val[]=L"{E595F05F-903F-4318-8B0A-7F633B520D2B}";
-						RegSetValueEx(hkey,NULL,NULL,REG_SZ,(BYTE*)val,sizeof(val));
-						RegCloseKey(hkey);
-					}
+					AddShellExt(L"Launcher.ImmersiveApplication", &sa);
+					AddShellExt(L"Launcher.SystemSettings", &sa);
 				}
 			}
 		} 
@@ -125,6 +129,16 @@ static void AddRegistryKeys( bool bPin )
 	}
 	FreeSid(pEveryoneSID);
 	FreeSid(pAdminSID);
+}
+
+static void RemoveShellExt(const wchar_t* progID)
+{
+	HKEY hkey = NULL;
+	if (RegCreateKeyEx(HKEY_CLASSES_ROOT, CString(progID) + L"\\ShellEx\\ContextMenuHandlers", NULL, NULL, REG_OPTION_BACKUP_RESTORE, KEY_WRITE | DELETE, NULL, &hkey, NULL) == ERROR_SUCCESS)
+	{
+		RegDeleteTree(hkey, SHELLEXT_NAME);
+		RegCloseKey(hkey);
+	}
 }
 
 static void RemoveRegistryKeys( bool bPin )
@@ -136,19 +150,11 @@ static void RemoveRegistryKeys( bool bPin )
 		RegDeleteTree(hkey,EMULATION_KEY);
 		RegCloseKey(hkey);
 	}
-	hkey=NULL;
+
 	if (bPin)
 	{
-		if (RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.ImmersiveApplication\\ShellEx\\ContextMenuHandlers",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE|DELETE,NULL,&hkey,NULL)==ERROR_SUCCESS)
-		{
-			RegDeleteTree(hkey,L"StartMenuExt");
-			RegCloseKey(hkey);
-		}
-		if (RegCreateKeyEx(HKEY_CLASSES_ROOT,L"Launcher.SystemSettings\\ShellEx\\ContextMenuHandlers",NULL,NULL,REG_OPTION_BACKUP_RESTORE,KEY_WRITE|DELETE,NULL,&hkey,NULL)==ERROR_SUCCESS)
-		{
-			RegDeleteTree(hkey,L"StartMenuExt");
-			RegCloseKey(hkey);
-		}
+		RemoveShellExt(L"Launcher.ImmersiveApplication");
+		RemoveShellExt(L"Launcher.SystemSettings");
 	}
 }
 

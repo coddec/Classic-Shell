@@ -182,7 +182,7 @@ HRESULT STDMETHODCALLTYPE CMenuAccessible::accSelect( long flagsSelect, VARIANT 
 		int index=varChild.lVal-1;
 		if (index<0 || index>=(int)m_pOwner->m_Items.size())
 			return S_FALSE;
-		m_pOwner->ActivateItem(index,CMenuContainer::ACTIVATE_SELECT,NULL,false);
+		m_pOwner->ActivateItem(index,CMenuContainer::ACTIVATE_SELECT,NULL);
 	}
 	return S_OK;
 }

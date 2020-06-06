@@ -121,6 +121,7 @@ static void AddRegistryKeys( bool bPin )
 				if (bPin)
 				{
 					AddShellExt(L"Launcher.ImmersiveApplication", &sa);
+					AddShellExt(L"Launcher.DesktopPackagedApplication", &sa);
 					AddShellExt(L"Launcher.SystemSettings", &sa);
 				}
 			}
@@ -154,6 +155,7 @@ static void RemoveRegistryKeys( bool bPin )
 	if (bPin)
 	{
 		RemoveShellExt(L"Launcher.ImmersiveApplication");
+		RemoveShellExt(L"Launcher.DesktopPackagedApplication");
 		RemoveShellExt(L"Launcher.SystemSettings");
 	}
 }

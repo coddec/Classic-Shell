@@ -518,6 +518,7 @@ static bool RemoveRegistryKeys( bool bPin )
 	if (bPin)
 	{
 		RemoveShellExtKey(L"Launcher.ImmersiveApplication");
+		RemoveShellExtKey(L"Launcher.DesktopPackagedApplication");
 		RemoveShellExtKey(L"Launcher.SystemSettings");
 	}
 

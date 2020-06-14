@@ -29,7 +29,7 @@ Translations/Language files/DLLs
 
 1. Download .dlls from here [https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html](https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html)
 
-2. After you download the DLL file you need to place it either in the Open-Shell's __install folder__ or in the __%ALLUSERSPROFILE%\Open-Shell\Languages__ folder.
+2. After you download the DLL file you need to place it either in the Open-Shell's __install folder__ or in the __%ALLUSERSPROFILE%\OpenShell\Languages__ folder.
 
 ---
 

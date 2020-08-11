@@ -60,9 +60,9 @@ void CProgramsTree::Create( CMenuContainer *pOwner )
 	HWND hWnd=CreateWindowEx(0,WC_TREEVIEW,NULL,WS_CHILD|TVS_EDITLABELS|TVS_FULLROWSELECT|(CMenuContainer::s_TipHideTime?TVS_INFOTIP:0)|TVS_NOHSCROLL|TVS_SHOWSELALWAYS|TVS_NONEVENHEIGHT,0,0,0,0,pOwner->m_hWnd,NULL,g_Instance,NULL);
 	TreeView_SetExtendedStyle(hWnd,TVS_EX_AUTOHSCROLL,TVS_EX_AUTOHSCROLL);
 	const MenuSkin &skin=CMenuContainer::s_Skin;
-	m_TreeTheme=OpenThemeData(m_hWnd,L"treeview");
+	m_TreeTheme=OpenThemeData(hWnd,L"treeview");
 	if (skin.BHasScrollbar)
-		m_ScrollTheme=OpenThemeData(m_hWnd,L"scrollbar");
+		m_ScrollTheme=OpenThemeData(hWnd,L"scrollbar");
 
 	const MenuSkin::ItemDrawSettings &settings=skin.ItemSettings[MenuSkin::PROGRAMS_TREE_ITEM];
 

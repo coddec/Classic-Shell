@@ -7,7 +7,7 @@ rem Clean repository and build fresh. Will erase current changes so disabled by 
 rem git clean -dfx
 
 rem Default version
-set CS_VERSION=4.4.110
+set CS_VERSION=4.4.1000
 
 if defined APPVEYOR_BUILD_VERSION (
 	set CS_VERSION=%APPVEYOR_BUILD_VERSION%

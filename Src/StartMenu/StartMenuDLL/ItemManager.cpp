@@ -2442,7 +2442,7 @@ void CItemManager::LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const Ic
 			StoreInCache(hash,L"",NULL,hLargeBitmap,NULL,INFO_LARGE_ICON,smallIcon,largeIcon,extraLargeIcon,false,true);
 		}
 	}
-	if ((refreshFlags&INFO_SMALL_ICON) && SetResContextTargetSize(pResContext,EXTRA_LARGE_ICON_SIZE-delta))
+	if ((refreshFlags&INFO_EXTRA_LARGE_ICON) && SetResContextTargetSize(pResContext,EXTRA_LARGE_ICON_SIZE-delta))
 	{
 		CComString pLocation;
 		if (SUCCEEDED(pResMap->GetFilePath(iconName,&pLocation)))

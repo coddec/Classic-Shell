@@ -1,0 +1,26 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {82e749ed-b971-4550-baf7-06aa2bf7e836} = s 'Open-Shell Modern Settings'
+		{
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ShellFolder
+			{
+				val Attributes = d '&HA0000000'
+			}
+			ShellEx
+			{
+				ContextMenuHandlers
+				{
+					Default = s '{5ab14324-c087-42c1-b905-a0bfdb4e9532}'
+					{
+					}
+				}
+			}
+		}
+	}
+}

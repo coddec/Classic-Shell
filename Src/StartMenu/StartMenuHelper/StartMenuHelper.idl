@@ -6,6 +6,7 @@
 
 import "oaidl.idl";
 import "ocidl.idl";
+import "shobjidl.idl";
 
 [
 	object,
@@ -30,5 +31,22 @@ library StartMenuHelperLib
 	coclass StartMenuExt
 	{
 		[default] interface IStartMenuExt;
+	};
+	[
+		uuid(82e749ed-b971-4550-baf7-06aa2bf7e836)
+	]
+	coclass ModernSettingsShellFolder
+	{
+		interface IShellFolder2;
+		interface IPersistFolder2;
+	};
+	[
+		uuid(5ab14324-c087-42c1-b905-a0bfdb4e9532)
+	]
+	coclass ModernSettingsContextMenu
+	{
+		interface IContextMenu;
+		interface IShellExtInit;
+		interface IObjectWithSite;
 	};
 };

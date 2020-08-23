@@ -63,6 +63,7 @@ public:
 		CString autoCompletePath;
 		std::vector<const CItemManager::ItemInfo*> programs;
 		std::vector<const CItemManager::ItemInfo*> settings;
+		std::vector<const CItemManager::ItemInfo*> metrosettings;
 		std::vector<const CItemManager::ItemInfo*> autocomplete;
 		std::list<SearchCategory> indexed;
 	};
@@ -149,6 +150,7 @@ private:
 	unsigned int m_SettingsHashOld;
 	bool m_bProgramsFound;
 	bool m_bSettingsFound;
+	bool m_bMetroSettingsFound = false;
 	std::vector<SearchItem> m_AutoCompleteItems;
 	std::list<SearchCategory> m_IndexedItems;
 	std::vector<ItemRank> m_ItemRanks;

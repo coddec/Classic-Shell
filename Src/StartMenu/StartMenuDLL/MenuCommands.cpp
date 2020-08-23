@@ -2192,11 +2192,15 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 
 	if (res==CMD_PINSETTING)
 	{
-		CSearchManager::TItemCategory cat=(CSearchManager::TItemCategory)(item.categoryHash&CSearchManager::CATEGORY_MASK);
-		if (cat==CSearchManager::CATEGORY_SETTING)
-			CreatePinLink(pItemPidl1,item.name,NULL,0);
-		else if (cat==CSearchManager::CATEGORY_METROSETTING)
-			CreatePinLink(pItemPidl1,item.name,L"%windir%\\ImmersiveControlPanel\\systemsettings.exe",0);
+		CString iconPath;
+		if (item.pItemInfo)
+		{
+			CItemManager::RWLock lock(&g_ItemManager, false, CItemManager::RWLOCK_ITEMS);
+			if (_wcsicmp(PathFindExtension(item.pItemInfo->GetPath()), L".settingcontent-ms") == 0)
+				iconPath = L"%windir%\\ImmersiveControlPanel\\systemsettings.exe";
+		}
+
+		CreatePinLink(pItemPidl1, item.name, iconPath.IsEmpty() ? nullptr : iconPath.GetString(), 0);
 		m_bRefreshItems=true;
 	}
 

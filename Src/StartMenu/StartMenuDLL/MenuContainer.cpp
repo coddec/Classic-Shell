@@ -2656,17 +2656,11 @@ int CMenuContainer::AddSearchItems( const std::vector<SearchItem> &items, const 
 				if (!categoryName.IsEmpty())
 				{
 					MenuItem item(MENU_SEARCH_CATEGORY);
-					if (categoryHash==CSearchManager::CATEGORY_PROGRAM || categoryHash==CSearchManager::CATEGORY_SETTING)
-					{
-						item.name.Format(L"%s (%d)",categoryName,originalCount);
-					}
-					else
-					{
-						item.name=categoryName;
-						item.bSplit=(s_Skin.More_bitmap_Size.cx>0);
-					}
+					item.name.Format(L"%s (%d)",categoryName,originalCount);
 					item.nameHash=CalcFNVHash(categoryName);
 					item.categoryHash=categoryHash;
+					if (categoryHash!=CSearchManager::CATEGORY_PROGRAM || categoryHash!=CSearchManager::CATEGORY_SETTING)
+						item.bSplit=(s_Skin.More_bitmap_Size.cx>0);
 					m_Items.push_back(item);
 				}
 			}
@@ -2724,7 +2718,7 @@ bool CMenuContainer::InitSearchItems( void )
 	unsigned int runCategoryHash=0;
 	CString runCommand;
 	CComString runExe;
-	if (!bAutoComlpete && !s_bNoRun && s_SearchResults.programs.empty() && s_SearchResults.settings.empty())
+	if (!bAutoComlpete && !s_bNoRun && s_SearchResults.programs.empty() && s_SearchResults.settings.empty() && s_SearchResults.metrosettings.empty())
 	{
 		if (s_bWin7Style)
 			m_SearchBox.GetWindowText(runCommand);
@@ -2787,6 +2781,12 @@ bool CMenuContainer::InitSearchItems( void )
 			if (m_SearchCategoryHash==CSearchManager::CATEGORY_SETTING)
 				selectedCount=(int)s_SearchResults.settings.size();
 		}
+		if (!s_SearchResults.metrosettings.empty())
+		{
+			counts.push_back((int)s_SearchResults.metrosettings.size());
+			if (m_SearchCategoryHash==CSearchManager::CATEGORY_METROSETTING)
+				selectedCount=(int)s_SearchResults.metrosettings.size();
+		}
 		for (std::list<CSearchManager::SearchCategory>::const_iterator it=s_SearchResults.indexed.begin();it!=s_SearchResults.indexed.end();++it)
 		{
 			if (!it->items.empty())
@@ -2829,7 +2829,7 @@ bool CMenuContainer::InitSearchItems( void )
 
 	// add categories
 	std::list<CSearchManager::SearchCategory>::const_iterator it=s_SearchResults.indexed.begin();
-	for (size_t idx=0;idx<s_SearchResults.indexed.size()+2;idx++)
+	for (size_t idx=0;idx<s_SearchResults.indexed.size()+3;idx++)
 	{
 		items.clear();
 		unsigned int categoryHash;
@@ -2837,6 +2837,8 @@ bool CMenuContainer::InitSearchItems( void )
 			categoryHash=CSearchManager::CATEGORY_PROGRAM;
 		else if (idx==1)
 			categoryHash=CSearchManager::CATEGORY_SETTING;
+		else if (idx==2)
+			categoryHash=CSearchManager::CATEGORY_METROSETTING;
 		else
 			categoryHash=it->categoryHash;
 
@@ -2854,7 +2856,7 @@ bool CMenuContainer::InitSearchItems( void )
 		}
 		if (count<=0)
 		{
-			if (idx>=2) ++it;
+			if (idx>=3) ++it;
 			continue;
 		}
 
@@ -2879,6 +2881,16 @@ bool CMenuContainer::InitSearchItems( void )
 			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.settings.begin();it!=s_SearchResults.settings.end() && (int)items.size()<count;++it)
 				items.push_back(SearchItem(*it));
 			name=FindTranslation(L"Search.CategorySettings",L"Settings");
+		}
+		else if (idx==2)
+		{
+			originalCount=(int)s_SearchResults.metrosettings.size();
+			if (count>originalCount)
+				count=originalCount;
+			items.reserve(count);
+			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.metrosettings.begin();it!=s_SearchResults.metrosettings.end() && (int)items.size()<count;++it)
+				items.push_back(SearchItem(*it));
+			name=FindTranslation(L"Search.CategoryPCSettings", L"Modern Settings");
 		}
 		else
 		{

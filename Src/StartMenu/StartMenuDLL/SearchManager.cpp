@@ -170,6 +170,7 @@ void CSearchManager::CloseMenu( void )
 	m_SettingsItems.clear();
 	m_SettingsHash=FNV_HASH0;
 	m_bSettingsFound=false;
+	m_bMetroSettingsFound = false;
 
 	m_IndexedItems.clear();
 	m_AutoCompleteItems.clear();
@@ -310,7 +311,9 @@ bool CSearchManager::AddSearchItem( IShellItem *pItem, const wchar_t *name, int 
 		PROPVARIANT val;
 		PropVariantInit(&val);
 		pItem2->GetProperty(PKEY_Keywords,&val);
-		wchar_t keywords[1024];
+		if (val.vt==VT_EMPTY)
+			pItem2->GetProperty(PKEY_HighKeywords,&val);
+		wchar_t keywords[2048];
 		int len=0;
 		if (val.vt==VT_BSTR || val.vt==VT_LPWSTR)
 		{
@@ -334,7 +337,7 @@ bool CSearchManager::AddSearchItem( IShellItem *pItem, const wchar_t *name, int 
 	}
 
 	Lock lock(this,LOCK_DATA);
-	if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING)
+	if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING || category==CATEGORY_METROSETTING)
 	{
 		if (searchRequest.requestId<m_LastProgramsRequestId)
 			return false;
@@ -345,10 +348,10 @@ bool CSearchManager::AddSearchItem( IShellItem *pItem, const wchar_t *name, int 
 			return false;
 	}
 	bool res=true;
-	if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING)
+	if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING || category==CATEGORY_METROSETTING)
 	{
 		std::vector<SearchItem> &items=(category==CATEGORY_PROGRAM)?m_ProgramItems:m_SettingsItems;
-		if (category==CATEGORY_SETTING)
+		if (category==CATEGORY_SETTING || category==CATEGORY_METROSETTING)
 		{
 			// remove duplicate settings
 			for (std::vector<SearchItem>::const_iterator it=items.begin();it!=items.end();++it)
@@ -381,6 +384,8 @@ bool CSearchManager::AddSearchItem( IShellItem *pItem, const wchar_t *name, int 
 		}
 
 		items.push_back(item);
+		if (item.category==CATEGORY_METROSETTING)
+			m_bMetroSettingsFound=true;
 	}
 	else if (category==CATEGORY_AUTOCOMPLETE)
 	{
@@ -409,7 +414,7 @@ void CSearchManager::CollectSearchItems( IShellItem *pFolder, int flags, TItemCa
 	CComPtr<IShellItem> pChild;
 	while (pChild=NULL,pEnum->Next(1,&pChild,NULL)==S_OK)
 	{
-		if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING)
+		if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING || category==CATEGORY_METROSETTING)
 		{
 			if (searchRequest.requestId<m_LastProgramsRequestId)
 				break;
@@ -428,7 +433,7 @@ void CSearchManager::CollectSearchItems( IShellItem *pFolder, int flags, TItemCa
 			{
 				// go into subfolders but not archives or links to folders
 				CollectSearchItems(pChild,flags,category,searchRequest);
-				if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING)
+				if (category==CATEGORY_PROGRAM || category==CATEGORY_SETTING || category==CATEGORY_METROSETTING)
 				{
 					if (searchRequest.requestId<m_LastProgramsRequestId)
 						break;
@@ -733,6 +738,14 @@ void CSearchManager::SearchThread( void )
 					if (searchRequest.requestId<m_LastProgramsRequestId)
 						continue;
 				}
+				if (searchRequest.bSearchMetroSettings)
+				{
+					CComPtr<IShellItem> pFolder;
+					if (SUCCEEDED(SHCreateItemFromParsingName(L"shell:::{82E749ED-B971-4550-BAF7-06AA2BF7E836}",NULL,IID_IShellItem,(void**)&pFolder)))
+						CollectSearchItems(pFolder,(searchRequest.bSearchKeywords?COLLECT_KEYWORDS:0)|COLLECT_NOREFRESH,CATEGORY_METROSETTING,searchRequest);
+					if (searchRequest.requestId<m_LastProgramsRequestId)
+						continue;
+				}
 			}
 			bool bRefresh=false;
 			{
@@ -780,12 +793,12 @@ void CSearchManager::SearchThread( void )
 		{
 			std::list<SearchScope> scopeList;
 
-			if (searchRequest.bSearchMetroSettings)
+			if (searchRequest.bSearchMetroSettings && !m_bMetroSettingsFound)
 			{
 				scopeList.push_back(SearchScope());
 				SearchScope &scope=*scopeList.rbegin();
 				scope.bFiles=true;
-				scope.name=FindTranslation(L"Search.CategoryPCSettings",L"Settings");
+				scope.name=FindTranslation(L"Search.CategoryPCSettings",L"Modern Settings");
 				scope.categoryHash=CATEGORY_METROSETTING;
 				scope.roots.push_back(L"FILE:");
 			}
@@ -1240,7 +1253,7 @@ void CSearchManager::SearchThread( void )
 						Lock lock(this,LOCK_DATA);
 						m_IndexedItems.push_back(SearchCategory());
 						pCategory=&*m_IndexedItems.rbegin();
-						pCategory->name.Format(L"%s (%d)",it->name,it->resultCount);
+						pCategory->name=it->name;
 						pCategory->categoryHash=it->categoryHash;
 						pCategory->search.Clone(it->search);
 					}
@@ -1348,6 +1361,7 @@ void CSearchManager::GetSearchResults( SearchResults &results )
 {
 	results.programs.clear();
 	results.settings.clear();
+	results.metrosettings.clear();
 	results.indexed.clear();
 	results.autocomplete.clear();
 	results.autoCompletePath.Empty();
@@ -1397,14 +1411,19 @@ void CSearchManager::GetSearchResults( SearchResults &results )
 			std::vector<SearchItem> &settings=m_bSettingsFound?m_SettingsItems:m_SettingsItemsOld;
 			for (std::vector<SearchItem>::iterator it=settings.begin();it!=settings.end();++it)
 			{
-				int match=(it->category==CATEGORY_SETTING)?it->MatchText(m_SearchText,bSearchSubWord):0;
+				int match=(it->category==CATEGORY_SETTING || it->category==CATEGORY_METROSETTING)?it->MatchText(m_SearchText,bSearchSubWord):0;
 				it->rank=(it->rank&0xFFFFFFFE)|(match>>1);
 			}
 			std::sort(settings.begin(),settings.end());
 			for (std::vector<SearchItem>::const_iterator it=settings.begin();it!=settings.end();++it)
 			{
-				if (it->category==CATEGORY_SETTING && it->MatchText(m_SearchText,bSearchSubWord))
-					results.settings.push_back(it->pInfo);
+				if (it->MatchText(m_SearchText, bSearchSubWord))
+				{
+					if (it->category==CATEGORY_SETTING)
+						results.settings.push_back(it->pInfo);
+					if (it->category==CATEGORY_METROSETTING)
+						results.metrosettings.push_back(it->pInfo);
+				}
 			}
 		}
 
@@ -1423,7 +1442,7 @@ void CSearchManager::GetSearchResults( SearchResults &results )
 				results.autocomplete.push_back(it->pInfo);
 		}
 	}
-	results.bResults=(!results.programs.empty() || !results.settings.empty() || !results.indexed.empty() || !results.autocomplete.empty());
+	results.bResults=(!results.programs.empty() || !results.settings.empty() || !results.metrosettings.empty() || !results.indexed.empty() || !results.autocomplete.empty());
 	results.bSearching=(m_LastCompletedId!=m_LastRequestId);
 }
 

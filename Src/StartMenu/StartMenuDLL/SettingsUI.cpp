@@ -3718,7 +3718,6 @@ protected:
 	CWindow m_ImageClassic1, m_ImageClassic2, m_ImageWin7;
 	CWindow m_Tooltip;
 	CWindow m_ButtonAero, m_ButtonClassic, m_ButtonCustom;
-	bool m_bLargeBitmaps;
 	HICON m_hIcon;
 	CString m_IconPath;
 
@@ -3737,14 +3736,13 @@ LRESULT CMenuStyleDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	HDC hdc=::GetDC(NULL);
 	int dpi=GetDeviceCaps(hdc,LOGPIXELSY);
 	::ReleaseDC(NULL,hdc);
-	m_bLargeBitmaps=dpi>=144;
-	if (m_bLargeBitmaps)
+	bool bLargeBitmaps=dpi>=144;
 	{
-		HBITMAP bmp=(HBITMAP)LoadImage(g_Instance,MAKEINTRESOURCE(IDB_STYLE_CLASSIC1150),IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION);
+		HBITMAP bmp=LoadImageResource(g_Instance,MAKEINTRESOURCE(bLargeBitmaps?IDB_STYLE_CLASSIC1150:IDB_STYLE_CLASSIC1),true,true);
 		m_ImageClassic1.SendMessage(STM_SETIMAGE,IMAGE_BITMAP,(LPARAM)bmp);
-		bmp=(HBITMAP)LoadImage(g_Instance,MAKEINTRESOURCE(IDB_STYLE_CLASSIC2150),IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION);
+		bmp=LoadImageResource(g_Instance,MAKEINTRESOURCE(bLargeBitmaps?IDB_STYLE_CLASSIC2150:IDB_STYLE_CLASSIC2),true,true);
 		m_ImageClassic2.SendMessage(STM_SETIMAGE,IMAGE_BITMAP,(LPARAM)bmp);
-		bmp=(HBITMAP)LoadImage(g_Instance,MAKEINTRESOURCE(IDB_STYLE_WIN7150),IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION);
+		bmp=LoadImageResource(g_Instance,MAKEINTRESOURCE(bLargeBitmaps?IDB_STYLE_WIN7150:IDB_STYLE_WIN7),true,true);
 		m_ImageWin7.SendMessage(STM_SETIMAGE,IMAGE_BITMAP,(LPARAM)bmp);
 	}
 
@@ -3779,7 +3777,6 @@ LRESULT CMenuStyleDlg::OnDestroy( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 {
 	if (m_hIcon) DestroyIcon(m_hIcon);
 	m_hIcon=NULL;
-	if (m_bLargeBitmaps)
 	{
 		HBITMAP bmp=(HBITMAP)m_ImageClassic1.SendMessage(STM_GETIMAGE,IMAGE_BITMAP);
 		if (bmp) DeleteObject(bmp);

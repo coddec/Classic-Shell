@@ -1,8 +1,6 @@
 if exist Output rd /Q /S Output
 md Output
 md Output\x64
-md Output\PDB32
-md Output\PDB64
 
 echo -- Compiling
 
@@ -67,6 +65,8 @@ copy /B "..\StartMenu\Skins\Metallic.skin7" Output > nul
 
 
 REM ********* Collect debug info
+md Output\PDB32
+md Output\PDB64
 
 REM Explorer 32
 copy /B ..\ClassicExplorer\Setup\ClassicExplorer32.pdb Output\PDB32 > nul
@@ -125,6 +125,18 @@ if exist %PDBSTR_PATH% (
 		%PDBSTR_PATH% -w -p:%%f -s:srcsrv -i:Output\pdbstr.txt
 	)
 )
+
+REM ********* Prepare symbols
+
+set SYMSTORE_PATH="C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\symstore.exe"
+
+%SYMSTORE_PATH% add /r /f Output\PDB32 /s Output\symbols /t OpenShell -:NOREFS > nul
+%SYMSTORE_PATH% add /r /f Output\PDB64 /s Output\symbols /t OpenShell -:NOREFS > nul
+rd /Q /S Output\symbols\000Admin > nul
+del Output\symbols\pingme.txt > nul
+
+rd /Q /S Output\PDB32
+rd /Q /S Output\PDB64
 
 REM ********* Build ADMX
 echo --- ADMX

@@ -3,9 +3,7 @@ REM ***** Collect PDBs
 echo -- Creating symbols package
 set CS_SYMBOLS_NAME=OpenShellPDB_%CS_VERSION_STR%.7z
 
-cd Output
-7z a -mx9 ..\Final\%CS_SYMBOLS_NAME% PDB32 PDB64 > nul
-cd ..
+7z a -mx9 .\Final\%CS_SYMBOLS_NAME% .\Output\symbols\* > nul
 
 if defined APPVEYOR (
 	appveyor PushArtifact Final\%CS_SYMBOLS_NAME%

@@ -402,7 +402,7 @@ void CMenuContainer::OpenSubMenu( int index, TActivateType type, bool bShift )
 	if (m_Options&CONTAINER_NOEXTENSIONS)
 		options|=CONTAINER_NOEXTENSIONS;
 
-	if (item.id==MENU_PROGRAMS || item.id==MENU_APPS || (m_Options&CONTAINER_MULTICOL_REC))
+	if (item.id==MENU_PROGRAMS || item.id==MENU_APPS || item.bFolder || (m_Options&CONTAINER_MULTICOL_REC))
 		options|=CONTAINER_MULTICOL_REC;
 	if ((options&CONTAINER_MULTICOL_REC) && !bShift)
 		options|=CONTAINER_MULTICOLUMN;

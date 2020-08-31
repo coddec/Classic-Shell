@@ -139,18 +139,25 @@ void CSearchManager::CloseMenu( void )
 	Lock lock(this,LOCK_DATA);
 	m_LastRequestId++;
 	m_LastProgramsRequestId=m_LastRequestId;
-	if (g_LogCategories&LOG_SEARCH)
+	if (g_LogCategories & LOG_SEARCH)
 	{
-		for (std::vector<SearchItem>::const_iterator it=m_ProgramItems.begin();it!=m_ProgramItems.end();++it)
+		for (const auto& item : m_ProgramItems)
 		{
-			if (it->category==CATEGORY_PROGRAM)
-				LOG_MENU(LOG_SEARCH,L"Program: '%s', %d",it->name,it->rank);
+			if (item.category == CATEGORY_PROGRAM)
+				LOG_MENU(LOG_SEARCH, L"Program: '%s', %d", item.name, item.rank);
 		}
-		std::sort(m_SettingsItems.begin(),m_SettingsItems.end());
-		for (std::vector<SearchItem>::const_iterator it=m_SettingsItems.begin();it!=m_SettingsItems.end();++it)
+
+		std::sort(m_SettingsItems.begin(), m_SettingsItems.end());
+
+		for (const auto& item : m_SettingsItems)
 		{
-			if (it->category==CATEGORY_SETTING)
-				LOG_MENU(LOG_SEARCH,L"Setting: '%s', %d",it->name,it->rank);
+			if (item.category == CATEGORY_SETTING)
+				LOG_MENU(LOG_SEARCH, L"Setting: '%s', %d", item.name, item.rank);
+		}
+		for (const auto& item : m_SettingsItems)
+		{
+			if (item.category == CATEGORY_METROSETTING)
+				LOG_MENU(LOG_SEARCH, L"MetroSetting: '%s', %d", item.name, item.rank);
 		}
 	}
 	if (m_bProgramsFound)
@@ -675,7 +682,7 @@ void CSearchManager::SearchThread( void )
 				if (GetWinVersion()>=WIN_VER_WIN8 && searchRequest.bSearchMetroApps)
 				{
 					std::vector<MetroLink> links;
-					GetMetroLinks(links,false);
+					GetMetroLinks(links,true);
 					for (std::vector<MetroLink>::const_iterator it=links.begin();it!=links.end();++it)
 					{
 						if (GetWinVersion()<WIN_VER_WIN10)

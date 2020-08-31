@@ -127,7 +127,7 @@ public:
 		}
 	};
 
-	std::vector<Setting> enumerate() const;
+	std::vector<std::wstring_view> enumerate() const;
 	Setting get(const std::wstring_view& name) const;
 
 private:

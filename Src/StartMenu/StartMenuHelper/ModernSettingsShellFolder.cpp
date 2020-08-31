@@ -91,16 +91,11 @@ public:
 			ULONG i = 0;
 			while (SUCCEEDED(hr) && i < celt && m_item < m_items.size())
 			{
-				const auto& s = m_items[m_item];
-				if ((s.hostId.empty() && s.deepLink.empty()) ||
-					(s.hostId == L"{6E6DDBCB-9C89-434B-A994-D5F22239523B}" && !s.deepLink.empty()))
+				hr = m_parent->CreateChildID(m_items[m_item], &rgelt[i]);
+				if (SUCCEEDED(hr))
 				{
-					hr = m_parent->CreateChildID(s.fileName, &rgelt[i]);
-					if (SUCCEEDED(hr))
-					{
-						celtFetched++;
-						i++;
-					}
+					celtFetched++;
+					i++;
 				}
 
 				m_item++;
@@ -141,7 +136,7 @@ public:
 private:
 	CComPtr<CModernSettingsShellFolder> m_parent;
 	std::shared_ptr<ModernSettings> m_settings;
-	std::vector<ModernSettings::Setting> m_items;
+	std::vector<std::wstring_view> m_items;
 	DWORD m_item = 0;
 };
 

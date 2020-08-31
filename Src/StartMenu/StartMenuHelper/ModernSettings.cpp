@@ -359,13 +359,13 @@ ModernSettings::Setting::Setting(const Blob& blob)
 	});
 }
 
-std::vector<ModernSettings::Setting> ModernSettings::enumerate() const
+std::vector<std::wstring_view> ModernSettings::enumerate() const
 {
-	std::vector<ModernSettings::Setting> retval;
+	std::vector<std::wstring_view> retval;
 	retval.reserve(m_settings.size());
 
 	for (const auto& i : m_settings)
-		retval.emplace_back(i.second);
+		retval.emplace_back(i.first);
 
 	return retval;
 }

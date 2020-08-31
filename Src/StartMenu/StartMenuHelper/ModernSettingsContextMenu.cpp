@@ -70,6 +70,11 @@ static bool ActivateModernSettingPage(const WCHAR* page)
 
 extern ModernSettings::Setting GetModernSetting(LPCITEMIDLIST pidl);
 
+static HRESULT Execute(const wchar_t* cmd)
+{
+	return (intptr_t)::ShellExecute(nullptr, L"open", cmd, nullptr, nullptr, SW_SHOWNORMAL) > 32 ? S_OK : E_FAIL;
+}
+
 static HRESULT OpenItemByPidl(LPCITEMIDLIST pidl)
 {
 	auto child = ILFindLastID(pidl);
@@ -80,10 +85,49 @@ static HRESULT OpenItemByPidl(LPCITEMIDLIST pidl)
 
 	if (setting.hostId == L"{6E6DDBCB-9C89-434B-A994-D5F22239523B}")
 	{
+		if (setting.deepLink.empty())
+			return E_INVALIDARG;
+
 		std::wstring cmd(L"windowsdefender://");
 		cmd += setting.deepLink;
 
-		return (intptr_t)::ShellExecute(nullptr, L"open", cmd.c_str(), nullptr, nullptr, SW_SHOWNORMAL) > 32 ? S_OK : E_FAIL;
+		return Execute(cmd.c_str());
+	}
+
+	if (setting.hostId == L"{7E0522FC-1AC4-41CA-AFD0-3610417A9C41}")
+	{
+		if (setting.pageId.empty())
+			return E_INVALIDARG;
+
+		std::wstring cmd(L"shell:::");
+		cmd += setting.pageId;
+
+		return Execute(cmd.c_str());
+	}
+
+	if (setting.hostId == L"{12B1697E-D3A0-4DBC-B568-CCF64A3F934D}")
+	{
+		if (setting.deepLink.empty())
+			return E_INVALIDARG;
+
+		std::wstring cmd(setting.deepLink);
+
+		if (cmd.compare(0, 8, L"shell:::") == 0)
+			return Execute(cmd.c_str());
+
+		cmd.resize(MAX_PATH);
+		DoEnvironmentSubst(cmd.data(), (UINT)cmd.size());
+
+		STARTUPINFO startupInfo = { sizeof(startupInfo) };
+		PROCESS_INFORMATION processInfo{};
+
+		if (!CreateProcess(nullptr, cmd.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &startupInfo, &processInfo))
+			return E_FAIL;
+
+		CloseHandle(processInfo.hThread);
+		CloseHandle(processInfo.hProcess);
+
+		return S_OK;
 	}
 
 	if (setting.pageId.empty())

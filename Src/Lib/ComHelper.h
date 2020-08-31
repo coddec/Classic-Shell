@@ -14,6 +14,7 @@ public:
 	CAbsolutePidl( const CAbsolutePidl &pidl ) { m_Pidl=pidl?ILCloneFull(pidl):NULL; }
 	~CAbsolutePidl( void ) { Clear(); }
 	void operator=( const CAbsolutePidl &pidl ) { Clone(pidl); }
+	void operator=( PCIDLIST_ABSOLUTE pidl ) { Clone(pidl); }
 
 	void Clear( void ) { if (m_Pidl) ILFree(m_Pidl); m_Pidl=NULL; }
 	operator PIDLIST_ABSOLUTE( void ) const { return m_Pidl; }
@@ -21,7 +22,7 @@ public:
 	void Swap( CAbsolutePidl &pidl ) { PIDLIST_ABSOLUTE q=pidl.m_Pidl; pidl.m_Pidl=m_Pidl; m_Pidl=q; }
 	void Attach( PIDLIST_ABSOLUTE pidl ) { Clear(); m_Pidl=pidl; }
 	PIDLIST_ABSOLUTE Detach( void ) { PIDLIST_ABSOLUTE pidl=m_Pidl; m_Pidl=NULL; return pidl; }
-	void Clone( PIDLIST_ABSOLUTE pidl ) { Clear(); m_Pidl=pidl?ILCloneFull(pidl):NULL; }
+	void Clone( PCIDLIST_ABSOLUTE pidl ) { Clear(); m_Pidl=pidl?ILCloneFull(pidl):NULL; }
 
 private:
 	PIDLIST_ABSOLUTE m_Pidl;

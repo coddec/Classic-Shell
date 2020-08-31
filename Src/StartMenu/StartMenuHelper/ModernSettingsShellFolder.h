@@ -3,6 +3,7 @@
 
 #pragma once
 #include "resource.h"
+#include "ComHelper.h"
 #include "StartMenuHelper_i.h"
 #include <shlobj.h>
 #include <string>
@@ -78,7 +79,7 @@ END_COM_MAP()
 private:
 	std::wstring_view GetColumnDisplayName(PCUITEMID_CHILD pidl, UINT iColumn);
 
-	PIDLIST_ABSOLUTE m_pidl = nullptr;             // where this folder is in the name space
+	CAbsolutePidl m_pidl;             // where this folder is in the name space
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(ModernSettingsShellFolder), CModernSettingsShellFolder)

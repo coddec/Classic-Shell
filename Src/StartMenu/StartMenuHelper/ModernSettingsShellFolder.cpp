@@ -341,7 +341,7 @@ HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMI
 		{
 			if (!s.icon.empty())
 			{
-				IDefaultExtractIconInit* pdxi;
+				CComPtr<IDefaultExtractIconInit> pdxi;
 				hr = SHCreateDefaultExtractIcon(IID_PPV_ARGS(&pdxi));
 				if (SUCCEEDED(hr))
 				{
@@ -353,8 +353,6 @@ HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMI
 					hr = pdxi->SetNormalIcon(icon_path, location);
 					if (SUCCEEDED(hr))
 						hr = pdxi->QueryInterface(riid, ppv);
-
-					pdxi->Release();
 				}
 			}
 			else
@@ -368,7 +366,6 @@ HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMI
 					extract->SetGlyph(glyph);
 					hr = extract->QueryInterface(riid, ppv);
 				}
-
 			}
 		}
 	}
@@ -409,15 +406,13 @@ HRESULT CModernSettingsShellFolder::GetDisplayNameOf(PCUITEMID_CHILD pidl, SHGDN
 		else
 		{
 			WCHAR szDisplayName[MAX_PATH];
-			PWSTR pszThisFolder;
+			CComString pszThisFolder;
 			hr = SHGetNameFromIDList(m_pidl, (shgdnFlags & SHGDN_FORADDRESSBAR) ? SIGDN_DESKTOPABSOLUTEEDITING : SIGDN_DESKTOPABSOLUTEPARSING, &pszThisFolder);
 			if (SUCCEEDED(hr))
 			{
 				StringCchCopy(szDisplayName, ARRAYSIZE(szDisplayName), pszThisFolder);
 				StringCchCat(szDisplayName, ARRAYSIZE(szDisplayName), L"\\");
 				StringCchCat(szDisplayName, ARRAYSIZE(szDisplayName), setting.fileName.data());
-
-				CoTaskMemFree(pszThisFolder);
 
 				hr = StringToStrRet(szDisplayName, pName);
 			}
@@ -535,7 +530,7 @@ HRESULT CModernSettingsShellFolder::GetClassID(CLSID* pClassID)
 // IPersistFolder method
 HRESULT CModernSettingsShellFolder::Initialize(PCIDLIST_ABSOLUTE pidl)
 {
-	m_pidl = ILCloneFull(pidl);
+	m_pidl = pidl;
 	return m_pidl ? S_OK : E_FAIL;
 }
 

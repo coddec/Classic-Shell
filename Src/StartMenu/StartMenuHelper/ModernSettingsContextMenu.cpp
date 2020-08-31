@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "ModernSettings.h"
 #include "ModernSettingsContextMenu.h"
+#include "ComHelper.h"
 
 #define MENUVERB_OPEN     0
 
@@ -177,13 +178,10 @@ HRESULT CModernSettingsContextMenu::InvokeCommand(LPCMINVOKECOMMANDINFO pici)
 	{
 		if (uID == MENUVERB_OPEN && m_pdtobj)
 		{
-			LPITEMIDLIST pidl;
+			CAbsolutePidl pidl;
 			hr = SHGetIDListFromObject(m_pdtobj, &pidl);
 			if (SUCCEEDED(hr))
-			{
 				hr = OpenItemByPidl(pidl);
-				ILFree(pidl);
-			}
 		}
 	}
 

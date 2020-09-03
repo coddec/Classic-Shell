@@ -31,19 +31,19 @@ struct LanguageVersionData
 
 struct VersionData
 {
-	bool bValid;
-	DWORD newVersion;
-	DWORD encodedLangVersion;
+	bool bValid = false;
+	DWORD newVersion = 0;
+	DWORD encodedLangVersion = 0;
 	CString downloadUrl;
 	CString downloadSigner;
 	CString news;
 	CString updateLink;
 	CString languageLink;
 	CString altUrl;
-	bool bNewVersion;
-	bool bIgnoreVersion;
-	bool bNewLanguage;
-	bool bIgnoreLanguage;
+	bool bNewVersion = false;
+	bool bIgnoreVersion = false;
+	bool bNewLanguage = false;
+	bool bIgnoreLanguage = false;
 	CString newLanguage;
 	std::vector<LanguageVersionData> languages;
 
@@ -59,6 +59,7 @@ struct VersionData
 		LOAD_BAD_FILE, // the file is corrupted
 	};
 
+	TLoadResult Load();
 	TLoadResult Load( const wchar_t *fname, bool bLoadFlags );
 private:
 	void operator=( const VersionData& );

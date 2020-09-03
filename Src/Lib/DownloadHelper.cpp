@@ -14,6 +14,7 @@
 #include "FNVHash.h"
 #include "StringUtils.h"
 #include "Translations.h"
+#include "json.hpp"
 #include <wininet.h>
 #include <softpub.h>
 
@@ -141,30 +142,9 @@ LRESULT CProgressDlg::OnCancel( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& 
 
 static bool g_bCheckingVersion;
 
-static DWORD GetTimeStamp( const wchar_t *fname )
-{
-	HANDLE h=CreateFile(fname,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-	if (h==INVALID_HANDLE_VALUE)
-		return 0;
-	DWORD res=0;
-	DWORD q;
-	IMAGE_DOS_HEADER header;
-	if (ReadFile(h,&header,sizeof(header),&q,NULL) && q==sizeof(header))
-	{
-		if (SetFilePointer(h,header.e_lfanew+8,NULL,FILE_BEGIN)!=INVALID_SET_FILE_POINTER)
-		{
-			if (!ReadFile(h,&res,4,&q,NULL) || q!=4)
-				res=0;
-		}
-	}
-	CloseHandle(h);
-	return res;
-}
-
 enum TDownloadResult
 {
 	DOWNLOAD_OK,
-	DOWNLOAD_SAMETIME,
 	DOWNLOAD_CANCEL,
 
 	// errors
@@ -176,8 +156,7 @@ enum TDownloadResult
 
 // Downloads a file
 // filename - returns the name of the downloaded file
-// timestamp - if not zero, it is compared to the timestamp of the file and returns DOWNLOAD_SAMETIME if the same (and buf will be empty)
-static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf, CString *pFilename, DWORD timestamp, bool bAcceptCached, CProgressDlg *pProgress, TSettingsComponent component )
+static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf, CString *pFilename, bool bAcceptCached, CProgressDlg *pProgress, TSettingsComponent component )
 {
 	const wchar_t *compName=L"Open-Shell";
 	switch (component)
@@ -264,7 +243,7 @@ static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf,
 						if (fileSize==0)
 							pProgress->SetProgress(-1);
 					}
-					int CHUNK_SIZE=timestamp?1024:32768; // start with small chunk to verify the timestamp
+					int CHUNK_SIZE=32768;
 					DWORD size=0;
 					buf.reserve(fileSize+CHUNK_SIZE);
 					while (1)
@@ -286,25 +265,6 @@ static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf,
 						size+=dwSize;
 						if (pProgress && fileSize)
 							pProgress->SetProgress(size*100/fileSize);
-						if (timestamp && (size<sizeof(IMAGE_DOS_HEADER) || buf[0]!='M' || buf[1]!='Z'))
-						{
-							res=DOWNLOAD_FAIL;
-							break;
-						}
-						if (timestamp && size>=sizeof(IMAGE_DOS_HEADER))
-						{
-							DWORD pos=((IMAGE_DOS_HEADER*)&buf[0])->e_lfanew+8;
-							if (size>=pos+4)
-							{
-								if (timestamp==*(DWORD*)&buf[pos])
-								{
-									res=DOWNLOAD_SAMETIME;
-									break;
-								}
-								timestamp=0;
-								CHUNK_SIZE=32768;
-							}
-						}
 					}
 					buf.resize(size);
 				}
@@ -377,80 +337,17 @@ static DWORD WINAPI ThreadVersionCheck( void *param )
 		return 0;
 	}
 	DWORD curVersion=GetVersionEx(g_Instance);
-	regKey.SetDWORDValue(L"LastUpdateVersion",curVersion);
 
-	// download file
-	wchar_t fname[_MAX_PATH]=L"%ALLUSERSPROFILE%\\OpenShell";
-	DoEnvironmentSubst(fname,_countof(fname));
-	SHCreateDirectory(NULL,fname);
-	PathAppend(fname,L"update.ver");
-
-	bool res=false;
-	CString urlBase=LoadStringEx(IDS_VERSION_URL);
+	bool res = false;
 	VersionData data;
-	data.Clear();
-	if (data.Load(fname,false)==VersionData::LOAD_OK)
+
 	{
-		if (!data.altUrl.IsEmpty())
-			urlBase=data.altUrl;
-		WIN32_FILE_ATTRIBUTE_DATA attr;
-		if (GetFileAttributesEx(fname,GetFileExInfoStandard,&attr))
-		{
-			DWORD writeTime=(DWORD)(((((ULONGLONG)attr.ftLastWriteTime.dwHighDateTime)<<32)|attr.ftLastWriteTime.dwLowDateTime)/TIME_DIVISOR);
-			if (curTime>writeTime && (curTime-writeTime)<TIME_PRECISION)
-			{
-				res=true; // the file is valid and less than an hour old, don't download again
-			}
-		}
-	}
-	if (!res)
-	{
-		data.Clear();
-		CString url;
-		url.Format(L"%s%d.%d.%d.ver",urlBase,curVersion>>24,(curVersion>>16)&0xFF,curVersion&0xFFFF);
+		auto load = data.Load();
 
-	#ifdef UPDATE_LOG
-		LogToFile(UPDATE_LOG,L"URL: %s",url);
-	#endif
-
-		std::vector<char> buf;
-		TDownloadResult download=DownloadFile(url,buf,NULL,GetTimeStamp(fname),false,params.progress,params.component);
-	#ifdef UPDATE_LOG
-		LogToFile(UPDATE_LOG,L"Download result: %d",download);
-	#endif
-		if (download==DOWNLOAD_CANCEL)
-		{
-			g_bCheckingVersion=false;
-			return 2;
-		}
-
-		if (download<DOWNLOAD_FIRST_ERROR)
-		{
-			if (download==DOWNLOAD_SAMETIME || SaveFile(fname,buf)==0)
-			{
-				if (download==DOWNLOAD_SAMETIME)
-				{
-					HANDLE h=CreateFile(fname,GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-					if (h!=INVALID_HANDLE_VALUE)
-					{
-						SetFileTime(h,NULL,NULL,(FILETIME*)&curTimeL);
-						CloseHandle(h);
-					}
-				}
-				if (params.progress)
-				{
-					params.progress->SetText(LoadStringEx(IDS_PROGRESS_VERIFY));
-					params.progress->SetProgress(-1);
-				}
-				VersionData::TLoadResult load=data.Load(fname,false);
-	#ifdef UPDATE_LOG
-				LogToFile(UPDATE_LOG,L"Load result: %d",load);
-	#endif
-				if (load==VersionData::LOAD_BAD_FILE)
-					DeleteFile(fname);
-				res=(load==VersionData::LOAD_OK);
-			}
-		}
+#ifdef UPDATE_LOG
+		LogToFile(UPDATE_LOG, L"Load result: %d", load);
+#endif
+		res = (load == VersionData::LOAD_OK);
 	}
 
 	curTime+=(rand()*TIME_PRECISION)/(RAND_MAX+1)-(TIME_PRECISION/2); // add between -30 and 30 minutes to randomize access
@@ -583,42 +480,19 @@ DWORD CheckForNewVersion( HWND owner, TSettingsComponent component, TVersionChec
 	}
 	else
 	{
-		DWORD buildTime=0;
-		{
-			// skip the update if the update component is not found
-			wchar_t path[_MAX_PATH];
-			GetModuleFileName(_AtlBaseModule.GetModuleInstance(),path,_countof(path));
-			PathRemoveFileSpec(path);
-			PathAppend(path,L"Update.exe");
-
-			WIN32_FILE_ATTRIBUTE_DATA attr;
-			if (!GetFileAttributesEx(path,GetFileExInfoStandard,&attr))
-				return 0;
-
-			buildTime=(DWORD)(((((ULONGLONG)attr.ftCreationTime.dwHighDateTime)<<32)|attr.ftCreationTime.dwLowDateTime)/TIME_DIVISOR); // in 0.01 hours
-		}
-
 		ULONGLONG curTimeL;
 		GetSystemTimeAsFileTime((FILETIME*)&curTimeL);
 		DWORD curTime=(DWORD)(curTimeL/TIME_DIVISOR); // in 0.01 hours
-		if (curTime-buildTime>24*365*TIME_PRECISION)
-			return 0; // the build is more than a year old, don't do automatic updates
 
 		CRegKey regKey;
 		if (regKey.Open(HKEY_CURRENT_USER,L"Software\\OpenShell\\OpenShell")!=ERROR_SUCCESS)
 			regKey.Create(HKEY_CURRENT_USER,L"Software\\OpenShell\\OpenShell");
 
-		DWORD lastVersion;
-		if (regKey.QueryDWORDValue(L"LastUpdateVersion",lastVersion)!=ERROR_SUCCESS)
-			lastVersion=0;
-		if (lastVersion==GetVersionEx(g_Instance))
-		{
-			DWORD lastTime;
-			if (regKey.QueryDWORDValue(L"LastUpdateTime",lastTime)!=ERROR_SUCCESS)
-				lastTime=0;
-			if ((int)(curTime-lastTime)<168*TIME_PRECISION)
-				return 0; // check weekly
-		}
+		DWORD lastTime;
+		if (regKey.QueryDWORDValue(L"LastUpdateTime",lastTime)!=ERROR_SUCCESS)
+			lastTime=0;
+		if ((int)(curTime-lastTime)<168*TIME_PRECISION)
+			return 0; // check weekly
 
 		// check the Update setting (uses the current value in the registry, not the one from memory
 		{
@@ -848,6 +722,94 @@ void VersionData::Swap( VersionData &data )
 	std::swap(languages,data.languages);
 }
 
+std::vector<char> DownloadUrl(const wchar_t* url)
+{
+#ifdef UPDATE_LOG
+	LogToFile(UPDATE_LOG, L"URL: %s", url);
+#endif
+
+	std::vector<char> buffer;
+	TDownloadResult download = DownloadFile(url, buffer, nullptr, false, nullptr, COMPONENT_UPDATE);
+
+#ifdef UPDATE_LOG
+	LogToFile(UPDATE_LOG, L"Download result: %d", download);
+#endif
+
+	if (download != DOWNLOAD_OK)
+		buffer.clear();
+
+	return buffer;
+}
+
+using namespace nlohmann;
+
+VersionData::TLoadResult VersionData::Load()
+{
+	Clear();
+
+	auto buf = DownloadUrl(L"https://api.github.com/repos/Open-Shell/Open-Shell-Menu/releases/latest");
+	if (buf.empty())
+		return LOAD_ERROR;
+
+	try
+	{
+		auto data = json::parse(buf.begin(), buf.end());
+
+		// skip prerelease versions
+		if (data["prerelease"].get<bool>())
+			return LOAD_BAD_VERSION;
+
+		// get version from tag name
+		auto tag = data["tag_name"].get<std::string>();
+		if (tag.empty())
+			return LOAD_BAD_FILE;
+
+		int v1, v2, v3;
+		if (sscanf_s(tag.c_str(), "v%d.%d.%d", &v1, &v2, &v3) != 3)
+			return LOAD_BAD_FILE;
+
+		newVersion = (v1 << 24) | (v2 << 16) | v3;
+
+		// installer url
+		std::string url;
+		for (const auto& asset : data["assets"])
+		{
+			if (asset["name"].get<std::string>().find("OpenShellSetup") == 0)
+			{
+				url = asset["browser_download_url"].get<std::string>();
+				break;
+			}
+		}
+
+		if (url.empty())
+			return LOAD_BAD_FILE;
+
+		downloadUrl.Append(CA2T(url.c_str()));
+
+		// changelog
+		auto body = data["body"].get<std::string>();
+		if (!body.empty())
+		{
+			auto name = data["name"].get<std::string>();
+			if (!name.empty())
+			{
+				news.Append(CA2T(name.c_str()));
+				news.Append(L"\r\n\r\n");
+			}
+
+			news.Append(CA2T(body.c_str()));
+			news.Replace(L"\\n", L"\n");
+			news.Replace(L"\\r", L"\r");
+		}
+
+		return LOAD_OK;
+	}
+	catch (...)
+	{
+		return LOAD_BAD_FILE;
+	}
+}
+
 VersionData::TLoadResult VersionData::Load( const wchar_t *fname, bool bLoadFlags )
 {
 	Clear();
@@ -937,7 +899,7 @@ static DWORD WINAPI ThreadDownloadFile( void *param )
 	params.saveRes=0;
 
 	std::vector<char> buf;
-	params.downloadRes=DownloadFile(params.url,buf,params.fname.IsEmpty()?&params.fname:NULL,0,params.bAcceptCached,params.progress,params.component);
+	params.downloadRes=DownloadFile(params.url,buf,params.fname.IsEmpty()?&params.fname:NULL,params.bAcceptCached,params.progress,params.component);
 	if (params.downloadRes==DOWNLOAD_CANCEL || params.downloadRes>=DOWNLOAD_FIRST_ERROR)
 		return 0;
 
@@ -971,6 +933,7 @@ static DWORD WINAPI ThreadDownloadFile( void *param )
 		return 0;
 
 	// validate signer
+/*
 	if (params.signer)
 	{
 		if (params.progress)
@@ -982,7 +945,7 @@ static DWORD WINAPI ThreadDownloadFile( void *param )
 			return 0;
 		}
 	}
-
+*/
 	return 0;
 }
 
@@ -1088,6 +1051,12 @@ DWORD DownloadNewVersion( HWND owner, TSettingsComponent component, const wchar_
 	params.progress=&progress;
 	params.bAcceptCached=true;
 	params.component=component;
+
+	{
+		const wchar_t* name = wcsrchr(url, '/');
+		if (name && name[1])
+			params.fname.Append(name+1);
+	}
 
 	HANDLE hThread=CreateThread(NULL,0,ThreadDownloadFile,&params,0,NULL);
 

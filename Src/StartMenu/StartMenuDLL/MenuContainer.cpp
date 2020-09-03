@@ -7323,8 +7323,9 @@ static void NewVersionCallback( VersionData &data )
 	wchar_t cmdLine[1024];
 	Sprintf(cmdLine,_countof(cmdLine),L"\"%s\" -popup",path);
 	STARTUPINFO startupInfo={sizeof(startupInfo)};
-	PROCESS_INFORMATION processInfo;
-	memset(&processInfo,0,sizeof(processInfo));
+	// don't display busy cursor as we are doing this on background
+	startupInfo.dwFlags=STARTF_FORCEOFFFEEDBACK;
+	PROCESS_INFORMATION processInfo{};
 	if (CreateProcess(path,cmdLine,NULL,NULL,TRUE,0,NULL,NULL,&startupInfo,&processInfo))
 	{
 		CloseHandle(processInfo.hThread);

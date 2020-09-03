@@ -319,7 +319,7 @@ LRESULT CUpdateDlg::OnDontRemind( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL
 
 LRESULT CUpdateDlg::OnWeb( int idCtrl, LPNMHDR pnmh, BOOL& bHandled )
 {
-	ShellExecute(m_hWnd,NULL,L"https://github.com/Open-Shell/Open-Shell-Menu",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecute(m_hWnd,NULL,L"https://open-shell.github.io/Open-Shell-Menu/",NULL,NULL,SW_SHOWNORMAL);
 	return 0;
 }
 
@@ -461,11 +461,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 {
 	INITCOMMONCONTROLSEX init={sizeof(init),ICC_STANDARD_CLASSES};
 	InitCommonControlsEx(&init);
-/*
-	VersionData data;
-	data.Load(L"D:\\Work\\OpenShell\\Setup\\Final\\update_4.0.4.ver",false);
-	return 0;
-*/
+
 	// prevent multiple instances from running on the same desktop
 	// the assumption is that multiple desktops for the same user will have different name (but may repeat across users)
 	wchar_t userName[256];

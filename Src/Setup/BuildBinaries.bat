@@ -37,6 +37,7 @@ copy /B ..\ClassicIE\Setup\ClassicIEDLL_32.dll Output > nul
 copy /B ..\ClassicIE\Setup\ClassicIE_32.exe Output > nul
 copy /B ..\StartMenu\Setup\StartMenu.exe Output > nul
 copy /B ..\StartMenu\Setup\StartMenuDLL.dll Output > nul
+copy /B ..\Update\Release\Update.exe Output > nul
 copy /B ..\StartMenu\StartMenuHelper\Setup\StartMenuHelper32.dll Output > nul
 copy /B ..\Setup\SetupHelper\Release\SetupHelper.exe Output > nul
 
@@ -96,6 +97,8 @@ copy /B ..\StartMenu\Setup\StartMenuDLL.pdb Output\PDB32 > nul
 copy /B Output\StartMenuDLL.dll Output\PDB32 > nul
 copy /B ..\StartMenu\StartMenuHelper\Setup\StartMenuHelper32.pdb Output\PDB32 > nul
 copy /B Output\StartMenuHelper32.dll Output\PDB32 > nul
+copy /B ..\Update\Release\Update.pdb Output\PDB32 > nul
+copy /B Output\Update.exe Output\PDB32 > nul
 
 REM Menu 64
 copy /B ..\StartMenu\Setup64\StartMenu.pdb Output\PDB64 > nul

@@ -211,7 +211,7 @@ static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf,
 	int time=GetTickCount();
 	if (pProgress)
 		pProgress->SetText(LoadStringEx(IDS_PROGRESS_CONNECT));
-	HINTERNET hConnect=InternetConnect(hInternet,host,INTERNET_DEFAULT_HTTP_PORT,L"",L"",INTERNET_SERVICE_HTTP,0,0);
+	HINTERNET hConnect=InternetConnect(hInternet,host,components.nPort,L"",L"",INTERNET_SERVICE_HTTP,0,0);
 	if (hConnect)
 	{
 		if (pProgress && pProgress->IsCanceled())
@@ -219,7 +219,7 @@ static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf,
 		const wchar_t *accept[]={L"*/*",NULL};
 		if (res==DOWNLOAD_OK)
 		{
-			HINTERNET hRequest=HttpOpenRequest(hConnect,L"GET",file,NULL,NULL,accept,bAcceptCached?0:INTERNET_FLAG_RELOAD,0);
+			HINTERNET hRequest=HttpOpenRequest(hConnect,L"GET",file,NULL,NULL,accept,((components.nScheme==INTERNET_SCHEME_HTTPS)?INTERNET_FLAG_SECURE:0)|(bAcceptCached?0:INTERNET_FLAG_RELOAD),0);
 			if (hRequest)
 			{
 				if (pProgress && pProgress->IsCanceled())

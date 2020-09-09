@@ -105,7 +105,9 @@
 			</Feature>
 			<Feature Id="Update" Level="1" Title="!(loc.UpdateTitle)" ConfigurableDirectory="APPLICATIONFOLDER" AllowAdvertise="no" Description="!(loc.UpdateDesc)">
 				<ComponentRef Id="Update.exe" />
+				<ComponentRef Id="DesktopToasts.dll" />
 				<ComponentRef Id="UpdateSettingsLink" />
+				<ComponentRef Id="ToastActivator" />
 			</Feature>
 		</Feature>
 		<UI>
@@ -476,6 +478,9 @@
 			<Component Id="Update.exe" Guid="FB6C213F-B670-4888-8B2C-12E807E335A7" Win64="$(var.CS_WIN64)">
 				<File Id="Update" KeyPath="yes" Source="Output\Update.exe" Checksum="yes" Vital="yes" />
 			</Component>
+			<Component Id="DesktopToasts.dll" Guid="B42157AF-3984-4796-8BD6-501FC5450FF1" Win64="$(var.CS_WIN64)">
+				<File Id="DesktopToasts.dll" KeyPath="yes" Source="Output\DesktopToasts.dll" Checksum="yes" Vital="yes" />
+			</Component>
 			<Component Id="PolicyDefinitions.zip" Guid="580A15D0-4023-471d-9D82-9D63FBA42B5D" Win64="$(var.CS_WIN64)">
 				<File Id="PolicyDefinitions.zip" KeyPath="yes" Source="Output\PolicyDefinitions.zip" Vital="yes" />
 			</Component>
@@ -551,6 +556,11 @@
 			<Component Id="TreatAs" Guid="B1E7462A-E1E2-47eb-A42C-7BD272D738AA" Win64="$(var.CS_WIN64)">
 				<RegistryKey Root="HKCR" Key="CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}\TreatAs" ForceDeleteOnUninstall="yes" />
 			</Component>
+			<Component Id="ToastActivator" Guid="3A0FDC31-D5D3-4C2E-9A0B-292CAB46DA87" Win64="$(var.CS_WIN64)">
+				<RegistryKey Root="HKCR" Key="CLSID\{E407B70A-1FBD-4D5E-8822-231C69102472}\LocalServer32" ForceDeleteOnUninstall="yes">
+					<RegistryValue Value="&quot;[APPLICATIONFOLDER]Update.exe&quot; -ToastActivated" Type="string" />
+				</RegistryKey>
+			</Component>
 		</DirectoryRef>
 		<DirectoryRef Id="StartMenuDir">
 			<Component Id="HelpLink" Guid="D631C351-7BD4-42CE-813C-5D46347068AF">
@@ -564,7 +574,10 @@
 				<Condition>START_MENU_FOLDER=1</Condition>
 			</Component>
 			<Component Id="UpdateSettingsLink" Guid="10B5A082-6C92-4EA7-AFF8-21AE3D2D7FE0">
-				<Shortcut Id="UpdateSettingsLink" Name="!(loc.UpdateItem)" Advertise="no" Description="!(loc.UpdateSettingsDesc)" Target="[APPLICATIONFOLDER]Update.exe" WorkingDirectory="APPLICATIONFOLDER" />
+				<Shortcut Id="UpdateSettingsLink" Name="!(loc.UpdateItem)" Advertise="no" Description="!(loc.UpdateSettingsDesc)" Target="[APPLICATIONFOLDER]Update.exe" WorkingDirectory="APPLICATIONFOLDER">
+					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Update"/>
+					<ShortcutProperty Key="System.AppUserModel.ToastActivatorCLSID" Value="{E407B70A-1FBD-4D5E-8822-231C69102472}"/>
+				</Shortcut>
 				<CreateFolder />
 				<Condition>START_MENU_FOLDER=1</Condition>
 			</Component>

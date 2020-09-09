@@ -16,6 +16,7 @@
 #include "ResourceHelper.h"
 #include "Translations.h"
 #include <shlobj.h>
+#include "DesktopToasts/DesktopToasts.h"
 
 
 void ClosingSettings( HWND hWnd, int flags, int command )
@@ -487,8 +488,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	CString language=GetSettingString(L"Language");
 	ParseTranslations(NULL,language);
 
-	g_Instance=hInstance;
-
 	HINSTANCE resInstance=LoadTranslationDll(language);
 
 	LoadTranslationResources(resInstance,g_LoadDialogs);
@@ -500,6 +499,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 
 	COwnerWindow ownerWindow;
 	ownerWindow.Create(NULL,0,0,WS_POPUP);
+
+	DesktopToasts toasts(L"OpenShell.Update");
+
 	if (wcsstr(lpstrCmdLine,L"-popup")!=NULL)
 	{
 		g_UpdateDlg.UpdateData();
@@ -507,52 +509,67 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 		int sleep=5000-(timeGetTime()-time0);
 		if (sleep>0)
 			Sleep(sleep);
-		HWND balloon=CreateWindowEx(WS_EX_TOPMOST|WS_EX_TOOLWINDOW|(IsLanguageRTL()?WS_EX_LAYOUTRTL:0),TOOLTIPS_CLASS,NULL,WS_POPUP|TTS_CLOSE|TTS_NOPREFIX,0,0,0,0,NULL,NULL,g_Instance,NULL);
-		SendMessage(balloon,TTM_SETMAXTIPWIDTH,0,500);
-		TOOLINFO tool={sizeof(tool),TTF_ABSOLUTE|TTF_TRANSPARENT|TTF_TRACK|(IsLanguageRTL()?TTF_RTLREADING:0U)};
-		tool.uId=1;
-		CString message=LoadStringEx(g_UpdateDlg.HasNewLanguage()?IDS_LANG_NEWVERSION:IDS_NEWVERSION);
-		tool.lpszText=(wchar_t*)(const wchar_t*)message;
-		SendMessage(balloon,TTM_ADDTOOL,0,(LPARAM)&tool);
-		SendMessage(balloon,TTM_SETTITLE,(WPARAM)LoadIcon(g_Instance,MAKEINTRESOURCE(IDI_APPICON)),(LPARAM)(const wchar_t*)LoadStringEx(IDS_UPDATE_TITLE));
-		APPBARDATA appbar={sizeof(appbar)};
-		SHAppBarMessage(ABM_GETTASKBARPOS,&appbar);
-		MONITORINFO info={sizeof(info)};
-		GetMonitorInfo(MonitorFromWindow(appbar.hWnd,MONITOR_DEFAULTTOPRIMARY),&info);
-		SendMessage(balloon,TTM_TRACKPOSITION,0,0);
-		SendMessage(balloon,TTM_TRACKACTIVATE,TRUE,(LPARAM)&tool);
-		RECT rc;
-		GetWindowRect(balloon,&rc);
-		LONG pos;
-		if (appbar.uEdge==ABE_LEFT)
-			pos=MAKELONG(info.rcWork.left,info.rcWork.bottom-rc.bottom+rc.top);
-		else if (appbar.uEdge==ABE_RIGHT)
-			pos=MAKELONG(info.rcWork.right-rc.right+rc.left,info.rcWork.bottom-rc.bottom+rc.top);
-		else if (appbar.uEdge==ABE_TOP)
-			pos=MAKELONG(IsLanguageRTL()?info.rcWork.left:info.rcWork.right-rc.right+rc.left,info.rcWork.top);
-		else
-			pos=MAKELONG(IsLanguageRTL()?info.rcWork.left:info.rcWork.right-rc.right+rc.left,info.rcWork.bottom-rc.bottom+rc.top);
-		SendMessage(balloon,TTM_TRACKPOSITION,0,pos);
-		SetWindowSubclass(balloon,SubclassBalloonProc,0,'CLSH');
-		PlaySound(L"SystemNotification",NULL,SND_APPLICATION|SND_ALIAS|SND_ASYNC|SND_NODEFAULT|SND_SYSTEM);
-		int time0=timeGetTime();
-		while (IsWindowVisible(balloon))
+
+		auto title = LoadStringEx(IDS_UPDATE_TITLE);
+		auto message = LoadStringEx(g_UpdateDlg.HasNewLanguage() ? IDS_LANG_NEWVERSION : IDS_NEWVERSION);
+
+		if (toasts)
 		{
-			if (time0 && (timeGetTime()-time0)>=15000)
-			{
-				time0=0;
-				TOOLINFO tool={sizeof(tool)};
-				tool.uId=1;
-				SendMessage(balloon,TTM_TRACKACTIVATE,FALSE,(LPARAM)&tool);
-			}
-			MSG msg;
-			while (PeekMessage(&msg,0,0,0,PM_REMOVE))
-			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-			Sleep(10);
+			toasts.DisplaySimpleToast(title, message);
 		}
+		else
+		{
+			HWND balloon = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | (IsLanguageRTL() ? WS_EX_LAYOUTRTL : 0), TOOLTIPS_CLASS, NULL, WS_POPUP | TTS_CLOSE | TTS_NOPREFIX, 0, 0, 0, 0, NULL, NULL, g_Instance, NULL);
+			SendMessage(balloon, TTM_SETMAXTIPWIDTH, 0, 500);
+			TOOLINFO tool = { sizeof(tool),TTF_ABSOLUTE | TTF_TRANSPARENT | TTF_TRACK | (IsLanguageRTL() ? TTF_RTLREADING : 0U) };
+			tool.uId = 1;
+			tool.lpszText = (wchar_t*)(const wchar_t*)message;
+			SendMessage(balloon, TTM_ADDTOOL, 0, (LPARAM)&tool);
+			SendMessage(balloon, TTM_SETTITLE, (WPARAM)LoadIcon(g_Instance, MAKEINTRESOURCE(IDI_APPICON)), (LPARAM)(const wchar_t*)title);
+			APPBARDATA appbar = { sizeof(appbar) };
+			SHAppBarMessage(ABM_GETTASKBARPOS, &appbar);
+			MONITORINFO info = { sizeof(info) };
+			GetMonitorInfo(MonitorFromWindow(appbar.hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+			SendMessage(balloon, TTM_TRACKPOSITION, 0, 0);
+			SendMessage(balloon, TTM_TRACKACTIVATE, TRUE, (LPARAM)&tool);
+			RECT rc;
+			GetWindowRect(balloon, &rc);
+			LONG pos;
+			if (appbar.uEdge == ABE_LEFT)
+				pos = MAKELONG(info.rcWork.left, info.rcWork.bottom - rc.bottom + rc.top);
+			else if (appbar.uEdge == ABE_RIGHT)
+				pos = MAKELONG(info.rcWork.right - rc.right + rc.left, info.rcWork.bottom - rc.bottom + rc.top);
+			else if (appbar.uEdge == ABE_TOP)
+				pos = MAKELONG(IsLanguageRTL() ? info.rcWork.left : info.rcWork.right - rc.right + rc.left, info.rcWork.top);
+			else
+				pos = MAKELONG(IsLanguageRTL() ? info.rcWork.left : info.rcWork.right - rc.right + rc.left, info.rcWork.bottom - rc.bottom + rc.top);
+			SendMessage(balloon, TTM_TRACKPOSITION, 0, pos);
+			SetWindowSubclass(balloon, SubclassBalloonProc, 0, 'CLSH');
+			PlaySound(L"SystemNotification", NULL, SND_APPLICATION | SND_ALIAS | SND_ASYNC | SND_NODEFAULT | SND_SYSTEM);
+			int time0 = timeGetTime();
+			while (IsWindowVisible(balloon))
+			{
+				if (time0 && (timeGetTime() - time0) >= 15000)
+				{
+					time0 = 0;
+					TOOLINFO tool = { sizeof(tool) };
+					tool.uId = 1;
+					SendMessage(balloon, TTM_TRACKACTIVATE, FALSE, (LPARAM)&tool);
+				}
+				MSG msg;
+				while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+				{
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
+				Sleep(10);
+			}
+		}
+	}
+	else if (wcsstr(lpstrCmdLine, L"-ToastActivated"))
+	{
+		g_UpdateDlg.UpdateData();
+		g_UpdateDlg.Run();
 	}
 	else
 	{

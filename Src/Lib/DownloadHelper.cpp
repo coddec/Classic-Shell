@@ -318,6 +318,7 @@ struct VersionCheckParams
 	TSettingsComponent component;
 	tNewVersionCallback callback;
 	CProgressDlg *progress;
+	bool nightly = false;
 };
 
 // 0 - fail, 1 - success, 2 - cancel
@@ -342,7 +343,7 @@ static DWORD WINAPI ThreadVersionCheck( void *param )
 	VersionData data;
 
 	{
-		auto load = data.Load();
+		auto load = params.nightly ? data.LoadNightly() : data.Load();
 
 #ifdef UPDATE_LOG
 		LogToFile(UPDATE_LOG, L"Load result: %d", load);
@@ -450,6 +451,21 @@ DWORD CheckForNewVersion( HWND owner, TSettingsComponent component, TVersionChec
 		params->callback=callback;
 		params->progress=NULL;
 
+		// check the Update setting (uses the current value in the registry, not the one from memory
+		{
+			CRegKey regSettings, regSettingsUser, regPolicy, regPolicyUser;
+			bool bUpgrade = OpenSettingsKeys(COMPONENT_SHARED, regSettings, regSettingsUser, regPolicy, regPolicyUser);
+
+			CSetting settings[] = {
+				{L"Nightly",CSetting::TYPE_BOOL,0,0,0},
+				{NULL}
+			};
+
+			settings[0].LoadValue(regSettings, regSettingsUser, regPolicy, regPolicyUser);
+
+			params->nightly = GetSettingBool(settings[0]);
+		}
+
 		if (!owner)
 			return ThreadVersionCheck(params);
 
@@ -495,19 +511,23 @@ DWORD CheckForNewVersion( HWND owner, TSettingsComponent component, TVersionChec
 			return 0; // check weekly
 
 		// check the Update setting (uses the current value in the registry, not the one from memory
+		bool nightly = false;
 		{
 			CRegKey regSettings, regSettingsUser, regPolicy, regPolicyUser;
 			bool bUpgrade=OpenSettingsKeys(COMPONENT_SHARED,regSettings,regSettingsUser,regPolicy,regPolicyUser);
 
 			CSetting settings[]={
 				{L"Update",CSetting::TYPE_BOOL,0,0,1},
+				{L"Nightly",CSetting::TYPE_BOOL,0,0,0},
 				{NULL}
 			};
 
 			settings[0].LoadValue(regSettings,regSettingsUser,regPolicy,regPolicyUser);
+			settings[1].LoadValue(regSettings,regSettingsUser,regPolicy,regPolicyUser);
 
 			if (!GetSettingBool(settings[0]))
-					return 0;
+				return 0;
+			nightly = GetSettingBool(settings[1]);
 		}
 
 		VersionCheckParams *params=new VersionCheckParams;
@@ -515,6 +535,7 @@ DWORD CheckForNewVersion( HWND owner, TSettingsComponent component, TVersionChec
 		params->component=component;
 		params->callback=callback;
 		params->progress=NULL;
+		params->nightly=nightly;
 
 		g_bCheckingVersion=true;
 		if (check==CHECK_AUTO_WAIT)
@@ -808,6 +829,116 @@ VersionData::TLoadResult VersionData::Load()
 	{
 		return LOAD_BAD_FILE;
 	}
+}
+
+VersionData::TLoadResult VersionData::LoadNightly()
+{
+	Clear();
+
+	auto buf = DownloadUrl(L"https://ci.appveyor.com/api/projects/passionate-coder/open-shell-menu/branch/master");
+	if (buf.empty())
+		return LOAD_ERROR;
+
+	try
+	{
+		auto data = json::parse(buf.begin(), buf.end());
+		auto build = data["build"];
+
+		// get version
+		auto version = build["version"].get<std::string>();
+		if (version.empty())
+			return LOAD_BAD_FILE;
+
+		{
+			int v1, v2, v3;
+			if (sscanf_s(version.c_str(), "%d.%d.%d", &v1, &v2, &v3) != 3)
+				return LOAD_BAD_FILE;
+
+			newVersion = (v1 << 24) | (v2 << 16) | v3;
+
+			if (newVersion <= GetVersionEx(g_Instance))
+				return LOAD_OK;
+		}
+
+		// artifact url
+		{
+			auto jobId = build["jobs"][0]["jobId"].get<std::string>();
+			if (jobId.empty())
+				return LOAD_BAD_FILE;
+
+			std::wstring jobUrl(L"https://ci.appveyor.com/api/buildjobs/");
+			jobUrl += std::wstring(jobId.begin(), jobId.end());
+			jobUrl += L"/artifacts";
+
+			buf = DownloadUrl(jobUrl.c_str());
+			if (buf.empty())
+				return LOAD_ERROR;
+
+			auto artifacts = json::parse(buf.begin(), buf.end());
+
+			std::string fileName;
+			for (const auto& artifact : artifacts)
+			{
+				auto name = artifact["fileName"].get<std::string>();
+				if (name.find("OpenShellSetup") == 0)
+				{
+					fileName = name;
+					break;
+				}
+			}
+
+			if (fileName.empty())
+				return LOAD_BAD_FILE;
+
+			auto artifactUrl(jobUrl);
+			artifactUrl += L'/';
+			artifactUrl += std::wstring(fileName.begin(), fileName.end());
+
+			downloadUrl = artifactUrl.c_str();
+		}
+
+		// changelog
+		news.Append(CA2T(version.c_str()));
+		news.Append(L"\r\n\r\n");
+		try
+		{
+			// use Github API to compare commit that actual version was built from (APPVEYOR_REPO_COMMIT)
+			// and commit that AppVeyor version was built from (commitId)
+			auto commitId = build["commitId"].get<std::string>();
+
+			std::wstring compareUrl(L"https://api.github.com/repos/Open-Shell/Open-Shell-Menu/compare/");
+			compareUrl += _T(APPVEYOR_REPO_COMMIT);
+			compareUrl += L"...";
+			compareUrl += std::wstring(commitId.begin(), commitId.end());
+
+			buf = DownloadUrl(compareUrl.c_str());
+			auto compare = json::parse(buf.begin(), buf.end());
+
+			// then use first lines (subjects) of commit messages as changelog
+			auto commits = compare["commits"];
+			for (const auto& commit : commits)
+			{
+				auto message = commit["commit"]["message"].get<std::string>();
+
+				auto pos = message.find('\n');
+				if (pos != message.npos)
+					message.resize(pos);
+
+				news.Append(L"- ");
+				news.Append(CA2T(message.c_str()));
+				news.Append(L"\r\n");
+			}
+		}
+		catch (...)
+		{
+		}
+	}
+	catch (...)
+	{
+		return LOAD_BAD_FILE;
+	}
+
+	return LOAD_OK;
 }
 
 VersionData::TLoadResult VersionData::Load( const wchar_t *fname, bool bLoadFlags )

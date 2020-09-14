@@ -60,11 +60,13 @@ static CSetting g_Settings[]={
 {L"Update",CSetting::TYPE_GROUP},
 	{L"Language",CSetting::TYPE_STRING,0,0,L"",CSetting::FLAG_SHARED},
 	{L"Update",CSetting::TYPE_BOOL,0,0,1,CSetting::FLAG_SHARED},
+	{L"Nightly",CSetting::TYPE_BOOL,0,0,0,CSetting::FLAG_SHARED},
 
 	{NULL}
 };
 
 const int SETTING_UPDATE=2;
+const int SETTING_NIGHTLY=3;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -79,6 +81,7 @@ public:
 		MESSAGE_HANDLER( WM_GETMINMAXINFO, OnGetMinMaxInfo )
 		MESSAGE_HANDLER( WM_CTLCOLORSTATIC, OnColorStatic )
 		COMMAND_HANDLER( IDC_CHECKAUTOCHECK, BN_CLICKED, OnCheckAuto )
+		COMMAND_HANDLER( IDC_CHECKNIGHTLY, BN_CLICKED, OnCheckNightly )
 		COMMAND_HANDLER( IDC_BUTTONCHECKNOW, BN_CLICKED, OnCheckNow )
 		COMMAND_HANDLER( IDC_BUTTONDOWNLOAD, BN_CLICKED, OnDownload )
 		COMMAND_HANDLER( IDC_CHECKDONT, BN_CLICKED, OnDontRemind )
@@ -114,6 +117,7 @@ protected:
 	LRESULT OnCancel( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnColorStatic( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled );
 	LRESULT OnCheckAuto( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
+	LRESULT OnCheckNightly( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnCheckNow( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnDownload( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnDontRemind( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
@@ -161,6 +165,13 @@ LRESULT CUpdateDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
 	CheckDlgButton(IDC_CHECKAUTOCHECK,check?BST_CHECKED:BST_UNCHECKED);
 	GetDlgItem(IDC_CHECKAUTOCHECK).EnableWindow(!(g_Settings[SETTING_UPDATE].flags&CSetting::FLAG_LOCKED_MASK));
 	GetDlgItem(IDC_BUTTONCHECKNOW).EnableWindow(!(g_Settings[SETTING_UPDATE].flags&CSetting::FLAG_LOCKED_MASK) || check);
+
+	bool nightly = false;
+	if (g_Settings[SETTING_NIGHTLY].value.vt == VT_I4)
+		nightly = g_Settings[SETTING_NIGHTLY].value.intVal != 0;
+	CheckDlgButton(IDC_CHECKNIGHTLY, nightly ? BST_CHECKED : BST_UNCHECKED);
+	GetDlgItem(IDC_CHECKNIGHTLY).EnableWindow(!(g_Settings[SETTING_NIGHTLY].flags & CSetting::FLAG_LOCKED_MASK) && check);
+
 	UpdateUI();
 
 	return TRUE;
@@ -210,6 +221,17 @@ LRESULT CUpdateDlg::OnCheckAuto( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL&
 	bool check=IsDlgButtonChecked(IDC_CHECKAUTOCHECK)==BST_CHECKED;
 	g_Settings[SETTING_UPDATE].value=CComVariant(check?1:0);
 	g_Settings[SETTING_UPDATE].flags&=~CSetting::FLAG_DEFAULT;
+	GetDlgItem(IDC_CHECKNIGHTLY).EnableWindow(check);
+	UpdateUI();
+	return 0;
+}
+
+LRESULT CUpdateDlg::OnCheckNightly(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+	CSettingsLockWrite lock;
+	bool check = IsDlgButtonChecked(IDC_CHECKNIGHTLY) == BST_CHECKED;
+	g_Settings[SETTING_NIGHTLY].value = CComVariant(check ? 1 : 0);
+	g_Settings[SETTING_NIGHTLY].flags &= ~CSetting::FLAG_DEFAULT;
 	UpdateUI();
 	return 0;
 }

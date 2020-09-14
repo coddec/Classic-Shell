@@ -60,6 +60,7 @@ struct VersionData
 	};
 
 	TLoadResult Load();
+	TLoadResult LoadNightly();
 	TLoadResult Load( const wchar_t *fname, bool bLoadFlags );
 private:
 	void operator=( const VersionData& );

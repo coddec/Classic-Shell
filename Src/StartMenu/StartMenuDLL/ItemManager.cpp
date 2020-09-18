@@ -2595,49 +2595,41 @@ void CItemManager::IconInfo::SetPath( const wchar_t *path )
 	timestamp.dwHighDateTime=timestamp.dwLowDateTime=0;
 }
 
-void CItemManager::LoadCustomIcon( const wchar_t *iconPath, int iconIndex, int refreshFlags, const IconInfo *&smallIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, bool bTemp )
+void CItemManager::LoadCustomIcon(const wchar_t *iconPath, int iconIndex, int refreshFlags, const IconInfo *&smallIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, bool bTemp)
 {
-	unsigned int hash=CalcFNVHash(iconPath,CalcFNVHash(&iconIndex,4));
+	unsigned int hash = CalcFNVHash(iconPath, CalcFNVHash(&iconIndex, 4));
 
-	FindInCache(hash,refreshFlags,smallIcon,largeIcon,extraLargeIcon);
-	if (!refreshFlags) return;
+	FindInCache(hash, refreshFlags, smallIcon, largeIcon, extraLargeIcon);
+	if (!refreshFlags)
+		return;
+
+	auto ExtractIconAsBitmap = [&](int iconSize) -> HBITMAP {
+		HICON hIcon;
+
+		if (!*iconPath)
+			hIcon = (HICON)LoadImage(g_Instance, MAKEINTRESOURCE(-iconIndex), IMAGE_ICON, iconSize, iconSize, LR_DEFAULTCOLOR);
+		else
+			hIcon = ShExtractIcon(iconPath, iconIndex == -1 ? 0 : iconIndex, iconSize);
+
+		if (hIcon)
+			return BitmapFromIcon(hIcon, iconSize);
+
+		return nullptr;
+	};
 
 	// extract icon
-	HBITMAP hSmallBitmap=NULL, hLargeBitmap=NULL, hExtraLargeBitmap=NULL;
-	if (refreshFlags&INFO_SMALL_ICON)
-	{
-		HICON hIcon;
-		if (!*iconPath)
-			hIcon=(HICON)LoadImage(g_Instance,MAKEINTRESOURCE(-iconIndex),IMAGE_ICON,SMALL_ICON_SIZE,SMALL_ICON_SIZE,LR_DEFAULTCOLOR);
-		else
-			hIcon=ShExtractIcon(iconPath,iconIndex==-1?0:iconIndex,SMALL_ICON_SIZE);
-		if (hIcon)
-			hSmallBitmap=BitmapFromIcon(hIcon,SMALL_ICON_SIZE);
-	}
+	HBITMAP hSmallBitmap = nullptr, hLargeBitmap = nullptr, hExtraLargeBitmap = nullptr;
 
-	if (refreshFlags&INFO_LARGE_ICON)
-	{
-		HICON hIcon;
-		if (!*iconPath)
-			hIcon=(HICON)LoadImage(g_Instance,MAKEINTRESOURCE(-iconIndex),IMAGE_ICON,LARGE_ICON_SIZE,LARGE_ICON_SIZE,LR_DEFAULTCOLOR);
-		else
-			hIcon=ShExtractIcon(iconPath,iconIndex==-1?0:iconIndex,LARGE_ICON_SIZE);
-		if (hIcon)
-			hLargeBitmap=BitmapFromIcon(hIcon,LARGE_ICON_SIZE);
-	}
+	if (refreshFlags & INFO_SMALL_ICON)
+		hSmallBitmap = ExtractIconAsBitmap(SMALL_ICON_SIZE);
 
-	if (refreshFlags&INFO_EXTRA_LARGE_ICON)
-	{
-		HICON hIcon;
-		if (!*iconPath)
-			hIcon=(HICON)LoadImage(g_Instance,MAKEINTRESOURCE(-iconIndex),IMAGE_ICON,EXTRA_LARGE_ICON_SIZE,EXTRA_LARGE_ICON_SIZE,LR_DEFAULTCOLOR);
-		else
-			hIcon=ShExtractIcon(iconPath,iconIndex==-1?0:iconIndex,EXTRA_LARGE_ICON_SIZE);
-		if (hIcon)
-			hExtraLargeBitmap=BitmapFromIcon(hIcon,EXTRA_LARGE_ICON_SIZE);
-	}
+	if (refreshFlags & INFO_LARGE_ICON)
+		hLargeBitmap = ExtractIconAsBitmap(LARGE_ICON_SIZE);
 
-	StoreInCache(hash,bTemp?NULL:iconPath,hSmallBitmap,hLargeBitmap,hExtraLargeBitmap,refreshFlags,smallIcon,largeIcon,extraLargeIcon,bTemp,false);
+	if (refreshFlags & INFO_EXTRA_LARGE_ICON)
+		hExtraLargeBitmap = ExtractIconAsBitmap(EXTRA_LARGE_ICON_SIZE);
+
+	StoreInCache(hash, bTemp ? nullptr : iconPath, hSmallBitmap, hLargeBitmap, hExtraLargeBitmap, refreshFlags, smallIcon, largeIcon, extraLargeIcon, bTemp, false);
 }
 
 // Recursive function to preload the items for a folder

@@ -173,6 +173,7 @@ public:
 	const ItemInfo *GetItemInfo( CString path, int refreshFlags, TLocation location=LOCATION_UNKNOWN );
 	const ItemInfo *GetCustomIcon( const wchar_t *location, int index, TIconSizeType iconSizeType, bool bTemp );
 	const ItemInfo *GetCustomIcon( const wchar_t *path, TIconSizeType iconSizeType );
+	const ItemInfo* GetLinkIcon(IShellLink* link, TIconSizeType iconSizeType);
 	const ItemInfo *GetMetroAppInfo10( const wchar_t *appid );
 	void UpdateItemInfo( const ItemInfo *pInfo, int refreshFlags, bool bHasWriteLock=false );
 	void WaitForShortcuts( const POINT &balloonPos );

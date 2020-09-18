@@ -2203,10 +2203,7 @@ void CMenuContainer::AddJumpListItems( std::vector<MenuItem> &items )
 				if (pLink)
 				{
 					pLink->GetIDList(&item.pItem1);
-					wchar_t location[_MAX_PATH];
-					int index;
-					if (pLink->GetIconLocation(location,_countof(location),&index)==S_OK && location[0])
-						item.pItemInfo=g_ItemManager.GetCustomIcon(location,index,CItemManager::ICON_SIZE_TYPE_SMALL,(index==0)); // assuming that if index!=0 the icon comes from a permanent location like a dll or exe
+					item.pItemInfo = g_ItemManager.GetLinkIcon(pLink, CItemManager::ICON_SIZE_TYPE_SMALL);
 				}
 			}
 			else if (jumpItem.type==CJumpItem::TYPE_ITEM)
@@ -6668,8 +6665,7 @@ bool CMenuContainer::GetDescription( int index, wchar_t *text, int size )
 			{
 				if (SUCCEEDED(pLink->GetDescription(text,size)) && text[0])
 					return true;
-				wchar_t args[256];
-				if (SUCCEEDED(pLink->GetArguments(args,_countof(args))) && args[0])
+				if (jumpItem.bHasArguments)
 				{
 					// don't use default tip for items with arguments
 					Strcpy(text,size,item.name);

@@ -322,6 +322,9 @@ static void AddJumpItem( CJumpGroup &group, IUnknown *pUnknown, std::vector<CCom
 			}
 		}
 		LOG_MENU(LOG_OPEN,L"Jumplist Link Name: %s",item.name);
+#ifdef _DEBUG
+		LogPropertyStore(LOG_OPEN, pStore);
+#endif
 		if (!item.name.IsEmpty())
 			group.items.push_back(item);
 		return;
@@ -519,91 +522,15 @@ bool GetJumplist( const wchar_t *appid, CJumpList &list, int maxCount, int maxHe
 bool ExecuteJumpItem( const CItemManager::ItemInfo *pAppInfo, const CJumpItem &item, HWND hwnd )
 {
 	Assert(GetWinVersion()>=WIN_VER_WIN7);
-	if (!item.pItem) return false;
+	if (!item.pItem)
+		return false;
+
 	if (item.type==CJumpItem::TYPE_ITEM)
 	{
-/*		CString appid;
-		{
-			CItemManager::RWLock lock(&g_ItemManager,false,CItemManager::RWLOCK_ITEMS);
-			appid=pAppInfo->GetAppid();
-		}
-		LOG_MENU(LOG_OPEN,L"Execute Item: name=%s, appid=%s",item.name,appid);*/
 		CComQIPtr<IShellItem> pItem(item.pItem);
 		if (!pItem)
 			return false;
-/*		CComString pName;
-		if (FAILED(pItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING,&pName)))
-			return false;
-		wchar_t ext[_MAX_EXT];
-		Strcpy(ext,_countof(ext),PathFindExtension(pName));
 
-		// find the correct association handler by appid and invoke it on the item
-		CComPtr<IEnumAssocHandlers> pEnumHandlers;
-		if (ext[0] && SUCCEEDED(SHAssocEnumHandlers(ext,ASSOC_FILTER_RECOMMENDED,&pEnumHandlers)))
-		{
-			CComPtr<IAssocHandler> pHandler;
-			ULONG count;
-			while (SUCCEEDED(pEnumHandlers->Next(1,&pHandler,&count)) && count==1)
-			{
-				CComQIPtr<IObjectWithAppUserModelID> pObject=pHandler;
-				if (pObject)
-				{
-					CComString pID;
-					if (SUCCEEDED(pObject->GetAppID(&pID)))
-					{
-						// found explicit appid
-						if (_wcsicmp(appid,pID)==0)
-						{
-							LOG_MENU(LOG_OPEN,L"Found handler appid");
-							CComPtr<IDataObject> pDataObject;
-							if (SUCCEEDED(pItem->BindToHandler(NULL,BHID_DataObject,IID_IDataObject,(void**)&pDataObject)) && SUCCEEDED(pHandler->Invoke(pDataObject)))
-								return true;
-							break;
-						}
-					}
-				}
-				pHandler=NULL;
-			}
-			pEnumHandlers=NULL;
-
-			// find the correct association handler by exe name and invoke it on the item
-			wchar_t targetPath[_MAX_PATH];
-			targetPath[0]=0;
-			{
-				CComPtr<IShellItem> pItem;
-				SHCreateItemFromIDList(pAppInfo->GetPidl(),IID_IShellItem,(void**)&pItem);
-				CComPtr<IShellLink> pLink;
-				if (pItem)
-					pItem->BindToHandler(NULL,BHID_SFUIObject,IID_IShellLink,(void**)&pLink);
-				CAbsolutePidl target;
-				if (pLink && SUCCEEDED(pLink->Resolve(NULL,SLR_INVOKE_MSI|SLR_NO_UI|SLR_NOUPDATE)) && SUCCEEDED(pLink->GetIDList(&target)))
-				{
-					if (FAILED(SHGetPathFromIDList(target,targetPath)))
-						targetPath[0]=0;
-				}
-			}
-			if (targetPath[0] && SUCCEEDED(SHAssocEnumHandlers(ext,ASSOC_FILTER_RECOMMENDED,&pEnumHandlers)))
-			{
-				while (SUCCEEDED(pEnumHandlers->Next(1,&pHandler,&count)) && count==1)
-				{
-					CComString pExe;
-					if (SUCCEEDED(pHandler->GetName(&pExe)))
-					{
-						if (_wcsicmp(targetPath,pExe)==0)
-						{
-							LOG_MENU(LOG_OPEN,L"Found handler appexe %s",targetPath);
-							CComPtr<IDataObject> pDataObject;
-							if (SUCCEEDED(pItem->BindToHandler(NULL,BHID_DataObject,IID_IDataObject,(void**)&pDataObject)) && SUCCEEDED(pHandler->Invoke(pDataObject)))
-								return true;
-							break;
-						}
-					}
-					pHandler=NULL;
-				}
-			}
-		}
-*/
-		// couldn't find a handler, execute the old way
 		SHELLEXECUTEINFO execute={sizeof(execute),SEE_MASK_IDLIST|SEE_MASK_FLAG_LOG_USAGE};
 		execute.nShow=SW_SHOWNORMAL;
 		CAbsolutePidl pidl;
@@ -617,9 +544,50 @@ bool ExecuteJumpItem( const CItemManager::ItemInfo *pAppInfo, const CJumpItem &i
 
 	if (item.type==CJumpItem::TYPE_LINK)
 	{
-		// invoke the link through its context menu
+		//  Name:     System.AppUserModel.HostEnvironment -- PKEY_AppUserModel_HostEnvironment
+		//  Type:     UInt32 -- VT_UI4
+		//  FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 14
+		static const PROPERTYKEY PKEY_AppUserModel_HostEnvironment = { {0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 14 };
+
+		//  Name:     System.AppUserModel.ActivationContext -- PKEY_AppUserModel_ActivationContext
+		//  Type:     String -- VT_LPWSTR
+		//  FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 20
+		static const PROPERTYKEY PKEY_AppUserModel_ActivationContext = { {0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 20 };
+
 		CComQIPtr<IContextMenu> pMenu(item.pItem);
-		if (!pMenu) return false;
+		CStringA params;
+
+		CComQIPtr<IShellLink> pLink(item.pItem);
+		if (pLink)
+		{
+			CComQIPtr<IPropertyStore> store(pLink);
+			if (store)
+			{
+				auto appId = GetPropertyStoreString(store, PKEY_AppUserModel_ID);
+				if (!appId.IsEmpty())
+				{
+					CComPtr<IShellItem2> target;
+					if (SUCCEEDED(SHCreateItemInKnownFolder(FOLDERID_AppsFolder, 0, appId, IID_PPV_ARGS(&target))))
+					{
+						ULONG modern = 0;
+						if (SUCCEEDED(target->GetUInt32(PKEY_AppUserModel_HostEnvironment, &modern)) && modern)
+						{
+							CComQIPtr<IContextMenu> targetMenu;
+							if (SUCCEEDED(target->BindToHandler(nullptr, BHID_SFUIObject, IID_PPV_ARGS(&targetMenu))))
+							{
+								pMenu = targetMenu;
+								params = CT2CA(GetPropertyStoreString(store, PKEY_AppUserModel_ActivationContext));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// invoke the link through its context menu
+		if (!pMenu)
+			return false;
+
 		HRESULT hr;
 		HMENU menu=CreatePopupMenu();
 		hr=pMenu->QueryContextMenu(menu,0,1,1000,CMF_DEFAULTONLY);
@@ -633,6 +601,8 @@ bool ExecuteJumpItem( const CItemManager::ItemInfo *pAppInfo, const CJumpItem &i
 		{
 			CMINVOKECOMMANDINFO command={sizeof(command),CMIC_MASK_FLAG_LOG_USAGE};
 			command.lpVerb=MAKEINTRESOURCEA(id-1);
+			if (!params.IsEmpty())
+				command.lpParameters = params;
 			wchar_t path[_MAX_PATH];
 			GetModuleFileName(NULL,path,_countof(path));
 			if (_wcsicmp(PathFindFileName(path),L"explorer.exe")==0)

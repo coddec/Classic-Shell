@@ -55,8 +55,8 @@ GUID IID_IApplicationResolver8={0xde25675a,0x72de,0x44b4,{0x93,0x73,0x05,0x17,0x
 
 interface IResourceContext;
 
-const GUID IID_IResourceMap={0x6e21e72b, 0xb9b0, 0x42ae, {0xa6, 0x86, 0x98, 0x3c, 0xf7, 0x84, 0xed, 0xcd}};
-interface IResourceMap : public IUnknown
+MIDL_INTERFACE("6e21e72b-b9b0-42ae-a686-983cf784edcd")
+IResourceMap : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE GetUri(const wchar_t **pUri ) = 0;
 	virtual HRESULT STDMETHODCALLTYPE GetSubtree(const wchar_t *propName, IResourceMap **pSubTree ) = 0;
@@ -76,8 +76,8 @@ enum RESOURCE_SCALE
 	RES_SCALE_80 =3,
 };
 
-const GUID IID_ResourceContext={0xe3c22b30, 0x8502, 0x4b2f, {0x91, 0x33, 0x55, 0x96, 0x74, 0x58, 0x7e, 0x51}};
-interface IResourceContext : public IUnknown
+MIDL_INTERFACE("e3c22b30-8502-4b2f-9133-559674587e51")
+IResourceContext : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE GetLanguage( void ) = 0;
 	virtual HRESULT STDMETHODCALLTYPE GetHomeRegion( wchar_t *pRegion ) = 0;
@@ -299,7 +299,7 @@ static HBITMAP BitmapFromMetroBitmap( HBITMAP hBitmap, int bitmapSize, DWORD met
 
 ///////////////////////////////////////////////////////////////////////////////
 
-static HBITMAP LoadMetroBitmap0( const wchar_t *path, int bitmapSize, DWORD metroColor )
+static HBITMAP LoadMetroBitmap0(const wchar_t *path, int bitmapSize, DWORD metroColor = 0xFFFFFFFF)
 {
 	SIZE size={-bitmapSize,bitmapSize};
 	HBITMAP hBitmap=LoadImageFile(path,&size,true,true,NULL);
@@ -1102,6 +1102,49 @@ const CItemManager::ItemInfo *CItemManager::GetCustomIcon( const wchar_t *path, 
 		index=-_wtol(c+1);
 	}
 	return GetCustomIcon(text,index,iconSizeType,false);
+}
+
+const CItemManager::ItemInfo* CItemManager::GetLinkIcon(IShellLink* link, TIconSizeType iconSizeType)
+{
+	wchar_t location[_MAX_PATH];
+	int index;
+
+	if (link->GetIconLocation(location, _countof(location), &index) == S_OK && location[0])
+		return GetCustomIcon(location, index, iconSizeType, (index == 0)); // assuming that if index!=0 the icon comes from a permanent location like a dll or exe
+
+	CComQIPtr<IPropertyStore> store(link);
+	if (store)
+	{
+		//  Name:     System.AppUserModel.DestListLogoUri -- PKEY_AppUserModel_DestListLogoUri
+		//  Type:     String -- VT_LPWSTR
+		//  FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 29
+		static const PROPERTYKEY PKEY_AppUserModel_DestListLogoUri = { {0x9F4C2855, 0x9F79, 0x4B39, {0xA8, 0xD0, 0xE1, 0xD4, 0x2D, 0xE1, 0xD5, 0xF3}}, 29 };
+
+		auto logoUri = GetPropertyStoreString(store, PKEY_AppUserModel_DestListLogoUri);
+		if (!logoUri.IsEmpty())
+		{
+			auto appId = GetPropertyStoreString(store, PKEY_AppUserModel_ID);
+			if (!appId.IsEmpty())
+			{
+				CComPtr<IResourceManager> resManager;
+				if (SUCCEEDED(resManager.CoCreateInstance(CLSID_ResourceManager)))
+				{
+					if (SUCCEEDED(resManager->InitializeForPackage(GetPackageFullName(appId))))
+					{
+						CComPtr<IResourceMap> resMap;
+						if (SUCCEEDED(resManager->GetMainResourceMap(IID_PPV_ARGS(&resMap))))
+						{
+							CComString location;
+							if (SUCCEEDED(resMap->GetFilePath(logoUri, &location)))
+								return GetCustomIcon(location, -65536, iconSizeType, true);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return nullptr;
 }
 
 const CItemManager::ItemInfo *CItemManager::GetMetroAppInfo10( const wchar_t *appid )
@@ -2424,10 +2467,10 @@ void CItemManager::LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const Ic
 	if (FAILED(pResManager->InitializeForPackage(packageName)))
 		return;
 	CComPtr<IResourceMap> pResMap;
-	if (FAILED(pResManager->GetMainResourceMap(IID_IResourceMap,(void**)&pResMap)))
+	if (FAILED(pResManager->GetMainResourceMap(IID_PPV_ARGS(&pResMap))))
 		return;
 	CComPtr<IResourceContext> pResContext;
-	if (FAILED(pResManager->GetDefaultContext(IID_ResourceContext,(void**)&pResContext)))
+	if (FAILED(pResManager->GetDefaultContext(IID_PPV_ARGS(&pResContext))))
 		return;
 	int iconFlags=0;
 	if ((refreshFlags&INFO_SMALL_ICON) && SetResContextTargetSize(pResContext,SMALL_ICON_SIZE))
@@ -2604,6 +2647,10 @@ void CItemManager::LoadCustomIcon(const wchar_t *iconPath, int iconIndex, int re
 		return;
 
 	auto ExtractIconAsBitmap = [&](int iconSize) -> HBITMAP {
+
+		if (iconIndex == -65536)
+			return LoadMetroBitmap0(iconPath, iconSize);
+
 		HICON hIcon;
 
 		if (!*iconPath)

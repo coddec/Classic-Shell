@@ -1824,7 +1824,11 @@ void CItemManager::RefreshItemInfo( ItemInfo *pInfo, int refreshFlags, IShellIte
 					{
 						newInfo.bLink=true;
 						pStore=pLink;
-
+#ifdef _DEBUG
+						LOG_MENU(LOG_OPEN, L"Link: %s", newInfo.path);
+						LOG_MENU(LOG_OPEN, L"Link property store:");
+						LogPropertyStore(LOG_OPEN, pStore);
+#endif
 						if (SUCCEEDED(pLink->GetIDList(&newInfo.targetPidl)))
 						{
 							wchar_t path[_MAX_PATH];
@@ -1832,6 +1836,28 @@ void CItemManager::RefreshItemInfo( ItemInfo *pInfo, int refreshFlags, IShellIte
 							{
 								CharUpper(path);
 								newInfo.targetPATH=path;
+							}
+
+							CComPtr<IShellItem> target;
+							if (SUCCEEDED(SHCreateItemFromIDList(newInfo.targetPidl, IID_PPV_ARGS(&target))))
+							{
+								CComPtr<IPropertyStore> store;
+								if (SUCCEEDED(target->BindToHandler(nullptr, BHID_PropertyStore, IID_PPV_ARGS(&store))))
+								{
+#ifdef _DEBUG
+									LOG_MENU(LOG_OPEN, L"Target property store:");
+									LogPropertyStore(LOG_OPEN, store);
+#endif
+									PROPVARIANT val;
+									PropVariantInit(&val);
+									if (SUCCEEDED(store->GetValue(PKEY_MetroAppLauncher, &val)) && (val.vt == VT_I4 || val.vt == VT_UI4) && val.intVal)
+									{
+										newInfo.bLink = false;
+										pItem = target;
+										pStore = store;
+									}
+									PropVariantClear(&val);
+								}
 							}
 						}
 					}

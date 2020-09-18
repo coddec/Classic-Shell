@@ -7,6 +7,8 @@
 #include "stdafx.h"
 #include "LogManager.h"
 #include "ResourceHelper.h"
+#include "ComHelper.h"
+#include <propvarutil.h>
 
 int g_LogCategories;
 static FILE *g_LogFile;
@@ -50,4 +52,32 @@ void LogMessage( const wchar_t *text, ... )
 	fwrite(L"\r\n",2,2,g_LogFile);
 
 	fflush(g_LogFile);
+}
+
+void LogPropertyStore(TLogCategory category, IPropertyStore* store)
+{
+	if (!store)
+		return;
+
+	DWORD count = 0;
+	store->GetCount(&count);
+	for (DWORD i = 0; i < count; i++)
+	{
+		PROPERTYKEY key{};
+		store->GetAt(i, &key);
+
+		PROPVARIANT val;
+		PropVariantInit(&val);
+
+		store->GetValue(key, &val);
+
+		CComString valueStr;
+		PropVariantToStringAlloc(val, &valueStr);
+		PropVariantClear(&val);
+
+		wchar_t guidStr[100]{};
+		StringFromGUID2(key.fmtid, guidStr, _countof(guidStr));
+
+		LOG_MENU(category, L"Property: {%s, %u} = %s", guidStr, key.pid, valueStr ? valueStr : L"???");
+	}
 }

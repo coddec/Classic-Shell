@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <propsys.h>
+
 // LogManager.h - logging functionality (for debugging)
 // Logs different events in the start menu
 // Turn it on by setting the LogLevel setting in the registry
@@ -33,3 +35,5 @@ void CloseLog( void );
 void LogMessage( const wchar_t *text, ... );
 
 #define STARTUP_LOG L"Software\\OpenShell\\StartMenu\\Settings|LogStartup|%LOCALAPPDATA%\\OpenShell\\StartupLog.txt"
+
+void LogPropertyStore(TLogCategory category, IPropertyStore* store);

@@ -259,7 +259,6 @@ static HBITMAP BitmapFromMetroBitmap( HBITMAP hBitmap, int bitmapSize, DWORD met
 	HGDIOBJ bmp0=SelectObject(hdc,bmp);
 	HGDIOBJ bmp02=SelectObject(hsrc,hBitmap);
 	int offset=(bitmapSize-info.bmWidth)/2;
-	bool bInvert=g_bInvertMetroIcons;
 	if (g_bInvertMetroIcons && bGrayscale)
 	{
 		FillRect(hdc,&rc,(HBRUSH)GetStockObject(BLACK_BRUSH));
@@ -302,8 +301,7 @@ static HBITMAP BitmapFromMetroBitmap( HBITMAP hBitmap, int bitmapSize, DWORD met
 
 static HBITMAP LoadMetroBitmap0( const wchar_t *path, int bitmapSize, DWORD metroColor )
 {
-	int iconSize=g_bInvertMetroIcons?bitmapSize:(bitmapSize-2);
-	SIZE size={-iconSize,iconSize};
+	SIZE size={-bitmapSize,bitmapSize};
 	HBITMAP hBitmap=LoadImageFile(path,&size,true,true,NULL);
 	if (hBitmap)
 	{
@@ -440,16 +438,8 @@ static HBITMAP LoadMetroBitmap2( const wchar_t *location, int bitmapSize, DWORD 
 	}
 	if (iconSize)
 	{
-		if (g_bInvertMetroIcons)
-		{
-			if (iconSize>bitmapSize)
-				iconSize=bitmapSize;
-		}
-		else
-		{
-			if (iconSize>bitmapSize-2)
-				iconSize=bitmapSize-2;
-		}
+		if (iconSize>bitmapSize)
+			iconSize=bitmapSize;
 		SIZE size={iconSize,iconSize};
 		HBITMAP hBitmap=LoadImageFile(path,&size,true,true,NULL);
 		if (hBitmap)
@@ -2322,12 +2312,6 @@ void CItemManager::LoadShellIcon( IShellItem *pItem, int refreshFlags, const Ico
 	int smallIconSize=SMALL_ICON_SIZE;
 	int largeIconSize=LARGE_ICON_SIZE;
 	int extraLargeIconSize=EXTRA_LARGE_ICON_SIZE;
-	if (pMetroColor)
-	{
-		smallIconSize-=2;
-		largeIconSize-=2;
-		extraLargeIconSize-=2;
-	}
 	HICON hSmallIcon=NULL, hLargeIcon=NULL, hExtraLargeIcon=NULL;
 	if (bNotFileName)
 	{
@@ -2446,8 +2430,7 @@ void CItemManager::LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const Ic
 	if (FAILED(pResManager->GetDefaultContext(IID_ResourceContext,(void**)&pResContext)))
 		return;
 	int iconFlags=0;
-	int delta=g_bInvertMetroIcons?0:2;
-	if ((refreshFlags&INFO_SMALL_ICON) && SetResContextTargetSize(pResContext,SMALL_ICON_SIZE-delta))
+	if ((refreshFlags&INFO_SMALL_ICON) && SetResContextTargetSize(pResContext,SMALL_ICON_SIZE))
 	{
 		CComString pLocation;
 		if (SUCCEEDED(pResMap->GetFilePath(iconName,&pLocation)))
@@ -2457,7 +2440,7 @@ void CItemManager::LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const Ic
 			StoreInCache(hash,L"",hSmallBitmap,NULL,NULL,INFO_SMALL_ICON,smallIcon,largeIcon,extraLargeIcon,false,true);
 		}
 	}
-	if ((refreshFlags&INFO_LARGE_ICON) && SetResContextTargetSize(pResContext,LARGE_ICON_SIZE-delta))
+	if ((refreshFlags&INFO_LARGE_ICON) && SetResContextTargetSize(pResContext,LARGE_ICON_SIZE))
 	{
 		CComString pLocation;
 		if (SUCCEEDED(pResMap->GetFilePath(iconName,&pLocation)))
@@ -2467,7 +2450,7 @@ void CItemManager::LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const Ic
 			StoreInCache(hash,L"",NULL,hLargeBitmap,NULL,INFO_LARGE_ICON,smallIcon,largeIcon,extraLargeIcon,false,true);
 		}
 	}
-	if ((refreshFlags&INFO_EXTRA_LARGE_ICON) && SetResContextTargetSize(pResContext,EXTRA_LARGE_ICON_SIZE-delta))
+	if ((refreshFlags&INFO_EXTRA_LARGE_ICON) && SetResContextTargetSize(pResContext,EXTRA_LARGE_ICON_SIZE))
 	{
 		CComString pLocation;
 		if (SUCCEEDED(pResMap->GetFilePath(iconName,&pLocation)))

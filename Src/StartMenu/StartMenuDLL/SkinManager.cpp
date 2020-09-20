@@ -1495,8 +1495,21 @@ bool MenuSkin::ComputeOptionStates( const std::map<CString,CString> &options, st
 		values.push_back(L"ALL_PROGRAMS");
 	if (SkinType==SKIN_TYPE_CLASSIC2)
 		values.push_back(L"TWO_COLUMNS");
+	// for compatibility with existing skins
 	if (Dpi>=144)
 		values.push_back(L"HIGH_DPI");
+	if (Dpi>=240)
+		values.push_back(L"240_DPI");	// 250% scaling
+	else if (Dpi>=216)
+		values.push_back(L"216_DPI");	// 225% scaling
+	else if (Dpi>=192)
+		values.push_back(L"192_DPI");	// 200% scaling
+	else if (Dpi>=168)
+		values.push_back(L"168_DPI");	// 175% scaling
+	else if (Dpi>=144)
+		values.push_back(L"144_DPI");	// 150% scaling
+	else if (Dpi>=120)
+		values.push_back(L"120_DPI");	// 125% scaling
 	if (ForceTouch || (GetWinVersion()>=WIN_VER_WIN8 && GetSettingBool(L"EnableTouch") && (GetSystemMetrics(SM_DIGITIZER)&NID_INTEGRATED_TOUCH)!=0))
 		values.push_back(L"TOUCH_ENABLED");
 	if (GetSettingInt(L"SearchBox")!=SEARCHBOX_HIDDEN)

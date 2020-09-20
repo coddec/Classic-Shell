@@ -53,3 +53,6 @@ CComPtr<IContextMenu> GetMetroPinMenu( const wchar_t *appid );
 
 // Determines if Edge is the default browser
 bool IsEdgeDefaultBrowser( void );
+
+// Returns full package name for given App ID
+CString GetPackageFullName(const wchar_t* appId);

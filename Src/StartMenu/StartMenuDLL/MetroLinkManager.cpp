@@ -301,21 +301,12 @@ bool CanUninstallMetroApp( const wchar_t *appid )
 // Uninstalls the app with the given id
 void UninstallMetroApp( const wchar_t *appid )
 {
-	CComPtr<IShellItem> pAppItem;
-	if (SUCCEEDED(SHCreateItemInKnownFolder(FOLDERID_AppsFolder2,0,appid,IID_IShellItem,(void**)&pAppItem)))
+	auto packageName = GetPackageFullName(appid);
+	if (!packageName.IsEmpty())
 	{
-		CComPtr<IPropertyStore> pStore;
-		pAppItem->BindToHandler(NULL,BHID_PropertyStore,IID_IPropertyStore,(void**)&pStore);
-		if (pStore)
-		{
-			CString packageName=GetPropertyStoreString(pStore,PKEY_MetroPackageName);
-			if (!packageName.IsEmpty())
-			{
-				wchar_t command[1024];
-				Sprintf(command,_countof(command),L"Remove-AppxPackage %s",packageName);
-				ShellExecute(NULL,L"open",L"powershell.exe",command,NULL,SW_HIDE);
-			}
-		}
+		wchar_t command[1024];
+		Sprintf(command, _countof(command), L"Remove-AppxPackage %s", packageName);
+		ShellExecute(NULL, L"open", L"powershell.exe", command, NULL, SW_HIDE);
 	}
 }
 
@@ -380,4 +371,17 @@ bool IsEdgeDefaultBrowser( void )
 		}
 	}
 	return false;
+}
+
+CString GetPackageFullName(const wchar_t* appId)
+{
+	CComPtr<IShellItem> item;
+	if (SUCCEEDED(SHCreateItemInKnownFolder(FOLDERID_AppsFolder, 0, appId, IID_PPV_ARGS(&item))))
+	{
+		CComPtr<IPropertyStore> store;
+		if (SUCCEEDED(item->BindToHandler(nullptr, BHID_PropertyStore, IID_PPV_ARGS(&store))))
+			return GetPropertyStoreString(store, PKEY_MetroPackageName);
+	}
+
+	return {};
 }

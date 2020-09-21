@@ -1924,7 +1924,6 @@ void CItemManager::RefreshItemInfo( ItemInfo *pInfo, int refreshFlags, IShellIte
 			{
 				newInfo.targetPidl.Clear();
 				newInfo.targetPATH.Empty();
-				newInfo.metroName.Empty();
 				newInfo.iconPath.Empty();
 				newInfo.bNoPin=newInfo.bNoNew=false;
 				if (!newInfo.bMetroApp)

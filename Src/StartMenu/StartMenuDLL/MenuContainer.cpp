@@ -1937,15 +1937,6 @@ void CMenuContainer::GetRecentPrograms( std::vector<MenuItem> &items, int maxCou
 					continue;
 				}
 
-				{
-					CComPtr<IShellItem> pAppItem;
-					if (FAILED(SHCreateItemInKnownFolder(FOLDERID_AppsFolder2,0,uaItem.name,IID_IShellItem,(void**)&pAppItem)))
-						continue;
-					CComString pName;
-					if (FAILED(pAppItem->GetDisplayName(SIGDN_NORMALDISPLAY,&pName)) || wcsncmp(pName,L"@{",2)==0)
-						continue;
-				}
-
 				uaItem.pLinkInfo=g_ItemManager.GetMetroAppInfo10(uaItem.name);
 				if (!uaItem.pLinkInfo)
 				{
@@ -1956,6 +1947,11 @@ void CMenuContainer::GetRecentPrograms( std::vector<MenuItem> &items, int maxCou
 				LOG_MENU(LOG_MFU,L"UserAssist: '%s', %d, %.3f",uaItem.name,data.count,uaItem.rank);
 				{
 					CItemManager::RWLock lock(&g_ItemManager,false,CItemManager::RWLOCK_ITEMS);
+					if (uaItem.pLinkInfo->GetMetroName().IsEmpty() || wcsncmp(uaItem.pLinkInfo->GetMetroName(), L"@{",2)==0)
+					{
+						LOG_MENU(LOG_MFU, L"UserAssist: Dropping: No metro name");
+						continue;
+					}
 					if (uaItem.pLinkInfo->IsNoPin())
 					{
 						LOG_MENU(LOG_MFU,L"UserAssist: Dropping: No pin");

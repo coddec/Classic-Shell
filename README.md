@@ -2,7 +2,7 @@
 
 *Originally* **[Classic Shell](http://www.classicshell.net)** *by [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)*
 
-[![GitHub Release](https://img.shields.io/github/release/Open-Shell/Open-Shell-Menu.svg)](https://github.com/Open-Shell/Open-Shell-Menu/releases) [![GitHub Pre-Release](https://img.shields.io/github/release/Open-Shell/Open-Shell-Menu/all.svg)](https://github.com/Open-Shell/Open-Shell-Menu/releases) [![Build status](https://ci.appveyor.com/api/projects/status/2wj5x5qoypfjj0tr/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/open-shell-menu/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/open-shell/Lobby)
+[![GitHub Release](https://img.shields.io/github/release/Open-Shell/Open-Shell-Menu.svg)](https://github.com/Open-Shell/Open-Shell-Menu/releases) [![GitHub Pre-Release](https://img.shields.io/github/release/Open-Shell/Open-Shell-Menu/all.svg)](https://github.com/Open-Shell/Open-Shell-Menu/releases) [![Build status](https://ci.appveyor.com/api/projects/status/2wj5x5qoypfjj0tr/branch/master?svg=true)](https://ci.appveyor.com/project/passionate-coder/open-shell-menu/branch/master) [![GitQ](https://gitq.com/badge.svg)](https://gitq.com/passionate-coder/Classic-Start) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/open-shell/Lobby) [![Discord](https://img.shields.io/discord/757701054782636082?color=%4E5D94&label=Discord&logo=discord&logoColor=white)](https://discord.gg/7H6arr5)
 
 [Home Page](https://open-shell.github.io/Open-Shell-Menu)  
 [Discussion room](https://gitter.im/Open-Shell)  

@@ -375,7 +375,10 @@ COLORREF MenuSkin::GetMetroColor( const wchar_t *names ) const
 			if (GetImmersiveUserColorSetPreference!=NULL)
 			{
 				wchar_t text[256];
-				Sprintf(text,_countof(text),L"Immersive%s",name);
+				if (wcsncmp(name,L"Immersive",9)==0)
+					wcscpy_s(text,name);
+				else
+					Sprintf(text,_countof(text),L"Immersive%s",name);
 				int type=GetImmersiveColorTypeFromName(text);
 				data.colorType=type<0?-1:type;
 				if (type>=0)

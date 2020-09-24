@@ -405,7 +405,7 @@ void ShowMetroColorViewer( void )
 			if (fout) fprintf(fout,"%02X%02X%02X%02X %S\n",(color>>24)&0xFF,color&0xFF,(color>>8)&0xFF,(color>>16)&0xFF,name);
 #endif
 			MetroColor mc;
-			mc.name=name;
+			mc.name=text;
 			mc.NAME=mc.name;
 			mc.NAME.MakeUpper();
 			mc.type=type;

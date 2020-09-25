@@ -422,6 +422,9 @@ void CUpdateDlg::UpdateUI( void )
 
 void CUpdateDlg::Run( void )
 {
+	if (m_hWnd)
+		return;
+
 	DLGTEMPLATE *pTemplate=LoadDialogEx(IDD_UPDATE);
 	Create(NULL,pTemplate);
 	MSG msg;
@@ -480,6 +483,20 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+class UpdateToasts : public DesktopToasts
+{
+public:
+	UpdateToasts() : DesktopToasts(L"OpenShell.Update") {}
+
+private:
+	void OnToastActivate(LPCWSTR invokedArgs) override
+	{
+		g_UpdateDlg.Run();
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////
+
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCmdLine, int nCmdShow )
 {
 	INITCOMMONCONTROLSEX init={sizeof(init),ICC_STANDARD_CLASSES};
@@ -522,7 +539,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	COwnerWindow ownerWindow;
 	ownerWindow.Create(NULL,0,0,WS_POPUP);
 
-	DesktopToasts toasts(L"OpenShell.Update");
+	UpdateToasts toasts;
 
 	if (wcsstr(lpstrCmdLine,L"-popup")!=NULL)
 	{
@@ -591,12 +608,25 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 	else if (wcsstr(lpstrCmdLine, L"-ToastActivated"))
 	{
 		g_UpdateDlg.UpdateData();
-		g_UpdateDlg.Run();
+		// dialog will be shown once toast is activated (UpdateToasts::OnToastActivate)
 	}
 	else
 	{
 		g_UpdateDlg.Run();
 	}
+
+	// process messages for a while
+	for (int i = 0; i < 100; i++)
+	{
+		MSG msg;
+		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		Sleep(10);
+	}
+
 	ownerWindow.DestroyWindow();
 	CoUninitialize();
 	return 0;

@@ -467,6 +467,7 @@ bool MenuGetFileTimestamp( const wchar_t *path, FILETIME *pWriteTime, FILETIME *
 STDAPI ShGetKnownFolderPath( REFKNOWNFOLDERID rfid, PWSTR *pPath );
 STDAPI ShGetKnownFolderIDList(REFKNOWNFOLDERID rfid, PIDLIST_ABSOLUTE *pPidl );
 STDAPI ShGetKnownFolderItem(REFKNOWNFOLDERID rfid, IShellItem **ppItem );
+HBITMAP ColorizeMonochromeImage(HBITMAP bitmap, DWORD color);
 
 #define TASKBAR_PINNED_ROOT L"%APPDATA%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar"
 #define START_MENU_PINNED_ROOT L"%APPDATA%\\OpenShell\\Pinned"

@@ -2200,6 +2200,21 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 		else
 			iconSize.cx=iconSize.cy=0;
 
+		COLORREF color, shadowColor;
+		{
+			bool bHotColor = (bHot && !bSplit) || stateLeft > 0;
+			if (item.id == MENU_EMPTY || item.id == MENU_EMPTY_TOP)
+			{
+				color = settings.textColors[bHotColor ? 3 : 2];
+				shadowColor = settings.textShadowColors[bHotColor ? 3 : 2];
+			}
+			else
+			{
+				color = settings.textColors[bHotColor ? 1 : 0];
+				shadowColor = settings.textShadowColors[bHotColor ? 1 : 0];
+			}
+		}
+
 		// draw icon
 		if (drawType==MenuSkin::PROGRAMS_BUTTON || drawType==MenuSkin::PROGRAMS_BUTTON_NEW)
 		{
@@ -2256,15 +2271,21 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 			const CItemManager::IconInfo *pIcon=(settings.iconSize==MenuSkin::ICON_SIZE_LARGE)?item.pItemInfo->largeIcon:item.pItemInfo->smallIcon;
 			if (pIcon && pIcon->bitmap)
 			{
+				HBITMAP temp = ColorizeMonochromeImage(pIcon->bitmap, color);
+				HBITMAP bitmap = temp ? temp : pIcon->bitmap;
+
 				BITMAP info;
-				GetObject(pIcon->bitmap,sizeof(info),&info);
-				HGDIOBJ bmp0=SelectObject(hdc2,pIcon->bitmap);
+				GetObject(bitmap,sizeof(info),&info);
+				HGDIOBJ bmp0=SelectObject(hdc2,bitmap);
 				if (bmp0)
 				{
 					BLENDFUNCTION func={AC_SRC_OVER,0,255,AC_SRC_ALPHA};
 					AlphaBlend(hdc,iconX,iconY,iconSize.cx,iconSize.cy,hdc2,0,0,info.bmWidth,info.bmHeight,func);
 					SelectObject(hdc2,bmp0);
 				}
+
+				if (temp)
+					DeleteObject(temp);
 			}
 		}
 		else if (item.id==MENU_SHUTDOWN_BUTTON && s_bHasUpdates && s_Skin.Shutdown_bitmap.GetBitmap())
@@ -2287,18 +2308,6 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 
 		// draw text
 		SelectObject(hdc,settings.font);
-		COLORREF color, shadowColor;
-		bool bHotColor=(bHot && !bSplit) || stateLeft>0;
-		if (item.id==MENU_EMPTY || item.id==MENU_EMPTY_TOP)
-		{
-			color=settings.textColors[bHotColor?3:2];
-			shadowColor=settings.textShadowColors[bHotColor?3:2];
-		}
-		else
-		{
-			color=settings.textColors[bHotColor?1:0];
-			shadowColor=settings.textShadowColors[bHotColor?1:0];
-		}
 		RECT rc={itemRect.left+settings.iconPadding.left+settings.iconPadding.right+settings.textPadding.left,itemRect.top+settings.textPadding.top,
 		         itemRect.right-settings.arrPadding.cx-settings.arrPadding.cy-settings.textPadding.right,itemRect.bottom-settings.textPadding.bottom};
 		if (item.id==MENU_SHUTDOWN_BUTTON)

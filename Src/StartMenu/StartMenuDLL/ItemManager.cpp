@@ -176,6 +176,27 @@ static void CreateMonochromeImage( unsigned int *bits, int stride, int width, in
 	}
 }
 
+HBITMAP ColorizeMonochromeImage(HBITMAP bitmap, DWORD color)
+{
+	{
+		BITMAP info{};
+		GetObject(bitmap, sizeof(info), &info);
+		if (!DetectGrayscaleImage((const unsigned int*)info.bmBits, info.bmWidth, info.bmWidth, info.bmHeight))
+			return nullptr;
+	}
+
+	HBITMAP bmp = (HBITMAP)CopyImage(bitmap, IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION);
+	if (bmp)
+	{
+		BITMAP info{};
+		GetObject(bmp, sizeof(info), &info);
+
+		CreateMonochromeImage((unsigned int*)info.bmBits, info.bmWidth, info.bmWidth, info.bmHeight, color);
+	}
+
+	return bmp;
+}
+
 static HBITMAP BitmapFromMetroIcon( HICON hIcon, int bitmapSize, int iconSize, DWORD metroColor, bool bDestroyIcon=true )
 {
 	ICONINFO info;

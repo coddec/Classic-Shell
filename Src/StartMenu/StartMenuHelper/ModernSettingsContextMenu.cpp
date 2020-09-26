@@ -19,7 +19,6 @@ struct ICIVERBTOIDMAP
 static const ICIVERBTOIDMAP g_ContextMenuIDMap[] =
 {
 	{ L"open",       "open",      MENUVERB_OPEN },
-	{ NULL,          NULL,        (UINT)-1      }
 };
 
 HRESULT _MapICIVerbToCmdID(LPCMINVOKECOMMANDINFO pici, UINT* pid)

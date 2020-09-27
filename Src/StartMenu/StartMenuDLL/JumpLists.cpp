@@ -198,7 +198,13 @@ bool HasJumplist( const wchar_t *appid )
 	{
 		UINT count;
 		if (SUCCEEDED(pCustomList->GetCategoryCount(&count)) && count>0)
+		{
+			// skip Settings app (it reports one category with unsupported type, thus jump-list will be empty)
+			if (wcscmp(appid, L"windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel") == 0)
+				return false;
+
 			return true;
+		}
 	}
 
 	if (CAutomaticList(appid).HasList())

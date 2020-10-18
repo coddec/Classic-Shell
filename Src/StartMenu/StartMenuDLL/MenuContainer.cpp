@@ -2768,17 +2768,17 @@ bool CMenuContainer::InitSearchItems( void )
 			if (m_SearchCategoryHash==CSearchManager::CATEGORY_PROGRAM)
 				selectedCount=(int)s_SearchResults.programs.size();
 		}
-		if (!s_SearchResults.settings.empty())
-		{
-			counts.push_back((int)s_SearchResults.settings.size());
-			if (m_SearchCategoryHash==CSearchManager::CATEGORY_SETTING)
-				selectedCount=(int)s_SearchResults.settings.size();
-		}
 		if (!s_SearchResults.metrosettings.empty())
 		{
 			counts.push_back((int)s_SearchResults.metrosettings.size());
 			if (m_SearchCategoryHash==CSearchManager::CATEGORY_METROSETTING)
 				selectedCount=(int)s_SearchResults.metrosettings.size();
+		}
+		if (!s_SearchResults.settings.empty())
+		{
+			counts.push_back((int)s_SearchResults.settings.size());
+			if (m_SearchCategoryHash==CSearchManager::CATEGORY_SETTING)
+				selectedCount=(int)s_SearchResults.settings.size();
 		}
 		for (std::list<CSearchManager::SearchCategory>::const_iterator it=s_SearchResults.indexed.begin();it!=s_SearchResults.indexed.end();++it)
 		{
@@ -2829,9 +2829,9 @@ bool CMenuContainer::InitSearchItems( void )
 		if (idx==0)
 			categoryHash=CSearchManager::CATEGORY_PROGRAM;
 		else if (idx==1)
-			categoryHash=CSearchManager::CATEGORY_SETTING;
-		else if (idx==2)
 			categoryHash=CSearchManager::CATEGORY_METROSETTING;
+		else if (idx==2)
+			categoryHash=CSearchManager::CATEGORY_SETTING;
 		else
 			categoryHash=it->categoryHash;
 
@@ -2867,16 +2867,6 @@ bool CMenuContainer::InitSearchItems( void )
 		}
 		else if (idx==1)
 		{
-			originalCount=(int)s_SearchResults.settings.size();
-			if (count>originalCount)
-				count=originalCount;
-			items.reserve(count);
-			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.settings.begin();it!=s_SearchResults.settings.end() && (int)items.size()<count;++it)
-				items.push_back(SearchItem(*it));
-			name=FindTranslation(L"Search.CategorySettings",L"Settings");
-		}
-		else if (idx==2)
-		{
 			originalCount=(int)s_SearchResults.metrosettings.size();
 			if (count>originalCount)
 				count=originalCount;
@@ -2884,6 +2874,16 @@ bool CMenuContainer::InitSearchItems( void )
 			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.metrosettings.begin();it!=s_SearchResults.metrosettings.end() && (int)items.size()<count;++it)
 				items.push_back(SearchItem(*it));
 			name=FindTranslation(L"Search.CategoryPCSettings", L"Modern Settings");
+		}
+		else if (idx==2)
+		{
+			originalCount=(int)s_SearchResults.settings.size();
+			if (count>originalCount)
+				count=originalCount;
+			items.reserve(count);
+			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.settings.begin();it!=s_SearchResults.settings.end() && (int)items.size()<count;++it)
+				items.push_back(SearchItem(*it));
+			name=FindTranslation(L"Search.CategorySettings",L"Settings");
 		}
 		else
 		{

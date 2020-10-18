@@ -2790,6 +2790,9 @@ static void OpenCortana( void )
 
 static void InitStartMenuDLL( void )
 {
+	LogToFile(STARTUP_LOG, L"StartMenu DLL: InitStartMenuDLL");
+	WaitDllInitThread();
+
 	InitializeIatHooks();
 	if (IsWin81Update1())
 	{
@@ -2817,39 +2820,40 @@ static void InitStartMenuDLL( void )
 		}
 	}
 
-	if (GetWinVersion()>=WIN_VER_WIN10)
+	if (GetSettingBool(L"CustomTaskbar"))
 	{
-		HMODULE shlwapi=GetModuleHandle(L"shlwapi.dll");
-		if (shlwapi)
+		if (GetWinVersion()>=WIN_VER_WIN10)
 		{
-			g_SHFillRectClr=(tSHFillRectClr)GetProcAddress(shlwapi,MAKEINTRESOURCEA(197));
-			if (g_SHFillRectClr)
+			HMODULE shlwapi=GetModuleHandle(L"shlwapi.dll");
+			if (shlwapi)
 			{
-				g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"shlwapi.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
-				if (!g_SHFillRectClrHook)
-					g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"api-ms-win-shlwapi-winrt-storage-l1-1-1.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
+				g_SHFillRectClr=(tSHFillRectClr)GetProcAddress(shlwapi,MAKEINTRESOURCEA(197));
+				if (g_SHFillRectClr)
+				{
+					g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"shlwapi.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
+					if (!g_SHFillRectClrHook)
+						g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"api-ms-win-shlwapi-winrt-storage-l1-1-1.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
+				}
 			}
+			g_StretchDIBitsHook=SetIatHook(GetModuleHandle(NULL),"gdi32.dll","StretchDIBits",StretchDIBits2);
 		}
-		g_StretchDIBitsHook=SetIatHook(GetModuleHandle(NULL),"gdi32.dll","StretchDIBits",StretchDIBits2);
-	}
 
-	{
-		HWND dlg=CreateWindow(L"#32770",L"",WS_POPUP,0,0,0,0,NULL,0,0,0);
-		HWND toolbar=CreateWindow(TOOLBARCLASSNAME,L"",WS_CHILD|TBS_TOOLTIPS,0,0,0,0,dlg,0,0,0);
-		DestroyWindow(dlg);
-	}
+		{
+			HWND dlg=CreateWindow(L"#32770",L"",WS_POPUP,0,0,0,0,NULL,0,0,0);
+			HWND toolbar=CreateWindow(TOOLBARCLASSNAME,L"",WS_CHILD|TBS_TOOLTIPS,0,0,0,0,dlg,0,0,0);
+			DestroyWindow(dlg);
+		}
 
-	if (GetWinVersion()<=WIN_VER_WIN81)
-		g_DrawThemeBackgroundHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeBackground",DrawThemeBackground2);
-	g_DrawThemeTextHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeText",DrawThemeText2);
-	g_DrawThemeTextExHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeTextEx",DrawThemeTextEx2);
-	g_DrawThemeTextCtlHook=SetIatHook(GetModuleHandle(L"comctl32.dll"),"uxtheme.dll","DrawThemeText",DrawThemeText2);
-	if (GetWinVersion()>=WIN_VER_WIN10)
-		g_SetWindowCompositionAttributeHook=SetIatHook(GetModuleHandle(NULL),"user32.dll","SetWindowCompositionAttribute",SetWindowCompositionAttribute2);
+		if (GetWinVersion()<=WIN_VER_WIN81)
+			g_DrawThemeBackgroundHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeBackground",DrawThemeBackground2);
+		g_DrawThemeTextHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeText",DrawThemeText2);
+		g_DrawThemeTextExHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeTextEx",DrawThemeTextEx2);
+		g_DrawThemeTextCtlHook=SetIatHook(GetModuleHandle(L"comctl32.dll"),"uxtheme.dll","DrawThemeText",DrawThemeText2);
+		if (GetWinVersion()>=WIN_VER_WIN10)
+			g_SetWindowCompositionAttributeHook=SetIatHook(GetModuleHandle(NULL),"user32.dll","SetWindowCompositionAttribute",SetWindowCompositionAttribute2);
+	}
 
 	g_TaskbarThreadId=GetCurrentThreadId();
-	LogToFile(STARTUP_LOG,L"StartMenu DLL: InitStartMenuDLL");
-	WaitDllInitThread();
 	g_bTrimHooks=GetWinVersion()==WIN_VER_WIN7 && (GetSettingInt(L"CompatibilityFixes")&COMPATIBILITY_TRIM_HOOKS);
 	InitManagers(false);
 	int level=GetSettingInt(L"CrashDump");

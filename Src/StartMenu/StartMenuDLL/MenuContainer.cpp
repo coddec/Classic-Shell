@@ -2873,7 +2873,7 @@ bool CMenuContainer::InitSearchItems( void )
 			items.reserve(count);
 			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.metrosettings.begin();it!=s_SearchResults.metrosettings.end() && (int)items.size()<count;++it)
 				items.push_back(SearchItem(*it));
-			name=FindTranslation(L"Search.CategoryPCSettings", L"Modern Settings");
+			name=FindTranslation(L"Search.CategoryPCSettings", L"Settings");
 		}
 		else if (idx==2)
 		{
@@ -2883,7 +2883,7 @@ bool CMenuContainer::InitSearchItems( void )
 			items.reserve(count);
 			for (std::vector<const CItemManager::ItemInfo*>::const_iterator it=s_SearchResults.settings.begin();it!=s_SearchResults.settings.end() && (int)items.size()<count;++it)
 				items.push_back(SearchItem(*it));
-			name=FindTranslation(L"Search.CategorySettings",L"Settings");
+			name=FindTranslation(L"Search.CategorySettings",L"Control Panel");
 		}
 		else
 		{

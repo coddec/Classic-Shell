@@ -805,7 +805,7 @@ void CSearchManager::SearchThread( void )
 				scopeList.push_back(SearchScope());
 				SearchScope &scope=*scopeList.rbegin();
 				scope.bFiles=true;
-				scope.name=FindTranslation(L"Search.CategoryPCSettings",L"Modern Settings");
+				scope.name=FindTranslation(L"Search.CategoryPCSettings",L"Settings");
 				scope.categoryHash=CATEGORY_METROSETTING;
 				scope.roots.push_back(L"FILE:");
 			}

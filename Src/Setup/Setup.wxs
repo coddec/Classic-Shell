@@ -576,7 +576,8 @@
 			<Component Id="UpdateSettingsLink" Guid="10B5A082-6C92-4EA7-AFF8-21AE3D2D7FE0">
 				<Shortcut Id="UpdateSettingsLink" Name="!(loc.UpdateItem)" Advertise="no" Description="!(loc.UpdateSettingsDesc)" Target="[APPLICATIONFOLDER]Update.exe" WorkingDirectory="APPLICATIONFOLDER">
 					<ShortcutProperty Key="System.AppUserModel.ID" Value="OpenShell.Update"/>
-					<ShortcutProperty Key="System.AppUserModel.ToastActivatorCLSID" Value="{E407B70A-1FBD-4D5E-8822-231C69102472}"/>
+					<!-- Windows 7 doesn't recognize `System.AppUserModel.ToastActivatorCLSID` name so we have to use GUID directly -->
+					<ShortcutProperty Key="{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 26" Value="{E407B70A-1FBD-4D5E-8822-231C69102472}"/>
 				</Shortcut>
 				<CreateFolder />
 				<Condition>START_MENU_FOLDER=1</Condition>

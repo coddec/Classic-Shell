@@ -1001,7 +1001,7 @@ static const CStdCommand g_StdCommands[]={
 	{L"settings",IDS_SETTINGS_ITEM,IDS_SETTINGS_MENU_TIP,L"SettingsMenu",L"$Menu.Settings",L"",L"shell32.dll,330"},
 	{L"search",IDS_SEARCH_MENU_ITEM,IDS_SEARCH_TIP,L"SearchMenu",L"$Menu.Search",L"",L"shell32.dll,323"},
 	{L"search_box",IDS_SEARCH_BOX_ITEM,IDS_SEARCH_BOX_TIP,L"SearchBoxItem",L"$Menu.SearchBox",NULL,L"none",NULL,StdMenuItem::MENU_TRACK|StdMenuItem::MENU_OPENUP},
-	{L"help",IDS_HELP_ITEM,IDS_HELP_TIP,L"HelpItem",L"$Menu.Help",L"$Menu.HelpTip",L"shell32.dll,324"},
+	{L"help",IDS_HELP_ITEM,IDS_HELP_TIP,L"HelpItem",L"$Menu.Help",L"$Menu.HelpTip",L"imageres.dll,99"},
 	{L"run",IDS_RUN_ITEM,IDS_RUN_TIP,L"RunItem",L"$Menu.Run",L"$Menu.RunTip",L"shell32.dll,328"},
 	{L"logoff",IDS_SHUTDOWN_LOGOFF,IDS_LOGOFF_TIP,L"LogOffItem",L"$Menu.Logoff",L"$Menu.LogOffTip",L"shell32.dll,325",NULL,StdMenuItem::MENU_STYLE_CLASSIC1},
 	{L"logoff",IDS_SHUTDOWN_LOGOFF,IDS_LOGOFF_TIP,L"LogOffItem",L"$Menu.Logoff",L"$Menu.LogOffTip",L"none",NULL,StdMenuItem::MENU_STYLE_CLASSIC2},
@@ -1068,7 +1068,7 @@ L"ComputerItem.Command=computer\n"
 L"HelpItem.Command=help\n"
 L"HelpItem.Label=$Menu.Help\n"
 L"HelpItem.Tip=$Menu.HelpTip\n"
-L"HelpItem.Icon=shell32.dll,324\n"
+L"HelpItem.Icon=imageres.dll,99\n"
 L"RunItem.Command=run\n"
 L"RunItem.Label=$Menu.Run\n"
 L"RunItem.Tip=$Menu.RunTip\n"
@@ -1203,7 +1203,7 @@ L"SearchMenu.Icon=shell32.dll,323\n"
 L"HelpItem.Command=help\n"
 L"HelpItem.Label=$Menu.Help\n"
 L"HelpItem.Tip=$Menu.HelpTip\n"
-L"HelpItem.Icon=shell32.dll,324\n"
+L"HelpItem.Icon=imageres.dll,99\n"
 L"RunItem.Command=run\n"
 L"RunItem.Label=$Menu.Run\n"
 L"RunItem.Tip=$Menu.RunTip\n"

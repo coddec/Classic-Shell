@@ -754,6 +754,12 @@
 #define IDS_SELECT_LAST                 3657
 #define IDS_SELECT_LAST_TIP             3658
 #define IDS_CLEAR_CACHE                 3659
+#define IDS_ALIGN_WORK_AREA             3660
+#define IDS_ALIGN_WORK_AREA_TIP         3661
+#define IDS_HOR_OFFSET                  3662
+#define IDS_HOR_OFFSET_TIP              3663
+#define IDS_VERT_OFFSET                 3664
+#define IDS_VERT_OFFSET_TIP             3665
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

@@ -7401,35 +7401,46 @@ bool CMenuContainer::HasMoreResults( void )
 
 RECT CMenuContainer::CalculateWorkArea( const RECT &taskbarRect )
 {
-	RECT rc=s_MenuLimits;
-	if ((s_TaskBarEdge==ABE_LEFT || s_TaskBarEdge==ABE_RIGHT) && GetSettingBool(L"ShowNextToTaskbar"))
+	RECT rc;
+	if (!GetSettingBool(L"AlignToWorkArea"))
 	{
-		// when the taskbar is on the side and the menu is not on top of it
-		// the start button is assumed at the top
-		if (s_TaskBarEdge==ABE_LEFT)
-			rc.left=taskbarRect.right;
+		rc = s_MenuLimits;
+		if ((s_TaskBarEdge == ABE_LEFT || s_TaskBarEdge == ABE_RIGHT) && GetSettingBool(L"ShowNextToTaskbar"))
+		{
+			// when the taskbar is on the side and the menu is not on top of it
+			// the start button is assumed at the top
+			if (s_TaskBarEdge == ABE_LEFT)
+				rc.left = taskbarRect.right;
+			else
+				rc.right = taskbarRect.left;
+		}
 		else
-			rc.right=taskbarRect.left;
+		{
+			if (s_TaskBarEdge == ABE_BOTTOM)
+			{
+				// taskbar is at the bottom
+				rc.bottom = taskbarRect.top;
+			}
+			else if (s_TaskBarEdge == ABE_TOP)
+			{
+				// taskbar is at the top
+				rc.top = taskbarRect.bottom;
+			}
+			else
+			{
+				// taskbar is on the side, start button must be at the top
+				rc.top = s_StartRect.bottom;
+			}
+		}
 	}
 	else
 	{
-		if (s_TaskBarEdge==ABE_BOTTOM)
-		{
-			// taskbar is at the bottom
-			rc.bottom=taskbarRect.top;
-		}
-		else if (s_TaskBarEdge==ABE_TOP)
-		{
-			// taskbar is at the top
-			rc.top=taskbarRect.bottom;
-		}
-		else
-		{
-			// taskbar is on the side, start button must be at the top
-			rc.top=s_StartRect.bottom;
-		}
+		// Get working area of the monitor the specified taskbar is on
+		MONITORINFO info{ sizeof(MONITORINFO) };
+		HMONITOR mon = MonitorFromRect(&taskbarRect, 0);
+		GetMonitorInfo(mon, &info);
+		rc = info.rcWork;
 	}
-
 	if (!s_bLockWorkArea)
 	{
 		// exclude floating keyboard
@@ -7455,6 +7466,32 @@ RECT CMenuContainer::CalculateWorkArea( const RECT &taskbarRect )
 			}
 		}
 	}
+
+	//calculate offsets
+	int xOff = GetSettingInt(L"HorizontalMenuOffset");
+	int yOff = GetSettingInt(L"VerticalMenuOffset");
+	if (s_TaskBarEdge == ABE_BOTTOM)
+	{
+		if (xOff != 0)
+			rc.left += xOff;
+		if (yOff != 0)
+			rc.bottom += yOff;
+	}
+	else if (s_TaskBarEdge == ABE_TOP || s_TaskBarEdge == ABE_LEFT)
+	{
+		if (xOff != 0)
+			rc.left += xOff;
+		if (yOff != 0)
+			rc.top += yOff;
+	}
+	else
+	{
+		if (xOff != 0)
+			rc.right += xOff;
+		if (yOff != 0)
+			rc.top += yOff;
+	}
+
 	return rc;
 }
 

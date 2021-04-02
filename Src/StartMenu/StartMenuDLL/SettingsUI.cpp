@@ -4416,7 +4416,7 @@ CSetting g_Settings[]={
 	{L"StartButtonIconSize",CSetting::TYPE_INT,IDS_BUTTON_ICON_SIZE,IDS_BUTTON_ICON_SIZE_TIP,0,0,L"#StartButtonType=1",L"ClasicButton"},
 	{L"StartButtonText",CSetting::TYPE_STRING,IDS_BUTTON_TEXT,IDS_BUTTON_TEXT_TIP,L"$Menu.Start",0,L"#StartButtonType=1",L"ClasicButton"},
 
-{L"Taskbar",CSetting::TYPE_GROUP,IDS_TASKBAR_SETTINGS},
+{L"Taskbar",CSetting::TYPE_GROUP,IDS_TASKBAR_SETTINGS,0,0,CSetting::FLAG_BASIC},
 	{L"CustomTaskbar",CSetting::TYPE_BOOL,IDS_TASK_CUSTOM,IDS_TASK_CUSTOM_TIP,0,CSetting::FLAG_CALLBACK},
 	{L"TaskbarLook",CSetting::TYPE_INT,IDS_TASK_LOOK,IDS_TASK_LOOK_TIP,1,CSetting::FLAG_CALLBACK,L"CustomTaskbar",L"CustomTaskbar"},
 		{L"Opaque",CSetting::TYPE_RADIO,IDS_TASK_OPAQUE,IDS_TASK_OPAQUE_TIP},

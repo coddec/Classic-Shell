@@ -4659,11 +4659,19 @@ void UpdateSettings( void )
 	else if (dpi<96) dpi=96;
 	else if (dpi>480) dpi=480;
 
-	int iconSize=24;
-	if (dpi<=96)
-		iconSize=16;
-	else if (dpi<=120)
-		iconSize=20;
+	int iconSize=16;
+	if (dpi>=240)
+		iconSize=40;	// for 250% scaling
+	else if (dpi>=216)
+		iconSize=36;	// for 225% scaling
+	else if (dpi>=192)
+		iconSize=32;	// for 200% scaling
+	else if (dpi>=168)
+		iconSize=28;	// for 175% scaling
+	else if (dpi>=144)
+		iconSize=24;	// for 150% scaling
+	else if (dpi>=120)
+		iconSize=20;	// for 125% scaling
 	UpdateSetting(L"SmallIconSize",CComVariant(iconSize),false);
 	UpdateSetting(L"LargeIconSize",CComVariant(iconSize*2),false);
 

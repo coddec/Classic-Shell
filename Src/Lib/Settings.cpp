@@ -1713,6 +1713,7 @@ LRESULT CSettingsDlg::OnBackup( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& 
 		ofn.Flags=OFN_DONTADDTORECENT|OFN_ENABLESIZING|OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_HIDEREADONLY|OFN_NOCHANGEDIR;
 		if (GetOpenFileName(&ofn))
 		{
+			SetCurTab(m_Index,true); // reload tab once to force-close any active edit boxes
 			CString error=g_SettingsManager.LoadSettingsXml(path);
 			if (!error.IsEmpty())
 			{
@@ -1722,7 +1723,7 @@ LRESULT CSettingsDlg::OnBackup( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& 
 				::MessageBox(m_hWnd,text,LoadStringEx(IDS_ERROR_TITLE),MB_OK|MB_ICONERROR);
 			}
 			SetSettingsDirty();
-			SetCurTab(m_Index,true);
+			SetCurTab(m_Index,true); // reload tab again to show the new settings
 		}
 	}
 	if (res==3)

@@ -1822,7 +1822,10 @@ void CCustomTreeDlg::SerializeData( void )
 	if ((m_pSetting->flags&CSetting::FLAG_DEFAULT) || wcscmp(strNew,strOld)!=0)
 		SetSettingsDirty();
 	m_pSetting->value=CComVariant(strNew);
-	m_pSetting->flags&=~CSetting::FLAG_DEFAULT;
+	if (m_pSetting->value==m_pSetting->defValue)
+		m_pSetting->flags|=CSetting::FLAG_DEFAULT;
+	else
+		m_pSetting->flags&=~CSetting::FLAG_DEFAULT;
 	ItemsChanged();
 }
 
@@ -2778,7 +2781,10 @@ void CTreeSettingsDlg::ToggleItem( HTREEITEM hItem, bool bDefault )
 		{
 			CSettingsLockWrite lock;
 			pSetting->value=CComVariant(state?0:1);
-			pSetting->flags&=~CSetting::FLAG_DEFAULT;
+			if (pSetting->value==pSetting->defValue)
+				pSetting->flags|=CSetting::FLAG_DEFAULT;
+			else
+				pSetting->flags&=~CSetting::FLAG_DEFAULT;
 			SetSettingsDirty();
 		}
 		if (pSetting->flags&CSetting::FLAG_CALLBACK)
@@ -2802,7 +2808,10 @@ void CTreeSettingsDlg::ToggleItem( HTREEITEM hItem, bool bDefault )
 				{
 					CSettingsLockWrite lock;
 					pTarget->value=CComVariant(val);
-					pTarget->flags&=~CSetting::FLAG_DEFAULT;
+					if (pTarget->value==pTarget->defValue)
+						pTarget->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pTarget->flags&=~CSetting::FLAG_DEFAULT;
 					SetSettingsDirty();
 				}
 				if (pParent->flags&CSetting::FLAG_CALLBACK)
@@ -3013,7 +3022,10 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 				if (pSetting->value.vt!=VT_I4 || pSetting->value.intVal!=val)
 				{
 					pSetting->value=CComVariant(val);
-					pSetting->flags&=~CSetting::FLAG_DEFAULT;
+					if (pSetting->value==pSetting->defValue)
+						pSetting->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 			}
 			else if (pSetting->type==CSetting::TYPE_COLOR)
@@ -3023,7 +3035,10 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 				if (pSetting->value.vt!=VT_I4 || pSetting->value.intVal!=val)
 				{
 					pSetting->value=CComVariant(val);
-					pSetting->flags&=~CSetting::FLAG_DEFAULT;
+					if (pSetting->value==pSetting->defValue)
+						pSetting->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 			}
 			else if (pSetting->type==CSetting::TYPE_HOTKEY || pSetting->type==CSetting::TYPE_HOTKEY_ANY)
@@ -3031,7 +3046,10 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 				if (pSetting->value.vt!=VT_I4 || pSetting->value.intVal!=g_HotKey)
 				{
 					pSetting->value=CComVariant(g_HotKey);
-					pSetting->flags&=~CSetting::FLAG_DEFAULT;
+					if (pSetting->value==pSetting->defValue)
+						pSetting->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 			}
 			else
@@ -3039,7 +3057,10 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 				if (pSetting->value.vt!=VT_BSTR || str!=pSetting->value.bstrVal)
 				{
 					pSetting->value=CComVariant(str);
-					pSetting->flags&=~CSetting::FLAG_DEFAULT;
+					if (pSetting->value==pSetting->defValue)
+						pSetting->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 			}
 			SetSettingsDirty();

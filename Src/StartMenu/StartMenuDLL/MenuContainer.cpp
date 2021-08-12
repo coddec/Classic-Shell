@@ -315,6 +315,7 @@ bool CMenuContainer::s_bShowTopEmpty=false;
 bool CMenuContainer::s_bNoDragDrop=false;
 bool CMenuContainer::s_bNoContextMenu=false;
 bool CMenuContainer::s_bExpandLinks=false;
+bool CMenuContainer::s_bSingleClickFolders=false;
 bool CMenuContainer::s_bLogicalSort=false;
 bool CMenuContainer::s_bExtensionSort=false;
 bool CMenuContainer::s_bAllPrograms=false;
@@ -6823,7 +6824,7 @@ LRESULT CMenuContainer::OnLButtonUp( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	const MenuItem &item=m_Items[index];
 	POINT pt2=pt;
 	ClientToScreen(&pt2);
-	if (!item.bFolder)
+	if (!item.bFolder || (s_bSingleClickFolders && item.id!=MENU_PROGRAMS)) // never open All Programs link with single click
 	{
 		if (item.jumpIndex>=0 && m_bHotArrow)
 		{
@@ -7672,6 +7673,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	g_ItemManager.ResetTempIcons();
 	s_ScrollMenus=GetSettingInt(L"ScrollType");
 	s_bExpandLinks=GetSettingBool(L"ExpandFolderLinks");
+	s_bSingleClickFolders=GetSettingBool(L"SingleClickFolders");
 	s_bLogicalSort=GetSettingBool(L"NumericSort");
 	s_MaxRecentDocuments=GetSettingInt(L"MaxRecentDocuments");
 	s_ShellFormat=RegisterClipboardFormat(CFSTR_SHELLIDLIST);

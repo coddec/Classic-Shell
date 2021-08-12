@@ -876,6 +876,7 @@ private:
 	static bool s_bNoDragDrop; // disables drag/drop
 	static bool s_bNoContextMenu; // disables the context menu
 	static bool s_bExpandLinks; // expand links to folders
+	static bool s_bSingleClickFolders; // open links to folders with one click instead of two
 	static bool s_bLogicalSort; // use StrCmpLogical instead of CompareString
 	static bool s_bExtensionSort; // sort file names by extension
 	static bool s_bAllPrograms; // this is the All Programs menu of the Windows start menu

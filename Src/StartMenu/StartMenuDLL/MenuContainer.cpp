@@ -444,7 +444,10 @@ LRESULT CALLBACK CMenuContainer::SubclassSearchBox( HWND hWnd, UINT uMsg, WPARAM
 			SetBkColor(hdc,GetSysColor(COLOR_WINDOW));
 			SetBkMode(hdc,TRANSPARENT);
 			SetTextColor(hdc,s_Skin.Search_text_colors[1]);
-			DrawText(hdc,pParent->m_Items[pParent->m_SearchIndex].name,-1,&rc,DT_SINGLELINE|DT_EDITCONTROL|(s_bRTL?DT_RIGHT:DT_LEFT));
+			if (GetSettingBool(L"SearchHint"))
+				DrawText(hdc,GetSettingString(L"SearchHintText"),-1,&rc,DT_SINGLELINE|DT_EDITCONTROL|(s_bRTL?DT_RIGHT:DT_LEFT));
+			else
+				DrawText(hdc,pParent->m_Items[pParent->m_SearchIndex].name,-1,&rc,DT_SINGLELINE|DT_EDITCONTROL|(s_bRTL?DT_RIGHT:DT_LEFT));
 			SelectObject(hdc,font0);
 		}
 		return res;

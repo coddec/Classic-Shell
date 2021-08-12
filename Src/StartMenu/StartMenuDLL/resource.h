@@ -768,6 +768,8 @@
 #define IDS_SEARCH_HINT_TIP             3671
 #define IDS_NEW_SEARCH_HINT             3672
 #define IDS_NEW_SEARCH_HINT_TIP         3673
+#define IDS_MORE_RESULTS                3674
+#define IDS_MORE_RESULTS_TIP            3675
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

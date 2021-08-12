@@ -4359,6 +4359,7 @@ CSetting g_Settings[]={
 		{L"SearchContents",CSetting::TYPE_BOOL,IDS_SEARCH_CONTENTS,IDS_SEARCH_CONTENTS_TIP,1,0,L"#SearchFiles",L"SearchFiles"},
 		{L"SearchCategories",CSetting::TYPE_BOOL,IDS_SEARCH_CATEGORIES,IDS_SEARCH_CATEGORIES_TIP,1,0,L"#SearchFiles",L"SearchFiles"},
 	{L"SearchInternet",CSetting::TYPE_BOOL,IDS_SEARCH_INTERNET,IDS_SEARCH_INTERNET_TIP,1,0,L"SearchBox"},
+	{L"MoreResults",CSetting::TYPE_BOOL,IDS_MORE_RESULTS,IDS_MORE_RESULTS_TIP,1,0,L"SearchBox"},
 
 {L"Look",CSetting::TYPE_GROUP,IDS_LOOK_SETTINGS},
 	{L"SmallIconSize",CSetting::TYPE_INT,IDS_SMALL_SIZE_SM,IDS_SMALL_SIZE_SM_TIP,-1,CSetting::FLAG_COLD}, // 16 for DPI<=96, 20 for DPI<=120, 24 otherwise

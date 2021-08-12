@@ -3397,6 +3397,9 @@ void CTreeSettingsDlg::UpdateGroup( const CSetting *pModified )
 		bool bDefault=pSetting->IsDefault();
 		const CComVariant &valVar=pSetting->GetValue();
 
+		// check if modified items should be bold
+		bool bBoldSettings=GetSettingBool(L"BoldSettings");
+
 		// calculate text
 		if (pSetting!=m_pEditSetting)
 		{
@@ -3479,7 +3482,7 @@ void CTreeSettingsDlg::UpdateGroup( const CSetting *pModified )
 			DeleteDC(hdc);
 			DeleteDC(hdcMask);
 		}
-		int state=bDefault?0:TVIS_BOLD;
+		int state=bDefault||!bBoldSettings?0:TVIS_BOLD; // check if item should be highlighted in bold
 		if (!bEnabled)
 		{
 			if (pSetting->type!=CSetting::TYPE_COLOR) image|=SETTING_STATE_DISABLED;

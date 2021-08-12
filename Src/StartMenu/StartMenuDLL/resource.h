@@ -762,6 +762,8 @@
 #define IDS_VERT_OFFSET_TIP             3665
 #define IDS_NO_DBLCLICK                 3666
 #define IDS_NO_DBLCLICK_TIP             3667
+#define IDS_BOLD_SETTINGS               3668
+#define IDS_BOLD_SETTINGS_TIP           3669
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

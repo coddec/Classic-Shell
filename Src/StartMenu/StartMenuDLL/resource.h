@@ -770,6 +770,10 @@
 #define IDS_NEW_SEARCH_HINT_TIP         3673
 #define IDS_MORE_RESULTS                3674
 #define IDS_MORE_RESULTS_TIP            3675
+#define IDS_OPEN_CMD                    3676
+#define IDS_OPEN_CMD_TIP                3677
+#define IDS_OPEN_CMD_TEXT               3678
+#define IDS_OPEN_CMD_TEXT_TIP           3679
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

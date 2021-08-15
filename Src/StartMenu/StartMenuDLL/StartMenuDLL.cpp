@@ -79,6 +79,7 @@ enum
 	OPEN_NOTHING,
 	OPEN_CLASSIC,
 	OPEN_WINDOWS,
+	OPEN_CUSTOM,
 	OPEN_BOTH,
 	OPEN_DESKTOP,
 	OPEN_CORTANA,
@@ -3348,6 +3349,16 @@ static LRESULT CALLBACK HookProgManThread( int code, WPARAM wParam, LPARAM lPara
 					msg->message=WM_NULL;
 					if (control==OPEN_CLASSIC)
 						PostMessage(g_TaskBar,g_StartMenuMsg,MSG_TOGGLE,0);
+					else if (control==OPEN_CUSTOM)
+					{
+						CString commandText=GetSettingString(L"WinKeyCommand");
+						if (!commandText.IsEmpty())
+						{
+							wchar_t expandedCommand[_MAX_PATH]{};
+							::ExpandEnvironmentStrings(commandText, expandedCommand, _countof(expandedCommand));
+							ShellExecute(NULL,NULL,expandedCommand,NULL,NULL,SW_SHOWNORMAL);
+						}
+					}
 				}
 			}
 		}
@@ -3431,6 +3442,16 @@ if (!g_bTrimHooks)
 						PostMessage(g_ProgWin,WM_SYSCOMMAND,SC_TASKLIST,'WSMK');
 					else if (control==OPEN_CORTANA)
 						OpenCortana();
+					else if (control==OPEN_CUSTOM)
+					{
+						CString commandText=GetSettingString(L"ShiftWinCommand");
+						if (!commandText.IsEmpty())
+						{
+							wchar_t expandedCommand[_MAX_PATH]{};
+							::ExpandEnvironmentStrings(commandText, expandedCommand, _countof(expandedCommand));
+							ShellExecute(NULL,NULL,expandedCommand,NULL,NULL,SW_SHOWNORMAL);
+						}
+					}
 				}
 				else if (msg->wParam==MSG_DRAG || msg->wParam==MSG_SHIFTDRAG)
 				{
@@ -3590,12 +3611,22 @@ if (!g_bTrimHooks)
 				// left or middle click on start button
 				FindWindowsMenu();
 				const wchar_t *name;
+				const wchar_t *command;
 				if (bMiddle)
+				{
 					name=L"MiddleClick";
+					command=L"MiddleClickCommand";
+				}
 				else if (GetKeyState(VK_SHIFT)<0)
+				{
 					name=L"ShiftClick";
+					command=L"ShiftClickCommand";
+				}
 				else
+				{
 					name=L"MouseClick";
+					command=L"MouseClickCommand";
+				}
 
 				int control=GetSettingInt(name);
 				if (control==OPEN_BOTH && GetWinVersion()>=WIN_VER_WIN10)
@@ -3611,6 +3642,16 @@ if (!g_bTrimHooks)
 					PostMessage(g_ProgWin,WM_SYSCOMMAND,SC_TASKLIST,'WSMM');
 				else if (control==OPEN_CORTANA)
 					OpenCortana();
+				else if (control==OPEN_CUSTOM)
+				{
+					CString commandText=GetSettingString(command);
+					if (!commandText.IsEmpty())
+					{
+						wchar_t expandedCommand[_MAX_PATH]{};
+						::ExpandEnvironmentStrings(commandText, expandedCommand, _countof(expandedCommand));
+						ShellExecute(NULL,NULL,expandedCommand,NULL,NULL,SW_SHOWNORMAL);
+					}
+				}
 				msg->message=WM_NULL;
 			}
 		}
@@ -3750,6 +3791,16 @@ if (!g_bTrimHooks)
 						{
 							FindWindowsMenu();
 							PostMessage(g_ProgWin,WM_SYSCOMMAND,SC_TASKLIST,'WSMM');
+						}
+						else if (control==OPEN_CUSTOM)
+						{
+							CString commandText=GetSettingString(L"HoverCommand");
+							if (!commandText.IsEmpty())
+							{
+								wchar_t expandedCommand[_MAX_PATH]{};
+								::ExpandEnvironmentStrings(commandText, expandedCommand, _countof(expandedCommand));
+								ShellExecute(NULL,NULL,expandedCommand,NULL,NULL,SW_SHOWNORMAL);
+							}
 						}
 					}
 				}

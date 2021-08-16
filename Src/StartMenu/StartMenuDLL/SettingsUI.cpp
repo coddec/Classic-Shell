@@ -2725,8 +2725,11 @@ void CCustomMenuDlg7::CItemList::UpdateItem( int index )
 		str=LoadStringEx(IDS_ITEM_SHOW2);
 	else if ((menuItem.settings&StdMenuItem::MENU_NOEXPAND) && !(g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_FOLDER))
 		str=LoadStringEx(IDS_ITEM_SHOW);
-	else if ((menuItem.settings&StdMenuItem::MENU_SINGLE_EXPAND) && (g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_COMPUTER))
-		str=LoadStringEx(IDS_ITEM_DRIVES);
+	else if ((menuItem.settings&StdMenuItem::MENU_SINGLE_EXPAND) && !(g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_NODRIVES))
+		if (g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_COMPUTER)
+			str=LoadStringEx(IDS_ITEM_DRIVES);
+		else
+			str=LoadStringEx(IDS_ITEM_LINKS);
 	else
 		str=LoadStringEx(IDS_ITEM_MENU);
 	ListView_SetItemText(m_hWnd,index,2,(wchar_t*)(const wchar_t*)str);
@@ -3160,7 +3163,7 @@ LRESULT CCustomMenuDlg7::CItemList::OnSelEndOk( WORD wNotifyCode, WORD wID, HWND
 			menuItem.settings|=StdMenuItem::MENU_ITEM_DISABLED;
 		else if (sel==1 && !(g_StdCommands7[menuItem.stdItemIndex].flags&(CStdCommand7::ITEM_SINGLE|CStdCommand7::ITEM_FOLDER)))
 			menuItem.settings|=StdMenuItem::MENU_NOEXPAND;
-		else if (sel==3 && (g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_COMPUTER))
+		else if (sel==3 && !(g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_NODRIVES))
 			menuItem.settings|=StdMenuItem::MENU_SINGLE_EXPAND;
 	}
 	UpdateItem(m_Line);
@@ -3307,12 +3310,17 @@ void CCustomMenuDlg7::CItemList::CreateCombo( int line, int column )
 				str=LoadStringEx(IDS_ITEM_DRIVES);
 				m_Combo.SendMessage(CB_ADDSTRING,0,(LPARAM)(const wchar_t*)str);
 			}
+			else if (!(g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_NODRIVES))
+			{
+				str=LoadStringEx(IDS_ITEM_LINKS);
+				m_Combo.SendMessage(CB_ADDSTRING,0,(LPARAM)(const wchar_t*)str);
+			}
 		}
 		if (menuItem.settings&StdMenuItem::MENU_ITEM_DISABLED)
 			m_Combo.SendMessage(CB_SETCURSEL,0);
 		else if ((g_StdCommands7[menuItem.stdItemIndex].flags&(CStdCommand7::ITEM_SINGLE|CStdCommand7::ITEM_FOLDER)) || (menuItem.settings&StdMenuItem::MENU_NOEXPAND))
 			m_Combo.SendMessage(CB_SETCURSEL,1);
-		else if ((g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_COMPUTER) && (menuItem.settings&StdMenuItem::MENU_SINGLE_EXPAND))
+		else if (!(g_StdCommands7[menuItem.stdItemIndex].flags&CStdCommand7::ITEM_NODRIVES) && (menuItem.settings&StdMenuItem::MENU_SINGLE_EXPAND))
 			m_Combo.SendMessage(CB_SETCURSEL,3);
 		else
 			m_Combo.SendMessage(CB_SETCURSEL,2);

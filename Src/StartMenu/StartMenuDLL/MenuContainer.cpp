@@ -861,7 +861,8 @@ void CMenuContainer::AddFirstFolder( IShellItem *pFolder, std::vector<MenuItem> 
 
 				if (bLibrary) flags&=~SFGAO_STREAM;
 				item.bLink=(flags&SFGAO_LINK)!=0;
-				item.bFolder=(!(options&CONTAINER_CONTROLPANEL) && !(options&CONTAINER_NOSUBFOLDERS) && (flags&SFGAO_FOLDER) && (!(flags&(SFGAO_STREAM|SFGAO_LINK)) || (s_bExpandLinks && item.bLink)));
+				item.bFolderLink=(flags&SFGAO_FOLDER && (!(flags&(SFGAO_STREAM|SFGAO_LINK)) || (s_bExpandLinks && item.bLink)));
+				item.bFolder=(!(options&CONTAINER_CONTROLPANEL) && !(options&CONTAINER_NOSUBFOLDERS) && item.bFolderLink);
 				{
 					CItemManager::RWLock lock(&g_ItemManager,false,CItemManager::RWLOCK_ITEMS);
 					if (item.pItemInfo->IsMetroLink())
@@ -2505,9 +2506,9 @@ void CMenuContainer::InitItems( void )
 		m_Items.resize(MAX_MENU_ITEMS);
 	}
 
-	if (m_Options&CONTAINER_CONTROLPANEL)
+	if (m_Options&CONTAINER_CONTROLPANEL && !(m_Options&CONTAINER_NOSUBFOLDERS))
 	{
-		// expand Administrative Tools. must be done after the sorting because we don't want the folder to jump to the top
+		// expand Administrative Tools when displaying as a menu. must be done after the sorting because we don't want the folder to jump to the top
 		unsigned int AdminToolsHash=CalcFNVHash(L"::{D20EA4E1-3957-11D2-A40B-0C5020524153}");
 		for (std::vector<MenuItem>::iterator it=m_Items.begin();it!=m_Items.end();++it)
 			if (it->nameHash==AdminToolsHash)

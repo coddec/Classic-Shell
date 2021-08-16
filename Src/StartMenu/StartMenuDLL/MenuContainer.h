@@ -453,7 +453,7 @@ private:
 			drawType=MenuSkin::COLUMN1_ITEM;
 			column=row=0;
 			memset(&itemRect,0,sizeof(itemRect));
-			bFolder=bLink=bPrograms=bAlignBottom=bBreak=bInline=bInlineFirst=bInlineLast=bSplit=bHasJumpList=bMetroLink=bMetroApp=bBlankSeparator=bNew=bStartScreen=bCustomAccelerator=false;
+			bFolder=bLink=bFolderLink=bPrograms=bAlignBottom=bBreak=bInline=bInlineFirst=bInlineLast=bSplit=bHasJumpList=bMetroLink=bMetroApp=bBlankSeparator=bNew=bStartScreen=bCustomAccelerator=false;
 			priority=0;
 			pItem1=pItem2=NULL;
 			mfuHash=0;
@@ -477,6 +477,7 @@ private:
 		RECT itemRect;
 		bool bFolder:1; // this is a folder - draw arrow
 		bool bLink:1; // this is a link (if a link to a folder is expanded it is always single-column)
+		bool bFolderLink:1; // this is a folder that is not explicitly expandable - used for sorting the list-of-links style
 		bool bPrograms:1; // this item is part of the Start Menu folder hierarchy
 		bool bAlignBottom:1; // two-column menu: this item is aligned to the bottom
 		bool bBreak:1; // two-column menu: this item starts the second column
@@ -512,8 +513,8 @@ private:
 			if (priority>item.priority) return false;
 			if (row<item.row) return true;
 			if (row>item.row) return false;
-			if ((bFolder && !bHasJumpList) && !(item.bFolder && !item.bHasJumpList)) return true;
-			if (!(bFolder && !bHasJumpList) && (item.bFolder && !item.bHasJumpList)) return false;
+			if (((bFolder || bFolderLink) && !bHasJumpList) && !((item.bFolder || item.bFolderLink) && !item.bHasJumpList)) return true;
+			if (!((bFolder || bFolderLink) && !bHasJumpList) && ((item.bFolder || item.bFolderLink) && !item.bHasJumpList)) return false;
 			if (drive && !item.drive) return true;
 			if (!drive && item.drive) return false;
 			if (drive && item.drive) return drive<item.drive;
@@ -578,18 +579,19 @@ private:
 		CString name;
 		unsigned int nameHash;
 		bool bFolder;
+		bool bFolderLink;
 		bool bHasJumpList;
 		char priority;
 		char drive;
 
-		SortMenuItem( const CString &_name, unsigned _nameHash, bool _bFolder, bool _bHasJumpList, char _priority ,char _drive) { name=_name; nameHash=_nameHash; bFolder=_bFolder; bHasJumpList=_bHasJumpList; priority=_priority; drive=_drive; }
-		SortMenuItem( const MenuItem &item ) { name=item.name; nameHash=item.nameHash; bFolder=item.bFolder; bHasJumpList=item.bHasJumpList; priority=item.priority; drive=item.drive; }
+		SortMenuItem( const CString &_name, unsigned _nameHash, bool _bFolder, bool _bFolderLink, bool _bHasJumpList, char _priority ,char _drive) { name=_name; nameHash=_nameHash; bFolder=_bFolder; bFolderLink=_bFolderLink; bHasJumpList=_bHasJumpList; priority=_priority; drive=_drive; }
+		SortMenuItem( const MenuItem &item ) { name=item.name; nameHash=item.nameHash; bFolder=item.bFolder; bFolderLink=item.bFolderLink; bHasJumpList=item.bHasJumpList; priority=item.priority; drive=item.drive; }
 		bool operator<( const SortMenuItem &x ) const
 		{
 			if (priority<x.priority) return true;
 			if (priority>x.priority) return false;
-			if ((bFolder && !bHasJumpList) && !(x.bFolder && !x.bHasJumpList)) return true;
-			if (!(bFolder && !bHasJumpList) && (x.bFolder && !x.bHasJumpList)) return false;
+			if (((bFolder || bFolderLink) && !bHasJumpList) && !((x.bFolder || x.bFolderLink) && !x.bHasJumpList)) return true;
+			if (!((bFolder || bFolderLink) && !bHasJumpList) && ((x.bFolder || x.bFolderLink) && !x.bHasJumpList)) return false;
 			if (drive && !x.drive) return true;
 			if (!drive && x.drive) return false;
 			if (drive && x.drive) return drive<x.drive;

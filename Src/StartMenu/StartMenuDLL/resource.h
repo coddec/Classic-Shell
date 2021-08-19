@@ -776,6 +776,8 @@
 #define IDS_OPEN_CMD_TEXT_TIP           3679
 #define IDS_ITEM_LINKS                  3680
 #define IDS_ITEM_LINKS_TIP              3681
+#define IDS_OPEN_TRUE_PATH              3682
+#define IDS_OPEN_TRUE_PATH_TIP          3683
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

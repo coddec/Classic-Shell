@@ -11,6 +11,7 @@
 #include "Settings.h"
 #include "SettingsUI.h"
 #include "SettingsUIHelper.h"
+#include "FileHelper.h"
 #include "Translations.h"
 #include "LogManager.h"
 #include "FNVHash.h"
@@ -2782,12 +2783,19 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 			info.lpVerb=MAKEINTRESOURCEA(res-verbOffset);
 			info.lpVerbW=MAKEINTRESOURCEW(res-verbOffset);
 			info.nShow=SW_SHOWNORMAL;
+			bool bOpenTruePath=false;
+			wchar_t targetlnkPath[_MAX_PATH]; // path to target.lnk in a fake folder
 			wchar_t dir[_MAX_PATH];
 			if (SHGetPathFromIDList(pItemPidl1,dir))
 			{
-				PathRemoveFileSpec(dir);
-				if (GetFileAttributes(dir)!=INVALID_FILE_ATTRIBUTES)
-					info.lpDirectoryW=dir;
+				if (_stricmp(command,"open")==0 && GetSettingBool(L"OpenTruePath") && GetFakeFolder(targetlnkPath,_countof(targetlnkPath),dir))
+					bOpenTruePath=true;
+				else
+				{
+					PathRemoveFileSpec(dir);
+					if (GetFileAttributes(dir)!=INVALID_FILE_ATTRIBUTES)
+						info.lpDirectoryW=dir;
+				}
 			}
 			if (pPt)
 			{
@@ -2818,9 +2826,20 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 			::SetForegroundWindow(g_OwnerWindow);
 			::SetWindowPos(g_OwnerWindow,HWND_TOPMOST,rc.left,rc.top,rc.right-rc.left,rc.bottom-rc.top,0);
 			LOG_MENU(LOG_EXECUTE,L"Invoke command, ptr=%p, command='%S'",this,command);
-			HRESULT hr=pInvokeMenu->InvokeCommand((LPCMINVOKECOMMANDINFO)&info);
-			LOG_MENU(LOG_EXECUTE,L"Invoke command, ptr=%p, res=%d",this,hr);
-			if (type==ACTIVATE_EXECUTE && SUCCEEDED(hr))
+			bool executeSuccess;
+			if (bOpenTruePath) // we are trying to open a fake folder, directly open target.lnk instead
+			{
+				HINSTANCE hinst=ShellExecute(NULL,NULL,targetlnkPath,NULL,NULL,SW_SHOWNORMAL);
+				LOG_MENU(LOG_EXECUTE,L"Invoke command, ptr=%p, res=%d",this,hinst);
+				executeSuccess=static_cast<int>(reinterpret_cast<uintptr_t>(hinst))>=32;
+			}
+			else
+			{
+				HRESULT hr=pInvokeMenu->InvokeCommand((LPCMINVOKECOMMANDINFO)&info);
+				LOG_MENU(LOG_EXECUTE,L"Invoke command, ptr=%p, res=%d",this,hr);
+				executeSuccess=SUCCEEDED(hr);
+			}
+			if (type==ACTIVATE_EXECUTE && executeSuccess)
 			{
 				if (bTrackRecent)
 				{

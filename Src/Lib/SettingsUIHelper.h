@@ -385,5 +385,5 @@ const wchar_t *GetSettingsRegPath( void );
 extern const GUID FOLDERID_DesktopRoot;
 
 bool BrowseCommandHelper( HWND parent, wchar_t *text );
-bool BrowseLinkHelper( HWND parent, wchar_t *text );
+bool BrowseLinkHelper( HWND parent, wchar_t *text, bool bFoldersOnly );
 bool BrowseIconHelper( HWND parent, wchar_t *text );

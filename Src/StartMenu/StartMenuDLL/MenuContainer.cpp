@@ -8068,7 +8068,8 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	}
 	else
 	{
-		wchar_t path[_MAX_PATH]=START_MENU_PINNED_ROOT;
+		wchar_t path[_MAX_PATH];
+		Strcpy(path,_countof(path),GetSettingString(L"PinnedItemsPath"));
 		DoEnvironmentSubst(path,_countof(path));
 		SHCreateDirectory(NULL,path);
 		s_PinFolder=path;
@@ -8080,7 +8081,8 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	{
 		bool bPinned=GetSettingInt(L"PinnedPrograms")==PINNED_PROGRAMS_PINNED;
 		bool bShortcut=GetSettingBool(L"StartScreenShortcut");
-		wchar_t path[_MAX_PATH]=START_MENU_PINNED_ROOT L"\\" STARTSCREEN_COMMAND;
+		wchar_t path[_MAX_PATH];
+		Sprintf(path,_countof(path),L"%s\\%s",GetSettingString(L"PinnedItemsPath"),STARTSCREEN_COMMAND);
 		DoEnvironmentSubst(path,_countof(path));
 		if (bPinned)
 		{

@@ -639,7 +639,8 @@ void CSearchManager::SearchThread( void )
 				// pinned folder
 				if (searchRequest.bPinnedFolder)
 				{
-					wchar_t path[_MAX_PATH]=START_MENU_PINNED_ROOT;
+					wchar_t path[_MAX_PATH];
+					Strcpy(path,_countof(path),GetSettingString(L"PinnedItemsPath"));
 					DoEnvironmentSubst(path,_MAX_PATH);
 					CComPtr<IShellItem> pFolder;
 					if (SUCCEEDED(SHCreateItemFromParsingName(path,NULL,IID_IShellItem,(void**)&pFolder)))

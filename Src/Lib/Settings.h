@@ -32,6 +32,7 @@ struct CSetting
 		TYPE_SOUND,
 		TYPE_FONT,
 		TYPE_MULTISTRING,
+		TYPE_DIRECTORY,
 	};
 
 	enum

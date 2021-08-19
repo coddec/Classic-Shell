@@ -57,6 +57,7 @@ CSetting g_Settings[]={
 	{L"DisablePinExt",CSetting::TYPE_BOOL,0,0,0},
 	{L"FolderStartMenu",CSetting::TYPE_STRING,0,0,L""},
 	{L"FolderCommonStartMenu",CSetting::TYPE_STRING,0,0,L""},
+	{L"PinnedItemsPath",CSetting::TYPE_DIRECTORY,0,0,L"%APPDATA%\\OpenShell\\Pinned"},
 
 {L"Language",CSetting::TYPE_GROUP},
 	{L"Language",CSetting::TYPE_STRING,0,0,L"",CSetting::FLAG_COLD|CSetting::FLAG_SHARED},

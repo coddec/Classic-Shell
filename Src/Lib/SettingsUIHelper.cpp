@@ -1216,7 +1216,7 @@ bool BrowseCommandHelper( HWND parent, wchar_t *text )
 	return false;
 }
 
-bool BrowseLinkHelper( HWND parent, wchar_t *text )
+bool BrowseLinkHelper( HWND parent, wchar_t *text, bool bFoldersOnly )
 {
 	DoEnvironmentSubst(text,_MAX_PATH);
 
@@ -1227,16 +1227,22 @@ bool BrowseLinkHelper( HWND parent, wchar_t *text )
 	if (!pCustomize)
 		return false;
 
-	pDialog->SetTitle(LoadStringEx(IDS_PICK_LINK_TITLE));
-	pDialog->SetOkButtonLabel(LoadStringEx(IDS_PICK_LINK_FILE));
-	wchar_t button[256];
-	Sprintf(button,_countof(button),L"  %s  ",LoadStringEx(IDS_PICK_LINK_FOLDER));
-	pCustomize->AddPushButton(101,button);
+	pDialog->SetTitle(LoadStringEx(bFoldersOnly?IDS_PICK_LINK_FOLDER:IDS_PICK_LINK_TITLE));
+	if (!bFoldersOnly) // add separate buttons for selecting files/folders to the dialog
+	{
+		pDialog->SetOkButtonLabel(LoadStringEx(IDS_PICK_LINK_FILE));
+		wchar_t button[256];
+		Sprintf(button,_countof(button),L"  %s  ",LoadStringEx(IDS_PICK_LINK_FOLDER));
+		pCustomize->AddPushButton(101,button);
+	}
 
 	CBrowseLinkEvents events;
 	DWORD cookie;
 	pDialog->Advise(&events,&cookie);
-	pDialog->SetOptions(FOS_ALLNONSTORAGEITEMS|FOS_FILEMUSTEXIST|FOS_DONTADDTORECENT|FOS_DEFAULTNOMINIMODE|FOS_NODEREFERENCELINKS);
+	if (bFoldersOnly) // set FOS_PICKFOLDERS option to use dialog in folder-only mode
+		pDialog->SetOptions(FOS_PICKFOLDERS|FOS_ALLNONSTORAGEITEMS|FOS_DONTADDTORECENT|FOS_DEFAULTNOMINIMODE);
+	else
+		pDialog->SetOptions(FOS_ALLNONSTORAGEITEMS|FOS_FILEMUSTEXIST|FOS_DONTADDTORECENT|FOS_DEFAULTNOMINIMODE|FOS_NODEREFERENCELINKS);
 	{
 		const wchar_t *c=wcschr(text,'|');
 		if (c)
@@ -2274,6 +2280,7 @@ public:
 		EDIT_HOTKEY_ANY,
 		EDIT_COLOR,
 		EDIT_FONT,
+		EDIT_DIRECTORY,
 	};
 
 	BEGIN_MSG_MAP( CTreeSettingsDlg )
@@ -2717,6 +2724,29 @@ LRESULT CTreeSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		m_EditBox.SetFocus();
 		m_bIgnoreFocus=false;
 	}
+	else if (m_EditMode==EDIT_DIRECTORY)
+	{
+		m_bIgnoreFocus=true;
+		CString str;
+		m_EditBox.GetWindowText(str);
+		str.TrimLeft(); str.TrimRight();
+		wchar_t text[1024];
+		DWORD dwAttrs=GetFileAttributes(str); // ensure directory exists before passing it to dialog
+		if (dwAttrs!=INVALID_FILE_ATTRIBUTES && dwAttrs&FILE_ATTRIBUTE_DIRECTORY)
+		{
+			Strcpy(text,_countof(text),str);
+			DoEnvironmentSubst(text,_countof(text));
+		}
+		else
+			text[0]=0;
+		Strcpy(text,_countof(text),str);
+		DoEnvironmentSubst(text,_countof(text));
+		if (BrowseLinkHelper(m_hWnd,text,true))
+			m_EditBox.SetWindowText(text);
+		SendMessage(WM_NEXTDLGCTL,(LPARAM)m_EditBox.m_hWnd,TRUE);
+		m_EditBox.SetFocus();
+		m_bIgnoreFocus=false;
+	}
 	return 0;
 }
 
@@ -3052,6 +3082,20 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 						pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 			}
+			else if (pSetting->type==CSetting::TYPE_DIRECTORY)
+			{
+				if (pSetting->value.vt!=VT_BSTR || str!=pSetting->value.bstrVal)
+				{
+					if (str.IsEmpty()) // empty directory strings cause unexpected behavior, so we reset to avoid this
+						pSetting->value=pSetting->defValue;
+					else // otherwise we are very lenient about what users can input as a path
+						pSetting->value=CComVariant(str);
+					if (pSetting->value==pSetting->defValue)
+						pSetting->flags|=CSetting::FLAG_DEFAULT;
+					else
+						pSetting->flags&=~CSetting::FLAG_DEFAULT;
+				}
+			}
 			else
 			{
 				if (pSetting->value.vt!=VT_BSTR || str!=pSetting->value.bstrVal)
@@ -3095,7 +3139,7 @@ void CTreeSettingsDlg::ItemSelected( HTREEITEM hItem, CSetting *pSetting, bool b
 				val=valVar.intVal;
 			Sprintf(text,_countof(text),L"%d",val);
 		}
-		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT)
+		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT || pSetting->type==CSetting::TYPE_DIRECTORY)
 		{
 			if (valVar.vt==VT_BSTR)
 				Strcpy(text,_countof(text),valVar.bstrVal);
@@ -3111,8 +3155,10 @@ void CTreeSettingsDlg::ItemSelected( HTREEITEM hItem, CSetting *pSetting, bool b
 				mode=EDIT_BITMAP_JPG;
 			else if (pSetting->type==CSetting::TYPE_SOUND)
 				mode=EDIT_SOUND;
-			else
+			else if (pSetting->type==CSetting::TYPE_FONT)
 				mode=EDIT_FONT;
+			else
+				mode=EDIT_DIRECTORY;
 		}
 		else if (pSetting->type==CSetting::TYPE_HOTKEY || pSetting->type==CSetting::TYPE_HOTKEY_ANY)
 		{
@@ -3152,7 +3198,7 @@ void CTreeSettingsDlg::ItemSelected( HTREEITEM hItem, CSetting *pSetting, bool b
 		m_pEditSetting=pSetting;
 	}
 
-	if (mode==EDIT_ICON || mode==EDIT_BITMAP || mode==EDIT_BITMAP_JPG || mode==EDIT_SOUND || mode==EDIT_FONT || mode==EDIT_COLOR)
+	if (mode==EDIT_ICON || mode==EDIT_BITMAP || mode==EDIT_BITMAP_JPG || mode==EDIT_SOUND || mode==EDIT_FONT || mode==EDIT_COLOR || mode==EDIT_DIRECTORY)
 	{
 		RECT rc2=rc;
 		int width=(rc2.bottom-rc2.top)*3/2;
@@ -3210,14 +3256,15 @@ void CTreeSettingsDlg::UpdateEditPosition( void )
 	DeleteDC(hdc);
 	DWORD margins=(DWORD)m_EditBox.SendMessage(EM_GETMARGINS);
 	size.cx+=HIWORD(margins)+LOWORD(margins)+12;
-	if (m_EditMode==EDIT_ICON || m_EditMode==EDIT_BITMAP || m_EditMode==EDIT_BITMAP_JPG || m_EditMode==EDIT_FONT || m_EditMode==EDIT_COLOR)
+	// adjust size and position of edit boxes for settings that use browse/play buttons
+	if (m_EditMode==EDIT_ICON || m_EditMode==EDIT_BITMAP || m_EditMode==EDIT_BITMAP_JPG || m_EditMode==EDIT_FONT || m_EditMode==EDIT_COLOR || m_EditMode==EDIT_DIRECTORY)
 		size.cx+=width;
 	if (m_EditMode==EDIT_SOUND)
 		size.cx+=width*2;
 	if (size.cx<w)
 		rc.right=rc.left+size.cx;
 
-	if (m_EditMode==EDIT_ICON || m_EditMode==EDIT_BITMAP || m_EditMode==EDIT_BITMAP_JPG || m_EditMode==EDIT_SOUND || m_EditMode==EDIT_FONT || m_EditMode==EDIT_COLOR)
+	if (m_EditMode==EDIT_ICON || m_EditMode==EDIT_BITMAP || m_EditMode==EDIT_BITMAP_JPG || m_EditMode==EDIT_SOUND || m_EditMode==EDIT_FONT || m_EditMode==EDIT_COLOR || m_EditMode==EDIT_DIRECTORY)
 	{
 		RECT rc2=rc;
 		rc2.left=rc2.right-width;

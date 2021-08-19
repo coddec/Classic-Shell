@@ -380,7 +380,7 @@ LRESULT CEditToolbarDlg::OnBrowseLink( WORD wNotifyCode, WORD wID, HWND hWndCtl,
 {
 	wchar_t text[_MAX_PATH];
 	GetDlgItemText(IDC_COMBOLINK,text,_countof(text));
-	if (BrowseLinkHelper(m_hWnd,text))
+	if (BrowseLinkHelper(m_hWnd,text,false))
 	{
 		SetDlgItemText(IDC_COMBOLINK,text);
 		SendMessage(WM_COMMAND,MAKEWPARAM(IDC_COMBOLINK,CBN_KILLFOCUS));

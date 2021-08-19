@@ -589,7 +589,7 @@ void CItemManager::Init( void )
 
 	m_RootGames=L"::{ED228FDF-9EA8-4870-83B1-96B02CFE0D52}\\";
 	wchar_t text[_MAX_PATH];
-	Strcpy(text,_countof(text),START_MENU_PINNED_ROOT L"\\");
+	Sprintf(text,_countof(text),L"%s\\",GetSettingString(L"PinnedItemsPath"));
 	DoEnvironmentSubst(text,_countof(text));
 	m_RootStartMenu3=text;
 	StringUpper(m_RootStartMenu3);
@@ -2867,7 +2867,8 @@ void CItemManager::PreloadItemsThread( void )
 			else if (g_CacheFolders[i].folder==FOLDERID_ClassicPinned)
 			{
 				if (GetSettingInt(L"PinnedPrograms")!=PINNED_PROGRAMS_PINNED) continue;
-				wchar_t path[_MAX_PATH]=START_MENU_PINNED_ROOT;
+				wchar_t path[_MAX_PATH];
+				Strcpy(path,_countof(path),GetSettingString(L"PinnedItemsPath"));
 				DoEnvironmentSubst(path,_countof(path));
 				if (FAILED(SHParseDisplayName(path,NULL,&pidl,0,NULL)) || !pidl) continue;
 				if (FAILED(SHCreateItemFromIDList(pidl,IID_IShellItem,(void**)&pFolder)) || !pFolder) continue;

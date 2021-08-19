@@ -125,7 +125,7 @@ bool CSetting::IsEnabled( void ) const
 					if (operation=='>' && pSetting->GetValue().intVal<=val)
 						return false;
 				}
-				if ((pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG) && pSetting->GetValue().vt==VT_BSTR)
+				if ((pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_DIRECTORY) && pSetting->GetValue().vt==VT_BSTR)
 				{
 					if (operation=='~' && *pSetting->GetValue().bstrVal==0)
 						return false;
@@ -202,7 +202,7 @@ bool CSetting::ReadValue( CRegKey &regKey, const wchar_t *valName )
 	}
 
 	// string
-	if (type>=CSetting::TYPE_STRING && type<CSetting::TYPE_MULTISTRING)
+	if (type>=CSetting::TYPE_STRING && type!=CSetting::TYPE_MULTISTRING)
 	{
 		ULONG len;
 		if (regKey.QueryStringValue(valName,NULL,&len)==ERROR_SUCCESS)
@@ -2221,7 +2221,7 @@ bool GetSettingBool( const CSetting &setting )
 
 CString GetSettingString( const CSetting &setting )
 {
-	Assert(setting.type==CSetting::TYPE_STRING);
+	Assert(setting.type==CSetting::TYPE_STRING || setting.type==CSetting::TYPE_DIRECTORY);
 	if (setting.value.vt!=VT_BSTR)
 		return CString();
 	return setting.value.bstrVal;
@@ -2722,7 +2722,7 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 		{
 			fprintf_s(fAdmx,"\t\t\t\t<decimal id=\"Value\" valueName=\"%S\"/>\r\n",pSetting->name);
 		}
-		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT)
+		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT || pSetting->type==CSetting::TYPE_DIRECTORY)
 		{
 			fprintf_s(fAdmx,"\t\t\t\t<text id=\"Value\" valueName=\"%S\"/>\r\n",pSetting->name);
 		}
@@ -2782,7 +2782,7 @@ bool SaveAdmx( TSettingsComponent component, const char *admxFile, const char *a
 		{
 			fprintf_s(fAdml,"\t\t\t\t<decimalTextBox refId=\"Value\" spin=\"false\">%s</decimalTextBox>\r\n",(const char*)name);
 		}
-		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT)
+		else if (pSetting->type==CSetting::TYPE_STRING || pSetting->type==CSetting::TYPE_ICON || pSetting->type==CSetting::TYPE_BITMAP || pSetting->type==CSetting::TYPE_BITMAP_JPG || pSetting->type==CSetting::TYPE_SOUND || pSetting->type==CSetting::TYPE_FONT || pSetting->type==CSetting::TYPE_DIRECTORY)
 		{
 			fprintf_s(fAdml,"\t\t\t\t<textBox refId=\"Value\"><label>%s</label></textBox>\r\n",(const char*)name);
 		}

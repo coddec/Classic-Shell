@@ -1742,7 +1742,7 @@ LRESULT CEditMenuDlg::OnBrowseLink( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 {
 	wchar_t text[_MAX_PATH];
 	GetDlgItemText(IDC_COMBOLINK,text,_countof(text));
-	if (BrowseLinkHelper(m_hWnd,text))
+	if (BrowseLinkHelper(m_hWnd,text,false))
 	{
 		SetDlgItemText(IDC_COMBOLINK,text);
 		SendMessage(WM_COMMAND,MAKEWPARAM(IDC_COMBOLINK,CBN_KILLFOCUS));
@@ -2437,7 +2437,7 @@ LRESULT CEditMenuDlg7::OnBrowseLink( WORD wNotifyCode, WORD wID, HWND hWndCtl, B
 {
 	wchar_t text[_MAX_PATH];
 	GetDlgItemText(IDC_EDITLINK2,text,_countof(text));
-	if (BrowseLinkHelper(m_hWnd,text))
+	if (BrowseLinkHelper(m_hWnd,text,false))
 	{
 		SetDlgItemText(IDC_EDITLINK2,text);
 		SendMessage(WM_COMMAND,MAKEWPARAM(IDC_EDITLINK2,EN_KILLFOCUS));
@@ -4280,6 +4280,7 @@ CSetting g_Settings[]={
 	{L"PinnedPrograms",CSetting::TYPE_INT,IDS_PINNED_PROGRAMS,IDS_PINNED_PROGRAMS_TIP,PINNED_PROGRAMS_PINNED},
 		{L"FastItems",CSetting::TYPE_RADIO,IDS_FAST_ITEMS,IDS_FAST_ITEMS_TIP},
 		{L"PinnedItems",CSetting::TYPE_RADIO,IDS_PINNED_ITEMS,IDS_PINNED_ITEMS_TIP},
+	{L"PinnedItemsPath",CSetting::TYPE_DIRECTORY,IDS_PINNED_PATH,IDS_PINNED_PATH_TIP,L"%APPDATA%\\OpenShell\\Pinned",0,L"PinnedPrograms=1",L"PinnedItems"},
 	{L"RecentPrograms",CSetting::TYPE_INT,IDS_RECENT_PROGRAMS,IDS_RECENT_PROGRAMS_TIP,RECENT_PROGRAMS_RECENT,CSetting::FLAG_BASIC},
 		{L"None",CSetting::TYPE_RADIO,IDS_NO_RECENT,IDS_NO_RECENT_TIP},
 		{L"Recent",CSetting::TYPE_RADIO,IDS_SHOW_RECENT,IDS_SHOW_RECENT_TIP},

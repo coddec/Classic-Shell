@@ -3856,6 +3856,7 @@ if (!g_bTrimHooks)
 						CMD_OPEN,
 						CMD_OPEN_ALL,
 						CMD_EXPLORER,
+						CMD_OPEN_PINNED,
 					};
 
 					// right-click on the start button - open the context menu (Settings, Help, Exit)
@@ -3876,6 +3877,8 @@ if (!g_bTrimHooks)
 						AppendMenu(menu,MF_STRING,CMD_OPEN,FindTranslation(L"Menu.Open",L"&Open"));
 						if (!SHRestricted(REST_NOCOMMONGROUPS))
 							AppendMenu(menu,MF_STRING,CMD_OPEN_ALL,FindTranslation(L"Menu.OpenAll",L"O&pen All Users"));
+						if (GetSettingInt(L"PinnedPrograms")==PINNED_PROGRAMS_PINNED)
+							AppendMenu(menu,MF_STRING,CMD_OPEN_PINNED,FindTranslation(L"Menu.OpenPinned",L"O&pen Pinned"));
 						AppendMenu(menu,MF_SEPARATOR,0,0);
 					}
 					if (GetSettingBool(L"EnableSettings"))
@@ -3921,6 +3924,16 @@ if (!g_bTrimHooks)
 							CComString pPath;
 							if (SUCCEEDED(ShGetKnownFolderPath((res==CMD_OPEN)?FOLDERID_StartMenu:FOLDERID_CommonStartMenu,&pPath)))
 								ShellExecute(NULL,L"open",pPath,NULL,NULL,SW_SHOWNORMAL);
+						}
+						if (res==CMD_OPEN_PINNED) // open pinned folder
+						{
+							SHELLEXECUTEINFO execute={sizeof(execute)};
+							CString path=GetSettingString(L"PinnedItemsPath");
+							execute.lpVerb=L"open";
+							execute.lpFile=path;
+							execute.nShow=SW_SHOWNORMAL;
+							execute.fMask=SEE_MASK_DOENVSUBST;
+							ShellExecuteEx(&execute);
 						}
 						if (res==CMD_EXPLORER)
 						{

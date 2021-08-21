@@ -6808,7 +6808,7 @@ LRESULT CMenuContainer::OnLButtonDblClick( UINT uMsg, WPARAM wParam, LPARAM lPar
 	ClientToScreen(&pt);
 	if (s_bWin7Style && item.id==MENU_PROGRAMS) // only single clicks for All Programs
 		OnLButtonDown(WM_LBUTTONDOWN,wParam,lParam,bHandled);
-	else if (!bArrow) // ignore double-click on the split arrow
+	else if (!bArrow && item.id!=MENU_APPS) // ignore double-click on the split arrow and Apps folder
 		ActivateItem(index,ACTIVATE_EXECUTE,&pt);
 	return 0;
 }
@@ -6832,7 +6832,7 @@ LRESULT CMenuContainer::OnLButtonUp( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	const MenuItem &item=m_Items[index];
 	POINT pt2=pt;
 	ClientToScreen(&pt2);
-	if (!item.bFolder || (s_bSingleClickFolders && item.id!=MENU_PROGRAMS)) // never open All Programs link with single click
+	if (!item.bFolder || (s_bSingleClickFolders && item.id!=MENU_PROGRAMS && item.id!=MENU_APPS && !bArrow)) // never open All Programs, Apps folder, or jumplists with single click
 	{
 		if (item.jumpIndex>=0 && m_bHotArrow)
 		{

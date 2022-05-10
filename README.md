@@ -24,7 +24,7 @@ If you just want to use it or looking for setup file, click here to download:
 1. Download [language DLL](https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html)  
 2. Place it either in the Open-Shell's __install folder__ or in the `%ALLUSERSPROFILE%\OpenShell\Languages` folder
 
----
+----
 
 *For archival reasons, we have a mirror of `www.classicshell.net` [here](https://coddec.github.io/Classic-Shell/www.classicshell.net/).*
 

@@ -195,9 +195,10 @@ static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf,
 	{
 		if (pProgress && pProgress->IsCanceled())
 			res=DOWNLOAD_CANCEL;
-		const wchar_t *accept[]={L"*/*",NULL};
+		
 		if (res==DOWNLOAD_OK)
 		{
+			const wchar_t* accept[] = { L"*/*",NULL };
 			HINTERNET hRequest=HttpOpenRequest(hConnect,L"GET",file,NULL,NULL,accept,((components.nScheme==INTERNET_SCHEME_HTTPS)?INTERNET_FLAG_SECURE:0)|(bAcceptCached?0:INTERNET_FLAG_RELOAD),0);
 			if (hRequest)
 			{

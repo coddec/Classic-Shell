@@ -3155,7 +3155,6 @@ LRESULT CCustomMenuDlg7::CItemList::OnSelEndOk( WORD wNotifyCode, WORD wID, HWND
 	if (m_Column==2)
 	{
 		// state
-		CString str;
 		menuItem.settings&=~CEditMenuDlg7::SETTINGS_MASK;
 		if (sel==0)
 			menuItem.settings|=StdMenuItem::MENU_ITEM_DISABLED;

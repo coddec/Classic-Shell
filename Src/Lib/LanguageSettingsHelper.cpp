@@ -127,7 +127,6 @@ VersionData CLanguageSettingsDlg::s_VersionData;
 
 void CLanguageSettingsDlg::AddFlag( const wchar_t *langName, int langId, HBITMAP bmp )
 {
-	std::vector<LangInfo>::iterator it=m_LanguageIDs.begin()+1;
 	int idx=1;
 	for (;idx<(int)m_LanguageIDs.size();idx++)
 	{
@@ -204,8 +203,6 @@ void CLanguageSettingsDlg::UpdateFlags( void )
 			Strcpy(path,_countof(path),L"%ALLUSERSPROFILE%\\OpenShell\\Languages");
 			DoEnvironmentSubst(path,_countof(path));
 		}
-
-		CWindow list=GetDlgItem(IDC_LISTLANGUAGE);
 
 		wchar_t find[_MAX_PATH];
 		Sprintf(find,_countof(find),L"%s\\*.dll",path);

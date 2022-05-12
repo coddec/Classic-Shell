@@ -3760,7 +3760,6 @@ if (!g_bTrimHooks)
 		// context menu
 		if (msg->message==WM_NCRBUTTONUP || msg->message==WM_RBUTTONUP)
 		{
-			CPoint pt0(GetMessagePos());
 			TaskbarInfo *taskBar=FindTaskBarInfoButton(msg->hwnd);
 			DWORD winVer=GetWinVersion();
 			if (!taskBar && winVer>=WIN_VER_WIN8)
@@ -3771,6 +3770,7 @@ if (!g_bTrimHooks)
 			}
 			if (taskBar)
 			{
+				CPoint pt0(GetMessagePos());
 				if (msg->message==WM_RBUTTONUP && msg->hwnd==taskBar->startButton && msg->lParam==MAKELPARAM(-1,-1))
 				{
 					RECT rc;

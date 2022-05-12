@@ -168,7 +168,7 @@ namespace DesktopNotificationManagerCompat
         ComPtr<IToastNotificationHistory> nativeHistory;
         RETURN_IF_FAILED(toastStatics2->get_History(&nativeHistory));
 
-        *history = std::unique_ptr<DesktopNotificationHistoryCompat>(new DesktopNotificationHistoryCompat(s_aumid.c_str(), nativeHistory));
+        *history = std::make_unique<DesktopNotificationHistoryCompat>(s_aumid.c_str(), nativeHistory);
         return S_OK;
     }
 

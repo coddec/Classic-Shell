@@ -526,7 +526,7 @@ bool CSearchManager::SearchScope::ParseSearchConnector( const wchar_t *fname )
 			CComPtr<IXMLDOMNode> pNext;
 			if (pScopeItem->get_nextSibling(&pNext)!=S_OK)
 				break;
-			pScopeItem=pNext;
+			pScopeItem=std::move(pNext);
 		}
 		return true;
 	}

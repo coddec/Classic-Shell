@@ -405,7 +405,7 @@ LRESULT CLanguageSettingsDlg::OnSelChange( int idCtrl, LPNMHDR pnmh, BOOL& bHand
 	CComVariant val(name);
 	if (m_pSetting->value!=val)
 		SetSettingsDirty();
-	m_pSetting->value=val;
+	m_pSetting->value=std::move(val);
 
 	if (_wcsicmp(m_pSetting->value.bstrVal,m_pSetting->defValue.bstrVal)==0)
 		m_pSetting->flags|=CSetting::FLAG_DEFAULT;

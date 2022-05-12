@@ -789,7 +789,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 						}
 						CComPtr<IXMLDOMNode> next;
 						child2->get_nextSibling(&next);
-						child2=next;
+						child2=std::move(next);
 					}
 					string.push_back(0);
 					pSetting->value=CComVariant(&string[0]);
@@ -839,7 +839,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 		CComPtr<IXMLDOMNode> next;
 		if (child->get_nextSibling(&next)!=S_OK)
 			break;
-		child=next;
+		child=std::move(next);
 	}
 	if (ver<0x03090000)
 		UpgradeSettings(false);

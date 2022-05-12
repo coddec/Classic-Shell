@@ -943,7 +943,7 @@ static BOOL CALLBACK EnumResLangProc( HMODULE hModule, LPCTSTR lpszType, LPCTSTR
 	if (IS_INTRESOURCE(lpszName))
 	{
 		std::vector<std::pair<int,WORD>> &oldStrings=*(std::vector<std::pair<int,WORD>>*)lParam;
-		oldStrings.push_back(std::pair<int,WORD>(PtrToInt(lpszName),wIDLanguage));
+		oldStrings.emplace_back(PtrToInt(lpszName),wIDLanguage);
 	}
 	return TRUE;
 }

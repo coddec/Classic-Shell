@@ -224,7 +224,7 @@ namespace DesktopNotificationManagerCompat
 DesktopNotificationHistoryCompat::DesktopNotificationHistoryCompat(const wchar_t *aumid, ComPtr<IToastNotificationHistory> history)
 {
     m_aumid = std::wstring(aumid);
-    m_history = history;
+    m_history = std::move(history);
 }
 
 HRESULT DesktopNotificationHistoryCompat::Clear()

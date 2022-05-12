@@ -280,7 +280,7 @@ static std::vector<uint8_t> ParseModernSettings()
 					CComPtr<IXMLDOMNode> next;
 					if (FAILED(node->get_nextSibling(&next)))
 						break;
-					node = next;
+					node = std::move(next);
 				}
 			}
 		}

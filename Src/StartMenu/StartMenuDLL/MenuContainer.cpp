@@ -2237,7 +2237,7 @@ void CMenuContainer::AddJumpListItems( std::vector<MenuItem> &items )
 							{
 								ILFree(item.pItem1);
 								item.pItem1=pidl2.Detach();
-								pItem=pItem2;
+								pItem=std::move(pItem2);
 							}
 						}
 					}

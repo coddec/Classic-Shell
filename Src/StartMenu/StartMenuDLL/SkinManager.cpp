@@ -1778,7 +1778,7 @@ bool MenuSkin::LoadSkin( HMODULE hMod, const wchar_t *variation, const wchar_t *
 				var.label=token;
 				if (var.labelEn.IsEmpty())
 					var.labelEn=var.label;
-				Variations.push_back(std::pair<int,Variation>(res,var));
+				Variations.emplace_back(res,var);
 				LOG_MENU(LOG_OPEN,L"Variation found: name=%s, id=%d",token,res);
 			}
 			else

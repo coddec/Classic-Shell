@@ -609,7 +609,7 @@ void CItemManager::Init( void )
 		{
 			int width, height;
 			pList->GetIconSize(&width,&height);
-			m_ListSizes.push_back(std::pair<int,int>(width,i));
+			m_ListSizes.emplace_back(width,i);
 		}
 	}
 	std::sort(m_ListSizes.begin(),m_ListSizes.end());
@@ -617,7 +617,7 @@ void CItemManager::Init( void )
 	CreateDefaultIcons();
 	LoadCacheFile();
 
-	ItemInfo &item=m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(0,ItemInfo()))->second;
+	ItemInfo &item=m_ItemInfos.emplace(0,ItemInfo())->second;
 	item.bIconOnly=true;
 	item.smallIcon=m_DefaultSmallIcon;
 	item.largeIcon=m_DefaultLargeIcon;
@@ -704,21 +704,21 @@ void CItemManager::CreateDefaultIcons( void )
 		icon.bitmap=BitmapFromIcon(LoadShellIcon(index,SMALL_ICON_SIZE),SMALL_ICON_SIZE);
 	else
 		icon.bitmap=NULL;
-	m_DefaultSmallIcon=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(0,icon))->second;
+	m_DefaultSmallIcon=&m_IconInfos.emplace(0,icon)->second;
 
 	icon.sizeType=ICON_SIZE_TYPE_LARGE;
 	if (index>=0)
 		icon.bitmap=BitmapFromIcon(LoadShellIcon(index,LARGE_ICON_SIZE),LARGE_ICON_SIZE);
 	else
 		icon.bitmap=NULL;
-	m_DefaultLargeIcon=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(0,icon))->second;
+	m_DefaultLargeIcon=&m_IconInfos.emplace(0,icon)->second;
 
 	icon.sizeType=ICON_SIZE_TYPE_EXTRA_LARGE;
 	if (index>=0)
 		icon.bitmap=BitmapFromIcon(LoadShellIcon(index,EXTRA_LARGE_ICON_SIZE),EXTRA_LARGE_ICON_SIZE);
 	else
 		icon.bitmap=NULL;
-	m_DefaultExtraLargeIcon=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(0,icon))->second;
+	m_DefaultExtraLargeIcon=&m_IconInfos.emplace(0,icon)->second;
 }
 
 CItemManager::LoadIconData &CItemManager::GetLoadIconData( void )
@@ -896,7 +896,7 @@ const CItemManager::ItemInfo *CItemManager::GetItemInfo( IShellItem *pItem, PIDL
 		}
 		if (!pInfo)
 		{
-			pInfo=&m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(hash,ItemInfo()))->second;
+			pInfo=&m_ItemInfos.emplace(hash,ItemInfo())->second;
 			pInfo->pidl.Clone(pidl);
 			pInfo->path=path;
 			pInfo->PATH=PATH;
@@ -978,7 +978,7 @@ const CItemManager::ItemInfo *CItemManager::GetItemInfo( CString path, int refre
 		}
 		if (!pInfo)
 		{
-			pInfo=&m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(hash,ItemInfo()))->second;
+			pInfo=&m_ItemInfos.emplace(hash,ItemInfo())->second;
 			if (!PATH.IsEmpty())
 				MenuParseDisplayName(path,&pInfo->pidl,NULL,NULL);
 			if (pInfo->pidl)
@@ -1076,7 +1076,7 @@ const CItemManager::ItemInfo *CItemManager::GetCustomIcon( const wchar_t *locati
 		}
 		if (!pInfo)
 		{
-			pInfo=&m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(hash,ItemInfo()))->second;
+			pInfo=&m_ItemInfos.emplace(hash,ItemInfo())->second;
 			pInfo->bIconOnly=true;
 			pInfo->bTemp=bTemp;
 			pInfo->iconPath=location;
@@ -1907,7 +1907,7 @@ void CItemManager::RefreshItemInfo( ItemInfo *pInfo, int refreshFlags, IShellIte
 									if (SUCCEEDED(store->GetValue(PKEY_MetroAppLauncher, &val)) && (val.vt == VT_I4 || val.vt == VT_UI4) && val.intVal)
 									{
 										newInfo.bLink = false;
-										pItem = target;
+										pItem = std::move(target);
 										pStore = store;
 									}
 									PropVariantClear(&val);
@@ -2597,7 +2597,7 @@ void CItemManager::StoreInCache( unsigned int hash, const wchar_t *path, HBITMAP
 
 	if ((refreshFlags&INFO_SMALL_ICON) && hSmallBitmap)
 	{
-		IconInfo *pInfo=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(hash,IconInfo()))->second;
+		IconInfo *pInfo=&m_IconInfos.emplace(hash,IconInfo())->second;
 		pInfo->sizeType=ICON_SIZE_TYPE_SMALL;
 		pInfo->bTemp=bTemp;
 		pInfo->bMetro=bMetro;
@@ -2607,7 +2607,7 @@ void CItemManager::StoreInCache( unsigned int hash, const wchar_t *path, HBITMAP
 	}
 	if ((refreshFlags&INFO_LARGE_ICON) && hLargeBitmap)
 	{
-		IconInfo *pInfo=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(hash,IconInfo()))->second;
+		IconInfo *pInfo=&m_IconInfos.emplace(hash,IconInfo())->second;
 		pInfo->sizeType=ICON_SIZE_TYPE_LARGE;
 		pInfo->bTemp=bTemp;
 		pInfo->bMetro=bMetro;
@@ -2617,7 +2617,7 @@ void CItemManager::StoreInCache( unsigned int hash, const wchar_t *path, HBITMAP
 	}
 	if ((refreshFlags&INFO_EXTRA_LARGE_ICON) && hExtraLargeBitmap)
 	{
-		IconInfo *pInfo=&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(hash,IconInfo()))->second;
+		IconInfo *pInfo=&m_IconInfos.emplace(hash,IconInfo())->second;
 		pInfo->sizeType=ICON_SIZE_TYPE_EXTRA_LARGE;
 		pInfo->bTemp=bTemp;
 		pInfo->bMetro=bMetro;
@@ -3273,7 +3273,7 @@ void CItemManager::LoadCacheFile( void )
 						bError=true;
 						break;
 					}
-					remapIcons.push_back(&m_IconInfos.insert(std::pair<unsigned int,IconInfo>(data.key,info))->second);
+					remapIcons.push_back(&m_IconInfos.emplace(data.key,info)->second);
 				}
 				else
 				{
@@ -3304,7 +3304,7 @@ void CItemManager::LoadCacheFile( void )
 					bError=true;
 					break;
 				}
-				ItemInfo &info=m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(data.key,ItemInfo()))->second;
+				ItemInfo &info=m_ItemInfos.emplace(data.key,ItemInfo())->second;
 
 				info.writestamp=data.writestamp;
 				info.createstamp=data.createstamp;
@@ -3568,7 +3568,7 @@ void CItemManager::ClearCache( void )
 	m_IconInfos.clear();
 	m_MetroItemInfos10.clear();
 	CreateDefaultIcons();
-	ItemInfo &item=m_ItemInfos.insert(std::pair<unsigned int,ItemInfo>(0,ItemInfo()))->second;
+	ItemInfo &item=m_ItemInfos.emplace(0,ItemInfo())->second;
 	item.bIconOnly=true;
 	item.smallIcon=m_DefaultSmallIcon;
 	item.largeIcon=m_DefaultLargeIcon;

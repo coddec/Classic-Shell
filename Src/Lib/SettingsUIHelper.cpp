@@ -1156,7 +1156,7 @@ HRESULT STDMETHODCALLTYPE CBrowseLinkEvents::OnButtonClicked( IFileDialogCustomi
 	{
 		pfd->GetFolder(&pItem);
 	}
-	m_pResult=pItem;
+	m_pResult=std::move(pItem);
 	pfd->Close(S_FALSE);
 	return S_OK;
 }

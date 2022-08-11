@@ -1084,7 +1084,8 @@ void CMenuContainer::AddStandardItems( void )
 			if (m_bSubMenu && pStdItem->id==s_ShutdownCommand)
 				continue;
 
-			if (pStdItem->id==MENU_COLUMN_BREAK && m_bTwoColumns)
+			const bool bTwoColumns = (!m_bSubMenu && s_Skin.TwoColumns);
+			if (pStdItem->id==MENU_COLUMN_BREAK && bTwoColumns)
 				mainIconSize=s_Skin.Main2_icon_size;
 
 			int stdOptions=GetStdOptions(pStdItem->id);

@@ -344,7 +344,7 @@ static DWORD WINAPI ThreadVersionCheck( void *param )
 	VersionData data;
 
 	{
-		auto load = params.nightly ? data.LoadNightly() : data.Load();
+		auto load = data.Load(!params.nightly);
 
 #ifdef UPDATE_LOG
 		LogToFile(UPDATE_LOG, L"Load result: %d", load);
@@ -765,20 +765,38 @@ std::vector<char> DownloadUrl(const wchar_t* url)
 
 using namespace nlohmann;
 
-VersionData::TLoadResult VersionData::Load()
+VersionData::TLoadResult VersionData::Load(bool official)
 {
 	Clear();
 
-	auto buf = DownloadUrl(L"https://api.github.com/repos/Open-Shell/Open-Shell-Menu/releases/latest");
+	std::wstring baseUrl = L"https://api.github.com/repos/Open-Shell/Open-Shell-Menu/releases";
+	if (official)
+		baseUrl += L"/latest";
+
+	auto buf = DownloadUrl(baseUrl.c_str());
 	if (buf.empty())
 		return LOAD_ERROR;
 
 	try
 	{
-		auto data = json::parse(buf.begin(), buf.end());
+		auto jsonData = json::parse(buf.begin(), buf.end());
+		auto& data = jsonData;
 
-		// skip prerelease versions
-		if (data["prerelease"].get<bool>())
+		if (official)
+		{
+			// skip prerelease versions (just in case)
+			if (data["prerelease"].get<bool>())
+				return LOAD_BAD_VERSION;
+		}
+		else
+		{
+			// we've got list of versions (release and pre-release)
+			// lets pick first one (that should be the latest one)
+			data = jsonData[0];
+		}
+
+		// make sure we didn't get draft release (for whatever reason)
+		if (data["draft"].get<bool>())
 			return LOAD_BAD_VERSION;
 
 		// get version from tag name

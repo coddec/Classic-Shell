@@ -59,7 +59,7 @@ struct VersionData
 		LOAD_BAD_FILE, // the file is corrupted
 	};
 
-	TLoadResult Load();
+	TLoadResult Load(bool official);
 	TLoadResult LoadNightly();
 	TLoadResult Load( const wchar_t *fname, bool bLoadFlags );
 private:

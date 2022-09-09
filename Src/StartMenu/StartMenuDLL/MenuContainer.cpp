@@ -861,8 +861,7 @@ void CMenuContainer::AddFirstFolder( IShellItem *pFolder, std::vector<MenuItem> 
 
 				if (bLibrary) flags&=~SFGAO_STREAM;
 				item.bLink=(flags&SFGAO_LINK)!=0;
-				item.bFolderLink=(flags&SFGAO_FOLDER && (!(flags&(SFGAO_STREAM|SFGAO_LINK)) || (s_bExpandLinks && item.bLink)));
-				item.bFolder=(!(options&CONTAINER_CONTROLPANEL) && !(options&CONTAINER_NOSUBFOLDERS) && item.bFolderLink);
+				item.bFolder=(!(options&CONTAINER_CONTROLPANEL) && !(options&CONTAINER_NOSUBFOLDERS) && (flags&SFGAO_FOLDER) && (!(flags&(SFGAO_STREAM|SFGAO_LINK)) || (s_bExpandLinks && item.bLink)));
 				{
 					CItemManager::RWLock lock(&g_ItemManager,false,CItemManager::RWLOCK_ITEMS);
 					if (item.pItemInfo->IsMetroLink())

@@ -903,7 +903,7 @@ HRESULT STDMETHODCALLTYPE CMenuContainer::Drop( IDataObject *pDataObj, DWORD grf
 				else if (i<before)
 					skip++;
 			}
-			SortMenuItem ins(L"",FNV_HASH0,false,false,false,folderIndex*2,0);
+			SortMenuItem ins(L"",FNV_HASH0,false,false,folderIndex*2,0);
 			items.insert(items.begin()+(before-skip),ins);
 			SaveItemOrder(items);
 		}

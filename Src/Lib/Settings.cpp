@@ -793,10 +793,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 					}
 					string.push_back(0);
 					pSetting->value=CComVariant(&string[0]);
-					if (pSetting->value==pSetting->defValue)
-						pSetting->flags|=CSetting::FLAG_DEFAULT;
-					else
-						pSetting->flags&=~CSetting::FLAG_DEFAULT;
+					pSetting->flags&=~CSetting::FLAG_DEFAULT;
 				}
 				else
 				{
@@ -809,10 +806,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 							if (pSetting->type>=CSetting::TYPE_STRING)
 							{
 								pSetting->value=value;
-								if (pSetting->value==pSetting->defValue)
-									pSetting->flags|=CSetting::FLAG_DEFAULT;
-								else
-									pSetting->flags&=~CSetting::FLAG_DEFAULT;
+								pSetting->flags&=~CSetting::FLAG_DEFAULT;
 							}
 							else if (pSetting->type==CSetting::TYPE_BOOL || (pSetting->type==CSetting::TYPE_INT && pSetting[1].type!=CSetting::TYPE_RADIO) || pSetting->type==CSetting::TYPE_HOTKEY || pSetting->type==CSetting::TYPE_HOTKEY_ANY || pSetting->type==CSetting::TYPE_COLOR)
 							{
@@ -821,10 +815,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 									pSetting->value=CComVariant(val?1:0);
 								else
 									pSetting->value=CComVariant(val);
-								if (pSetting->value==pSetting->defValue)
-									pSetting->flags|=CSetting::FLAG_DEFAULT;
-								else
-									pSetting->flags&=~CSetting::FLAG_DEFAULT;
+								pSetting->flags&=~CSetting::FLAG_DEFAULT;
 							}
 							else if (pSetting->type==CSetting::TYPE_INT && pSetting[1].type==CSetting::TYPE_RADIO)
 							{
@@ -834,10 +825,7 @@ CString CSettingsManager::LoadSettingsXml( const wchar_t *fname )
 									if (_wcsicmp(pRadio->name,value.bstrVal)==0)
 									{
 										pSetting->value=CComVariant(val);
-										if (pSetting->value==pSetting->defValue)
-											pSetting->flags|=CSetting::FLAG_DEFAULT;
-										else
-											pSetting->flags&=~CSetting::FLAG_DEFAULT;
+										pSetting->flags&=~CSetting::FLAG_DEFAULT;
 										break;
 									}
 								}

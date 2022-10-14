@@ -17,7 +17,7 @@
 ### Download
 If you just want to use it or looking for setup file, click here to download:
 
-[![GitHub All Releases](https://img.shields.io/github/downloads/Open-Shell/Open-Shell-Menu/total?style=for-the-badge)](https://github.com/Open-Shell/Open-Shell-Menu/releases)
+[![GitHub All Releases](https://img.shields.io/github/downloads/Open-Shell/Open-Shell-Menu/total?style=for-the-badge)](https://github.com/Open-Shell/Open-Shell-Menu/releases/latest)
 
 ### Temporary Translation/Language Solution
 1. Download [language DLL](https://coddec.github.io/Classic-Shell/www.classicshell.net/translations/index.html)  

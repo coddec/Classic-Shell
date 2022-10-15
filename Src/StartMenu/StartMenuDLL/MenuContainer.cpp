@@ -1071,7 +1071,7 @@ void CMenuContainer::AddStandardItems( void )
 		const StdMenuItem *pInlineParent=NULL;
 		int searchProviderIndex=-1;
 		m_SearchProvidersCount=0;
-		MenuSkin::TIconSize mainIconSize=s_Skin.Main_icon_size;
+		bool bSecondColumn=false;
 		for (const StdMenuItem *pStdItem=m_pStdItem;;pStdItem++)
 		{
 			if (pStdItem->id==MENU_LAST)
@@ -1089,9 +1089,8 @@ void CMenuContainer::AddStandardItems( void )
 			if (m_bSubMenu && pStdItem->id==s_ShutdownCommand)
 				continue;
 
-			const bool bTwoColumns = (!m_bSubMenu && s_Skin.TwoColumns);
-			if (pStdItem->id==MENU_COLUMN_BREAK && bTwoColumns)
-				mainIconSize=s_Skin.Main2_icon_size;
+			if (pStdItem->id==MENU_COLUMN_BREAK && !m_bSubMenu && s_Skin.TwoColumns)
+				bSecondColumn=true;
 
 			int stdOptions=GetStdOptions(pStdItem->id);
 			if (!(stdOptions&MENU_ENABLED)) continue;
@@ -1272,6 +1271,10 @@ void CMenuContainer::AddStandardItems( void )
 			item.bSplit=item.bFolder && (item.pStdItem->settings&StdMenuItem::MENU_SPLIT_BUTTON)!=0;
 
 			// get icon
+			MenuSkin::TIconSize mainIconSize=!bSecondColumn ? s_Skin.Main_icon_size : s_Skin.Main2_icon_size;
+			if (item.bInline && mainIconSize==MenuSkin::ICON_SIZE_NONE)
+				mainIconSize=s_Skin.Main_icon_size;
+			
 			CItemManager::TIconSizeType iconSizeType;
 			int refreshFlags;
 			if (bSearchProvider7 || m_bSubMenu)

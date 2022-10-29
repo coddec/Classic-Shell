@@ -4648,6 +4648,48 @@ void UpgradeSettings( bool bShared )
 	}
 }
 
+static CString GetWindowsBrandingString()
+{
+	CString retval;
+
+	if (GetWinVersion() >= WIN_VER_WIN10)
+	{
+		auto winbrand = LoadLibraryEx(L"winbrand.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
+		if (winbrand)
+		{
+			PWSTR (WINAPI * BrandingFormatString)(PCWSTR pstrFormat);
+			BrandingFormatString = (decltype(BrandingFormatString))GetProcAddress(winbrand, "BrandingFormatString");
+			if (BrandingFormatString)
+			{
+				auto osName = BrandingFormatString(L"%WINDOWS_LONG%");
+				if (osName)
+				{
+					retval = osName;
+					GlobalFree(osName);
+				}
+			}
+
+			FreeLibrary(winbrand);
+		}
+	}
+
+	if (retval.IsEmpty())
+	{
+		// fallback for older Windows
+		wchar_t title[256] = L"Windows";
+
+		if (CRegKey reg; reg.Open(HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows NT\\CurrentVersion", KEY_READ) == ERROR_SUCCESS)
+		{
+			ULONG size = _countof(title);
+			reg.QueryStringValue(L"ProductName", title, &size);
+		}
+
+		retval = title;
+	}
+
+	return retval;
+}
+
 void UpdateSettings( void )
 {
 	{
@@ -4770,16 +4812,10 @@ void UpdateSettings( void )
 
 	UpdateSetting(L"NumericSort",CComVariant(SHRestricted(REST_NOSTRCMPLOGICAL)?0:1),false);
 
-	wchar_t title[256]=L"Windows";
-	ULONG size=_countof(title);
-	{
-		CRegKey regTitle;
-		if (regTitle.Open(HKEY_LOCAL_MACHINE,L"Software\\Microsoft\\Windows NT\\CurrentVersion",KEY_READ)==ERROR_SUCCESS)
-			regTitle.QueryStringValue(L"ProductName",title,&size);
-	}
-	UpdateSetting(L"MenuCaption",CComVariant(title),false);
+	UpdateSetting(L"MenuCaption",CComVariant(GetWindowsBrandingString()),false);
 
-	size=_countof(title);
+	wchar_t title[256]{};
+	ULONG size=_countof(title);
 	if (!GetUserNameEx(NameDisplay,title,&size))
 	{
 		// GetUserNameEx may fail (for example on Home editions). use the login name

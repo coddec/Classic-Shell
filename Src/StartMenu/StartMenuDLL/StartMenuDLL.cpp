@@ -3861,9 +3861,13 @@ if (!g_bTrimHooks)
 
 					// right-click on the start button - open the context menu (Settings, Help, Exit)
 					HMENU menu=CreatePopupMenu();
-					CString title=LoadStringEx(IDS_MENU_TITLE);
-					if (!title.IsEmpty())
+					CString titleFmt=LoadStringEx(IDS_MENU_TITLE);
+					if (!titleFmt.IsEmpty())
 					{
+						CString title;
+						DWORD ver=GetVersionEx(g_Instance);
+						title.Format(titleFmt,ver>>24,(ver>>16)&0xFF,ver&0xFFFF);
+
 						AppendMenu(menu,MF_STRING,0,title);
 						EnableMenuItem(menu,0,MF_BYPOSITION|MF_DISABLED);
 						SetMenuDefaultItem(menu,0,TRUE);

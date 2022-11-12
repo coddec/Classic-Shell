@@ -51,7 +51,7 @@ struct TaskbarInfo
 	int taskbarId;
 	HWND taskBar;
 	HWND startButton; // either own start button or the win7 start button (depending on bReplaceButton)
-	HWND oldButton; // win81 start button (child of taskBar)
+	HWND oldButton; // win8.1+ start button (child of taskBar)
 	HWND rebar;
 	HWND taskList;
 	HWND chevron;
@@ -61,8 +61,8 @@ struct TaskbarInfo
 	int pointerId;
 	bool bTimer;
 	bool bCustomLook;
-	bool bReplaceButton;
-	bool bHideButton;
+	bool bReplaceButton; // replace start button with own one
+	bool bHideButton; // hide old start button (if we have own button)
 	bool bRecreatingButton;
 	bool bThemeChanging;
 	std::vector<HWND> trayButtons; // ordered by Z order (for win10)

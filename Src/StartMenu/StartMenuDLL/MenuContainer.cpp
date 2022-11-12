@@ -345,7 +345,8 @@ bool CMenuContainer::s_bMRULoaded=false;
 const CItemManager::ItemInfo *CMenuContainer::s_JumpAppInfo;
 CJumpList CMenuContainer::s_JumpList;
 int CMenuContainer::s_TaskBarId;
-HWND CMenuContainer::s_TaskBar, CMenuContainer::s_StartButton;
+HWND CMenuContainer::s_TaskBar;
+HWND CMenuContainer::s_StartButton;	// custom start button (if any)
 UINT CMenuContainer::s_TaskBarEdge;
 RECT CMenuContainer::s_StartRect;
 HWND CMenuContainer::s_LastFGWindow;
@@ -7507,6 +7508,7 @@ RECT CMenuContainer::CalculateWorkArea( const RECT &taskbarRect )
 	return rc;
 }
 
+// Calculates start menu position
 POINT CMenuContainer::CalculateCorner( void )
 {
 	RECT margin={0,0,0,0};
@@ -7514,10 +7516,24 @@ POINT CMenuContainer::CalculateCorner( void )
 		AdjustWindowRect(&margin,GetWindowLong(GWL_STYLE),FALSE);
 
 	POINT corner;
-	if (m_Options&CONTAINER_LEFT)
-		corner.x=s_MainMenuLimits.left+margin.left;
+	if (IsWin11())
+	{
+		// start button can be in the center on Win11
+		// we want to show menu at the position of start button
+		if (m_Options&CONTAINER_LEFT)
+			corner.x=s_StartRect.left+margin.left;
+		else
+			corner.x=s_StartRect.right+margin.right;
+	}
 	else
-		corner.x=s_MainMenuLimits.right+margin.right;
+	{
+		// start button can be only in corner on older systems
+		// we can use screen limits to determine menu position
+		if (m_Options&CONTAINER_LEFT)
+			corner.x=s_MainMenuLimits.left+margin.left;
+		else
+			corner.x=s_MainMenuLimits.right+margin.right;
+	}
 
 	if (m_Options&CONTAINER_TOP)
 	{

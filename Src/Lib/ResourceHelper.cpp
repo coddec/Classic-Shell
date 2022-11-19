@@ -396,8 +396,11 @@ HBITMAP LoadImageFile( const wchar_t *path, const SIZE *pSize, bool bUseAlpha, b
 	CComPtr<IWICImagingFactory> pFactory;
 	if (FAILED(pFactory.CoCreateInstance(CLSID_WICImagingFactory)))
 	{
-		if (srcBmp) DeleteObject(srcBmp);
-		return NULL;
+		if (FAILED(pFactory.CoCreateInstance(CLSID_WICImagingFactory1)))
+		{
+			if (srcBmp) DeleteObject(srcBmp);
+			return NULL;
+		}
 	}
 
 	CComPtr<IWICBitmapSource> pBitmap;
@@ -534,7 +537,10 @@ HBITMAP LoadImageResource( HMODULE hModule, const wchar_t *name, bool bTopDown, 
 {
 	CComPtr<IWICImagingFactory> pFactory;
 	if (FAILED(pFactory.CoCreateInstance(CLSID_WICImagingFactory)))
-		return NULL;
+	{
+		if (FAILED(pFactory.CoCreateInstance(CLSID_WICImagingFactory1)))
+			return NULL;
+	}
 
 	CComPtr<IWICBitmapSource> pBitmap;
 	if (hModule)

@@ -489,7 +489,8 @@ void CItemManager::LoadIconData::Init( void )
 			HIMAGELIST_QueryInterface(m_TempLists[i],IID_IImageList2,(void**)&m_pTempLists[i]);
 		}
 	}
-	m_pFactory.CoCreateInstance(CLSID_WICImagingFactory);
+	if (FAILED(m_pFactory.CoCreateInstance(CLSID_WICImagingFactory)))
+		m_pFactory.CoCreateInstance(CLSID_WICImagingFactory1);
 }
 
 void CItemManager::LoadIconData::Close( void )

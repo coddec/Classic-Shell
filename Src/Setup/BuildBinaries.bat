@@ -114,7 +114,7 @@ copy /B Output\x64\StartMenuHelper64.dll Output\PDB64 > nul
 
 REM ********* Source Index PDBs
 
-set PDBSTR_PATH="C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\srcsrv\pdbstr.exe"
+set PDBSTR_PATH="C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\srcsrv\pdbstr.exe"
 
 if exist %PDBSTR_PATH% (
 	echo --- Adding source index to PDBs
@@ -122,10 +122,18 @@ if exist %PDBSTR_PATH% (
 
 	for %%f in (Output\PDB32\*.pdb) do (
 		%PDBSTR_PATH% -w -p:%%f -s:srcsrv -i:Output\pdbstr.txt
+		if not ERRORLEVEL 0 (
+			echo Error adding source index to PDB
+			exit /b 1
+		)
 	)
 
 	for %%f in (Output\PDB64\*.pdb) do (
 		%PDBSTR_PATH% -w -p:%%f -s:srcsrv -i:Output\pdbstr.txt
+		if not ERRORLEVEL 0 (
+			echo Error adding source index to PDB
+			exit /b 1
+		)
 	)
 )
 

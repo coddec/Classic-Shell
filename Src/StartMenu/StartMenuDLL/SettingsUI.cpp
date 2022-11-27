@@ -30,6 +30,19 @@ const int DEFAULT_TASK_OPACITY10=85; // 85%
 
 ///////////////////////////////////////////////////////////////////////////////
 
+CString RgbToBgr(const wchar_t* str)
+{
+	CString retval;
+	retval.Format(L"%06X", RgbToBgr(ParseColor(str)));
+
+	return retval;
+}
+
+CString BgrToRgb(const wchar_t* str)
+{
+	return RgbToBgr(str);
+}
+
 class CSkinSettingsDlg: public CResizeableDlg<CSkinSettingsDlg>
 {
 public:
@@ -422,7 +435,7 @@ void CSkinSettingsDlg::UpdateSkinSettings( void )
 			if (!option.bEnabled || bLocked)
 				image|=SETTING_STATE_DISABLED;
 			if (option.bValue && option.type>SKIN_OPTION_BOOL)
-				Sprintf(text,_countof(text),L"%s: %s",option.label,option.sValue);
+				Sprintf(text,_countof(text),L"%s: %s",option.label,(option.type==SKIN_OPTION_COLOR)?BgrToRgb(option.sValue):option.sValue);
 			else
 				Sprintf(text,_countof(text),L"%s",option.label);
 
@@ -482,9 +495,7 @@ LRESULT CSkinSettingsDlg::OnCustomDraw( int idCtrl, LPNMHDR pnmh, BOOL& bHandled
 			if (TreeView_GetItemRect(m_Tree,(HTREEITEM)pDraw->nmcd.dwItemSpec,&rc,TRUE))
 			{
 				const wchar_t *str=m_CurrentSkin.Options[pDraw->nmcd.lItemlParam].sValue;
-				wchar_t *end;
-				COLORREF color=wcstoul(str,&end,16);
-				SetDCBrushColor(pDraw->nmcd.hdc,color&0xFFFFFF);
+				SetDCBrushColor(pDraw->nmcd.hdc,ParseColor(str));
 				SelectObject(pDraw->nmcd.hdc,GetStockObject(DC_BRUSH));
 				SelectObject(pDraw->nmcd.hdc,GetStockObject(BLACK_PEN));
 				Rectangle(pDraw->nmcd.hdc,rc.right,rc.top,rc.right+rc.bottom-rc.top,rc.bottom-1);
@@ -690,15 +701,14 @@ LRESULT CSkinSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		CString str;
 		m_EditBox.GetWindowText(str);
 		str.TrimLeft(); str.TrimRight();
-		wchar_t *end;
-		COLORREF val=wcstol(str,&end,16)&0xFFFFFF;
+		COLORREF val=RgbToBgr(ParseColor(str));
 		static COLORREF customColors[16];
 		CHOOSECOLOR choose={sizeof(choose),m_hWnd,NULL,val,customColors};
 		choose.Flags=CC_ANYCOLOR|CC_FULLOPEN|CC_RGBINIT;
 		if (ChooseColor(&choose))
 		{
 			wchar_t text[100];
-			Sprintf(text,_countof(text),L"%06X",choose.rgbResult);
+			Sprintf(text,_countof(text),L"%06X",BgrToRgb(choose.rgbResult));
 			m_EditBox.SetWindowText(text);
 			ApplyEditBox();
 			m_Tree.Invalidate();
@@ -717,7 +727,11 @@ void CSkinSettingsDlg::ApplyEditBox( void )
 		CString str;
 		m_EditBox.GetWindowText(str);
 		str.TrimLeft(); str.TrimRight();
-		m_CurrentSkin.Options[m_EditItemIndex].sValue=str;
+		auto& option=m_CurrentSkin.Options[m_EditItemIndex];
+		if (option.type==SKIN_OPTION_COLOR)
+			option.sValue=RgbToBgr(str);
+		else
+			option.sValue=str;
 		StoreSkinOptions();
 	}
 }
@@ -730,7 +744,7 @@ void CSkinSettingsDlg::ItemSelected( HTREEITEM hItem, int index, bool bEnabled )
 		const MenuSkin::Option &option=m_CurrentSkin.Options[m_EditItemIndex];
 		wchar_t text[256];
 		if (option.bValue && option.type>SKIN_OPTION_BOOL)
-			Sprintf(text,_countof(text),L"%s: %s",option.label,option.sValue);
+			Sprintf(text,_countof(text),L"%s: %s",option.label,(option.type==SKIN_OPTION_COLOR)?BgrToRgb(option.sValue):option.sValue);
 		else
 			Sprintf(text,_countof(text),L"%s",option.label);
 		TVITEM item={TVIF_TEXT,m_EditItem,0,0,text};
@@ -745,7 +759,10 @@ void CSkinSettingsDlg::ItemSelected( HTREEITEM hItem, int index, bool bEnabled )
 		const MenuSkin::Option &option=m_CurrentSkin.Options[index];
 		if (option.type>SKIN_OPTION_BOOL)
 			mode=option.type;
-		text=option.sValue;
+		if (option.type==SKIN_OPTION_COLOR)
+			text=BgrToRgb(option.sValue);
+		else
+			text=option.sValue;
 	}
 
 	RECT rc;
@@ -4946,7 +4963,7 @@ void UpdateSettings( void )
 		if (GetWinVersion()>WIN_VER_WIN7)
 		{
 			int color=GetSystemGlassColor8();
-			UpdateSetting(L"TaskbarColor",CComVariant(((color&0xFF)<<16)|(color&0xFF00)|((color>>16)&0xFF)),false);
+			UpdateSetting(L"TaskbarColor",CComVariant(RgbToBgr(color)),false);
 		}
 
 		if (GetWinVersion()<=WIN_VER_WIN7)

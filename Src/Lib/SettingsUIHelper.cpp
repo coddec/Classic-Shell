@@ -2651,15 +2651,14 @@ LRESULT CTreeSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		CString str;
 		m_EditBox.GetWindowText(str);
 		str.TrimLeft(); str.TrimRight();
-		wchar_t *end;
-		COLORREF val=wcstol(str,&end,16)&0xFFFFFF;
+		COLORREF val=RgbToBgr(ParseColor(str));
 		static COLORREF customColors[16];
 		CHOOSECOLOR choose={sizeof(choose),m_hWnd,NULL,val,customColors};
 		choose.Flags=CC_ANYCOLOR|CC_FULLOPEN|CC_RGBINIT;
 		if (ChooseColor(&choose))
 		{
 			wchar_t text[100];
-			Sprintf(text,_countof(text),L"%06X",choose.rgbResult);
+			Sprintf(text,_countof(text),L"%06X",BgrToRgb(choose.rgbResult));
 			m_EditBox.SetWindowText(text);
 			ApplyEditBox();
 			UpdateGroup(m_pEditSetting);
@@ -3048,8 +3047,7 @@ void CTreeSettingsDlg::ApplyEditBox( void )
 			}
 			else if (pSetting->type==CSetting::TYPE_COLOR)
 			{
-				wchar_t *end;
-				int val=wcstol(str,&end,16)&0xFFFFFF;
+				int val=RgbToBgr(ParseColor(str));
 				if (pSetting->value.vt!=VT_I4 || pSetting->value.intVal!=val)
 				{
 					pSetting->value=CComVariant(val);
@@ -3156,7 +3154,7 @@ void CTreeSettingsDlg::ItemSelected( HTREEITEM hItem, CSetting *pSetting, bool b
 			mode=EDIT_COLOR;
 			int val=0;
 			if (valVar.vt==VT_I4)
-				val=valVar.intVal;
+				val=BgrToRgb(valVar.intVal);
 			Sprintf(text,_countof(text),L"%06X",val);
 		}
 	}
@@ -3462,7 +3460,7 @@ void CTreeSettingsDlg::UpdateGroup( const CSetting *pModified )
 				CString str=LoadStringEx(pSetting->nameID);
 				int val=0;
 				if (valVar.vt==VT_I4)
-					val=valVar.intVal;
+					val=BgrToRgb(valVar.intVal);
 				Sprintf(text,_countof(text),L"%s: %06X",str,val);
 				item.mask|=TVIF_TEXT;
 			}
@@ -3615,4 +3613,20 @@ bool CDefaultSettingsPanel::Validate( HWND parent )
 {
 	s_Dialog.Validate();
 	return true;
+}
+
+DWORD RgbToBgr(DWORD val)
+{
+	return ((val & 0xFF) << 16) | (val & 0xFF00) | ((val >> 16) & 0xFF);
+}
+
+DWORD BgrToRgb(DWORD val)
+{
+	return RgbToBgr(val);
+}
+
+DWORD ParseColor(const wchar_t* str)
+{
+	wchar_t* end;
+	return wcstoul(str, &end, 16) & 0xFFFFFF;
 }

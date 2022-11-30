@@ -3235,10 +3235,14 @@ void GetSkinsPath( wchar_t *path )
 {
 	GetModuleFileName(g_Instance,path,_MAX_PATH);
 	*PathFindFileName(path)=0;
-#ifdef BUILD_SETUP
 	Strcat(path,_MAX_PATH,L"Skins\\");
-#else
-	Strcat(path,_MAX_PATH,L"..\\Skins\\");
+
+#ifndef BUILD_SETUP
+	if (!PathIsDirectory(path))
+	{
+		*PathFindFileName(path) = 0;
+		Strcat(path,_MAX_PATH,L"..\\Skins\\");
+	}
 #endif
 }
 

@@ -7652,6 +7652,9 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	// initialize all settings
 	bool bErr=false;
 	HMONITOR initialMonitor=MonitorFromWindow(s_TaskBar,MONITOR_DEFAULTTONEAREST);
+	// note: GetTaskbarPosition properly identifies monitor in case of multi-monitor setup and automatic taskbar hiding
+	GetTaskbarPosition(s_TaskBar,NULL,&initialMonitor,NULL);
+
 	int dpi=CItemManager::GetDPI(true);
 	if (!CItemManager::GetDPIOverride() && GetWinVersion()>=WIN_VER_WIN81)
 	{

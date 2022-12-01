@@ -617,12 +617,12 @@ UINT GetTaskbarPosition( HWND taskBar, MONITORINFO *pInfo, HMONITOR *pMonitor, R
 				if (pRc->right>rc.right) pRc->right=rc.right;
 			}
 		}
+		HMONITOR monitor=MonitorFromRect(&appbar.rc,MONITOR_DEFAULTTONEAREST);
+		if (pMonitor) *pMonitor=monitor;
 		if (pInfo)
 		{
 			pInfo->cbSize=sizeof(MONITORINFO);
-			HMONITOR monitor=MonitorFromRect(&appbar.rc,MONITOR_DEFAULTTONEAREST);
 			GetMonitorInfo(monitor,pInfo);
-			if (pMonitor) *pMonitor=monitor;
 		}
 		return appbar.uEdge;
 	}

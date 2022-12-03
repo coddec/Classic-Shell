@@ -1589,6 +1589,23 @@ static const wchar_t *g_MfuIgnoreExes[]={
 	L"WUAPP.EXE",
 };
 
+static bool IgnoreUserAssistItem(const UserAssistItem& uaItem)
+{
+	static constexpr const wchar_t* ignoredNames[] =
+	{
+		DESKTOP_APP_ID,
+		L"Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy!App",
+	};
+
+	for (const auto& name : ignoredNames)
+	{
+		if (_wcsicmp(uaItem.name, name) == 0)
+			return true;
+	}
+
+	return false;
+}
+
 void CMenuContainer::GetRecentPrograms( std::vector<MenuItem> &items, int maxCount )
 {
 	bool bShowMetro=GetSettingBool(L"RecentMetroApps");
@@ -1941,9 +1958,9 @@ void CMenuContainer::GetRecentPrograms( std::vector<MenuItem> &items, int maxCou
 					continue;
 				}
 
-				if (_wcsicmp(uaItem.name,DESKTOP_APP_ID)==0)
+				if (IgnoreUserAssistItem(uaItem))
 				{
-					LOG_MENU(LOG_MFU,L"UserAssist: Dropping: Ignore desktop");
+					LOG_MENU(LOG_MFU,L"UserAssist: Dropping: Ignore '%s'",uaItem.name);
 					continue;
 				}
 

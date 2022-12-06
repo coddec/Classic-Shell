@@ -1,4 +1,4 @@
-## Open-Shell ![Open-Shell](/Src/Setup/OpenShell.ico)
+## Open-Shell <img src=/Src/Setup/OpenShell.ico width="64" />
 
 *Originally* **[Classic Shell](http://www.classicshell.net)** *by [Ivo Beltchev](https://sourceforge.net/u/ibeltchev/profile/)*
 

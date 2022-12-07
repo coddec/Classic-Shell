@@ -7533,31 +7533,17 @@ POINT CMenuContainer::CalculateCorner( void )
 		AdjustWindowRect(&margin,GetWindowLong(GWL_STYLE),FALSE);
 
 	POINT corner;
-	if (IsWin11())
-	{
-		// start button can be in the center on Win11
-		// we want to show menu at the position of start button
-		if (m_Options&CONTAINER_LEFT)
-			corner.x=s_StartRect.left+margin.left;
-		else
-			corner.x=s_StartRect.right+margin.right;
-	}
+	if (m_Options&CONTAINER_LEFT)
+		corner.x=max(s_MainMenuLimits.left,s_StartRect.left)+margin.left;
 	else
-	{
-		// start button can be only in corner on older systems
-		// we can use screen limits to determine menu position
-		if (m_Options&CONTAINER_LEFT)
-			corner.x=s_MainMenuLimits.left+margin.left;
-		else
-			corner.x=s_MainMenuLimits.right+margin.right;
-	}
+		corner.x=min(s_MainMenuLimits.right,s_StartRect.right)+margin.right;
 
 	if (m_Options&CONTAINER_TOP)
 	{
 		if (s_bBehindTaskbar)
-			corner.y=s_MainMenuLimits.top+margin.top;
+			corner.y=max(s_MainMenuLimits.top,s_StartRect.top)+margin.top;
 		else
-			corner.y=s_MainMenuLimits.top;
+			corner.y=max(s_MainMenuLimits.top,s_StartRect.top);
 	}
 	else
 		corner.y=s_MainMenuLimits.bottom+margin.bottom;

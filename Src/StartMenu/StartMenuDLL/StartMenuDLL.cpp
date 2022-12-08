@@ -2039,6 +2039,21 @@ static LRESULT CALLBACK SubclassTaskBarProc( HWND hWnd, UINT uMsg, WPARAM wParam
 
 static LRESULT CALLBACK SubclassTaskListProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData )
 {
+	if (uMsg==WM_PAINT && g_TaskbarTexture)
+	{
+		wchar_t name[100];
+		GetClassName(hWnd,name,_countof(name));
+		if (_wcsicmp(name,L"MSTaskSwWClass")==0)
+		{
+			// draw taskbar background (behind task list)
+			PAINTSTRUCT ps;
+			HDC hdc=BeginPaint(hWnd,&ps);
+			DrawThemeParentBackground(hWnd,hdc,NULL);
+			EndPaint(hWnd,&ps);
+			return 0;
+		}
+	}
+
 	if (uMsg==WM_PAINT || uMsg==WM_PRINT || uMsg==WM_PRINTCLIENT)
 	{
 		g_CurrentTaskList=hWnd;
@@ -2880,6 +2895,10 @@ static void InitStartMenuDLL( void )
 
 	if (GetSettingBool(L"CustomTaskbar"))
 	{
+		auto module=GetModuleHandle(L"taskbar.dll");
+		if (!module)
+			module=GetModuleHandle(NULL);
+
 		if (GetWinVersion()>=WIN_VER_WIN10)
 		{
 			HMODULE shlwapi=GetModuleHandle(L"shlwapi.dll");
@@ -2888,12 +2907,14 @@ static void InitStartMenuDLL( void )
 				g_SHFillRectClr=(tSHFillRectClr)GetProcAddress(shlwapi,MAKEINTRESOURCEA(197));
 				if (g_SHFillRectClr)
 				{
-					g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"shlwapi.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
+					g_SHFillRectClrHook=SetIatHook(module,"shlwapi.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
 					if (!g_SHFillRectClrHook)
-						g_SHFillRectClrHook=SetIatHook(GetModuleHandle(NULL),"api-ms-win-shlwapi-winrt-storage-l1-1-1.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
+						g_SHFillRectClrHook=SetIatHook(module,"api-ms-win-shlwapi-winrt-storage-l1-1-1.dll",MAKEINTRESOURCEA(197),SHFillRectClr2);
 				}
 			}
-			g_StretchDIBitsHook=SetIatHook(GetModuleHandle(NULL),"gdi32.dll","StretchDIBits",StretchDIBits2);
+			g_StretchDIBitsHook=SetIatHook(module,"gdi32.dll","StretchDIBits",StretchDIBits2);
+			if (!g_StretchDIBitsHook)
+				g_StretchDIBitsHook=SetIatHook(module,"ext-ms-win-gdi-draw-l1-1-0.dll","StretchDIBits",StretchDIBits2);
 		}
 
 		{
@@ -2903,12 +2924,12 @@ static void InitStartMenuDLL( void )
 		}
 
 		if (GetWinVersion()<=WIN_VER_WIN81)
-			g_DrawThemeBackgroundHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeBackground",DrawThemeBackground2);
-		g_DrawThemeTextHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeText",DrawThemeText2);
-		g_DrawThemeTextExHook=SetIatHook(GetModuleHandle(NULL),"uxtheme.dll","DrawThemeTextEx",DrawThemeTextEx2);
+			g_DrawThemeBackgroundHook=SetIatHook(module,"uxtheme.dll","DrawThemeBackground",DrawThemeBackground2);
+		g_DrawThemeTextHook=SetIatHook(module,"uxtheme.dll","DrawThemeText",DrawThemeText2);
+		g_DrawThemeTextExHook=SetIatHook(module,"uxtheme.dll","DrawThemeTextEx",DrawThemeTextEx2);
 		g_DrawThemeTextCtlHook=SetIatHook(GetModuleHandle(L"comctl32.dll"),"uxtheme.dll","DrawThemeText",DrawThemeText2);
 		if (GetWinVersion()>=WIN_VER_WIN10)
-			g_SetWindowCompositionAttributeHook=SetIatHook(GetModuleHandle(NULL),"user32.dll","SetWindowCompositionAttribute",SetWindowCompositionAttribute2);
+			g_SetWindowCompositionAttributeHook=SetIatHook(module,"user32.dll","SetWindowCompositionAttribute",SetWindowCompositionAttribute2);
 	}
 
 	g_TaskbarThreadId=GetCurrentThreadId();
@@ -2947,9 +2968,18 @@ static void InitStartMenuDLL( void )
 	if (taskBar.rebar)
 	{
 		SetWindowSubclass(taskBar.rebar,SubclassRebarProc,'CLSH',taskbarId);
+		// TaskBand window
 		HWND hwnd=FindWindowEx(taskBar.rebar,NULL,L"MSTaskSwWClass",NULL);
 		if (hwnd)
-			taskBar.taskList=FindWindowEx(hwnd,NULL,L"MSTaskListWClass",NULL);
+		{
+			taskBar.taskList=hwnd;
+			// TaskList window
+			// it has to be visible, otherwise it won't receive WM_PAINT that we need to intercept
+			// in such case we will intercept parent instead
+			hwnd=FindWindowEx(hwnd,NULL,L"MSTaskListWClass",NULL);
+			if (hwnd&&IsWindowVisible(hwnd))
+				taskBar.taskList=hwnd;
+		}
 		if (taskBar.taskList)
 			SetWindowSubclass(taskBar.taskList,SubclassTaskListProc,'CLSH',taskbarId);
 	}

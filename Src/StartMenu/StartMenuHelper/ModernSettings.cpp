@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include "ModernSettings.h"
 #include "ResourceHelper.h"
+#include <appmodel.h>
 #include <Shlobj.h>
 #include <Shlwapi.h>
 #include <functional>
@@ -126,12 +127,80 @@ static void ProcessAttributes(const void* buffer, size_t size, std::function<voi
 
 ///
 
+static std::wstring GetPackageFullName(const wchar_t* packageFamily)
+{
+	static auto pGetPackagesByPackageFamily = static_cast<decltype(&GetPackagesByPackageFamily)>((void*)GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetPackagesByPackageFamily"));
+	if (pGetPackagesByPackageFamily)
+	{
+		UINT32 count = 0;
+		UINT32 bufferLength = 0;
+
+		if (pGetPackagesByPackageFamily(packageFamily, &count, nullptr, &bufferLength, nullptr) == ERROR_INSUFFICIENT_BUFFER && count > 0)
+		{
+			std::vector<PWSTR> names(count);
+			std::vector<WCHAR> buffer(bufferLength);
+
+			if (pGetPackagesByPackageFamily(packageFamily, &count, names.data(), &bufferLength, buffer.data()) == ERROR_SUCCESS && count > 0)
+				return names[0];
+		}
+	}
+
+	return {};
+}
+
+static std::pair<std::wstring_view, std::wstring_view> ParseResourceString(const wchar_t* resourceString)
+{
+	std::wstring_view str = resourceString;
+
+	if (str[0] == '@' && str[1] == '{')
+	{
+		str.remove_prefix(2);
+		if (str.back() == '}')
+			str.remove_suffix(1);
+
+		auto pos = str.find('?');
+		if (pos != str.npos)
+			return { str.substr(0, pos), str.substr(pos + 1) };
+	}
+
+	return {};
+}
+
+static std::wstring FormatResourceString(const std::wstring_view& package, const std::wstring_view& resource)
+{
+	std::wstring retval(L"@{");
+
+	retval += package;
+	retval += L"?";
+	retval += resource;
+	retval += L"}";
+
+	return retval;
+}
+
+
 static std::wstring TranslateIndirectString(const WCHAR* string)
 {
 	std::wstring retval;
 	retval.resize(1024);
 
-	if (SUCCEEDED(::SHLoadIndirectString(string, retval.data(), (UINT)retval.size(), nullptr)))
+	auto hr = ::SHLoadIndirectString(string, retval.data(), (UINT)retval.size(), nullptr);
+
+	if (hr == E_INVALIDARG)
+	{
+		auto [package, resource] = ParseResourceString(string);
+		if (!package.empty() && !resource.empty())
+		{
+			auto fullPackage = GetPackageFullName(std::wstring(package).c_str());
+			if (!fullPackage.empty())
+			{
+				auto fullStr = FormatResourceString(fullPackage, resource);
+				hr = ::SHLoadIndirectString(fullStr.c_str(), retval.data(), (UINT)retval.size(), nullptr);
+			}
+		}
+	}
+
+	if (SUCCEEDED(hr))
 	{
 		retval.resize(wcslen(retval.data()));
 		return retval;

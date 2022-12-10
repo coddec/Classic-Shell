@@ -10,6 +10,7 @@
 #include <appmodel.h>
 #include <Shlobj.h>
 #include <Shlwapi.h>
+#include <algorithm>
 #include <functional>
 #include <iterator>
 #include <mutex>
@@ -316,9 +317,9 @@ static std::vector<uint8_t> ParseSetting(CComPtr<IXMLDOMNode>& parent)
 	return writer.buffer();
 }
 
-static std::vector<uint8_t> ParseModernSettings()
+static std::vector<std::vector<uint8_t>> ParseModernSettings()
 {
-	AttributeWriter writer;
+	std::vector<std::vector<uint8_t>> retval;
 
 	CComPtr<IXMLDOMDocument> doc;
 	if (SUCCEEDED(doc.CoCreateInstance(L"Msxml2.FreeThreadedDOMDocument")))
@@ -335,16 +336,13 @@ static std::vector<uint8_t> ParseModernSettings()
 			CComPtr<IXMLDOMNode> root;
 			if (doc->selectSingleNode(CComBSTR(L"PCSettings"), &root) == S_OK)
 			{
-				FileHdr hdr{};
-				writer.addBlob(Id::Header, &hdr, sizeof(hdr));
-
 				CComPtr<IXMLDOMNode> node;
 				root->get_firstChild(&node);
 				while (node)
 				{
 					auto buffer = ParseSetting(node);
 					if (!buffer.empty())
-						writer.addBlob(Id::Blob, buffer.data(), buffer.size());
+						retval.push_back(std::move(buffer));
 
 					CComPtr<IXMLDOMNode> next;
 					if (FAILED(node->get_nextSibling(&next)))
@@ -354,6 +352,19 @@ static std::vector<uint8_t> ParseModernSettings()
 			}
 		}
 	}
+
+	return retval;
+}
+
+static std::vector<uint8_t> SerializeModernSettings(const std::vector<std::vector<uint8_t>>& settings)
+{
+	AttributeWriter writer;
+
+	FileHdr hdr{};
+	writer.addBlob(Id::Header, &hdr, sizeof(hdr));
+
+	for (const auto& setting : settings)
+		writer.addBlob(Id::Blob, setting.data(), setting.size());
 
 	return writer.buffer();
 }
@@ -480,11 +491,30 @@ std::shared_ptr<ModernSettings> GetModernSettings()
 			s_settings.reset();
 
 			// re-parse settings
-			auto buffer = ParseModernSettings();
-			if (!buffer.empty())
+			auto settings = ParseModernSettings();
+			if (!settings.empty())
 			{
+				// sort by setting name (in reverse order)
+				// this way we will have newer settings (like SomeSetting-2) before older ones
+				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+					return ModernSettings::Setting(a).fileName > ModernSettings::Setting(b).fileName;
+					});
+
+				// now sort by description (strings presented to the user)
+				// and keep relative order of items with the same description
+				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+					return ModernSettings::Setting(a).description < ModernSettings::Setting(b).description;
+				});
+
+				// remove duplicates
+				settings.erase(std::unique(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+					return ModernSettings::Setting(a).description == ModernSettings::Setting(b).description;
+				}), settings.end());
+
 				// store to file
 				{
+					auto buffer = SerializeModernSettings(settings);
+
 					File f(path.c_str(), GENERIC_WRITE, 0, CREATE_ALWAYS);
 					if (f)
 					{

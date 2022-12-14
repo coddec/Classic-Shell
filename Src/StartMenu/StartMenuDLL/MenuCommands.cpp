@@ -2812,7 +2812,7 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 				info.fMask|=CMIC_MASK_NOASYNC; // wait for delete/link commands to finish so we can refresh the menu
 
 			// we don't want our virtual folder to appear in Explorer's frequent list
-			if (wcsncmp(item.pItemInfo->PATH, L"::{82E749ED-B971-4550-BAF7-06AA2BF7E836}", 40) == 0)
+			if (item.pItemInfo && wcsncmp(item.pItemInfo->PATH, L"::{82E749ED-B971-4550-BAF7-06AA2BF7E836}", 40) == 0)
 				info.fMask &= ~CMIC_MASK_FLAG_LOG_USAGE;
 
 			s_bPreventClosing=true;

@@ -8237,7 +8237,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 		s_UserPicture.Init(pStartMenu);
 	}
 	dummyRc.right++;
-	pStartMenu->SetWindowPos(NULL,&dummyRc,SWP_NOZORDER);
+	pStartMenu->SetWindowPos(NULL,&dummyRc,SWP_NOZORDER|SWP_NOACTIVATE);
 
 	memset(&s_StartRect,0,sizeof(s_StartRect));
 
@@ -8566,7 +8566,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	// reposition start menu
 	if (bTopMost || !s_bBehindTaskbar)
 		animFlags|=AW_TOPMOST;
-	pStartMenu->SetWindowPos((animFlags&AW_TOPMOST)?HWND_TOPMOST:HWND_TOP,corner.x,corner.y,0,0,(initialMonitor!=s_MenuMonitor && !bAllPrograms)?SWP_NOMOVE|SWP_NOSIZE:0);
+	pStartMenu->SetWindowPos((animFlags&AW_TOPMOST)?HWND_TOPMOST:HWND_TOP,corner.x,corner.y,0,0,((initialMonitor!=s_MenuMonitor && !bAllPrograms)?SWP_NOMOVE|SWP_NOSIZE:0)|SWP_NOACTIVATE);
 
 	pStartMenu->InitItems();
 	pStartMenu->m_MaxWidth=s_MainMenuLimits.right-s_MainMenuLimits.left;

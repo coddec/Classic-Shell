@@ -5115,6 +5115,9 @@ void CMenuContainer::UpdateSearchResults( bool bForceShowAll )
 // Turn on the keyboard cues from now on. This is done when a keyboard action is detected
 void CMenuContainer::ShowKeyboardCues( void )
 {
+	if (!GetSettingBool(L"EnableAccelerators"))
+		return;
+
 	if (!s_bKeyboardCues)
 	{
 		s_bKeyboardCues=true;
@@ -6109,6 +6112,9 @@ LRESULT CMenuContainer::OnSysKeyDown( UINT uMsg, WPARAM wParam, LPARAM lParam, B
 
 LRESULT CMenuContainer::OnChar( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
+	if (!GetSettingBool(L"EnableAccelerators"))
+		return TRUE;
+
 	if (wParam>=0xD800 && wParam<=0xDBFF)
 		return TRUE; // don't support supplementary characters
 
@@ -8070,7 +8076,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 
 	s_bNoDragDrop=!GetSettingBool(L"EnableDragDrop");
 	s_bNoContextMenu=!GetSettingBool(L"EnableContextMenu");
-	s_bKeyboardCues=bKeyboard;
+	s_bKeyboardCues=bKeyboard&&GetSettingBool(L"EnableAccelerators");
 	s_RecentPrograms=(TRecentPrograms)GetSettingInt(L"RecentPrograms");
 	if (s_RecentPrograms!=RECENT_PROGRAMS_NONE)
 		LoadMRUShortcuts();

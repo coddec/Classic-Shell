@@ -569,7 +569,7 @@ LRESULT CALLBACK CMenuContainer::SubclassSearchBox( HWND hWnd, UINT uMsg, WPARAM
 		{
 			pParent->SendMessage(WM_SYSKEYDOWN,wParam,lParam);
 			if (wParam==VK_MENU)
-				pParent->ShowKeyboardCues();
+				pParent->ShowKeyboardCues(true);
 		}
 		else
 		{
@@ -5113,9 +5113,12 @@ void CMenuContainer::UpdateSearchResults( bool bForceShowAll )
 }
 
 // Turn on the keyboard cues from now on. This is done when a keyboard action is detected
-void CMenuContainer::ShowKeyboardCues( void )
+void CMenuContainer::ShowKeyboardCues( bool alt )
 {
 	if (!GetSettingBool(L"EnableAccelerators"))
+		return;
+
+	if (GetSettingBool(L"AltAccelerators") && !alt)
 		return;
 
 	if (!s_bKeyboardCues)
@@ -5149,7 +5152,7 @@ LRESULT CMenuContainer::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, B
 	if ((wParam&0xFFF0)==SC_KEYMENU)
 	{
 		// stops Alt from activating the window menu
-		ShowKeyboardCues();
+		ShowKeyboardCues(true);
 		s_bOverrideFirstDown=false;
 	}
 	else
@@ -5492,7 +5495,7 @@ bool CMenuContainer::CanSelectItem( int index, bool bKeyboard )
 
 LRESULT CMenuContainer::OnKeyDown( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
-	ShowKeyboardCues();
+	ShowKeyboardCues((HIWORD(lParam)&KF_ALTDOWN)!=0);
 	bool bOldOverride=s_bOverrideFirstDown;
 	s_bOverrideFirstDown=false;
 
@@ -6113,6 +6116,9 @@ LRESULT CMenuContainer::OnSysKeyDown( UINT uMsg, WPARAM wParam, LPARAM lParam, B
 LRESULT CMenuContainer::OnChar( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
 	if (!GetSettingBool(L"EnableAccelerators"))
+		return TRUE;
+
+	if (GetSettingBool(L"AltAccelerators") && !(HIWORD(lParam) & KF_ALTDOWN))
 		return TRUE;
 
 	if (wParam>=0xD800 && wParam<=0xDBFF)
@@ -8076,7 +8082,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 
 	s_bNoDragDrop=!GetSettingBool(L"EnableDragDrop");
 	s_bNoContextMenu=!GetSettingBool(L"EnableContextMenu");
-	s_bKeyboardCues=bKeyboard&&GetSettingBool(L"EnableAccelerators");
+	s_bKeyboardCues=bKeyboard&&GetSettingBool(L"EnableAccelerators")&&!GetSettingBool(L"AltAccelerators");
 	s_RecentPrograms=(TRecentPrograms)GetSettingInt(L"RecentPrograms");
 	if (s_RecentPrograms!=RECENT_PROGRAMS_NONE)
 		LoadMRUShortcuts();

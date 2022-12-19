@@ -782,6 +782,8 @@
 #define IDS_PINNED_PATH_TIP             3685
 #define IDS_ENABLE_ACCELERATORS         3686
 #define IDS_ENABLE_ACCELERATORS_TIP     3687
+#define IDS_ALT_ACCELERATORS            3688
+#define IDS_ALT_ACCELERATORS_TIP        3689
 #define IDS_STRING7001                  7001
 #define IDS_STRING7002                  7002
 #define IDS_STRING7003                  7003

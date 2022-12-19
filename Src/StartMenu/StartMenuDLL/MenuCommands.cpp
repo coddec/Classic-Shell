@@ -61,17 +61,24 @@ static INT_PTR CALLBACK RenameDlgProc( HWND hwndDlg, UINT uMsg, WPARAM wParam, L
 	return FALSE;
 }
 
-static void SetShutdownPrivileges( void )
+static bool SetShutdownPrivileges()
 {
+	bool retval = false;
+
 	HANDLE hToken;
-	if (OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY,&hToken))
+	if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY, &hToken))
 	{
 		TOKEN_PRIVILEGES tp={1};
-		if (LookupPrivilegeValue(NULL,L"SeShutdownPrivilege",&tp.Privileges[0].Luid))
-			tp.Privileges[0].Attributes=SE_PRIVILEGE_ENABLED;
-		AdjustTokenPrivileges(hToken,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),NULL,NULL); 
+		if (LookupPrivilegeValue(NULL, L"SeShutdownPrivilege", &tp.Privileges[0].Luid))
+		{
+			tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+			if (AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), NULL, NULL) && GetLastError() == ERROR_SUCCESS)
+				retval = true;
+		}
 		CloseHandle(hToken);
 	}
+
+	return retval;
 }
 
 static void DoSearchSubst( wchar_t *buf, int size, const wchar_t *search )
@@ -658,6 +665,23 @@ private:
 	bool m_bArmed;
 };
 
+static TOKEN_ELEVATION_TYPE GetCurrentTokenElevationType()
+{
+	TOKEN_ELEVATION_TYPE retval = TokenElevationTypeDefault;
+
+	HANDLE token;
+	if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &token))
+	{
+		TOKEN_ELEVATION_TYPE elevationType;
+		DWORD returnLength;
+		if (GetTokenInformation(token, TokenElevationType, &elevationType, sizeof(elevationType), &returnLength) && returnLength == sizeof(elevationType))
+			retval = elevationType;
+
+		CloseHandle(token);
+	}
+
+	return retval;
+}
 
 static bool ExecuteShutdownCommand(TMenuID menuCommand)
 {
@@ -714,8 +738,29 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 
 	if (flags)
 	{
-		SetShutdownPrivileges();
-		InitiateShutdown(NULL, NULL, 0, flags, SHTDN_REASON_FLAG_PLANNED);
+		if (SetShutdownPrivileges())
+		{
+			InitiateShutdown(NULL, NULL, 0, flags, SHTDN_REASON_FLAG_PLANNED);
+		}
+		else
+		{
+			// we don't have shutdown rights
+			// lets try silent elevate via SystemSettingsAdminFlows (for limited admin users only)
+			if (GetCurrentTokenElevationType() == TokenElevationTypeLimited)
+			{
+				wchar_t cmdLine[32]{};
+				Sprintf(cmdLine, _countof(cmdLine), L"Shutdown %d %d", flags, SHTDN_REASON_FLAG_PLANNED);
+
+				SHELLEXECUTEINFO sei{};
+				sei.cbSize = sizeof(sei);
+				sei.lpFile = L"%systemroot%\\system32\\SystemSettingsAdminFlows.exe";
+				sei.lpParameters = cmdLine;
+				sei.lpVerb = L"runas";
+				sei.fMask = SEE_MASK_DOENVSUBST | SEE_MASK_FLAG_NO_UI;
+
+				ShellExecuteEx(&sei);
+			}
+		}
 
 		return true;
 	}

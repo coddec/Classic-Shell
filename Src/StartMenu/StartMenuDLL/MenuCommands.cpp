@@ -658,10 +658,70 @@ private:
 	bool m_bArmed;
 };
 
-#ifndef EWX_HYBRID_SHUTDOWN
-#define EWX_HYBRID_SHUTDOWN 0x00400000
-#endif
-#define EWX_INSTALL_UPDATES 0x00100000 // undocumented switch to install updates on shutdown
+
+static bool ExecuteShutdownCommand(TMenuID menuCommand)
+{
+	DWORD flags = 0;
+
+	switch (menuCommand)
+	{
+	case MENU_RESTART: // restart
+	case MENU_RESTART_NOUPDATE:
+	case MENU_RESTART_UPDATE: // update and restart
+	case MENU_RESTART_ADVANCED: // advanced restart
+		flags = SHUTDOWN_RESTART;
+
+		if (menuCommand == MENU_RESTART_UPDATE)
+			flags |= SHUTDOWN_INSTALL_UPDATES;
+
+		if (menuCommand == MENU_RESTART_ADVANCED)
+		{
+			STARTUPINFO startupInfo = { sizeof(startupInfo) };
+			PROCESS_INFORMATION processInfo;
+			memset(&processInfo, 0, sizeof(processInfo));
+			wchar_t exe[_MAX_PATH] = L"%windir%\\system32\\shutdown.exe";
+			DoEnvironmentSubst(exe, _countof(exe));
+			if (CreateProcess(exe, (LPWSTR)L"shutdown.exe /r /o /t 0", NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &startupInfo, &processInfo))
+			{
+				CloseHandle(processInfo.hThread);
+				CloseHandle(processInfo.hProcess);
+			}
+			return true;
+		}
+		break;
+
+	case MENU_SHUTDOWN: // shutdown
+	case MENU_SHUTDOWN_NOUPDATE:
+	case MENU_SHUTDOWN_UPDATE: // update and shutdown
+	case MENU_SHUTDOWN_HYBRID: // hybrid shutdown
+		flags = SHUTDOWN_POWEROFF;
+
+		if (menuCommand == MENU_SHUTDOWN_UPDATE)
+			flags |= SHUTDOWN_INSTALL_UPDATES;
+
+		if (menuCommand == MENU_SHUTDOWN_HYBRID)
+		{
+			CRegKey regPower;
+			if (regPower.Open(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power", KEY_READ) == ERROR_SUCCESS)
+			{
+				DWORD val = 0;
+				if (regPower.QueryDWORDValue(L"HiberbootEnabled", val) == ERROR_SUCCESS && val == 1)
+					flags |= SHUTDOWN_HYBRID;
+			}
+		}
+		break;
+	}
+
+	if (flags)
+	{
+		SetShutdownPrivileges();
+		InitiateShutdown(NULL, NULL, 0, flags, SHTDN_REASON_FLAG_PLANNED);
+
+		return true;
+	}
+
+	return false;
+}
 
 NTSTATUS
 NTAPI
@@ -828,40 +888,6 @@ static bool ExecuteSysCommand( TMenuID menuCommand )
 			}
 			return true;
 
-		case MENU_RESTART: // restart
-		case MENU_RESTART_NOUPDATE:
-			SetShutdownPrivileges();
-			ExitWindowsEx(EWX_REBOOT,SHTDN_REASON_FLAG_PLANNED);
-			return true;
-
-		case MENU_RESTART_ADVANCED: // advanced restart
-			if (GetWinVersion()>=WIN_VER_WIN8)
-			{
-				STARTUPINFO startupInfo={sizeof(startupInfo)};
-				PROCESS_INFORMATION processInfo;
-				memset(&processInfo,0,sizeof(processInfo));
-				wchar_t exe[_MAX_PATH]=L"%windir%\\system32\\shutdown.exe";
-				DoEnvironmentSubst(exe,_countof(exe));
-				if (CreateProcess(exe,(LPWSTR)L"shutdown.exe /r /o /t 0",NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,NULL,&startupInfo,&processInfo))
-				{
-					CloseHandle(processInfo.hThread);
-					CloseHandle(processInfo.hProcess);
-				}
-			}
-			else
-				ExitWindowsEx(EWX_REBOOT,SHTDN_REASON_FLAG_PLANNED);
-			return true;
-
-		case MENU_RESTART_UPDATE: // update and restart
-			{
-				UINT flags=EWX_REBOOT;
-				if (GetWinVersion()>=WIN_VER_WIN8)
-					flags|=EWX_INSTALL_UPDATES;
-				SetShutdownPrivileges();
-				ExitWindowsEx(flags,SHTDN_REASON_FLAG_PLANNED);
-			}
-			return true;
-
 		case MENU_SWITCHUSER: // switch_user
 			if (GetWinVersion()>=WIN_VER_WIN10)
 			{
@@ -875,35 +901,6 @@ static bool ExecuteSysCommand( TMenuID menuCommand )
 
 		case MENU_LOCK: // lock
 			LockWorkStation();
-			return true;
-
-		case MENU_SHUTDOWN: // shutdown
-		case MENU_SHUTDOWN_NOUPDATE:
-			SetShutdownPrivileges();
-			ExitWindowsEx(EWX_SHUTDOWN,SHTDN_REASON_FLAG_PLANNED);
-			return true;
-
-		case MENU_SHUTDOWN_UPDATE: // update and shutdown
-			SetShutdownPrivileges();
-			ExitWindowsEx(EWX_SHUTDOWN|EWX_INSTALL_UPDATES,SHTDN_REASON_FLAG_PLANNED);
-			return true;
-
-		case MENU_SHUTDOWN_HYBRID: // hybrid shutdown
-			SetShutdownPrivileges();
-			{
-				UINT flags=EWX_SHUTDOWN;
-				if (GetWinVersion()>=WIN_VER_WIN8)
-				{
-					CRegKey regPower;
-					if (regPower.Open(HKEY_LOCAL_MACHINE,L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power",KEY_READ)==ERROR_SUCCESS)
-					{
-						DWORD val;
-						if (regPower.QueryDWORDValue(L"HiberbootEnabled",val)==ERROR_SUCCESS && val==1)
-							flags|=EWX_HYBRID_SHUTDOWN;
-					}
-				}
-				ExitWindowsEx(flags,SHTDN_REASON_FLAG_PLANNED);
-			}
 			return true;
 
 		case MENU_SLEEP:
@@ -965,6 +962,8 @@ static bool ExecuteSysCommand( TMenuID menuCommand )
 			return true;
 
 		default:
+			if (ExecuteShutdownCommand(menuCommand))
+				return true;
 			return false;
 	}
 }

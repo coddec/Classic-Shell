@@ -665,6 +665,159 @@ private:
 	bool m_bArmed;
 };
 
+// Win10
+MIDL_INTERFACE("833EE9A0-2999-432C-8EF2-87A8EC2D748D")
+IUxUpdateManager_Win10 : public IUnknown
+{
+	STDMETHOD(GetUxStateVariableBOOL)(enum UxUpdateStateVariable, int*, int*);
+	STDMETHOD(GetUxStateVariableDWORD)(UxUpdateStateVariable, DWORD*, int*);
+	STDMETHOD(GetUxStateVariableSYSTEMTIME)(UxUpdateStateVariable, SYSTEMTIME*, int*);
+	STDMETHOD(SetUxStateVariableBOOL)(UxUpdateStateVariable, int);
+	STDMETHOD(SetUxStateVariableDWORD)(UxUpdateStateVariable, DWORD);
+	STDMETHOD(SetUxStateVariableSYSTEMTIME)(UxUpdateStateVariable, SYSTEMTIME);
+	STDMETHOD(DeleteUxStateVariable)(UxUpdateStateVariable);
+	STDMETHOD(GetNextRebootTaskRunTime)(int*, SYSTEMTIME*);
+	STDMETHOD(CreateRebootTasks)(const wchar_t*, SYSTEMTIME);
+	STDMETHOD(CreateUpdateResultsTaskSchedule)(void);
+	STDMETHOD(CreateMigrationResultsTaskSchedule)(void);
+	STDMETHOD(CreateUpdateLogonNotificationTaskSchedule)(void);
+	STDMETHOD(CreateUpdateNotificationTaskSchedule)(SYSTEMTIME);
+	STDMETHOD(CreateLogonRebootTaskSchedule)(void);
+	STDMETHOD(DidUXRebootTaskWakeUpDevice)(int*);
+	STDMETHOD(RemoveUpdateResultsTaskSchedule)(void);
+	STDMETHOD(RemoveLogonRebootTaskSchedule)(void);
+	STDMETHOD(RemoveMigrationResultsTaskSchedule)(void);
+	STDMETHOD(EnableRebootTasks)(void);
+	STDMETHOD(DisableRebootTasks)(void);
+	STDMETHOD(ValidateAndRecoverRebootTasks)(void);
+	STDMETHOD(RebootToCompleteInstall)(DWORD, int, DWORD*, short, short, DWORD);
+	STDMETHOD(IsRestartAllowed)(DWORD, int, DWORD, int*);
+	STDMETHOD(GetIsWaaSOutOfDate)(DWORD, int, int, int*, DWORD*);
+	STDMETHOD(GetWaaSHoursOutOfDate)(int, int, DWORD*);
+	STDMETHOD(GetCachedPolicy)(DWORD, VARIANT*, DWORD*, DWORD*);
+	STDMETHOD(GetEnterpriseCachedPolicy)(DWORD, VARIANT*, DWORD*, DWORD*);
+	STDMETHOD(GetCachedSettingValue)(DWORD, short, VARIANT*);
+	STDMETHOD(GetOptInToMU)(int*);
+	STDMETHOD(SetOptInToMU)(int);
+	STDMETHOD(SetAndModifyShutdownFlags)(DWORD, DWORD*);
+	STDMETHOD(GetIsFlightingEnabled)(int*);
+	STDMETHOD(GetIsCTA)(int*);
+	STDMETHOD(NotifyStateVariableChange)(void);
+	STDMETHOD(GetAlwaysAllowMeteredNetwork)(int*);
+};
+
+// Win11
+MIDL_INTERFACE("B96BA95F-9479-4656-B7A1-6F3A69091910")
+IUxUpdateManager_Win11 : public IUnknown
+{
+	STDMETHOD(GetUxStateVariableBOOL)(enum UxUpdateStateVariable, int*, int*);
+	STDMETHOD(GetUxStateVariableDWORD)(UxUpdateStateVariable, DWORD*, int*);
+	STDMETHOD(GetUxStateVariableSYSTEMTIME)(UxUpdateStateVariable, SYSTEMTIME*, int*);
+	STDMETHOD(SetUxStateVariableBOOL)(UxUpdateStateVariable, int);
+	STDMETHOD(SetUxStateVariableDWORD)(UxUpdateStateVariable, DWORD);
+	STDMETHOD(SetUxStateVariableSYSTEMTIME)(UxUpdateStateVariable, SYSTEMTIME);
+	STDMETHOD(DeleteUxStateVariable)(UxUpdateStateVariable);
+	STDMETHOD(GetNextScheduledRebootTaskRunTime)(SYSTEMTIME*);
+	STDMETHOD(GetIsRebootTaskScheduledToRun)(int*);
+	STDMETHOD(CreateRebootTasks)(const wchar_t*, SYSTEMTIME);
+	STDMETHOD(CreateUpdateResultsTaskSchedule)(void);
+	STDMETHOD(CreateMigrationResultsTaskSchedule)(void);
+	STDMETHOD(CreateUpdateLogonNotificationTaskSchedule)(void);
+	STDMETHOD(CreateUpdateNotificationTaskSchedule)(SYSTEMTIME);
+	STDMETHOD(CreateLogonRebootTaskSchedule)(void);
+	STDMETHOD(DidUXRebootTaskWakeUpDevice)(int*);
+	STDMETHOD(RemoveUpdateResultsTaskSchedule)(void);
+	STDMETHOD(RemoveLogonRebootTaskSchedule)(void);
+	STDMETHOD(RemoveMigrationResultsTaskSchedule)(void);
+	STDMETHOD(EnableRebootTasks)(void);
+	STDMETHOD(DisableRebootTasks)(void);
+	STDMETHOD(ValidateAndRecoverRebootTasks)(void);
+	STDMETHOD(RebootToCompleteInstall)(DWORD, int, DWORD*, int, int, double);
+	STDMETHOD(IsRestartAllowed)(DWORD, int, double, int*);
+	STDMETHOD(GetIsWaaSOutOfDate)(DWORD, int, int, int*, DWORD*);
+	STDMETHOD(GetWaaSHoursOutOfDate)(int, int, DWORD*);
+	STDMETHOD(GetDeviceEndOfServiceDate)(int, int*, FILETIME*);
+	STDMETHOD(GetCachedPolicy)(DWORD, VARIANT*, DWORD*, DWORD*);
+	STDMETHOD(GetEnterpriseCachedPolicy)(DWORD, VARIANT*, DWORD*, DWORD*);
+	STDMETHOD(GetOptInToMU)(int*);
+	STDMETHOD(SetOptInToMU)(int);
+	STDMETHOD(SetAndModifyShutdownFlags)(DWORD, DWORD*);
+	STDMETHOD(GetIsFlightingEnabled)(int*);
+	STDMETHOD(GetIsCTA)(int*);
+	STDMETHOD(NotifyStateVariableChange)(void);
+	STDMETHOD(GetAlwaysAllowMeteredNetwork)(int*);
+	STDMETHOD(SetInstallAtShutdown)(int);
+	STDMETHOD(GetUxStateVariableValueOrDefaultBOOL)(UxUpdateStateVariable, int, int*);
+	STDMETHOD(GetUxStateVariableValueOrDefaultDWORD)(UxUpdateStateVariable, DWORD, DWORD*);
+	STDMETHOD(GetUxStateVariableValueOrDefaultSYSTEMTIME)(UxUpdateStateVariable, SYSTEMTIME, SYSTEMTIME*);
+	STDMETHOD(GetSuggestedRebootTime)(int, SYSTEMTIME, SYSTEMTIME*, int*);
+	STDMETHOD(GetSuggestedActiveHours)(DWORD, DWORD*, DWORD*, int*);
+	STDMETHOD(GetIsIntervalAcceptableForActiveHours)(SYSTEMTIME, SYSTEMTIME, int*);
+	STDMETHOD(GetSmartScheduledPredictionsAccurate)(int*);
+	STDMETHOD(EvaluateAndStoreRebootDowntimePrediction)(void);
+	STDMETHOD(GetCachedRebootDowntimePrediction)(DWORD*);
+	STDMETHOD(GetAlwaysAllowCTADownload)(int*);
+};
+
+MIDL_INTERFACE("07F3AFAC-7C8A-4CE7-A5E0-3D24EE8A77E0")
+IUpdateSessionOrchestrator : public IUnknown
+{
+	STDMETHOD(CreateUpdateSession)(enum UpdateSessionType, const GUID&, void**);
+	STDMETHOD(GetCurrentActiveUpdateSessions)(class IUsoSessionCollection**);
+	STDMETHOD(LogTaskRunning)(const wchar_t*);
+	STDMETHOD(CreateUxUpdateManager)(IUnknown**);
+};
+
+DWORD WindowsUpdateAdjustShutdwonFlags(DWORD flags)
+{
+	DWORD retval = flags;
+
+	{
+		// "EnhancedShutdownEnabled" value must exist if Windows updates are prepared
+		// otherwise there is no need to do anything
+
+		CRegKey key;
+		if (key.Open(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\WindowsUpdate\\Orchestrator", KEY_READ) != ERROR_SUCCESS)
+			return retval;
+
+		DWORD value;
+		if (key.QueryDWORDValue(L"EnhancedShutdownEnabled", value) != ERROR_SUCCESS)
+			return retval;
+	}
+
+	// this is what standard Windows shutdown handling does inside shutdownux!UsoCommitHelper::SetAndModifyShutdownFlags
+
+	static const GUID CLSID_UpdateSessionOrchestrator = { 0xb91d5831,0xb1bd,0x4608,{0x81,0x98,0xd7,0x2e,0x15,0x50,0x20,0xf7} };
+
+	CComPtr<IUpdateSessionOrchestrator> updateSessionOrchestrator;
+	if (SUCCEEDED(updateSessionOrchestrator.CoCreateInstance(CLSID_UpdateSessionOrchestrator, nullptr, CLSCTX_LOCAL_SERVER)))
+	{
+		CComPtr<IUnknown> mgr;
+		if (SUCCEEDED(updateSessionOrchestrator->CreateUxUpdateManager(&mgr)))
+		{
+			// call to IUxUpdateManager::SetAndModifyShutdownFlags will ensure that Windows updates will be dismissed if there is no `SHUTDOWN_INSTALL_UPDATES` flag provided
+			// it also provides recommended shutdown flags in some cases (so we will use them as advised)
+			//
+			// the method is implemented by `UxUpdateManager::SetAndModifyShutdownFlags` in `usosvc.dll` (Win10) / `usosvcimpl.dll` (Win11)
+
+			if (CComPtr<IUxUpdateManager_Win10> updateManager; SUCCEEDED(mgr.QueryInterface(&updateManager)))
+			{
+				DWORD newFlags;
+				if (SUCCEEDED(updateManager->SetAndModifyShutdownFlags(flags, &newFlags)))
+					retval = newFlags;
+			}
+			else if (CComPtr<IUxUpdateManager_Win11> updateManager; SUCCEEDED(mgr.QueryInterface(&updateManager)))
+			{
+				DWORD newFlags;
+				if (SUCCEEDED(updateManager->SetAndModifyShutdownFlags(flags, &newFlags)))
+					retval = newFlags;
+			}
+		}
+	}
+
+	return retval;
+}
+
 static TOKEN_ELEVATION_TYPE GetCurrentTokenElevationType()
 {
 	TOKEN_ELEVATION_TYPE retval = TokenElevationTypeDefault;
@@ -740,6 +893,7 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 	{
 		if (SetShutdownPrivileges())
 		{
+			flags = WindowsUpdateAdjustShutdwonFlags(flags);
 			InitiateShutdown(NULL, NULL, 0, flags, SHTDN_REASON_FLAG_PLANNED);
 		}
 		else
@@ -748,6 +902,8 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 			// lets try silent elevate via SystemSettingsAdminFlows (for limited admin users only)
 			if (GetCurrentTokenElevationType() == TokenElevationTypeLimited)
 			{
+				flags = WindowsUpdateAdjustShutdwonFlags(flags);
+
 				wchar_t cmdLine[32]{};
 				Sprintf(cmdLine, _countof(cmdLine), L"Shutdown %d %d", flags, SHTDN_REASON_FLAG_PLANNED);
 

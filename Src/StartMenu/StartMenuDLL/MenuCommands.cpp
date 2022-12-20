@@ -663,6 +663,33 @@ private:
 #endif
 #define EWX_INSTALL_UPDATES 0x00100000 // undocumented switch to install updates on shutdown
 
+NTSTATUS
+NTAPI
+NtPowerInformation(
+	_In_ POWER_INFORMATION_LEVEL InformationLevel,
+	_In_reads_bytes_opt_(InputBufferLength) PVOID InputBuffer,
+	_In_ ULONG InputBufferLength,
+	_Out_writes_bytes_opt_(OutputBufferLength) PVOID OutputBuffer,
+	_In_ ULONG OutputBufferLength
+);
+
+static bool ConnectedStandby()
+{
+	SYSTEM_POWER_CAPABILITIES powerCaps{};
+	GetPwrCapabilities(&powerCaps);
+
+	if (powerCaps.AoAc)
+	{
+		static auto pNtPowerInformation = static_cast<decltype(&NtPowerInformation)>((void*)GetProcAddress(GetModuleHandle(L"ntdll.dll"), "NtPowerInformation"));
+		if (pNtPowerInformation)
+			pNtPowerInformation(ScreenOff, NULL, 0, NULL, 0);
+
+		return true;
+	}
+
+	return false;
+}
+
 static bool ExecuteSysCommand( TMenuID menuCommand )
 {
 	CComPtr<IShellDispatch2> pShellDisp;
@@ -885,7 +912,8 @@ static bool ExecuteSysCommand( TMenuID menuCommand )
 				WTSDisconnectSession(WTS_CURRENT_SERVER_HANDLE,WTS_CURRENT_SESSION,FALSE);
 				Sleep(250);
 			}
-			CreateThread(NULL,0,SleepThread,(void*)FALSE,0,NULL);
+			if (!ConnectedStandby())
+				CreateThread(NULL,0,SleepThread,(void*)FALSE,0,NULL);
 			return true;
 
 		case MENU_HIBERNATE:

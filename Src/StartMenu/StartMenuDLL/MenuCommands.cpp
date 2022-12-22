@@ -852,19 +852,8 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 			flags |= SHUTDOWN_INSTALL_UPDATES;
 
 		if (menuCommand == MENU_RESTART_ADVANCED)
-		{
-			STARTUPINFO startupInfo = { sizeof(startupInfo) };
-			PROCESS_INFORMATION processInfo;
-			memset(&processInfo, 0, sizeof(processInfo));
-			wchar_t exe[_MAX_PATH] = L"%windir%\\system32\\shutdown.exe";
-			DoEnvironmentSubst(exe, _countof(exe));
-			if (CreateProcess(exe, (LPWSTR)L"shutdown.exe /r /o /t 0", NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &startupInfo, &processInfo))
-			{
-				CloseHandle(processInfo.hThread);
-				CloseHandle(processInfo.hProcess);
-			}
-			return true;
-		}
+			flags |= SHUTDOWN_RESTART_BOOTOPTIONS;
+
 		break;
 
 	case MENU_SHUTDOWN: // shutdown

@@ -3110,6 +3110,12 @@ static void RecreateStartButton( size_t taskbarId )
 		RECT rcTask;
 		GetWindowRect(taskBar.taskBar,&rcTask);
 		PostMessage(taskBar.taskBar,WM_SIZE,SIZE_RESTORED,MAKELONG(rcTask.right-rcTask.left,rcTask.bottom-rcTask.top));
+		for (auto btn : taskBar.trayButtons)
+		{
+			RECT rc;
+			GetWindowRect(btn,&rc);
+			SetWindowPos(btn,HWND_TOP,rc.left,rc.top,0,0,SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
+		}
 	}
 }
 

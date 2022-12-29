@@ -768,7 +768,7 @@ IUpdateSessionOrchestrator : public IUnknown
 	STDMETHOD(CreateUxUpdateManager)(IUnknown**);
 };
 
-DWORD WindowsUpdateAdjustShutdwonFlags(DWORD flags)
+DWORD WindowsUpdateAdjustShutdownFlags(DWORD flags)
 {
 	DWORD retval = flags;
 
@@ -882,7 +882,7 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 	{
 		if (SetShutdownPrivileges())
 		{
-			flags = WindowsUpdateAdjustShutdwonFlags(flags);
+			flags = WindowsUpdateAdjustShutdownFlags(flags);
 			InitiateShutdown(NULL, NULL, 0, flags, SHTDN_REASON_FLAG_PLANNED);
 		}
 		else
@@ -891,7 +891,7 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 			// lets try silent elevate via SystemSettingsAdminFlows (for limited admin users only)
 			if (GetCurrentTokenElevationType() == TokenElevationTypeLimited)
 			{
-				flags = WindowsUpdateAdjustShutdwonFlags(flags);
+				flags = WindowsUpdateAdjustShutdownFlags(flags);
 
 				wchar_t cmdLine[32]{};
 				Sprintf(cmdLine, _countof(cmdLine), L"Shutdown %d %d", flags, SHTDN_REASON_FLAG_PLANNED);

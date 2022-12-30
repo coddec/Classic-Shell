@@ -1123,6 +1123,14 @@ const CItemManager::ItemInfo *CItemManager::GetCustomIcon( const wchar_t *path, 
 		*c=0;
 		index=-_wtol(c+1);
 	}
+	// special handling for Apps icon
+	if (!text[0] && index==-IDI_APPSICON)
+	{
+		if (IsWin11())
+			index=-IDI_APPSICON11;
+		else if (GetWinVersion()==WIN_VER_WIN10)
+			index=-IDI_APPSICON10;
+	}
 	return GetCustomIcon(text,index,iconSizeType,false);
 }
 

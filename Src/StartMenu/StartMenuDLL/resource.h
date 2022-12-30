@@ -4,6 +4,8 @@
 //
 #define IDI_APPICON                     1
 #define IDI_APPSICON                    2
+#define IDI_APPSICON10                  3
+#define IDI_APPSICON11                  4
 #define IDD_RENAME                      102
 #define IDC_EDITNAME                    102
 #define IDD_RENAMER                     103

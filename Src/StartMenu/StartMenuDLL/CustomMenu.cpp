@@ -94,7 +94,7 @@ CStdCommand7 g_StdCommands7[]={
 	{L"user_music",0,NULL,L"$Menu.UserMusicTip",NULL,&FOLDERID_Music},
 	{L"user_videos",0,NULL,L"$Menu.UserVideosTip",NULL,&FOLDERID_Videos},
 	{L"control_panel",0,L"$Menu.ControlPanel",L"$Menu.ControlPanelTip",NULL,&FOLDERID_ControlPanelFolder,NULL,StdMenuItem::MENU_TRACK},
-	{L"pc_settings",IDS_PCSETTINGS,L"$Menu.PCSettings",L"",L"%windir%\\ImmersiveControlPanel\\SystemSettings.exe,10",NULL,NULL,StdMenuItem::MENU_TRACK,CStdCommand7::ITEM_SINGLE},
+	{L"pc_settings",IDS_PCSETTINGS,L"$Menu.PCSettings",L"",NULL,NULL,L"shell:appsfolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel",StdMenuItem::MENU_TRACK,CStdCommand7::ITEM_SINGLE},
 	{L"network_connections",0,NULL,L"$Menu.NetworkTip",NULL,&FOLDERID_ConnectionsFolder,NULL,0,CStdCommand7::ITEM_NODRIVES},
 	{L"network",0,NULL,NULL,NULL,&FOLDERID_NetworkFolder,NULL,0,CStdCommand7::ITEM_SINGLE},
 	{L"printers",0,NULL,L"$Menu.PrintersTip",NULL,&FOLDERID_PrintersFolder,NULL,0,CStdCommand7::ITEM_NODRIVES},

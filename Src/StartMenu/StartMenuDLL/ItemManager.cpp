@@ -1164,6 +1164,10 @@ const CItemManager::ItemInfo* CItemManager::GetLinkIcon(IShellLink* link, TIconS
 						CComPtr<IResourceMap> resMap;
 						if (SUCCEEDED(resManager->GetMainResourceMap(IID_PPV_ARGS(&resMap))))
 						{
+							CComPtr<IResourceContext> resContext;
+							if (SUCCEEDED(resManager->GetDefaultContext(IID_PPV_ARGS(&resContext))))
+								resContext->SetTargetSize(GetIconSize(iconSizeType));
+
 							CComString location;
 							if (SUCCEEDED(resMap->GetFilePath(logoUri, &location)))
 								return GetCustomIcon(location, -65536, iconSizeType, true);
@@ -3583,6 +3587,26 @@ void CItemManager::ClearCache( void )
 	item.smallIcon=m_DefaultSmallIcon;
 	item.largeIcon=m_DefaultLargeIcon;
 	item.extraLargeIcon=m_DefaultExtraLargeIcon;
+}
+
+int CItemManager::GetIconSize(TIconSizeType iconSizeType) const
+{
+	switch (iconSizeType)
+	{
+	case ICON_SIZE_TYPE_SMALL:
+	case ICON_SIZE_TYPE_SMALL_METRO:
+		return SMALL_ICON_SIZE;
+
+	case ICON_SIZE_TYPE_LARGE:
+	case ICON_SIZE_TYPE_LARGE_METRO:
+		return LARGE_ICON_SIZE;
+
+	case ICON_SIZE_TYPE_EXTRA_LARGE:
+	case ICON_SIZE_TYPE_EXTRA_LARGE_METRO:
+		return EXTRA_LARGE_ICON_SIZE;
+	}
+
+	return 0;
 }
 
 // retrieves the pidl and the SFGAO_FOLDER, SFGAO_STREAM, SFGAO_LINK flags for the path

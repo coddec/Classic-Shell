@@ -51,6 +51,8 @@ public:
 		ICON_SIZE_COUNT
 	};
 
+	int GetIconSize(TIconSizeType iconSizeType) const;
+
 	struct IconInfo
 	{
 		TIconSizeType sizeType;

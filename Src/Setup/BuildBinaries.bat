@@ -63,6 +63,8 @@ copy /B "..\StartMenu\Skins\Windows 8.skin7" Output > nul
 copy /B "..\StartMenu\Skins\Midnight.skin7" Output > nul
 copy /B "..\StartMenu\Skins\Metro.skin7" Output > nul
 copy /B "..\StartMenu\Skins\Metallic.skin7" Output > nul
+copy /B "..\StartMenu\Skins\Immersive.skin" Output > nul
+copy /B "..\StartMenu\Skins\Immersive.skin7" Output > nul
 
 
 REM ********* Collect debug info

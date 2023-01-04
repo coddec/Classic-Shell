@@ -5095,10 +5095,10 @@ void UpdateSettings( void )
 		}
 		else
 		{
-			skin12=L"Metro";
-			skin3=L"Metro";
+			skin12=L"Immersive";
+			skin3=L"Immersive";
 			options1=L"CAPTION=1\nUSER_IMAGE=0\nUSER_NAME=0\nCENTER_NAME=0\nSMALL_ICONS=0\nLARGE_FONT=0\nICON_FRAMES=1\nOPAQUE=0\n";
-			options2=L"NO_ICONS=1\nUSER_IMAGE=1\nUSER_NAME=0\nCENTER_NAME=0\nSMALL_ICONS=0\nLARGE_FONT=0\nICON_FRAMES=1\nOPAQUE=0\n";
+			options2=L"NO_ICONS=1\nUSER_IMAGE=1\nCENTER_NAME=0\nSMALL_ICONS=0\nLARGE_FONT=0\nICON_FRAMES=1\nOPAQUE=0\n";
 			options3=L"USER_IMAGE=1\nSMALL_ICONS=0\nLARGE_FONT=0\nICON_FRAMES=1\nOPAQUE=0\n";
 		}
 		UpdateSetting(L"SkinC1",CComVariant(skin12),false);

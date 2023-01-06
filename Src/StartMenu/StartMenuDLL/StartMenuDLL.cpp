@@ -2854,6 +2854,34 @@ static BOOL WINAPI SetWindowCompositionAttribute2( HWND hwnd, WINCOMPATTRDATA *p
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// hooks for preventing shell hotkeys registration on Win11
+
+using ShellRegisterHotKey_t = BOOL(WINAPI*)(HWND, int, UINT, UINT, HWND);
+
+static IatHookData* g_ShellRegisterHotKeyHook;
+static ShellRegisterHotKey_t g_ShellRegisterHotKey;
+
+static BOOL WINAPI ShellRegisterHotKeyHook(HWND hWnd, int id, UINT fsModifiers, UINT vk, HWND hWndTarget)
+{
+	// Win key
+	if (fsModifiers == MOD_WIN && vk == 0)
+		return FALSE;
+
+	// Ctrl+Esc
+	if (fsModifiers == MOD_CONTROL && vk == VK_ESCAPE)
+		return FALSE;
+
+	return g_ShellRegisterHotKey(hWnd, id, fsModifiers, vk, hWndTarget);
+}
+
+// one-time APC function to unregister shell hotkeys
+void NTAPI DisableShellHotkeysFunc(ULONG_PTR Parameter)
+{
+	UnregisterHotKey(NULL, 1);
+	UnregisterHotKey(NULL, 2);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 
 static void OpenCortana( void )
 {
@@ -2951,7 +2979,32 @@ static void InitStartMenuDLL( void )
 	g_ProgHook=SetWindowsHookEx(WH_GETMESSAGE,HookProgManThread,NULL,progThread);
 	g_StartHook=SetWindowsHookEx(WH_GETMESSAGE,HookDesktopThread,NULL,GetCurrentThreadId());
 	if (IsWin11())
+	{
 		g_StartMouseHook=SetWindowsHookEx(WH_MOUSE,HookDesktopThreadMouse,NULL,GetCurrentThreadId());
+
+		// hook ShellRegisterHotKey to prevent twinui.dll to install shell hotkeys (Win, Ctrl+Esc)
+		// without these hotkeys there is standard WM_SYSCOMMAND+SC_TASKLIST sent when start menu is invoked by keyboard shortcut
+		g_ShellRegisterHotKey = (ShellRegisterHotKey_t)GetProcAddress(GetModuleHandle(L"user32.dll"), MAKEINTRESOURCEA(2671));
+		auto twinui = GetModuleHandle(L"twinui.dll");
+
+		if (g_ShellRegisterHotKey && twinui)
+		{
+			g_ShellRegisterHotKeyHook = SetIatHook(twinui, "user32.dll" ,MAKEINTRESOURCEA(2671), ShellRegisterHotKeyHook);
+
+			// unregister shell hotkeys as they may be registered already
+			// this has to be done from context of thread that registered them
+			auto hwnd = FindWindow(L"ApplicationManager_ImmersiveShellWindow", NULL);
+			if (hwnd)
+			{
+				auto thread = OpenThread(THREAD_SET_CONTEXT, FALSE, GetWindowThreadProcessId(hwnd, NULL));
+				if (thread)
+				{
+					QueueUserAPC(DisableShellHotkeysFunc, thread, 0);
+					CloseHandle(thread);
+				}
+			}
+		}
+	}
 
 	HWND hwnd=FindWindow(L"OpenShellMenu.CStartHookWindow",L"StartHookWindow");
 	LoadLibrary(L"StartMenuDLL.dll"); // keep the DLL from unloading
@@ -3150,6 +3203,8 @@ static void CleanStartMenuDLL( void )
 	g_DrawThemeTextCtlHook=NULL;
 	ClearIatHook(g_SetWindowCompositionAttributeHook);
 	g_SetWindowCompositionAttributeHook=NULL;
+	ClearIatHook(g_ShellRegisterHotKeyHook);
+	g_ShellRegisterHotKeyHook=NULL;
 
 	CloseManagers(false);
 	ClearIatHooks();

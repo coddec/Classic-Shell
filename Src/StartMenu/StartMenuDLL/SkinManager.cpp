@@ -547,6 +547,7 @@ HFONT MenuSkin::LoadSkinFont( const wchar_t *str, const wchar_t *name, int weigh
 		NONCLIENTMETRICS metrics={sizeof(metrics)};
 		SystemParametersInfo(SPI_GETNONCLIENTMETRICS,NULL,&metrics,0);
 		metrics.lfMenuFont.lfQuality=(BYTE)quality;
+		metrics.lfMenuFont.lfHeight=ScaleSkinElement(metrics.lfMenuFont.lfHeight,scale);
 		return CreateFontIndirect(&metrics.lfMenuFont);
 	}
 	size=ScaleSkinElement((int)(size*96),scale)/72.f;

@@ -503,6 +503,17 @@ SIZE MenuSkin::ScaleSkinElement( const SIZE &size ) const
 	return res;
 }
 
+_Success_(return != FALSE)
+BOOL WINAPI SystemParametersInfoForDpi(_In_ UINT uiAction, _In_ UINT uiParam, _Pre_maybenull_ _Post_valid_ PVOID pvParam, _In_ UINT fWinIni, _In_ UINT dpi)
+{
+	static auto p = static_cast<decltype(&SystemParametersInfoForDpi)>((void*)GetProcAddress(GetModuleHandle(L"user32.dll"), "SystemParametersInfoForDpi"));
+	if (p)
+		return p(uiAction, uiParam, pvParam, fWinIni, dpi);
+
+	// fall-back for older systems
+	return SystemParametersInfo(uiAction, uiParam, pvParam, fWinIni);
+}
+
 HFONT MenuSkin::LoadSkinFont( const wchar_t *str, const wchar_t *name, int weight, float size, bool bScale ) const
 {
 	DWORD quality=DEFAULT_QUALITY;
@@ -545,9 +556,8 @@ HFONT MenuSkin::LoadSkinFont( const wchar_t *str, const wchar_t *name, int weigh
 	{
 		// get the default menu font
 		NONCLIENTMETRICS metrics={sizeof(metrics)};
-		SystemParametersInfo(SPI_GETNONCLIENTMETRICS,NULL,&metrics,0);
+		SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS,sizeof(metrics),&metrics,0,Dpi);
 		metrics.lfMenuFont.lfQuality=(BYTE)quality;
-		metrics.lfMenuFont.lfHeight=ScaleSkinElement(metrics.lfMenuFont.lfHeight,scale);
 		return CreateFontIndirect(&metrics.lfMenuFont);
 	}
 	size=ScaleSkinElement((int)(size*96),scale)/72.f;

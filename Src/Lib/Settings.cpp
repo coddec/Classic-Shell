@@ -1952,6 +1952,13 @@ bool ImportSettingsXml( const wchar_t *fname )
 	if (error.IsEmpty())
 	{
 		g_SettingsManager.SaveSettings(false);
+
+		// we have successfuly imported settings from XML
+		// so there is no need to show settings dialog when start menu is triggered for the first time
+		CRegKey regKey;
+		if (regKey.Open(HKEY_CURRENT_USER,GetSettingsRegPath())==ERROR_SUCCESS)
+			regKey.SetDWORDValue(L"ShowedStyle2",1);
+
 		return true;
 	}
 

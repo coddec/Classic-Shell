@@ -64,6 +64,9 @@ LRESULT CALLBACK CExplorerBHO::SubclassTreeParentProc( HWND hWnd, UINT uMsg, WPA
 //   - change the tree styles to achieve different looks
 LRESULT CALLBACK CExplorerBHO::SubclassTreeProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData )
 {
+	if (GetTlsData()->bho == NULL)
+		return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+
 	if (uMsg==TVM_ENSUREVISIBLE && (dwRefData&1))
 	{
 		// HACK! there is a bug in Win7 Explorer and when the selected folder is expanded for the first time it sends TVM_ENSUREVISIBLE for

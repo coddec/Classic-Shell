@@ -2701,7 +2701,7 @@ LRESULT CTreeSettingsDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		else if (_wcsicmp(token,L"bold_italic")==0)
 			font.lfWeight=FW_BOLD, font.lfItalic=1;
 		str=GetToken(str,token,_countof(token),L", \t");
-		font.lfHeight=-(_wtol(token)*dpi+36)/72;
+		font.lfHeight=-MulDiv(_wtol(token),dpi,72);
 
 		CHOOSEFONT choose={sizeof(choose),m_hWnd,NULL,&font};
 		choose.Flags=CF_NOSCRIPTSEL;

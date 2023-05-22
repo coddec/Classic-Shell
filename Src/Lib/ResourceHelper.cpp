@@ -920,7 +920,7 @@ HFONT CreateFontSetting( const wchar_t *fontStr, int dpi )
 		weight=FW_BOLD, bItalic=true;
 	str=GetToken(str,token,_countof(token),L", \t");
 	int size=-_wtol(token);
-	return CreateFont(size*dpi/72,0,0,0,weight,bItalic?1:0,0,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH,name);
+	return CreateFont(MulDiv(size,dpi,72),0,0,0,weight,bItalic?1:0,0,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH,name);
 }
 
 static UINT WINAPI GetDpiForWindow(HWND hwnd)

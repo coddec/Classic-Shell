@@ -3012,6 +3012,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 	RECT clipRect=m_bSubMenu?s_MenuLimits:s_MainMenuLimits;
 
 	bool bUserPic=(!m_bSubMenu && s_bWin7Style && s_UserPicture.m_hWnd && s_UserPictureRect.top<s_UserPictureRect.bottom);
+	int frames=0;
 
 	if ((flags&AW_BLEND) && speed>0)
 	{
@@ -3044,6 +3045,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 			RedrawWindow();
 			if (bUserPic)
 				s_UserPicture.Update(alpha);
+			frames++;
 		}
 
 		SetWindowLong(GWL_EXSTYLE,GetWindowLong(GWL_EXSTYLE)&~WS_EX_LAYERED);
@@ -3142,6 +3144,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 				POINT pos={s_UserPictureRect.left-dx,s_UserPictureRect.top-dy};
 				s_UserPicture.UpdatePartial(pos,&clipRect);
 			}
+			frames++;
 		}
 		DeleteObject(clipRgn);
 
@@ -3172,4 +3175,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 		POINT pos={s_UserPictureRect.left,s_UserPictureRect.top};
 		s_UserPicture.UpdatePartial(pos,NULL);
 	}
+
+	if (frames)
+		LOG_MENU(LOG_OPEN,L"Menu animation %d frames in %dms (%.0f fps)",frames,speed,1000.0*frames/speed);
 }

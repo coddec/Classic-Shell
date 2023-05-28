@@ -19,6 +19,7 @@
 #include <dwmapi.h>
 #include <algorithm>
 #include <math.h>
+#include <chrono>
 
 static BLENDFUNCTION g_AlphaFunc={AC_SRC_OVER,0,255,AC_SRC_ALPHA};
 
@@ -3006,6 +3007,8 @@ void CProgramsTree::DrawScrollbarBackground( HDC hdc, int iPartId, int iStateId,
 
 void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 {
+	using namespace std::chrono;
+
 	RECT clipRect=m_bSubMenu?s_MenuLimits:s_MainMenuLimits;
 
 	bool bUserPic=(!m_bSubMenu && s_bWin7Style && s_UserPicture.m_hWnd && s_UserPictureRect.top<s_UserPictureRect.bottom);
@@ -3030,10 +3033,10 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 		}
 
 		// animate
-		int time0=GetTickCount();
+		auto time0=steady_clock::now();
 		while (true)
 		{
-			int dt=GetTickCount()-time0;
+			auto dt=duration_cast<milliseconds>(steady_clock::now()-time0).count();
 			if (dt>speed) break;
 			float f=dt/(float)speed;
 			int alpha=(int)(f*255);
@@ -3085,7 +3088,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 		}
 
 		// animate
-		int time0=GetTickCount();
+		auto time0=steady_clock::now();
 		int movex=0, movey=0;
 		if (flags&AW_HOR_POSITIVE)
 		{
@@ -3111,7 +3114,7 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 		HRGN clipRgn=CreateRectRgn(clipRect.left-rect.left,clipRect.top-rect.top,clipRect.right-rect.left,clipRect.bottom-rect.top); // clip region in window space
 		while (true)
 		{
-			int dt=GetTickCount()-time0;
+			auto dt=duration_cast<milliseconds>(steady_clock::now()-time0).count();
 			if (dt>speed) break;
 			float f=1-dt/(float)speed;
 			f=powf(f,5);

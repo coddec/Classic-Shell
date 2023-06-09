@@ -2,7 +2,7 @@
 
 #pragma once
 #include "resource.h"
-#include "StartMenuHelper_i.h"
+#include "StartMenuHelper_h.h"
 #include <shlobj.h>
 
 // CModernSettingsContextMenu

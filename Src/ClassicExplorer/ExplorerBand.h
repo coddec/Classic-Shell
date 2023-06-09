@@ -6,7 +6,7 @@
 
 #pragma once
 #include "resource.h"
-#include "ClassicExplorer_i.h"
+#include "ClassicExplorer_h.h"
 #include "SettingsParser.h"
 #include <vector>
 

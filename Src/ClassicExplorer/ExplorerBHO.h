@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 
-#include "ClassicExplorer_i.h"
+#include "ClassicExplorer_h.h"
 #include "ComHelper.h"
 #include <shdispid.h>
 

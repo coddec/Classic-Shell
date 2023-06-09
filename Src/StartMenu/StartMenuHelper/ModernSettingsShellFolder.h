@@ -4,7 +4,7 @@
 #pragma once
 #include "resource.h"
 #include "ComHelper.h"
-#include "StartMenuHelper_i.h"
+#include "StartMenuHelper_h.h"
 #include <shlobj.h>
 #include <string>
 

@@ -8,7 +8,7 @@
 #include "resource.h"       // main symbols
 #include <lm.h>
 
-#include "ClassicExplorer_i.h"
+#include "ClassicExplorer_h.h"
 
 // CShareOverlay
 

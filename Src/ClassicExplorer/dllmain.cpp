@@ -110,7 +110,7 @@ static DWORD CALLBACK DllInitThread( void* )
 	GetModuleFileName(g_Instance,path,_countof(path));
 	*PathFindFileName(path)=0;
 	wchar_t fname[_MAX_PATH];
-	Sprintf(fname,_countof(fname),L"%s" INI_PATH L"ExplorerL10N.ini",path);
+	Sprintf(fname,_countof(fname),L"%sExplorerL10N.ini",path);
 	CString language=GetSettingString(L"Language");
 	ParseTranslations(fname,language);
 

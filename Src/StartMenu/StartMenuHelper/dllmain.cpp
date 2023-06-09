@@ -92,7 +92,7 @@ static DWORD CALLBACK DllInitThread( void* )
 	}
 
 	wchar_t fname[_MAX_PATH];
-	Sprintf(fname,_countof(fname),L"%s" INI_PATH L"StartMenuHelperL10N.ini",path);
+	Sprintf(fname,_countof(fname),L"%sStartMenuHelperL10N.ini",path);
 	CString language=GetSettingString(L"Language");
 	ParseTranslations(fname,language);
 

@@ -27,10 +27,8 @@ using namespace ATL;
 #include <shlobj.h>
 
 #ifdef BUILD_SETUP
-#define INI_PATH L""
 #define DOC_PATH L""
 #else
-#define INI_PATH L"..\\"
 #define DOC_PATH L"..\\..\\Docs\\Help\\"
 #endif
 

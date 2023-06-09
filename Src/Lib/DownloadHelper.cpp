@@ -4,7 +4,6 @@
 
 #include <stdafx.h>
 #include "resource.h"
-#include "..\Setup\UpdateBin\resource.h"
 #include "DownloadHelper.h"
 #include "Settings.h"
 #include "SettingsUIHelper.h"
@@ -371,60 +370,6 @@ static DWORD WINAPI ThreadVersionCheck( void *param )
 		data.bNewVersion=(data.newVersion>curVersion);
 		data.bIgnoreVersion=(data.bNewVersion && data.newVersion<=remindedVersion);
 	}
-	{
-		wchar_t languages[100]={0};
-		CString language2=GetSettingString(L"Language");
-		if (!language2.IsEmpty())
-		{
-			Strcpy(languages,_countof(languages)-1,language2);
-		}
-		else
-		{
-			ULONG size=0;
-			ULONG len=_countof(languages);
-			GetUserPreferredUILanguages(MUI_LANGUAGE_NAME,&size,languages,&len);
-		}
-
-		bool bNewLanguage=false;
-		for (wchar_t *lang=languages;*lang;lang+=Strlen(lang)+1)
-		{
-			if (_wcsicmp(lang,L"en")==0 || _wcsnicmp(lang,L"en-",3)==0)
-				break; // English
-			DWORD dllVersion=0, dllBuild=0;
-			HINSTANCE resInstance=LoadTranslationDll(lang);
-			if (resInstance)
-			{
-				dllVersion=GetVersionEx(resInstance,&dllBuild);
-				FreeLibrary(resInstance);
-			}
-
-			DWORD newVersion=0, newBuild=0;
-			for (std::vector<LanguageVersionData>::const_iterator it=data.languages.begin();it!=data.languages.end();++it)
-			{
-				if (_wcsicmp(it->language,lang)==0)
-				{
-					newVersion=it->version;
-					newBuild=it->build;
-					break;
-				}
-			}
-			if (newVersion==0)
-				continue;
-
-			if (newVersion>dllVersion || (newVersion==dllVersion && newBuild>dllBuild))
-			{
-				// a new DLL for this language exists
-				data.bNewLanguage=true;
-				data.newLanguage=lang;
-				data.encodedLangVersion=(newVersion&0xFFFF0000)|((newVersion&0xFF)<<8)|(newBuild&0xFF);
-				DWORD remindedVersion;
-				if (regKey.QueryDWORDValue(L"RemindedLangVersion",remindedVersion)!=ERROR_SUCCESS)
-					remindedVersion=0;
-				data.bIgnoreLanguage=(data.encodedLangVersion<=remindedVersion);
-			}
-			break;
-		}
-	}
 
 	data.bValid=true;
 	if (params.check==CHECK_UPDATE)
@@ -433,7 +378,7 @@ static DWORD WINAPI ThreadVersionCheck( void *param )
 		g_bCheckingVersion=false;
 		return 1;
 	}
-	if ((data.bNewVersion && !data.bIgnoreVersion) || (data.bNewLanguage && !data.bIgnoreLanguage))
+	if (data.bNewVersion && !data.bIgnoreVersion)
 		params.callback(data);
 	g_bCheckingVersion=false;
 	return 0;
@@ -576,39 +521,6 @@ static CString LoadStringEx( HMODULE hModule, int stringId, int langId )
 	return res;
 }
 
-static BOOL CALLBACK EnumStringLanguages( HMODULE hModule, LPCTSTR lpszType, LPCTSTR lpszName, WORD wIDLanguage, LONG_PTR lParam )
-{
-	VersionData &data=*(VersionData*)lParam;
-	CString url=LoadStringEx(hModule,IDS_LNG_URL,wIDLanguage);
-	if (url.IsEmpty()) return TRUE;
-	CString ver=LoadStringEx(hModule,IDS_LNG_VERSION,wIDLanguage);
-	if (ver.IsEmpty()) return TRUE;
-	CString crc=LoadStringEx(hModule,IDS_LNG_CRC,wIDLanguage);
-	if (crc.IsEmpty()) return TRUE;
-
-	LanguageVersionData langData;
-	langData.bBasic=(ver[ver.GetLength()-1]=='*');
-
-	int v1, v2, v3, v4;
-	if (swscanf_s(ver,L"%d.%d.%d.%d",&v1,&v2,&v3,&v4)==4)
-	{
-		wchar_t buf[100];
-		if (GetLocaleInfo(wIDLanguage,LOCALE_SNAME,buf,_countof(buf)))
-		{
-			langData.languageId=wIDLanguage;
-			langData.language=buf;
-			langData.version=(v1<<24)|(v2<<16)|v3;
-			langData.build=v4;
-			langData.url=url;
-			wchar_t *q;
-			langData.hash=wcstoul(crc,&q,16);
-			data.languages.push_back(langData);
-		}
-	}
-
-	return TRUE;
-}
-
 static bool VerifyDigitalCertificate( const wchar_t *fname, const wchar_t *signer )
 {
 	// verify the certificate
@@ -710,38 +622,24 @@ static bool VerifyDigitalCertificate( const wchar_t *fname, const wchar_t *signe
 void VersionData::Clear( void )
 {
 	bValid=false;
-	newVersion=encodedLangVersion=0;
+	newVersion=0;
 	downloadUrl.Empty();
 	downloadSigner.Empty();
 	news.Empty();
-	updateLink.Empty();
-	languageLink.Empty();
-	altUrl.Empty();
-	bNewVersion=bIgnoreVersion=bNewLanguage=bIgnoreLanguage=false;
-	newLanguage.Empty();
-	for (std::vector<LanguageVersionData>::iterator it=languages.begin();it!=languages.end();++it)
-		if (it->bitmap)
-			DeleteObject(it->bitmap);
-	languages.clear();
+	updateLink="https://github.com/Open-Shell/Open-Shell-Menu/releases";
+	bNewVersion=bIgnoreVersion=false;
 }
 
 void VersionData::Swap( VersionData &data )
 {
 	std::swap(bValid,data.bValid);
 	std::swap(newVersion,data.newVersion);
-	std::swap(encodedLangVersion,data.encodedLangVersion);
 	std::swap(downloadUrl,data.downloadUrl);
 	std::swap(downloadSigner,data.downloadSigner);
 	std::swap(news,data.news);
 	std::swap(updateLink,data.updateLink);
-	std::swap(languageLink,data.languageLink);
-	std::swap(altUrl,data.altUrl);
 	std::swap(bNewVersion,data.bNewVersion);
 	std::swap(bIgnoreVersion,data.bIgnoreVersion);
-	std::swap(bNewLanguage,data.bNewLanguage);
-	std::swap(bIgnoreLanguage,data.bIgnoreLanguage);
-	std::swap(newLanguage,data.newLanguage);
-	std::swap(languages,data.languages);
 }
 
 std::vector<char> DownloadUrl(const wchar_t* url)
@@ -850,69 +748,6 @@ VersionData::TLoadResult VersionData::Load(bool official)
 	}
 }
 
-VersionData::TLoadResult VersionData::Load( const wchar_t *fname, bool bLoadFlags )
-{
-	Clear();
-	if (!VerifyDigitalCertificate(fname,L"Ivaylo Beltchev"))
-		return LOAD_BAD_FILE;
-
-	HMODULE hModule=LoadLibraryEx(fname,NULL,LOAD_LIBRARY_AS_DATAFILE|LOAD_LIBRARY_AS_IMAGE_RESOURCE);
-	if (!hModule) return LOAD_BAD_FILE;
-
-	if (GetVersionEx(hModule)!=GetVersionEx(g_Instance))
-	{
-		FreeLibrary(hModule);
-		return LOAD_BAD_VERSION;
-	}
-
-	wchar_t defLang[100]=L"";
-	{
-		CRegKey regKeyLng;
-		if (regKeyLng.Open(HKEY_LOCAL_MACHINE,L"Software\\OpenShell\\OpenShell",KEY_READ|KEY_WOW64_64KEY)==ERROR_SUCCESS)
-		{
-			ULONG size=_countof(defLang);
-			if (regKeyLng.QueryStringValue(L"DefaultLanguage",defLang,&size)!=ERROR_SUCCESS)
-				defLang[0]=0;
-		}
-	}
-
-	const int DEFAULT_LANGUAGE=0x409;
-
-	int defLangId;
-	if (!defLang[0] || !GetLocaleInfoEx(defLang,LOCALE_ILANGUAGE|LOCALE_RETURN_NUMBER,(LPWSTR)&defLangId,4))
-		defLangId=DEFAULT_LANGUAGE;
-
-	downloadUrl=LoadStringEx(hModule,IDS_INSTALL_URL,defLangId);
-	// these are always in en-US
-	downloadSigner=LoadStringEx(hModule,IDS_INSTALL_SIGNER,DEFAULT_LANGUAGE);
-	CString strVer=LoadStringEx(hModule,IDS_VERSION,defLangId);
-	if (strVer.IsEmpty())
-		strVer=LoadStringEx(hModule,IDS_VERSION,DEFAULT_LANGUAGE);
-	updateLink=LoadStringEx(hModule,IDS_UPDATE_LINK,DEFAULT_LANGUAGE);
-	languageLink=LoadStringEx(hModule,IDS_LANGUAGE_LINK,DEFAULT_LANGUAGE);
-	altUrl=LoadStringEx(hModule,IDS_ALT_URL,DEFAULT_LANGUAGE);
-
-	int v1, v2, v3;
-	if (!downloadUrl.IsEmpty() && swscanf_s(strVer,L"%d.%d.%d",&v1,&v2,&v3)==3)
-	{
-		newVersion=(v1<<24)|(v2<<16)|v3;
-		news=LoadStringEx(hModule,IDS_NEWS,defLangId);
-		if (news.IsEmpty())
-			news=LoadStringEx(hModule,IDS_NEWS,DEFAULT_LANGUAGE);
-
-		EnumResourceLanguages(hModule,RT_STRING,MAKEINTRESOURCE((IDS_LNG_URL>>4)+1),EnumStringLanguages,(LONG_PTR)this);
-		for (std::vector<LanguageVersionData>::iterator it=languages.begin();it!=languages.end();++it)
-			it->bitmap=(HBITMAP)LoadImage(hModule,MAKEINTRESOURCE(it->languageId),IMAGE_BITMAP,22,27,LR_CREATEDIBSECTION);
-	}
-
-	FreeLibrary(hModule);
-
-	if (newVersion && !downloadUrl.IsEmpty() && !news.IsEmpty())
-		return LOAD_OK;
-	Clear();
-	return LOAD_ERROR;
-}
-
 struct DownloadFileParams
 {
 	// input
@@ -987,82 +822,6 @@ static DWORD WINAPI ThreadDownloadFile( void *param )
 	}
 */
 	return 0;
-}
-
-DWORD DownloadLanguageDll( HWND owner, TSettingsComponent component, const LanguageVersionData &data, CString &error )
-{
-	// download file
-	wchar_t path[_MAX_PATH]=L"%ALLUSERSPROFILE%\\OpenShell\\Languages";
-	DoEnvironmentSubst(path,_countof(path));
-	SHCreateDirectory(NULL,path);
-	wchar_t fname[_MAX_PATH];
-	Sprintf(fname,_countof(fname),L"%s.dll",data.language);
-
-	CProgressDlg progress;
-	progress.Create(owner,LoadStringEx(IDS_PROGRESS_TITLE_DOWNLOAD));
-
-	DownloadFileParams params;
-	params.url=data.url;
-	params.signer=NULL;
-	params.hash=data.hash;
-	params.path=path;
-	params.fname=fname;
-	params.progress=&progress;
-	params.bAcceptCached=true;
-	params.component=component;
-
-	HANDLE hThread=CreateThread(NULL,0,ThreadDownloadFile,&params,0,NULL);
-
-	while (1)
-	{
-		DWORD wait=MsgWaitForMultipleObjects(1,&hThread,FALSE,INFINITE,QS_ALLINPUT);
-		if (wait!=WAIT_OBJECT_0+1)
-			break;
-		MSG msg;
-		while (PeekMessage(&msg,0,0,0,PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
-	progress.DestroyWindow();
-	CloseHandle(hThread);
-
-	if (params.downloadRes==DOWNLOAD_CANCEL)
-		return 2;
-	if (params.downloadRes==DOWNLOAD_INTERNET)
-	{
-		error=LoadStringEx(IDS_INTERNET_FAIL);
-		return 0;
-	}
-	else if (params.downloadRes==DOWNLOAD_START)
-	{
-		error=LoadStringEx(IDS_INITIATE_FAIL);
-		return 0;
-	}
-	else if (params.downloadRes==DOWNLOAD_FAIL)
-	{
-		error=LoadStringEx(IDS_LANG_DOWNLOAD_FAIL);
-		return 0;
-	}
-
-	if (params.saveRes)
-	{
-		wchar_t msg[256];
-		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,params.saveRes,0,msg,_countof(msg),NULL);
-		error.Format(LoadStringEx(IDS_LANG_SAVE_FAIL),params.fname);
-		error+="\r\n";
-		error+=msg;
-		return 0;
-	}
-
-	if (!params.valid)
-	{
-		error=LoadStringEx(IDS_LANG_DOWNLOAD_FAIL);
-		return 0;
-	}
-
-	return 1;
 }
 
 DWORD DownloadNewVersion( HWND owner, TSettingsComponent component, const wchar_t *url, const wchar_t *signer, CString &fname, CString &error )

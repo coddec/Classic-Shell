@@ -45,11 +45,6 @@ static int g_LoadDialogs[]=
 	0
 };
 
-const wchar_t *GetDocRelativePath( void )
-{
-	return DOC_PATH;
-}
-
 static HANDLE g_DllInitThread;
 
 static DWORD CALLBACK DllInitThread( void* )

@@ -22,12 +22,6 @@
 #include <atlstr.h>
 #include <atlwin.h>
 
-#ifdef BUILD_SETUP
-#define DOC_PATH L""
-#else
-#define DOC_PATH L"..\\..\\Docs\\Help\\"
-#endif
-
 #include "StringUtils.h"
 #include "TrackResources.h"
 #include "Assert.h"

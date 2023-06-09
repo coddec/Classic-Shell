@@ -26,10 +26,4 @@ using namespace ATL;
 #include <shlguid.h>
 #include <shlobj.h>
 
-#ifdef BUILD_SETUP
-#define DOC_PATH L""
-#else
-#define DOC_PATH L"..\\..\\Docs\\Help\\"
-#endif
-
 #include "StringUtils.h"

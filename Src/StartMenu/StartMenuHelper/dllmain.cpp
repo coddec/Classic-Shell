@@ -37,11 +37,6 @@ void SettingChangedCallback( const CSetting *pSetting )
 {
 }
 
-const wchar_t *GetDocRelativePath( void )
-{
-	return L"";
-}
-
 CSetting g_Settings[]={
 {L"MenuStyleGroup",CSetting::TYPE_GROUP},
 	{L"MenuStyle",CSetting::TYPE_INT,0,0,2},

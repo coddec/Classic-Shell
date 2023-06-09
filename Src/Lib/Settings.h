@@ -136,7 +136,6 @@ void SelectSettingsTab( int tab, bool bAdvanced, const CSetting *pSelect );
 void UpdateSettings( void ); // implemented by the user
 void UpgradeSettings( bool bShared ); // implemented by the user (called when converting 3.0 settings to 4.0)
 void ClosingSettings( HWND hWnd, int flags, int command ); // implemented by the user
-const wchar_t *GetDocRelativePath( void ); // implemented by the user
 void SettingChangedCallback( const CSetting *pSetting ); // implemented by the user
 bool IsSettingsMessage( MSG *msg );
 bool ImportSettingsXml( const wchar_t *fname );

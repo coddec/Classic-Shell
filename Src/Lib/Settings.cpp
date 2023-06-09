@@ -18,12 +18,6 @@
 #include <map>
 #include <algorithm>
 
-#ifdef BUILD_SETUP
-#define DOC_PATH L""
-#else
-#define DOC_PATH L"..\\..\\Docs\\Help\\"
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 
 // Read/Write lock for accessing the settings. Can't be acquired recursively. Only the main UI thread (the one displaying the settings UI)
@@ -2185,7 +2179,7 @@ bool HasHelp( void )
 	GetModuleFileName(_AtlBaseModule.GetResourceInstance(),path,_countof(path));
 	*PathFindFileName(path)=0;
 	wchar_t topic[_MAX_PATH];
-	Sprintf(topic,_countof(topic),L"%s%sOpenShell.chm",path,GetDocRelativePath());
+	Sprintf(topic,_countof(topic),L"%sOpenShell.chm",path);
 	return (GetFileAttributes(topic)!=INVALID_FILE_ATTRIBUTES);
 }
 
@@ -2195,7 +2189,7 @@ void ShowHelp( void )
 	GetModuleFileName(_AtlBaseModule.GetResourceInstance(),path,_countof(path));
 	*PathFindFileName(path)=0;
 	wchar_t topic[_MAX_PATH];
-	Sprintf(topic,_countof(topic),L"%s%sOpenShell.chm::/%s.html",path,GetDocRelativePath(),PathFindFileName(g_SettingsManager.GetRegPath()));
+	Sprintf(topic,_countof(topic),L"%sOpenShell.chm::/%s.html",path,PathFindFileName(g_SettingsManager.GetRegPath()));
 	HtmlHelp(GetDesktopWindow(),topic,HH_DISPLAY_TOPIC,NULL);
 }
 

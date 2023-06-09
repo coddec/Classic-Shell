@@ -44,11 +44,6 @@ void UpdateSettings( void )
 	UpdateSetting(L"Language",language,false);
 }
 
-const wchar_t *GetDocRelativePath( void )
-{
-	return NULL;
-}
-
 static int g_LoadDialogs[]=
 {
 	IDD_UPDATE,0x04000000,

@@ -60,7 +60,7 @@ light Temp\Setup64.wixobj -nologo -out Temp\Setup64.msi -ext WixUIExtension -ext
 
 REM ********* Build MSI Checksums
 echo --- MSI Checksums
-Utility\Release\Utility.exe crcmsi Temp
+..\..\build\bin\Release\Utility.exe crcmsi Temp
 @if ERRORLEVEL 1 exit /b 1
 
 REM ********* Build bootstrapper
@@ -73,10 +73,10 @@ for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio
 if exist Final rd /Q /S Final
 md Final
 
-copy /B Release\Setup.exe Final\%CS_INSTALLER_NAME%.exe > nul
+copy /B ..\..\build\bin\Release\Setup.exe Final\%CS_INSTALLER_NAME%.exe > nul
 
 if defined APPVEYOR (
-	appveyor PushArtifact Release\Setup.exe -FileName %CS_INSTALLER_NAME%.exe
+	appveyor PushArtifact Final\%CS_INSTALLER_NAME%.exe
 )
 
 SET CS_LANG_FOLDER=

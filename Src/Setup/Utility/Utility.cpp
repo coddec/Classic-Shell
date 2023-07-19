@@ -870,7 +870,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 		tasks.pszMainInstruction=L"Select task to perform";
 		tasks.cButtons=HIWORD(winVer)>=0x0602?4:3;
 		tasks.pButtons=taskButtons;
-		tasks.pszFooter=L"<A HREF=\"http://www.classicshell.net\">www.classicshell.net</A>";
+		tasks.pszFooter=L"<A HREF=\"https://open-shell.github.io/Open-Shell-Menu\">Open-Shell Homepage</A>";
 		tasks.pfCallback=TaskDialogCallback;
 
 		int seleciton;

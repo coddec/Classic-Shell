@@ -836,6 +836,58 @@ static TOKEN_ELEVATION_TYPE GetCurrentTokenElevationType()
 	return retval;
 }
 
+static BOOL WINAPI WinStationGetLoggedOnCount(ULONG* pUserSessions, ULONG* pDeviceSessions)
+{
+	static auto p = static_cast<decltype(&WinStationGetLoggedOnCount)>((void*)GetProcAddress(GetModuleHandle(L"winsta.dll"), "WinStationGetLoggedOnCount"));
+	if (p)
+		return p(pUserSessions, pDeviceSessions);
+
+	// fall-back
+	return FALSE;
+}
+
+static bool ProceedWithShutdown(DWORD flags)
+{
+	// this logic is inspired by user32!DisplayExitWindowsWarnings function (called from ExitWindowsEx)
+
+	ULONG userSessions = 0;
+	ULONG deviceSessions = 0;
+
+	WinStationGetLoggedOnCount(&userSessions, &deviceSessions);
+
+	// we can proceed if there is at most one user session and no device sessions
+	if (userSessions <= 1 && deviceSessions == 0)
+		return true;
+
+	// otherwise inform user that somebody else is using the machine and ask for confirmation
+
+	UINT msgId = 0;
+
+	if (flags & SHUTDOWN_RESTART)
+	{
+		if (userSessions <= 1)
+			msgId = 755;					// One or more devices on your network are using the computer resources. Restarting Windows might cause them to lose data.
+		else if (deviceSessions != 0)
+			msgId = 756;					// Other people and devices are using the computer resources. Restarting Windows might cause them to lose data.
+		else
+			msgId = 714;					// Other people are logged on to this computer. Restarting Windows might cause them to lose data.
+	}
+	else
+	{
+		if (userSessions <= 1)
+			msgId = 753;					// One or more devices on your network are using the computer resources.Shutting down Windows might cause them to lose data.
+		else if (deviceSessions != 0)
+			msgId = 754;					// Other people and devices are are using the computer resources. Shutting down Windows might cause them to lose data.
+		else
+			msgId = 713;					// Other people are logged on to this computer. Shutting down Windows might cause them to lose data.
+	}
+
+	WCHAR message[MAX_PATH]{};
+	LoadString(GetModuleHandle(L"user32.dll"), msgId, message, _countof(message));
+
+	return MessageBox(NULL, message, L"Open-Shell", MB_YESNO | MB_ICONEXCLAMATION | MB_DEFBUTTON1 | MB_SYSTEMMODAL | MB_SETFOREGROUND | MB_SERVICE_NOTIFICATION) != IDNO;
+}
+
 static bool ExecuteShutdownCommand(TMenuID menuCommand)
 {
 	DWORD flags = 0;
@@ -880,6 +932,11 @@ static bool ExecuteShutdownCommand(TMenuID menuCommand)
 
 	if (flags)
 	{
+		if (!ProceedWithShutdown(flags))
+			return true;
+
+		flags |= SHUTDOWN_FORCE_OTHERS;
+
 		if (SetShutdownPrivileges())
 		{
 			flags = WindowsUpdateAdjustShutdownFlags(flags);

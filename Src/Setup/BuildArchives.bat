@@ -20,4 +20,8 @@ cd ..
 
 cd Setup
 
+if defined APPVEYOR (
+	appveyor PushArtifact ..\..\build\bin\Release\Utility.exe
+)
+
 exit /b 0

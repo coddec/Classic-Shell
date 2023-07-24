@@ -1,7 +1,7 @@
 REM ***** Collect PDBs
 
 echo -- Creating symbols package
-set CS_SYMBOLS_NAME=OpenShellPDB_%CS_VERSION_STR%.7z
+set CS_SYMBOLS_NAME=OpenShellSymbols_%CS_VERSION_STR%.7z
 
 7z a -mx9 .\Final\%CS_SYMBOLS_NAME% .\Output\symbols\* > nul
 

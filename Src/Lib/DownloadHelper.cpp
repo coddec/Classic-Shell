@@ -13,7 +13,7 @@
 #include "FNVHash.h"
 #include "StringUtils.h"
 #include "Translations.h"
-#include "json.hpp"
+#include <nlohmann/json.hpp>
 #include <wininet.h>
 #include <softpub.h>
 

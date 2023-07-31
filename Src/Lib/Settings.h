@@ -129,7 +129,7 @@ void InitSettings( CSetting *pSettings, TSettingsComponent component, ICustomSet
 void LoadSettings( void );
 void SaveSettings( void );
 void UpdateDefaultSettings( void );
-void EditSettings( const wchar_t *title, bool bModal, int tab );
+void EditSettings( const wchar_t *title, bool bModal, int tab, const wchar_t *appId = nullptr );
 void CloseSettings( void );
 void SetSettingsDirty( void );
 void SelectSettingsTab( int tab, bool bAdvanced, const CSetting *pSelect );

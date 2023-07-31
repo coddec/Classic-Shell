@@ -13,6 +13,7 @@
 #include <Uxtheme.h>
 #include <VSStyle.h>
 #include <propkey.h>
+#include <propvarutil.h>
 #include <htmlhelp.h>
 #include <vector>
 #include <map>
@@ -1108,7 +1109,7 @@ class CSettingsDlg: public CResizeableDlg<CSettingsDlg>
 {
 public:
 	CSettingsDlg( void );
-	void Init( CSetting *pSettings, ICustomSettings *pCustom, int tab );
+	void Init( CSetting *pSettings, ICustomSettings *pCustom, int tab, const wchar_t* appId );
 
 	BEGIN_MSG_MAP( CSettingsDlg )
 		MESSAGE_HANDLER( WM_INITDIALOG, OnInitDialog )
@@ -1182,6 +1183,7 @@ private:
 	bool m_bIgnoreEdit;
 	bool m_bDirty;
 	CString m_FilterText;
+	const wchar_t* m_AppId;
 
 	void AddTabs( int name, const CSetting *pSelect=NULL );
 	void SetCurTab( int index, bool bReset, const CSetting *pSelect=NULL );
@@ -1214,15 +1216,17 @@ CSettingsDlg::CSettingsDlg( void )
 	m_bOnTop=false;
 	m_bIgnoreEdit=false;
 	m_bDirty=false;
+	m_AppId=NULL;
 }
 
-void CSettingsDlg::Init( CSetting *pSettings, ICustomSettings *pCustom, int tab )
+void CSettingsDlg::Init( CSetting *pSettings, ICustomSettings *pCustom, int tab, const wchar_t* appId )
 {
 	m_pSettings=pSettings;
 	m_pCustom=pCustom;
 	m_InitialTab=tab;
 	m_FilterText.Empty();
 	m_bDirty=false;
+	m_AppId=appId;
 }
 
 // Subclass the tooltip to delay the tip when the mouse moves from one tree item to the next
@@ -1246,17 +1250,19 @@ LRESULT CSettingsDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 #ifdef _DEBUG
 	g_bUIThread=true;
 #endif
-/*
-	// attempt to make the dialog have its own icon. doesn't work though. the icon changes, but to the default folder icon
-	CComPtr<IPropertyStore> pStore;
-	if (SUCCEEDED(SHGetPropertyStoreForWindow(m_hWnd,IID_IPropertyStore,(void**)&pStore)))
+
+	if (m_AppId)
 	{
-		PROPVARIANT val;
-		val.vt=VT_LPWSTR;
-		val.pwszVal=L"OpenShell.Settings.Dialog";
-		pStore->SetValue(PKEY_AppUserModel_ID,val);
+		// attempt to make the dialog have its own icon
+		CComPtr<IPropertyStore> pStore;
+		if (SUCCEEDED(SHGetPropertyStoreForWindow(m_hWnd,IID_IPropertyStore,(void**)&pStore)))
+		{
+			PROPVARIANT val;
+			InitPropVariantFromString(m_AppId,&val);
+			pStore->SetValue(PKEY_AppUserModel_ID,val);
+		}
 	}
-*/
+
 	InitResize(MOVE_MODAL);
 	HMENU menu=GetSystemMenu(FALSE);
 	bool bAdded=false;
@@ -1840,7 +1846,7 @@ bool CSettingsDlg::IsTabValid( void )
 
 static CSettingsDlg g_SettingsDlg;
 
-void EditSettings( const wchar_t *title, bool bModal, int tab )
+void EditSettings( const wchar_t *title, bool bModal, int tab, const wchar_t* appId )
 {
 	if (g_SettingsDlg.m_hWnd)
 	{
@@ -1858,7 +1864,7 @@ void EditSettings( const wchar_t *title, bool bModal, int tab )
 		}
 		DLGTEMPLATE *pTemplate=LoadDialogEx(IDD_SETTINGS);
 		g_SettingsManager.ResetImageList();
-		g_SettingsDlg.Init(g_SettingsManager.GetSettings(),g_SettingsManager.GetCustom(),tab);
+		g_SettingsDlg.Init(g_SettingsManager.GetSettings(),g_SettingsManager.GetCustom(),tab,appId);
 		g_SettingsDlg.Create(NULL,pTemplate);
 		g_SettingsDlg.SetWindowText(title);
 		g_SettingsDlg.SetWindowPos(HWND_TOPMOST,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE|(g_SettingsDlg.GetOnTop()?0:SWP_NOZORDER)|SWP_SHOWWINDOW);

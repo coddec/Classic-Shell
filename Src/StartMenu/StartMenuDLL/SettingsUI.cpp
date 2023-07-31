@@ -5272,7 +5272,7 @@ void EditSettings( bool bModal, int tab )
 		Sprintf(title,_countof(title),LoadStringEx(IDS_SETTINGS_TITLE_VER),ver>>24,(ver>>16)&0xFF,ver&0xFFFF);
 	else
 		Sprintf(title,_countof(title),LoadStringEx(IDS_SETTINGS_TITLE));
-	EditSettings(title,bModal,tab);
+	EditSettings(title,bModal,tab,L"OpenShell.StartMenu.Settings");
 }
 
 bool DllImportSettingsXml( const wchar_t *fname )

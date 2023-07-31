@@ -7509,31 +7509,6 @@ RECT CMenuContainer::CalculateWorkArea( const RECT &taskbarRect )
 		}
 	}
 
-	//calculate offsets
-	int xOff = GetSettingInt(L"HorizontalMenuOffset");
-	int yOff = GetSettingInt(L"VerticalMenuOffset");
-	if (s_TaskBarEdge == ABE_BOTTOM)
-	{
-		if (xOff != 0)
-			rc.left += xOff;
-		if (yOff != 0)
-			rc.bottom += yOff;
-	}
-	else if (s_TaskBarEdge == ABE_TOP || s_TaskBarEdge == ABE_LEFT)
-	{
-		if (xOff != 0)
-			rc.left += xOff;
-		if (yOff != 0)
-			rc.top += yOff;
-	}
-	else
-	{
-		if (xOff != 0)
-			rc.right += xOff;
-		if (yOff != 0)
-			rc.top += yOff;
-	}
-
 	return rc;
 }
 
@@ -7559,6 +7534,9 @@ POINT CMenuContainer::CalculateCorner( void )
 	}
 	else
 		corner.y=s_MainMenuLimits.bottom+margin.bottom;
+
+	corner.x+=GetSettingInt(L"HorizontalMenuOffset");
+	corner.y+=GetSettingInt(L"VerticalMenuOffset");
 
 	return corner;
 }

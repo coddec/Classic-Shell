@@ -12,7 +12,7 @@ A collection of utilities bringing back classic features to Windows.
 [Open-Shell Homepage](https://open-shell.github.io/Open-Shell-Menu)  
 
 ### Features
-- Classic style Start menu for Windows 7, 8, 8.1, 10
+- Classic style Start menu for Windows 7, 8, 8.1, 10, and 11
 - Toolbar for Windows Explorer
 - Explorer status bar with file size and disk space
 - Classic copy UI (Windows 7 only)

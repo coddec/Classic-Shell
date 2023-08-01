@@ -979,7 +979,7 @@ void CSettingsManager::ResetSettings( void )
 HIMAGELIST CSettingsManager::GetImageList( HWND tree )
 {
 	if (m_ImageList) return m_ImageList;
-	HTHEME theme=OpenThemeData(tree,L"button");
+	HTHEME theme=OpenThemeData(GetParent(tree),L"button");
 	HDC hdc=CreateCompatibleDC(NULL);
 	int iconSize=(TreeView_GetItemHeight(tree)<32)?16:32;
 	int checkSize=16;

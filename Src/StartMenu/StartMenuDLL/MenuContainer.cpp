@@ -335,7 +335,6 @@ bool CMenuContainer::s_bDragMovable;
 bool CMenuContainer::s_bRightDrag;
 bool CMenuContainer::s_bLockWorkArea;
 bool CMenuContainer::s_bPendingSearchEnter;
-bool CMenuContainer::s_bMoreResults;
 std::vector<CMenuContainer*> CMenuContainer::s_Menus;
 volatile HWND CMenuContainer::s_FirstMenu, CMenuContainer::s_SearchMenu;
 CSearchManager::SearchResults CMenuContainer::s_SearchResults;
@@ -2770,7 +2769,7 @@ bool CMenuContainer::InitSearchItems( void )
 		// total height minus the search box and the "more results"/"search internet", if present
 		maxHeight=m_Items[m_SearchIndex].itemRect.top-s_Skin.Main_search_padding.top-s_Skin.Search_padding.top;
 		maxHeight-=itemHeight*(m_SearchItemCount-1);
-		if (!s_bMoreResults || (!s_SearchResults.bSearching && !HasMoreResults()))
+		if (!s_SearchResults.bSearching && !HasMoreResults())
 			maxHeight+=itemHeight;
 	}
 	if (bAutoComlpete)
@@ -2963,28 +2962,25 @@ bool CMenuContainer::InitSearchItems( void )
 	if (s_bWin7Style)
 	{
 		UpdateAccelerators(m_OriginalCount,(int)m_Items.size());
-		if (s_bMoreResults)
+		MenuItem &item=m_Items[m_SearchIndex-m_SearchItemCount+1];
+		if (s_SearchResults.bSearching)
 		{
-			MenuItem &item=m_Items[m_SearchIndex-m_SearchItemCount+1];
-			if (s_SearchResults.bSearching)
-			{
-				item.id=MENU_SEARCH_EMPTY;
-				item.name=FindTranslation(L"Menu.Searching",L"Searching...");
-				item.pItemInfo=g_ItemManager.GetCustomIcon(L"imageres.dll,8",CItemManager::ICON_SIZE_TYPE_SMALL);
-			}
-			else
-			{
-				item.id=MENU_MORE_RESULTS;
-				item.name=FindTranslation(L"Menu.MoreResults",L"See more results");
-				item.pItemInfo=g_ItemManager.GetCustomIcon(L"imageres.dll,177",CItemManager::ICON_SIZE_TYPE_SMALL);
-			}
+			item.id=MENU_SEARCH_EMPTY;
+			item.name=FindTranslation(L"Menu.Searching",L"Searching...");
+			item.pItemInfo=g_ItemManager.GetCustomIcon(L"imageres.dll,8",CItemManager::ICON_SIZE_TYPE_SMALL);
+		}
+		else
+		{
+			item.id=MENU_MORE_RESULTS;
+			item.name=FindTranslation(L"Menu.MoreResults",L"See more results");
+			item.pItemInfo=g_ItemManager.GetCustomIcon(L"imageres.dll,177",CItemManager::ICON_SIZE_TYPE_SMALL);
 		}
 	}
 	else
 	{
 		m_ScrollCount=(int)m_Items.size();
 		bool bInternet=GetSettingBool(L"SearchInternet");
-		if (s_bMoreResults && s_SearchResults.bSearching)
+		if (s_SearchResults.bSearching)
 		{
 			MenuItem item(MENU_SEARCH_EMPTY);
 			item.name=FindTranslation(L"Menu.Searching",L"Searching...");
@@ -2999,7 +2995,7 @@ bool CMenuContainer::InitSearchItems( void )
 				item.name=FindTranslation(L"Menu.NoMatch",L"No items match your search.");
 				m_Items.push_back(item);
 			}
-			if (s_bMoreResults && HasMoreResults())
+			if (HasMoreResults())
 			{
 				{
 					MenuItem item(MENU_SEPARATOR);
@@ -5087,7 +5083,7 @@ void CMenuContainer::UpdateSearchResults( bool bForceShowAll )
 		g_SearchManager.BeginSearch(s_SearchResults.currentString);
 		s_SearchResults.bSearching=true;
 		s_bPendingSearchEnter=false;
-		if (s_bWin7Style && s_bMoreResults)
+		if (s_bWin7Style)
 		{
 			MenuItem &item=m_Items[m_SearchIndex-m_SearchItemCount+1];
 			item.id=MENU_SEARCH_EMPTY;
@@ -7437,7 +7433,7 @@ static void CreateStartScreenFile( const wchar_t *fname )
 bool CMenuContainer::HasMoreResults( void )
 {
 	if (s_HasMoreResults==-1)
-		s_HasMoreResults=(GetSettingBool(L"SearchFiles") && HasSearchService())?1:0;
+		s_HasMoreResults=(GetSettingBool(L"MoreResults") && GetSettingBool(L"SearchFiles") && HasSearchService())?1:0;
 	return s_HasMoreResults!=0;
 }
 
@@ -7713,7 +7709,6 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	s_bDisableHover=false;
 	s_bDragClosed=false;
 	s_bPendingSearchEnter=false;
-	s_bMoreResults=GetSettingBool(L"MoreResults");
 	InitTouchHelper();
 
 	bool bRemote=GetSystemMetrics(SM_REMOTESESSION)!=0;

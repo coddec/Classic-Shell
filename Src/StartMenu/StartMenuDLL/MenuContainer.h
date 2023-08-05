@@ -896,7 +896,6 @@ private:
 	static bool s_bRightDrag; // dragging with the right mouse button
 	static bool s_bLockWorkArea; // changes to the work area are ignored
 	static bool s_bPendingSearchEnter; // Enter was pressed before the search results were ready
-	static bool s_bMoreResults; // shows the "Show More Results" item at the bottom of searches
 	static RECT s_MenuLimits; // area of the main monitor accessible to all menus
 	static RECT s_MainMenuLimits; // area of the main monitor accessible by the main menu
 	static DWORD s_TaskbarState; // the state of the taskbar (ABS_AUTOHIDE and ABS_ALWAYSONTOP)

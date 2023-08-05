@@ -2769,8 +2769,8 @@ bool CMenuContainer::InitSearchItems( void )
 		itemHeight=s_Skin.ItemSettings[MenuSkin::LIST_ITEM].itemHeight;
 		// total height minus the search box and the "more results"/"search internet", if present
 		maxHeight=m_Items[m_SearchIndex].itemRect.top-s_Skin.Main_search_padding.top-s_Skin.Search_padding.top;
-		maxHeight-=itemHeight*(m_SearchItemCount-(s_bMoreResults?1:2));
-		if (!s_SearchResults.bSearching && !HasMoreResults())
+		maxHeight-=itemHeight*(m_SearchItemCount-1);
+		if (!s_bMoreResults || (!s_SearchResults.bSearching && !HasMoreResults()))
 			maxHeight+=itemHeight;
 	}
 	if (bAutoComlpete)
@@ -2983,7 +2983,7 @@ bool CMenuContainer::InitSearchItems( void )
 	else
 	{
 		m_ScrollCount=(int)m_Items.size();
-			bool bInternet=GetSettingBool(L"SearchInternet");
+		bool bInternet=GetSettingBool(L"SearchInternet");
 		if (s_bMoreResults && s_SearchResults.bSearching)
 		{
 			MenuItem item(MENU_SEARCH_EMPTY);

@@ -2891,6 +2891,12 @@ static void OpenCortana( void )
 
 static void InitStartMenuDLL( void )
 {
+	static bool initCalled = false;
+	if (initCalled)
+		return;
+
+	initCalled = true;
+
 	LogToFile(STARTUP_LOG, L"StartMenu DLL: InitStartMenuDLL");
 	WaitDllInitThread();
 

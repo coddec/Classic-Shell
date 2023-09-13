@@ -136,6 +136,8 @@ static void CreateAppResolver( void )
 
 static bool DetectGrayscaleImage( const unsigned int *bits, int stride, int width, int height )
 {
+	if (width==0 || height==0)
+		return false;
 	int transparent=0;
 	for (int y=0;y<height;y++,bits+=stride)
 	{
